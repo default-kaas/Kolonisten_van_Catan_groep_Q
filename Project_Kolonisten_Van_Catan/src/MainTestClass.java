@@ -5,7 +5,6 @@ public class MainTestClass {
 		// TODO Auto-generated method stub
 		// kaas
 		System.out.println("Test");
-		System.out.println("Still test");
 	}
 
 }

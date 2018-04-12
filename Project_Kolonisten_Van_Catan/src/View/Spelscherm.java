@@ -1,6 +1,5 @@
 package View;
-
-
+import net.miginfocom.swing.MigLayout;
 
 import java.awt.BorderLayout;
 
@@ -15,18 +14,14 @@ public class Spelscherm extends JPanel {
 
 	public Spelscherm() {
 		maakPanelenAan();
-//		this.setLayout(new BorderLayout());
 		
-		
+		this.setLayout(new MigLayout()());
 		
 		add(SpelerInfo);
 		add(SpelBord);
 		
 		add(SpelChat);
 		add(SpelLog);
-
-		
-		
 
 	}
 

@@ -9,7 +9,7 @@ public class ChatPaneel extends JPanel {
 	public ChatPaneel() {
 
 		// Dit is ff blauw voor een test, mag je weghalen
-		this.setPreferredSize(new Dimension(400, 400));
+		this.setPreferredSize(new Dimension(450, 150));
 		this.setBackground(Color.BLUE);
 	}
 }

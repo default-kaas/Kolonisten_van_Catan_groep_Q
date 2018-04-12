@@ -7,7 +7,9 @@ import javax.swing.JPanel;
 
 public class SpelerInformatiePaneel extends JPanel{
 	public SpelerInformatiePaneel() {
-		this.setPreferredSize(new Dimension(200,600));
+		
+		//Dit is ff red voor een test, mag je weghalen
+		this.setPreferredSize(new Dimension(200,700));
 		this.setBackground(Color.RED);
 	}
 }

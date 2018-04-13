@@ -10,6 +10,6 @@ public class BouwInformatiePaneel extends JPanel {
 		
 		//Dit is ff cyan voor een test, mag je weghalen
 		this.setBackground(Color.CYAN);
-		this.setPreferredSize(new Dimension(225, 150));
+		this.setPreferredSize(new Dimension(300, 475));
 	}
 }

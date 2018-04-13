@@ -9,7 +9,7 @@ public class BordPaneel extends JPanel {
 	public BordPaneel() {
 		
 		//Dit is ff groen voor een test, mag je weghalen
-		this.setPreferredSize(new Dimension(700,700));
+		this.setPreferredSize(new Dimension(800,800));
 		this.setBackground(Color.GREEN);
 	}
 	

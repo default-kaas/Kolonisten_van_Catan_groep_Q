@@ -9,10 +9,15 @@ import java.sql.Statement;
 public class DatabaseConnect {
 	Connection m_Conn;
 
-	public DatabaseConnect() throws SQLException {
+	public DatabaseConnect() {
 		m_Conn = null;
 		if ((loadDataBaseDriver("com.mysql.jdbc.Driver")) && (makeConnection())) {
-			doSomeQuerying();
+			try {
+				doSomeQuerying();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			// TODO Auto-generated catch block
 

@@ -10,8 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class DobbelsteenPanel extends JPanel {
-	private ImageIcon dice;
-	private JLabel label1;
 	private int screenHeight;
 	private JButton myButton;
 	private BufferedImage image;

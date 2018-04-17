@@ -11,8 +11,8 @@ public class DobbelsteenPaneel extends JPanel {
 
 		// Dit is ff ORANGE voor een test, mag je weghalen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int Height = (int) (screenSize.getHeight() * 0.2);
-		this.setPreferredSize(new Dimension(250, Height));
+		int Height = (int) (screenSize.getHeight() * 0.19);
+		this.setPreferredSize(new Dimension(256, Height));
 		this.setBackground(Color.ORANGE);
 	}
 }

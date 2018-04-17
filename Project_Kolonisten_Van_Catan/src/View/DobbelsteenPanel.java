@@ -42,52 +42,13 @@ public class DobbelsteenPanel extends JPanel {
 		});
 
 		try {
-			switch (dobbelsteen.getValue1()) {
-			case 1:
-				image = ImageIO.read(new File("images/dice1.png"));
-				break;
-			case 2:
-				image = ImageIO.read(new File("images/dice2.png"));
-				break;
-			case 3:
-				image = ImageIO.read(new File("images/dice3.png"));
-				break;
-			case 4:
-				image = ImageIO.read(new File("images/dice4.png"));
-			case 5:
-				image = ImageIO.read(new File("images/dice5.png"));
-				break;
-			case 6:
-				image = ImageIO.read(new File("images/dice6.png"));
-				break;
-			}
+			image = ImageIO.read(new File("images/dice"+dobbelsteen.getValue1()+".png"));
+			image1 = ImageIO.read(new File("images/dice"+dobbelsteen.getValue2()+".png"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 
-		try {
-			switch (dobbelsteen.getValue2()) {
-			case 1:
-				image1 = ImageIO.read(new File("images/dice1.png"));
-				break;
-			case 2:
-				image1 = ImageIO.read(new File("images/dice2.png"));
-				break;
-			case 3:
-				image1 = ImageIO.read(new File("images/dice3.png"));
-				break;
-			case 4:
-				image1 = ImageIO.read(new File("images/dice4.png"));
-			case 5:
-				image1 = ImageIO.read(new File("images/dice5.png"));
-				break;
-			case 6:
-				image1 = ImageIO.read(new File("images/dice6.png"));
-				break;
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		
 
 	}
 

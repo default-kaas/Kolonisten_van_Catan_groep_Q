@@ -18,7 +18,7 @@ public class Spelscherm extends JPanel {
 	
 
 	public Spelscherm() {
-		maakPanelenAan();
+		MakePanels();
 
 		this.setLayout(new GridBagLayout());
 
@@ -89,7 +89,7 @@ public class Spelscherm extends JPanel {
 
 	}
 
-	private void maakPanelenAan() {
+	private void MakePanels() {
 		// TODO Auto-generated method stub
 		SpelBord = new BordPanel();
 		SpelChat = new ChatPanel();

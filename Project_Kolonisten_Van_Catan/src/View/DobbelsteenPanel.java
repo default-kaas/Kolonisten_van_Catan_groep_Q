@@ -9,11 +9,15 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Controller.Dobbelsteen;
+
 public class DobbelsteenPanel extends JPanel {
 	private int screenHeight;
 	private JButton myButton;
 	private BufferedImage image;
+	private BufferedImage image1;
 	private boolean pressed = false;
+	Dobbelsteen dobbelsteen = new Dobbelsteen();
 
 	public DobbelsteenPanel() {
 
@@ -29,7 +33,7 @@ public class DobbelsteenPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Removes button when a player has thrown a dice to force one throw per round.
+				// Removes button when a player has thrown a dice to force one throw per round.
 				remove(myButton);
 				pressed = true;
 				repaint();
@@ -38,9 +42,51 @@ public class DobbelsteenPanel extends JPanel {
 		});
 
 		try {
-			image = ImageIO.read(new File("images/dice.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
+			switch (dobbelsteen.getValue1()) {
+			case 1:
+				image = ImageIO.read(new File("images/dice1.png"));
+				break;
+			case 2:
+				image = ImageIO.read(new File("images/dice2.png"));
+				break;
+			case 3:
+				image = ImageIO.read(new File("images/dice3.png"));
+				break;
+			case 4:
+				image = ImageIO.read(new File("images/dice4.png"));
+			case 5:
+				image = ImageIO.read(new File("images/dice5.png"));
+				break;
+			case 6:
+				image = ImageIO.read(new File("images/dice6.png"));
+				break;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		try {
+			switch (dobbelsteen.getValue2()) {
+			case 1:
+				image1 = ImageIO.read(new File("images/dice1.png"));
+				break;
+			case 2:
+				image1 = ImageIO.read(new File("images/dice2.png"));
+				break;
+			case 3:
+				image1 = ImageIO.read(new File("images/dice3.png"));
+				break;
+			case 4:
+				image1 = ImageIO.read(new File("images/dice4.png"));
+			case 5:
+				image1 = ImageIO.read(new File("images/dice5.png"));
+				break;
+			case 6:
+				image1 = ImageIO.read(new File("images/dice6.png"));
+				break;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
 	}
@@ -56,7 +102,7 @@ public class DobbelsteenPanel extends JPanel {
 		super.paintComponent(g);
 		if (pressed) {
 			g.drawImage(image, 6, (screenHeight / 2) - 60, 120, 120, this);
-			g.drawImage(image, 129, (screenHeight / 2) - 60, 120, 120, this);
+			g.drawImage(image1, 129, (screenHeight / 2) - 60, 120, 120, this);
 		}
 	}
 

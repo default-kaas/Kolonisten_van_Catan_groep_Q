@@ -7,6 +7,7 @@ public class GUI extends JFrame {
 
 	public GUI() {
 		Spelscherm = new Spelscherm();
+		setResizable(false);
 		this.setContentPane(Spelscherm);
 		this.setTitle("Project Kolonisten van Catan, Groep Q");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

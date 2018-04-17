@@ -6,8 +6,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-public class DobbelsteenPaneel extends JPanel {
-	public DobbelsteenPaneel() {
+public class DobbelsteenPanel extends JPanel {
+	public DobbelsteenPanel() {
 
 		// Dit is ff ORANGE voor een test, mag je weghalen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

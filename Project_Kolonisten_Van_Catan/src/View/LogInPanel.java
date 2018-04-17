@@ -5,9 +5,9 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-public class LogInPaneel extends JPanel {
+public class LogInPanel extends JPanel {
 
-	public LogInPaneel() {
+	public LogInPanel() {
 		this.setPreferredSize(new Dimension(getMaximumSize()));
 		this.setBackground(Color.blue);
 		signIn();

@@ -6,8 +6,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-public class BordPaneel extends JPanel {
-	public BordPaneel() {
+public class BordPanel extends JPanel {
+	public BordPanel() {
 		
 		//Dit is ff groen voor een test, mag je weghalen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

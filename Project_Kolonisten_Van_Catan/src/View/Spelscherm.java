@@ -8,13 +8,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Spelscherm extends JPanel {
-	BordPaneel SpelBord;
-	ChatPaneel SpelChat;
-	LogPaneel SpelLog;
-	SpelerInformatiePaneel SpelerInfo;
-	BouwInformatiePaneel BouwInfo;
-	BouwPaneel Bouwen;
-	DobbelsteenPaneel Dobbelsteen;
+	BordPanel SpelBord;
+	ChatPanel SpelChat;
+	LogPanel SpelLog;
+	SpelerInformatiePanel SpelerInfo;
+	BouwInformatiePanel BouwInfo;
+	BouwPanel Bouwen;
+	DobbelsteenPanel Dobbelsteen;
 	
 
 	public Spelscherm() {
@@ -91,12 +91,12 @@ public class Spelscherm extends JPanel {
 
 	private void maakPanelenAan() {
 		// TODO Auto-generated method stub
-		SpelBord = new BordPaneel();
-		SpelChat = new ChatPaneel();
-		SpelLog = new LogPaneel();
-		SpelerInfo = new SpelerInformatiePaneel();
-		BouwInfo = new BouwInformatiePaneel();
-		Bouwen = new BouwPaneel();
-		Dobbelsteen = new DobbelsteenPaneel();
+		SpelBord = new BordPanel();
+		SpelChat = new ChatPanel();
+		SpelLog = new LogPanel();
+		SpelerInfo = new SpelerInformatiePanel();
+		BouwInfo = new BouwInformatiePanel();
+		Bouwen = new BouwPanel();
+		Dobbelsteen = new DobbelsteenPanel();
 	}
 }

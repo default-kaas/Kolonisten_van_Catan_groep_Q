@@ -6,8 +6,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-public class ChatPaneel extends JPanel {
-	public ChatPaneel() {
+public class ChatPanel extends JPanel {
+	public ChatPanel() {
 
 		// Dit is ff blauw voor een test, mag je weghalen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

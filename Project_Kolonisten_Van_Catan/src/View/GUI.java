@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 
 public class GUI extends JFrame {
 	Spelscherm Spelscherm;
-
 	public GUI() {
 		Spelscherm = new Spelscherm();
 		setResizable(false);

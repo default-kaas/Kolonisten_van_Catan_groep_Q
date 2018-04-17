@@ -1,20 +1,13 @@
 package View;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Toolkit;
+import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
+import java.io.*;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class DobbelsteenPanel extends JPanel {
 	private ImageIcon dice;
@@ -28,9 +21,8 @@ public class DobbelsteenPanel extends JPanel {
 
 		myButton = new JButton("Throw Dice");
 
-		// Dit is ff ORANGE voor een test, mag je weghalen
 		screenHeight = ScreenHeight();
-		
+
 		this.add(myButton);
 		this.setPreferredSize(new Dimension(256, screenHeight));
 		this.setBackground(Color.WHITE);
@@ -39,26 +31,22 @@ public class DobbelsteenPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				//Removes button when a player has thrown a dice to force one throw per round.
 				remove(myButton);
 				pressed = true;
 				repaint();
-				
-				// dice = new ImageIcon("images/dice.png");
-				// label1 = new JLabel(dice);
-				// add(label1);
-				// validate();
+
 			}
 		});
 
 		try {
 			image = ImageIO.read(new File("images/dice.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
+
 	private int ScreenHeight() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int Height = (int) (screenSize.getHeight() * 0.19);

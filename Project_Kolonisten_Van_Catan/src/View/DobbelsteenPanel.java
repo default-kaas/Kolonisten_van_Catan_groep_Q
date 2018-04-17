@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 public class DobbelsteenPanel extends JPanel {
 	private ImageIcon dice;
 	private JLabel label1;
-
+	private int screenHeight;
 	private JButton myButton;
 	private BufferedImage image;
 	private boolean pressed = false;
@@ -29,10 +29,10 @@ public class DobbelsteenPanel extends JPanel {
 		myButton = new JButton("Throw Dice");
 
 		// Dit is ff ORANGE voor een test, mag je weghalen
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int Height = (int) (screenSize.getHeight() * 0.19);
+		screenHeight = ScreenHeight();
+		
 		this.add(myButton);
-		this.setPreferredSize(new Dimension(256, Height));
+		this.setPreferredSize(new Dimension(256, screenHeight));
 		this.setBackground(Color.WHITE);
 
 		myButton.addActionListener(new ActionListener() {
@@ -42,8 +42,8 @@ public class DobbelsteenPanel extends JPanel {
 				// TODO Auto-generated method stub
 				remove(myButton);
 				pressed = true;
-
 				repaint();
+				
 				// dice = new ImageIcon("images/dice.png");
 				// label1 = new JLabel(dice);
 				// add(label1);
@@ -59,15 +59,18 @@ public class DobbelsteenPanel extends JPanel {
 		}
 
 	}
+	private int ScreenHeight() {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int Height = (int) (screenSize.getHeight() * 0.19);
+		return Height;
+	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (pressed) {
-			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			int Height = (int) (screenSize.getHeight() * 0.19);
-			g.drawImage(image,6, (Height/2)-60, 120, 120, this);
-			g.drawImage(image, 129,(Height/2)-60, 120, 120, this);
+			g.drawImage(image, 6, (screenHeight / 2) - 60, 120, 120, this);
+			g.drawImage(image, 129, (screenHeight / 2) - 60, 120, 120, this);
 		}
 	}
 

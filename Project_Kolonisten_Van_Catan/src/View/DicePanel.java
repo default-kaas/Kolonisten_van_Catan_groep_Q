@@ -40,7 +40,7 @@ public class DicePanel extends JPanel implements MouseListener {
 
 	private int ScreenHeight() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int Height = (int) (screenSize.getHeight() * 0.19);
+		int Height = (int) (screenSize.getHeight() * 0.2);
 		return Height;
 	}
 

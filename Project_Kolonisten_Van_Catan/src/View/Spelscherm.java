@@ -47,8 +47,6 @@ public class Spelscherm extends JPanel {
 		c.gridwidth = 2;
 		c.gridx = 2;
 		c.gridy = 0;
-		JLabel label3 = new JLabel("Chat");
-		add(label3, c);
 		add(SpelChat, c);
 	
 		c.gridwidth = 1;

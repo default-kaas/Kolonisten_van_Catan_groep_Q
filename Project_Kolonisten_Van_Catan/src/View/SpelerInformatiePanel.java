@@ -23,7 +23,7 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int size = (int) (screenSize.getHeight() * 0.8);
 		int width = (int) ((screenSize.getWidth() - size)/2);
-		this.setPreferredSize(new Dimension(width, (int)(screenSize.getHeight()*0.49)));
+		this.setPreferredSize(new Dimension(width, (int)(screenSize.getHeight()*0.5)));
 		this.setBackground(Color.RED);
 	}
 	public void actionPerformed(ActionEvent arg0) {

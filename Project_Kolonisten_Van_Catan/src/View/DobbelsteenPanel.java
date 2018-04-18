@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.AncestorListener;
 
-import Controller.Dobbelsteen;
+import Controller.DiceController;
 
 public class DobbelsteenPanel extends JPanel implements MouseListener {
 	private int screenHeight;
@@ -20,7 +20,7 @@ public class DobbelsteenPanel extends JPanel implements MouseListener {
 	private BufferedImage image;
 	private BufferedImage image1;
 	private boolean pressed = false;
-	Dobbelsteen dobbelsteen = new Dobbelsteen();
+	DiceController dobbelsteen = new DiceController();
 	private JLabel text = new JLabel("Dobbelsteen gooien");
 
 	public DobbelsteenPanel() {

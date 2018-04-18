@@ -3,7 +3,7 @@ package Controller;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Dobbelsteen {
+public class DiceController {
 
 	Random random = new Random();
 
@@ -12,7 +12,7 @@ public class Dobbelsteen {
 	private int value1;
 	private int value2;
 
-	public Dobbelsteen() {
+	public DiceController() {
 		dobbelen();
 	}
 

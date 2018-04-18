@@ -10,7 +10,7 @@ public class ChatPanelController {
 
 
 	public Chat chatModel = new Chat();
-	public ChatPanel chatPanel = new ChatPanel();
+	
 
 	public ChatPanelController() {
 
@@ -24,15 +24,15 @@ public class ChatPanelController {
 	}
 
 
-	public String getUserText() { 	
-
-		String chatInput = "";
-
-		chatInput += chatPanel.inputField.getText();
-
-		return chatInput;
-
-	}
+//	public String getUserText() { 	
+//
+//		String chatInput = "";
+//
+//		chatInput += chatPanel.inputField.getText();
+//
+//		return chatInput;
+//
+//	}
 
 	
 }

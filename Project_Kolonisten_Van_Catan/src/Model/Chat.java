@@ -7,12 +7,11 @@ import Controller.ChatPanelController;
 public class Chat {
 	private String text;
 	public ArrayList<String> chatArray;
-	ChatPanelController chatPanelController = new ChatPanelController();
+//	ChatPanelController chatPanelController = new ChatPanelController();
 
 	public Chat() {
 		chatArray = new ArrayList<String>();
-		chatArray.add("testing");
-		chatArray.add("Welkom");
+		addTextToArray();
 		
 	}
 
@@ -20,14 +19,15 @@ public class Chat {
 		return text;
 	}
 
-	public void setText(String text) {
-		text = chatPanelController.getUserText();
-
-		this.text = text;
-	}
+//	public void setText(String text) {
+//		text = chatPanelController.getUserText();
+//
+//		this.text = text;
+//	}
 
 	public void addTextToArray() {
-		
+		chatArray.add("testing");
+		chatArray.add("Welkom");
 
 	}
 
@@ -36,7 +36,7 @@ public class Chat {
 		
 		String chat = "";
 		for (String x : chatArray) {
-			chat += x;
+			chat += x + "\n\r" ;
 
 		}
 		return chat;

@@ -19,11 +19,12 @@ public class ChatPanel extends JPanel {
 	public JTextArea textField;
 
 	public ChatPanel() {
-
+		chatPanelController = new ChatPanelController();
 		// Dit is ff blauw voor een test, mag je weghalen
 
 		inputField = new JTextField(80);
 		textField = new JTextArea();
+		textField.setEditable(false);
 		textField.setPreferredSize(new Dimension(200, 200));
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -46,7 +47,7 @@ public class ChatPanel extends JPanel {
 			}
 		});
 		
-		/*textField.setText(chatPanelController.getTextArray());*/
+		textField.setText(chatPanelController.getTextArray());
 		
 
 

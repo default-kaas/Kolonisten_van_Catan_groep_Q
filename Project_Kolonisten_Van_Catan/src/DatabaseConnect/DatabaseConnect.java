@@ -10,17 +10,12 @@ public class DatabaseConnect {
 	Connection m_Conn;
 
 	public DatabaseConnect() {
-		m_Conn = null;
+		System.out.println("Driver load: " +loadDataBaseDriver("com.mysql.jdbc.Driver")+ " - Connection: " +  makeConnection());
 		if ((loadDataBaseDriver("com.mysql.jdbc.Driver")) && (makeConnection())) {
-			try {
-				doSomeQuerying();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			// TODO Auto-generated catch block
-
+			System.out.println("Database is connected");
+			
+		} else {
+			System.out.println("Database can't connected");
 		}
 	}
 
@@ -31,27 +26,27 @@ public class DatabaseConnect {
 			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			System.out.println(e);
-
 			return false;
 		}
 	}
 
 	public boolean makeConnection() {
 		// TODO Auto-generated method stub
-
 		String url = "jdbc:mysql://databases.aii.avans.nl:3306/rswester_db2";
 		String user = "rswester";
 		String pwd = "Ab12345";
 		try {
 			m_Conn = DriverManager.getConnection(url, user, pwd);
-
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			return false;
 		}
 
+	}
+
+	public Connection getConnection() {
+		return m_Conn;
 	}
 
 	public void doSomeQuerying() throws SQLException {

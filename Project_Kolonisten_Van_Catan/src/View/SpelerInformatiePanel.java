@@ -6,7 +6,10 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
+import Model.Player;
+
 public class SpelerInformatiePanel extends JPanel{
+	private Player speler1 = new Player();
 	public SpelerInformatiePanel() {
 		
 		//Dit is ff red voor een test, mag je weghalen

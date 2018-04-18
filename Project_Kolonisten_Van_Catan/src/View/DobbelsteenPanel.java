@@ -33,8 +33,6 @@ public class DobbelsteenPanel extends JPanel implements MouseListener {
 		this.add(text);
 		this.addMouseListener(this);
 		
-		
-
 		try {
 			image = ImageIO.read(new File("images/dice"+dobbelsteen.getValue1()+".png"));
 			image1 = ImageIO.read(new File("images/dice"+dobbelsteen.getValue2()+".png"));

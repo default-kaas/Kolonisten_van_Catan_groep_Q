@@ -13,21 +13,15 @@ public class DiceController {
 	private int value2;
 
 	public DiceController() {
-		dobbelen();
+		throwDice();
 	}
 
-	public int dobbelen() {
-
+	public int throwDice() {
 		int sum = 0;
-
 		// Each dice gives a random number between 1 and 6. Both are added up to make up
 		// for the sum which is then returned.
-		
-
 		sum = getValue1() + getValue2();
-
 		return sum;
-
 	}
 	
 	public int getValue1() {

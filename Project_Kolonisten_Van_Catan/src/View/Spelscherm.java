@@ -14,7 +14,7 @@ public class Spelscherm extends JPanel {
 	SpelerInformatiePanel SpelerInfo;
 	BouwInformatiePanel BouwInfo;
 	BouwPanel Bouwen;
-	DobbelsteenPanel Dobbelsteen;
+	DicePanel Dobbelsteen;
 	
 
 	public Spelscherm() {
@@ -95,6 +95,6 @@ public class Spelscherm extends JPanel {
 		SpelerInfo = new SpelerInformatiePanel();
 		BouwInfo = new BouwInformatiePanel();
 		Bouwen = new BouwPanel();
-		Dobbelsteen = new DobbelsteenPanel();
+		Dobbelsteen = new DicePanel();
 	}
 }

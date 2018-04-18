@@ -14,7 +14,7 @@ import javax.swing.event.AncestorListener;
 
 import Controller.DiceController;
 
-public class DobbelsteenPanel extends JPanel implements MouseListener {
+public class DicePanel extends JPanel implements MouseListener {
 	private int screenHeight;
 	private JButton myButton;
 	private BufferedImage image;
@@ -23,7 +23,7 @@ public class DobbelsteenPanel extends JPanel implements MouseListener {
 	DiceController dobbelsteen = new DiceController();
 	private JLabel text = new JLabel("Dobbelsteen gooien");
 
-	public DobbelsteenPanel() {
+	public DicePanel() {
 		
 		myButton = new JButton("Throw Dice");
 		this.setLayout(new GridBagLayout());

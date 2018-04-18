@@ -32,8 +32,13 @@ public class LogInPanel extends JPanel implements ActionListener{
 		passwordField.setBounds(300, 110, 200, 30);
 		button.setBounds(150, 160, 100, 30);
 		
-		this.setPreferredSize(new Dimension(getMaximumSize()));
-		this.setBackground(Color.blue);
+		this.setPreferredSize(new Dimension(600, 600));
+		this.add(username);
+		this.add(password);
+		this.add(textField);
+		this.add(passwordField);
+		this.add(button);
+		
 		signIn();
 	}
 	

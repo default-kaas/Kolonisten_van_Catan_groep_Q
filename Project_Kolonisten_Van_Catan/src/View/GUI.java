@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 public class GUI extends JFrame {
 	private Spelscherm Spelscherm;
+	private LogInPanel LogInPanel;
 
 	public GUI() {
 		
@@ -30,6 +31,7 @@ public class GUI extends JFrame {
 	private void showGamePane(boolean loginSucces) {
 		if(loginSucces == true) {
 			Spelscherm = new Spelscherm();
+			LogInPanel = new LogInPanel();
 			this.setContentPane(Spelscherm);
 		}
 	}

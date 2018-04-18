@@ -1,14 +1,23 @@
 package View;
 
+
+
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class GUI extends JFrame {
 	private Spelscherm Spelscherm;
 	private LogInPanel LogInPanel;
-
+	private JMenuBar  menuBar;
+	private JMenu menu;
+	private JMenuItem exit, login, lobby;
+	
+	
 	public GUI() {
 		
-		
+		addMenuBar();
 		showGamePane(true);
 		// Voor nu ff zo gedaan dat we rechts boven kunnen afsluiten!
 		
@@ -22,6 +31,17 @@ public class GUI extends JFrame {
 		this.pack();
 		this.setLocationRelativeTo(null);
 
+	}
+	
+	private void addMenuBar() {
+		menuBar = new JMenuBar();
+		menu = new JMenu();
+		exit = new JMenuItem("Exit");
+		menuBar.add(menu);
+		menu.add(exit);
+		this.setJMenuBar(menuBar);
+		
+		
 	}
 	
 	private void showLobbyScreen() {

@@ -11,7 +11,7 @@ public class GUI extends JFrame {
 		this.setContentPane(Spelscherm);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		// Voor nu ff zo gedaan dat we rechts boven kunnen afsluiten!
-		// this.setUndecorated(true);
+		this.setUndecorated(true);
 		this.setTitle("Project Kolonisten van Catan, Groep Q");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);

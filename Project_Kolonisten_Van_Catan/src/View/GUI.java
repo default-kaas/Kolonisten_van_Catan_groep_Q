@@ -3,14 +3,17 @@ package View;
 import javax.swing.JFrame;
 
 public class GUI extends JFrame {
-	Spelscherm Spelscherm;
+	private Spelscherm Spelscherm;
 
 	public GUI() {
-		Spelscherm = new Spelscherm();
-		setResizable(false);
-		this.setContentPane(Spelscherm);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+		
+		showGamePane(true);
 		// Voor nu ff zo gedaan dat we rechts boven kunnen afsluiten!
+		
+		
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setResizable(false);
 		this.setUndecorated(true);
 		this.setTitle("Project Kolonisten van Catan, Groep Q");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,5 +22,15 @@ public class GUI extends JFrame {
 		this.setLocationRelativeTo(null);
 
 	}
-
+	
+	private void showLobbyScreen() {
+		
+	}
+	
+	private void showGamePane(boolean loginSucces) {
+		if(loginSucces == true) {
+			Spelscherm = new Spelscherm();
+			this.setContentPane(Spelscherm);
+		}
+	}
 }

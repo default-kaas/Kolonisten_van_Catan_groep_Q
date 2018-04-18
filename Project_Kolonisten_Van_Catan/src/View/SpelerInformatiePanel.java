@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import Model.Player;
 
 public class SpelerInformatiePanel extends JPanel implements ActionListener{
-	private Player speler1 = new Player();
+	//private Player speler1 = new Player();
 	private JButton close;
 	public SpelerInformatiePanel() {
 		close = new JButton("Close game!");

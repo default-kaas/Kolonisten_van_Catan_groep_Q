@@ -35,6 +35,8 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 	private JLabel Player4;
 	
 	public SpelerInformatiePanel() {
+		
+		
 		SetVariables();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(Box.createRigidArea(new Dimension(5, 10)));
@@ -78,7 +80,7 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 		close = new JButton("Close game!");
 		
 		//Names of Players in game
-		Player1 = new JLabel("TEST");
+		Player1 = new JLabel(Controller.getName());
 		Player2 = new JLabel("TEST");
 		Player3 = new JLabel("TEST");
 		Player4 = new JLabel("TEST");

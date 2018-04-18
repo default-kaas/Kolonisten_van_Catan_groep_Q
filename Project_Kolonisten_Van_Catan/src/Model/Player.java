@@ -7,12 +7,13 @@ public class Player {
 	private String Color;
 	private int Points;
 	private boolean myTurn;
-	
+	private int GameNumber;
 	private Database.PlayerDAO PlayerDAO;
 	
 	public Player() {
 		System.out.println("Player is made!");
-		PlayerDAO = new Database.PlayerDAO();
+		GameNumber = 770;
+		PlayerDAO = new Database.PlayerDAO(770);
 		try {
 			Name = PlayerDAO.getName();
 		} catch (SQLException e) {

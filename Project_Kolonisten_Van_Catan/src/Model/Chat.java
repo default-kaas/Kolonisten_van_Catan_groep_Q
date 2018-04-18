@@ -11,7 +11,7 @@ public class Chat {
 
 	public Chat() {
 		chatArray = new ArrayList<String>();
-		addTextToArray();
+		addTextToArray("Welkom bij Catan chat!");
 		
 	}
 
@@ -25,9 +25,9 @@ public class Chat {
 //		this.text = text;
 //	}
 
-	public void addTextToArray() {
-		chatArray.add("testing");
-		chatArray.add("Welkom");
+	public void addTextToArray(String s) {
+		
+		chatArray.add(s);
 
 	}
 

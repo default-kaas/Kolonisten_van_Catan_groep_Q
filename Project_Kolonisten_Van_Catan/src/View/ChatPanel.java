@@ -40,14 +40,13 @@ public class ChatPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String chatInput = "";
-
-				chatInput += inputField.getText();
-
+				
+				chatPanelController.setUserInput(inputField.getText());
+				textField.setText(chatPanelController.getTextArray());
 			}
 		});
+			
 		
-		textField.setText(chatPanelController.getTextArray());
 		
 
 

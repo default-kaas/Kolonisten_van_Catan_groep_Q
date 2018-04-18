@@ -24,15 +24,9 @@ public class ChatPanelController {
 	}
 
 
-//	public String getUserText() { 	
-//
-//		String chatInput = "";
-//
-//		chatInput += chatPanel.inputField.getText();
-//
-//		return chatInput;
-//
-//	}
+public void setUserInput(String x) {
+	chatModel.addTextToArray(x);
+}
 
 	
 }

@@ -9,11 +9,10 @@ import DatabaseConnect.DatabaseConnect;
 
 public class PlayerDAO {
 	Connection m_Conn;
-	private int Game;
 	
-	public PlayerDAO(int Game) {
+	
+	public PlayerDAO() {
 		System.out.println("PlayerDAO is made!");
-		this.Game = Game;
 		DatabaseConnect Connection = new DatabaseConnect();
 		try {
 			m_Conn = Connection.getConnection();
@@ -22,9 +21,9 @@ public class PlayerDAO {
 		}
 	}
 
-	public String getName() throws SQLException {
+	public String getName(int PlayerID, int GameID) throws SQLException {
 		Statement stmt = m_Conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select username from speler where idspel="+ Game+ " and speelstatus = 'uitdager'" );
+		ResultSet rs = stmt.executeQuery("select username from speler where idspel="+ GameID + " and volgnr = "+ (PlayerID+1));
 		rs.next();
 		String name = rs.getString("username");
 		return name;

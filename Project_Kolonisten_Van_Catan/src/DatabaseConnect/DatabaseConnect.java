@@ -10,7 +10,6 @@ public class DatabaseConnect {
 	Connection m_Conn;
 
 	public DatabaseConnect() {
-		System.out.println("Driver load: " +loadDataBaseDriver("com.mysql.jdbc.Driver")+ " - Connection: " +  makeConnection());
 		if ((loadDataBaseDriver("com.mysql.jdbc.Driver")) && (makeConnection())) {
 			System.out.println("Database is connected");
 			

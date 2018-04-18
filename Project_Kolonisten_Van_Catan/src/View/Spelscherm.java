@@ -7,6 +7,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Controller.GameController;
+
 public class Spelscherm extends JPanel {
 	BordPanel SpelBord;
 	ChatPanel SpelChat;
@@ -17,7 +19,9 @@ public class Spelscherm extends JPanel {
 	DicePanel Dobbelsteen;
 	
 
-	public Spelscherm() {
+	public Spelscherm(int GameID) {
+		GameController x = new GameController(GameID);
+		
 		MakePanels();
 
 		this.setLayout(new GridBagLayout());

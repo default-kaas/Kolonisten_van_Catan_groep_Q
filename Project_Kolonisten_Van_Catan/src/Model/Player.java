@@ -8,19 +8,16 @@ public class Player {
 	private int Points;
 	private boolean myTurn;
 	private int GameNumber;
-	private Database.PlayerDAO PlayerDAO;
+	//private Database.PlayerDAO PlayerDAO;
 	
-	public Player() {
-		System.out.println("Player is made!");
-		GameNumber = 770;
-		PlayerDAO = new Database.PlayerDAO(770);
-		try {
-			Name = PlayerDAO.getName();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("First name in account table: "+ Name);
+	public Player(String Name) {
+		this.Name = setName(Name);
+		
+	}
+
+	private String setName(String Name) {
+		// TODO Auto-generated method stub
+		return Name;
 	}
 
 	public String getName() {

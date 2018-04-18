@@ -30,7 +30,7 @@ public class GUI extends JFrame {
 	
 	private void showGamePane(boolean loginSucces) {
 		if(loginSucces == true) {
-			Spelscherm = new Spelscherm();
+			Spelscherm = new Spelscherm(770);
 			LogInPanel = new LogInPanel();
 			this.setContentPane(Spelscherm);
 		}

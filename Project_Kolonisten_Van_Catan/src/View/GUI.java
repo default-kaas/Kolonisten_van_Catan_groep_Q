@@ -32,7 +32,7 @@ public class GUI extends JFrame {
 		if(loginSucces == true) {
 			Spelscherm = new Spelscherm();
 			LogInPanel = new LogInPanel();
-			this.setContentPane(Spelscherm);
+			this.setContentPane(LogInPanel);
 		}
 	}
 }

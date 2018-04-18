@@ -24,7 +24,7 @@ public class PlayerDAO {
 
 	public String getName() throws SQLException {
 		Statement stmt = m_Conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select username from speler where idspel="+ Game+ " and speelstatus = 'uitdager'" );
+		ResultSet rs = stmt.executeQuery("select username from speler where idspel="+ Game + " and speelstatus = 'uitdager'" );
 		rs.next();
 		String name = rs.getString("username");
 		return name;

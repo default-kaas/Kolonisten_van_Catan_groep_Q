@@ -12,6 +12,8 @@ public class Player {
 	
 	public Player() {
 		System.out.println("Player is made!");
+		//Deze moet worden meegegeven door Lobby
+		
 		GameNumber = 770;
 		PlayerDAO = new Database.PlayerDAO(770);
 		try {

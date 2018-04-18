@@ -13,7 +13,7 @@ public class Chat {
 	public Chat() {
 		ChatDAO = new ChatDAO();
 		chatArray = new ArrayList<String>();
-		addTextToArray("Welkom bij Catan chat!");
+		chatArray.add("Welkom bij Catan chat!");
 		
 	}
 

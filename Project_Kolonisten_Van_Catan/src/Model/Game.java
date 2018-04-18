@@ -26,4 +26,7 @@ public class Game {
 			}
 		}
 	}
+	public ArrayList<Player> GetPlayers(){
+		return Players;
+	}
 }

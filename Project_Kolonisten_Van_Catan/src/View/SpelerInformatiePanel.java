@@ -27,6 +27,7 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 	private BufferedImage WoodImage;
 	private BufferedImage StoneImage;
 	private BufferedImage OreImage;
+	
 	private PlayerInfoController Controller;
 	
 	private JLabel Player1;

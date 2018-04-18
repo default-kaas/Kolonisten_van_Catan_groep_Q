@@ -52,8 +52,6 @@ public class Spelscherm extends JPanel {
 		c.gridwidth = 1;
 		c.gridx = 1;
 		c.gridy = 0;
-		JLabel label6 = new JLabel("Dobbesteen");
-		add(label6, c);
 		add(Dobbelsteen, c);
 		
 	

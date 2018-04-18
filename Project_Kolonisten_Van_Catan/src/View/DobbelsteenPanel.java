@@ -4,32 +4,36 @@ import java.awt.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.AncestorListener;
 
 import Controller.Dobbelsteen;
 
-public class DobbelsteenPanel extends JPanel implements ActionListener {
+public class DobbelsteenPanel extends JPanel implements MouseListener {
 	private int screenHeight;
 	private JButton myButton;
 	private BufferedImage image;
 	private BufferedImage image1;
 	private boolean pressed = false;
 	Dobbelsteen dobbelsteen = new Dobbelsteen();
+	private JLabel text = new JLabel("Dobbelsteen gooien");
 
 	public DobbelsteenPanel() {
-
+		
 		myButton = new JButton("Throw Dice");
-
+		this.setLayout(new GridBagLayout());
 		screenHeight = ScreenHeight();
-
-		this.add(myButton);
 		this.setPreferredSize(new Dimension(256, screenHeight));
 		this.setBackground(Color.WHITE);
+		this.add(text);
+		this.addMouseListener(this);
 		
-		myButton.addActionListener(this);
+		
 
 		try {
 			image = ImageIO.read(new File("images/dice"+dobbelsteen.getValue1()+".png"));
@@ -55,13 +59,34 @@ public class DobbelsteenPanel extends JPanel implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent ae) {
-		// Removes button when a player has thrown a dice to force one throw per round.
-		if(ae.getSource()==myButton) {
-			remove(myButton);
-			pressed = true;
-			repaint();
-		}
+	public void mouseClicked(MouseEvent arg0) {
+		remove(text);
+		pressed = true;
+		repaint();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

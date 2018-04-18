@@ -16,7 +16,6 @@ import Controller.DiceController;
 
 public class DicePanel extends JPanel implements MouseListener {
 	private int screenHeight;
-	private JButton myButton;
 	private BufferedImage image;
 	private BufferedImage image1;
 	private boolean pressed = false;
@@ -24,8 +23,6 @@ public class DicePanel extends JPanel implements MouseListener {
 	private JLabel text = new JLabel("Dobbelsteen gooien");
 
 	public DicePanel() {
-		
-		myButton = new JButton("Throw Dice");
 		this.setLayout(new GridBagLayout());
 		screenHeight = ScreenHeight();
 		this.setPreferredSize(new Dimension(256, screenHeight));

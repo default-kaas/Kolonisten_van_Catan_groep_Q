@@ -1,15 +1,17 @@
 package Model;
 
 import java.util.ArrayList;
-
+import Database.ChatDAO;
 import Controller.ChatPanelController;
 
 public class Chat {
+	private ChatDAO ChatDAO;
 	private String text;
 	public ArrayList<String> chatArray;
 //	ChatPanelController chatPanelController = new ChatPanelController();
 
 	public Chat() {
+		ChatDAO = new ChatDAO();
 		chatArray = new ArrayList<String>();
 		addTextToArray("Welkom bij Catan chat!");
 		
@@ -27,6 +29,7 @@ public class Chat {
 
 	public void addTextToArray(String s) {
 		
+		ChatDAO.setChatMessage(44, s);
 		chatArray.add(s);
 
 	}

@@ -27,8 +27,6 @@ public class Spelscherm extends JPanel {
 		c.gridheight= 2;
 		c.gridx = 0;
 		c.gridy = 0;
-		JLabel label1 = new JLabel("Speler Informatie");
-		add(label1, c);
 		add(SpelerInfo, c);
 		
 		c.gridheight= 2;

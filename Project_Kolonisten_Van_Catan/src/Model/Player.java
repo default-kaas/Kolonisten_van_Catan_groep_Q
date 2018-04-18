@@ -21,5 +21,23 @@ public class Player {
 		}
 		System.out.println("First name in account table: "+ Name);
 	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public String getColor() {
+		return Color;
+	}
+
+	public int getPoints() {
+		return Points;
+	}
+
+	public boolean isMyTurn() {
+		return myTurn;
+	}
+	
+	
 	
 }

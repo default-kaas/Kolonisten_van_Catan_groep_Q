@@ -28,10 +28,11 @@ public class Chat {
 //	}
 
 	public void addTextToArray(String s) {
+		chatArray.add(s);
 		if(!ChatDAO.setChatMessage(44, s)) {
 			chatArray.add("Error, Couldn't send message!");
 		}
-		chatArray.add(s);
+		
 
 	}
 

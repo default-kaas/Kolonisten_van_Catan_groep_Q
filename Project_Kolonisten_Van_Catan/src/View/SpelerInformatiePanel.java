@@ -55,11 +55,11 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(WoolImage, 0, 100, (int) (WoolImage.getWidth() * 0.1), (int) (WoolImage.getHeight() * 0.1), this);
-		g.drawImage(WheatImage, 50, 100, (int) (WoolImage.getWidth() * 0.1), (int) (WoolImage.getHeight() * 0.1), this);
-		g.drawImage(WoodImage, 100, 100, (int) (WoolImage.getWidth() * 0.1), (int) (WoolImage.getHeight() * 0.1), this);
-		g.drawImage(StoneImage, 150, 100, (int) (WoolImage.getWidth() * 0.1), (int) (WoolImage.getHeight() * 0.1), this);
-		g.drawImage(OreImage, 200, 100, (int) (WoolImage.getWidth() * 0.1), (int) (WoolImage.getHeight() * 0.1), this);
+		g.drawImage(WoolImage, 10, 100, (int) (WoolImage.getWidth() * 0.2), (int) (WoolImage.getHeight() * 0.2), this);
+		g.drawImage(WheatImage, 110, 100, (int) (WoolImage.getWidth() * 0.2), (int) (WoolImage.getHeight() * 0.2), this);
+		g.drawImage(WoodImage, 210, 100, (int) (WoolImage.getWidth() * 0.2), (int) (WoolImage.getHeight() * 0.2), this);
+		g.drawImage(StoneImage, 310, 100, (int) (WoolImage.getWidth() * 0.2), (int) (WoolImage.getHeight() * 0.2), this);
+		g.drawImage(OreImage, 410, 100, (int) (WoolImage.getWidth() * 0.2), (int) (WoolImage.getHeight() * 0.2), this);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

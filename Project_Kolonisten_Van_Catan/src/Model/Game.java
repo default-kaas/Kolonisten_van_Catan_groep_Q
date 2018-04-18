@@ -1,13 +1,29 @@
 package Model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Database.PlayerDAO;
+
 public class Game {
-	private int idSpel;
+	private int GameId;
 	private int PlayersRound;
 	private ArrayList<Player> Players;
-	public Game(int idSpel) {
-		this.idSpel = idSpel;
+	private PlayerDAO PlayerDBInfo;
+	
+	public Game(int GameId) {
+		this.GameId = GameId;
+		PlayerDBInfo = new PlayerDAO();	
+		Players = new ArrayList<Player>();
 		
+		for(int i =0; i<4; i++) {
+			try {
+				Players.add(new Player(PlayerDBInfo.getName(i, GameId)));
+				System.out.println(Players.get(i).getName());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }

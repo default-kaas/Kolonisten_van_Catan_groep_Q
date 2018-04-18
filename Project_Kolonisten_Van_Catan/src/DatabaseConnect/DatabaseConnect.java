@@ -57,7 +57,7 @@ public class DatabaseConnect {
 	public void doSomeQuerying() throws SQLException {
 		// TODO Auto-generated method stub
 		Statement stmt = m_Conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select gebruikersnaam from gebruiker");
+		ResultSet rs = stmt.executeQuery("select username from account");
 
 		while (rs.next()) {
 			System.out.println(rs.getString("gebruikersnaam"));

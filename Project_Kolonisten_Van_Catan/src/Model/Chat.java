@@ -28,8 +28,9 @@ public class Chat {
 //	}
 
 	public void addTextToArray(String s) {
-		
-		ChatDAO.setChatMessage(44, s);
+		if(!ChatDAO.setChatMessage(44, s)) {
+			chatArray.add("Error, Couldn't send message!");
+		}
 		chatArray.add(s);
 
 	}
@@ -40,7 +41,6 @@ public class Chat {
 		String chat = "";
 		for (String x : chatArray) {
 			chat += x + "\n\r" ;
-
 		}
 		return chat;
 	}

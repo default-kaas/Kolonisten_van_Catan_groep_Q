@@ -55,11 +55,13 @@ public class DobbelsteenPanel extends JPanel implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent ae) {
 		// Removes button when a player has thrown a dice to force one throw per round.
-		remove(myButton);
-		pressed = true;
-		repaint();
+		if(ae.getSource()==myButton) {
+			remove(myButton);
+			pressed = true;
+			repaint();
+		}
 	}
 
 }

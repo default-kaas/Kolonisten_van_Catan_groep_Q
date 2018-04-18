@@ -9,9 +9,11 @@ import DatabaseConnect.DatabaseConnect;
 
 public class PlayerDAO {
 	Connection m_Conn;
-
-	public PlayerDAO() {
+	private int Game;
+	
+	public PlayerDAO(int Game) {
 		System.out.println("PlayerDAO is made!");
+		this.Game = Game;
 		DatabaseConnect Connection = new DatabaseConnect();
 		try {
 			m_Conn = Connection.getConnection();
@@ -22,7 +24,7 @@ public class PlayerDAO {
 
 	public String getName() throws SQLException {
 		Statement stmt = m_Conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select username from account");
+		ResultSet rs = stmt.executeQuery("select username from speler where idspel="+ Game+ " and speelstatus = 'uitdager'" );
 		rs.next();
 		String name = rs.getString("username");
 		return name;

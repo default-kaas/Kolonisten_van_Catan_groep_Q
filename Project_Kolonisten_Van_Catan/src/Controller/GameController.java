@@ -6,4 +6,7 @@ public class GameController {
 	public GameController(int IdGame) {
 		Game = new Game(IdGame);		
 	}
+	public Game getGame() {
+		return Game;
+	}
 }

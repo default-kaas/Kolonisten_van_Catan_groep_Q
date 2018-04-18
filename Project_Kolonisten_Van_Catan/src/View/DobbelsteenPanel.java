@@ -11,7 +11,7 @@ import javax.swing.*;
 
 import Controller.Dobbelsteen;
 
-public class DobbelsteenPanel extends JPanel {
+public class DobbelsteenPanel extends JPanel implements ActionListener {
 	private int screenHeight;
 	private JButton myButton;
 	private BufferedImage image;
@@ -28,18 +28,8 @@ public class DobbelsteenPanel extends JPanel {
 		this.add(myButton);
 		this.setPreferredSize(new Dimension(256, screenHeight));
 		this.setBackground(Color.WHITE);
-
-		myButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// Removes button when a player has thrown a dice to force one throw per round.
-				remove(myButton);
-				pressed = true;
-				repaint();
-
-			}
-		});
+		
+		myButton.addActionListener(this);
 
 		try {
 			image = ImageIO.read(new File("images/dice"+dobbelsteen.getValue1()+".png"));
@@ -47,9 +37,6 @@ public class DobbelsteenPanel extends JPanel {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-
-		
-
 	}
 
 	private int ScreenHeight() {
@@ -65,6 +52,14 @@ public class DobbelsteenPanel extends JPanel {
 			g.drawImage(image, 6, (screenHeight / 2) - 60, 120, 120, this);
 			g.drawImage(image1, 129, (screenHeight / 2) - 60, 120, 120, this);
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// Removes button when a player has thrown a dice to force one throw per round.
+		remove(myButton);
+		pressed = true;
+		repaint();
 	}
 
 }

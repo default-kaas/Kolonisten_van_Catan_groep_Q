@@ -37,10 +37,12 @@ public class BouwPanel extends JPanel {
 		title.setTitleJustification(TitledBorder.CENTER);
 		title.setTitlePosition(TitledBorder.TOP);
 		title.setTitleFont(new Font("Arial", Font.BOLD, 20));
+		title.setTitleColor(Color.BLACK);
 		
 		//Sets images titles
 		JLabel type = new JLabel("Soort");
 		type.setFont(new Font("Arial", Font.BOLD, 20));
+		type.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -48,6 +50,7 @@ public class BouwPanel extends JPanel {
 		
 		JLabel price = new JLabel("Kosten");
 		price.setFont(new Font("Arial", Font.BOLD, 20));
+		price.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 4;
 		c.gridy = 1;
@@ -55,6 +58,7 @@ public class BouwPanel extends JPanel {
 		
 		JLabel buy = new JLabel("Kopen");
 		buy.setFont(new Font("Arial", Font.BOLD, 20));
+		buy.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.EAST;
 		c.gridx = 7;
 		c.gridy = 1;
@@ -85,6 +89,9 @@ public class BouwPanel extends JPanel {
 		this.add(roadWood, c);
 
 		JButton buyRoad = new JButton("Buy Road");
+		buyRoad.setBackground(new Color(59, 89, 182));
+		buyRoad.setForeground(Color.WHITE);
+		buyRoad.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
 		c.gridx = 7;
 		c.gridy = 2;
@@ -129,6 +136,9 @@ public class BouwPanel extends JPanel {
 		this.add(houseWool, c);
 
 		JButton buyHouse = new JButton("Buy House");
+		buyHouse.setBackground(new Color(59, 89, 182));
+		buyHouse.setForeground(Color.WHITE);
+		buyHouse.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
 		c.gridx = 7;
 		c.gridy = 3;
@@ -178,6 +188,9 @@ public class BouwPanel extends JPanel {
 		this.add(cityWheat2, c);
 
 		JButton buyCity = new JButton("Buy City");
+		buyCity.setBackground(new Color(59, 89, 182));
+		buyCity.setForeground(Color.WHITE);
+		buyCity.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
 		c.gridx = 7;
 		c.gridy = 4;

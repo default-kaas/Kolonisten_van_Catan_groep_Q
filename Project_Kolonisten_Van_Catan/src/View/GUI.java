@@ -25,8 +25,7 @@ public class GUI extends JFrame implements ActionListener{
 		this.setUndecorated(true);
 		this.setTitle("Project Kolonisten van Catan, Groep Q");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
-		System.out.println(menuBar.getHeight());
+//		this.setVisible(true);
 	}
 
 	private void addMenuBar() {
@@ -48,7 +47,7 @@ public class GUI extends JFrame implements ActionListener{
 	public void showLoginPane() {
 		loginController = new LoginController(this);
 		this.setContentPane(loginController.getLoginPanel());
-		
+		this.setVisible(true);
 		settings();
 	}
 

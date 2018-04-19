@@ -31,7 +31,7 @@ public class ChatPanel extends JPanel {
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.2);
 		this.setPreferredSize(new Dimension(width, height));
-		this.setBackground(Color.BLUE);
+		this.setBackground(Color.GREEN);
 		
 		
 		chatPanelController = new ChatPanelController(gameController);

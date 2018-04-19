@@ -2,7 +2,6 @@ package View;
 
 import java.awt.*;
 
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
@@ -12,10 +11,10 @@ public class BouwPanel extends JPanel {
 	GridBagConstraints c;
 
 	public BouwPanel() {
-		
+
 		this.setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
-		
+
 		setTitles();
 		setRoad();
 		setHouse();
@@ -29,18 +28,16 @@ public class BouwPanel extends JPanel {
 		this.setBorder(title);
 		this.setBackground(Color.LIGHT_GRAY);
 	}
-	
-	
-	
+
 	public void setTitles() {
-		//Sets Panel title
+		// Sets Panel title
 		title = new TitledBorder("Kopen & Bouwen");
 		title.setTitleJustification(TitledBorder.CENTER);
 		title.setTitlePosition(TitledBorder.TOP);
 		title.setTitleFont(new Font("Arial", Font.BOLD, 20));
 		title.setTitleColor(Color.BLACK);
-		
-		//Sets images titles
+
+		// Sets images titles
 		JLabel type = new JLabel("Soort");
 		type.setFont(new Font("Arial", Font.BOLD, 20));
 		type.setForeground(Color.BLACK);
@@ -48,7 +45,7 @@ public class BouwPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 1;
 		this.add(type, c);
-		
+
 		JLabel price = new JLabel("Kosten");
 		price.setFont(new Font("Arial", Font.BOLD, 20));
 		price.setForeground(Color.BLACK);
@@ -56,7 +53,7 @@ public class BouwPanel extends JPanel {
 		c.gridx = 4;
 		c.gridy = 1;
 		this.add(price, c);
-		
+
 		JLabel buy = new JLabel("Kopen");
 		buy.setFont(new Font("Arial", Font.BOLD, 20));
 		buy.setForeground(Color.BLACK);
@@ -65,7 +62,7 @@ public class BouwPanel extends JPanel {
 		c.gridy = 1;
 		this.add(buy, c);
 	}
-	
+
 	public void setRoad() {
 		ImageIcon road = new ImageIcon("images/Buy/road.png");
 		road.setDescription("Road");
@@ -98,7 +95,7 @@ public class BouwPanel extends JPanel {
 		c.gridy = 2;
 		this.add(buyRoad, c);
 	}
-	
+
 	public void setHouse() {
 		ImageIcon house = new ImageIcon("images/Buy/home.png");
 		house.setDescription("House");
@@ -145,9 +142,9 @@ public class BouwPanel extends JPanel {
 		c.gridy = 3;
 		this.add(buyHouse, c);
 	}
-	
+
 	public void setCity() {
-		
+
 		ImageIcon city = new ImageIcon("images/Buy/city.png");
 		city.setDescription("City");
 		JLabel cityLabel = new JLabel(city);
@@ -196,9 +193,9 @@ public class BouwPanel extends JPanel {
 		c.gridx = 7;
 		c.gridy = 4;
 		this.add(buyCity, c);
-		
+
 	}
-	
+
 	public void setDevelopmentCard() {
 		ImageIcon development = new ImageIcon("images/Buy/development.png");
 		development.setDescription("Development");
@@ -207,9 +204,7 @@ public class BouwPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 5;
 		this.add(developmentLabel, c);
-		
-		
-		
+
 		ImageIcon ore = new ImageIcon("images/Resources/ore1.png");
 		ore.setDescription("Ore");
 		JLabel cityOre = new JLabel(ore);
@@ -217,7 +212,7 @@ public class BouwPanel extends JPanel {
 		c.gridx = 3;
 		c.gridy = 5;
 		this.add(cityOre, c);
-		
+
 		ImageIcon wheat = new ImageIcon("images/Resources/wheat1.png");
 		wheat.setDescription("Wheat");
 		JLabel cityWheat = new JLabel(wheat);
@@ -225,7 +220,7 @@ public class BouwPanel extends JPanel {
 		c.gridx = 4;
 		c.gridy = 5;
 		this.add(cityWheat, c);
-		
+
 		ImageIcon wool = new ImageIcon("images/Resources/sheep1.png");
 		wool.setDescription("Wool");
 		JLabel cityWool = new JLabel(wool);
@@ -233,7 +228,7 @@ public class BouwPanel extends JPanel {
 		c.gridx = 5;
 		c.gridy = 5;
 		this.add(cityWool, c);
-		
+
 		JButton buyDevelopmentCard = new JButton("Buy Dev. Card");
 		buyDevelopmentCard.setBackground(new Color(59, 89, 182));
 		buyDevelopmentCard.setForeground(Color.WHITE);
@@ -242,9 +237,6 @@ public class BouwPanel extends JPanel {
 		c.gridx = 7;
 		c.gridy = 5;
 		this.add(buyDevelopmentCard, c);
-		
-		
-		//graan, schaap en erts.
-		
+
 	}
 }

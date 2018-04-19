@@ -24,7 +24,6 @@ public class Player {
 		this.Name = setName(Name);
 		this.PlayerId = PlayerID;
 		this.Color = "TestColor";
-		Resources = new ArrayList<ResourceCards>();
 	}
 	
 	private void setArray() {
@@ -61,6 +60,8 @@ public class Player {
 	}
 	
 	public void addResource(ResourceCards Resources, char ResourceType) {
+		System.out.println(ResourceType);
+		System.out.println(Resources.getResourceID());
 		switch(ResourceType) {
 		case 'W': this.WoodStack.add(Resources);
 		case 'G': this.WheatStack.add(Resources);

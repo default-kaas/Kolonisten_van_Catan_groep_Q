@@ -23,12 +23,12 @@ public class LogInPanel extends JPanel implements ActionListener {
 	JButton button;
 	JPasswordField passwordField;
 	private LoginController loginController;
-	
+
 	public LogInPanel(LoginController loginController) {
 		this.loginController = loginController;
 		this.setLayout(new GridBagLayout());
 		this.setPreferredSize(new Dimension(600, 600));
-		
+
 		title = new JLabel("Login");
 		username = new JLabel("Username: ");
 		password = new JLabel("Password: ");
@@ -36,6 +36,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 		passwordField = new JPasswordField(8);
 		button = new JButton("Login");
 
+		passwordField.addActionListener(this);
 		button.addActionListener(this);
 
 		GridBagConstraints c = new GridBagConstraints();
@@ -69,28 +70,26 @@ public class LogInPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		if (ae.getSource().equals(button)) {
-			//String name = nameField.getText();
-			//char[] input = passwordField.getPassword();
-			//char[] correctPassword = { 'a' };
-			//Boolean isCorrect = Arrays.equals(input, correctPassword);
-			//if (isCorrect) {
-			//} else {
-			//	JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
-			//}
+		if (ae.getSource().equals(button) || ae.getSource().equals(passwordField)) {
 			loginController.setLogInInformation(getInputPassword(), getInputName());
 		}
 	}
-	
+
 	public void notCorrectLoginInformation() {
-		
+
 	}
-	
+
 	public String getInputName() {
 		return nameField.getText();
 	}
+
 	public char[] getInputPassword() {
 		return passwordField.getPassword();
 	}
-	
+
+	public void showError() {
+
+		JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
+
+	}
 }

@@ -72,14 +72,20 @@ public class Game {
 		for (int x = 1; x <= 19; x++) {
 			WoolStack.add(new ResourceCards('H', ("H" + x)));
 		}
+		
+		getMe().addResource(StoneStack.get(0), 'B');
+		StoneStack.remove(StoneStack.get(0));
+		
 		getMe().addResource(WoodStack.get(0), 'W');
 		WoodStack.remove(WoodStack.get(0));
-		getMe().addResource(WoodStack.get(1), 'W');
-		WoodStack.remove(WoodStack.get(1));
-		getMe().addResource(WoodStack.get(0), 'G');
-		WoodStack.remove(WoodStack.get(0));
-		getMe().addResource(WoodStack.get(0), 'E');
-		WoodStack.remove(WoodStack.get(0));
+		
+		System.out.println(getMe().getStoneAmount());
+		System.out.println(StoneStack.size());
+
+//		getMe().addResource(WoodStack.get(0), 'G');
+//		WoodStack.remove(WoodStack.get(0));
+//		getMe().addResource(WoodStack.get(0), 'E');
+//		WoodStack.remove(WoodStack.get(0));
 	}
 
 	public ArrayList<Player> GetPlayers() {

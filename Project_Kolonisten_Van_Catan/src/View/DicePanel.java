@@ -31,8 +31,8 @@ public class DicePanel extends JPanel implements MouseListener {
 		this.addMouseListener(this);
 		
 		try {
-			image = ImageIO.read(new File("images/dice"+dobbelsteen.getValue1()+".png"));
-			image1 = ImageIO.read(new File("images/dice"+dobbelsteen.getValue2()+".png"));
+			image = ImageIO.read(new File("images/Dice/dice"+dobbelsteen.getValue1()+".png"));
+			image1 = ImageIO.read(new File("images/Dice/dice"+dobbelsteen.getValue2()+".png"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

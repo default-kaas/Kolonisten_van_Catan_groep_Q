@@ -66,19 +66,18 @@ public class LogInPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		if(ae.getSource().equals(button)) {
-			String uname = nameField.getText();
-			 char[] input = passwordField.getPassword();
-			 char[] correctPassword = { 'a' };
-			 Boolean isCorrect = Arrays.equals (input, correctPassword);
+		if (ae.getSource().equals(button)) {
+			String name = nameField.getText();
+			char[] input = passwordField.getPassword();
+			char[] correctPassword = { 'a' };
+			Boolean isCorrect = Arrays.equals(input, correctPassword);
 			if (isCorrect) {
 				signedIn = true;
 			} else {
 				JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		
-		
+
 	}
 
 	public boolean isSignedIn() {

@@ -46,7 +46,7 @@ public class GUI extends JFrame {
 	private void showGamePane(boolean loginSucces) {
 		LogInPanel = new LogInPanel();
 		this.setContentPane(LogInPanel);
-		if (LogInPanel.isSignedIn()) {
+		if (!LogInPanel.isSignedIn()) {
 			this.getContentPane().remove(LogInPanel);
 			Spelscherm = new Spelscherm(770);
 			this.setContentPane(Spelscherm);

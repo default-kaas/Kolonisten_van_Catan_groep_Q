@@ -76,7 +76,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 	}
 
 	public boolean isSignedIn() {
-		return true;
+		return signedIn;
 	}
 
 }

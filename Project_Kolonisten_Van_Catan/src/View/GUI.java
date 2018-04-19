@@ -1,7 +1,5 @@
 package View;
 
-
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -10,18 +8,16 @@ import javax.swing.JMenuItem;
 public class GUI extends JFrame {
 	private Spelscherm Spelscherm;
 	private LogInPanel LogInPanel;
-	private JMenuBar  menuBar;
+	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem exit, login, lobby;
-	
-	
+
 	public GUI() {
-		
+
 		addMenuBar();
-		showGamePane(true);
+		showGamePane(false);
 		// Voor nu ff zo gedaan dat we rechts boven kunnen afsluiten!
-		
-		
+
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setResizable(false);
 		this.setUndecorated(true);
@@ -32,7 +28,7 @@ public class GUI extends JFrame {
 		this.setLocationRelativeTo(null);
 
 	}
-	
+
 	private void addMenuBar() {
 		menuBar = new JMenuBar();
 		menu = new JMenu();
@@ -40,18 +36,19 @@ public class GUI extends JFrame {
 		menuBar.add(menu);
 		menu.add(exit);
 		this.setJMenuBar(menuBar);
-		
-		
+
 	}
-	
+
 	private void showLobbyScreen() {
-		
+
 	}
-	
+
 	private void showGamePane(boolean loginSucces) {
-		if(loginSucces == true) {
+		LogInPanel = new LogInPanel();
+		this.setContentPane(LogInPanel);
+		if (LogInPanel.isSignedIn()) {
+			this.getContentPane().remove(LogInPanel);
 			Spelscherm = new Spelscherm(770);
-			LogInPanel = new LogInPanel();
 			this.setContentPane(Spelscherm);
 		}
 	}

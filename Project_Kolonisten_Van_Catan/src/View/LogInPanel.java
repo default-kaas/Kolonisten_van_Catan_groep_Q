@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -65,14 +66,19 @@ public class LogInPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		String uname = nameField.getText();
-		String pass = passwordField.getText();
-
-		if (uname.equals("a") && pass.equals("a")) {
-			signedIn = true;
-		} else {
-			JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
+		if(ae.getSource().equals(button)) {
+			String uname = nameField.getText();
+			 char[] input = passwordField.getPassword();
+			 char[] correctPassword = { 'a' };
+			 Boolean isCorrect = Arrays.equals (input, correctPassword);
+			if (isCorrect) {
+				signedIn = true;
+			} else {
+				JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
+		
+		
 	}
 
 	public boolean isSignedIn() {

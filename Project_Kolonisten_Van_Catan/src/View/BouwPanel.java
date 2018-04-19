@@ -1,24 +1,35 @@
 package View;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import Controller.BouwPanelController;
+
 @SuppressWarnings("serial")
-public class BouwPanel extends JPanel {
+public class BouwPanel extends JPanel implements ActionListener {
 
 	private JButton buyRoad;
 	private JButton buyHouse;
 	private JButton buyCity;
 	private JButton buyDevelopmentCard;
 	private TitledBorder title;
+	private BouwPanelController bouwPanelController;
 	GridBagConstraints c;
 
-	public BouwPanel() {
-
+	public BouwPanel(BouwPanelController bouwPanelController) {
+		this.bouwPanelController = bouwPanelController;
 		this.setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
 
@@ -34,38 +45,11 @@ public class BouwPanel extends JPanel {
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBorder(title);
 		this.setBackground(Color.LIGHT_GRAY);
-
-		buyRoad.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-
-		buyHouse.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-
-		buyCity.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-
-		buyDevelopmentCard.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+		
+		buyRoad.addActionListener(this);
+		buyHouse.addActionListener(this);
+		buyCity.addActionListener(this);
+		buyDevelopmentCard.addActionListener(this);
 	}
 
 	public void setTitles() {
@@ -277,5 +261,29 @@ public class BouwPanel extends JPanel {
 		c.gridy = 5;
 		this.add(buyDevelopmentCard, c);
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource().equals(buyRoad)) {
+			System.out.println(bouwPanelController.checkRecoursesRoad());
+			
+		}
+		
+		if (e.getSource().equals(buyHouse)) {
+			System.out.println(bouwPanelController.checkResourcesHouse());
+		}
+		
+		if (e.getSource().equals(buyCity)) {
+			System.out.println(bouwPanelController.checkResourcesCity());
+		}
+		
+		if (e.getSource().equals(buyDevelopmentCard)) {
+			System.out.println(bouwPanelController.checkResourcesDevCard());
+		}
+		
+		
+		
 	}
 }

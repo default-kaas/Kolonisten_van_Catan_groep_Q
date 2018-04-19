@@ -36,7 +36,7 @@ public class BouwPanel extends JPanel {
 		
 		
 		 
-		ImageIcon road = new ImageIcon("images/road.png");
+		ImageIcon road = new ImageIcon("images/Buy/road.png");
 		road.setDescription("Road");
 		JLabel roadLabel = new JLabel(road);
 		c.insets = new Insets(0, 0, 5, 0);
@@ -52,7 +52,7 @@ public class BouwPanel extends JPanel {
 		this.add(buyRoad, c);
 		
 	
-		ImageIcon house = new ImageIcon("images/home.png");
+		ImageIcon house = new ImageIcon("images/Buy/home.png");
 		house.setDescription("Road");
 		JLabel houseLabel = new JLabel(house);
 		//c.insets = new Insets(0, 0, 5, 0);
@@ -69,7 +69,7 @@ public class BouwPanel extends JPanel {
 		this.add(buyHouse, c);
 		
 		
-		ImageIcon city = new ImageIcon("images/city.png");
+		ImageIcon city = new ImageIcon("images/Buy/city.png");
 		city.setDescription("Road");
 		JLabel cityLabel = new JLabel(city);
 		c.insets = new Insets(0, 0, 5, 0);

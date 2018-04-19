@@ -69,11 +69,11 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 	private void SetVariables() {
 		//Add all images to Variables
 		try {
-			WoolImage = ImageIO.read(new File("images/Wool.png"));
-			WheatImage = ImageIO.read(new File("images/Wheat.png"));
-			WoodImage = ImageIO.read(new File("images/Wood.png"));
-			StoneImage = ImageIO.read(new File("images/Stone.png"));
-			OreImage = ImageIO.read(new File("images/Ore.png"));
+			WoolImage = ImageIO.read(new File("images/Resources/Wool.png"));
+			WheatImage = ImageIO.read(new File("images/Resources/Wheat.png"));
+			WoodImage = ImageIO.read(new File("images/Resources/Wood.png"));
+			StoneImage = ImageIO.read(new File("images/Resources/Stone.png"));
+			OreImage = ImageIO.read(new File("images/Resources/Ore.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

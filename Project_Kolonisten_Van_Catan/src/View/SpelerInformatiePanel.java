@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import Controller.GameController;
 import Controller.PlayerInfoController;
 import Model.Player;
 
@@ -30,13 +31,17 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 	
 	private PlayerInfoController Controller;
 	
+	
 	private JLabel Player1;
 	private JLabel Player2;
 	private JLabel Player3;
 	private JLabel Player4;
 	
-	public SpelerInformatiePanel() {
+	GameController gameController;
+	
+	public SpelerInformatiePanel(GameController gameController) {
 		
+		this.gameController = gameController;
 		
 		SetVariables();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -75,16 +80,34 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 		}
 		
 		//
-		Controller = new PlayerInfoController();
+		Controller = new PlayerInfoController(gameController);
 		
 		//Buttons for closing game
 		close = new JButton("Close game!");
 		
+		
 		//Names of Players in game
-		Player1 = new JLabel(Controller.getName());
-		Player2 = new JLabel("TEST");
-		Player3 = new JLabel("TEST");
-		Player4 = new JLabel("TEST");
+		Player1 = new JLabel("Rood: " + Controller.getPlayerInfo1().get(0));
+		if((boolean) Controller.getPlayerInfo1().get(2)) {
+			Player1.setText(Player1.getText()+ " - bezig met zijn beurt!");
+		}
+		
+		Player2 = new JLabel("Wit: " + Controller.getPlayerInfo2().get(0));
+		if((boolean) Controller.getPlayerInfo2().get(2)) {
+			Player2.setText(Player2.getText()+ " - bezig met zijn beurt!");
+		}
+		
+		Player3 = new JLabel("Blauw: "+Controller.getPlayerInfo3().get(0));
+		if((boolean) Controller.getPlayerInfo3().get(2)) {
+			Player3.setText(Player3.getText()+ " - bezig met zijn beurt!");
+		}
+		
+		Player4 = new JLabel("Orangje: "+ Controller.getPlayerInfo4().get(0));
+		if((boolean) Controller.getPlayerInfo4().get(2)) {
+			Player4.setText(Player3.getText()+ " - bezig met zijn beurt!");
+		}
+		
+		
 	}
 
 	@Override

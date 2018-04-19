@@ -17,10 +17,11 @@ public class Spelscherm extends JPanel {
 	BouwInformatiePanel BouwInfo;
 	BouwPanel Bouwen;
 	DicePanel Dobbelsteen;
+	GameController GameController;
 	
 
 	public Spelscherm(int GameID) {
-		GameController x = new GameController(GameID);
+		GameController = new GameController(GameID);
 		
 		MakePanels();
 
@@ -92,7 +93,7 @@ public class Spelscherm extends JPanel {
 		SpelBord = new BordPanel();
 		SpelChat = new ChatPanel();
 		SpelLog = new LogPanel();
-		SpelerInfo = new SpelerInformatiePanel();
+		SpelerInfo = new SpelerInformatiePanel(GameController);
 		BouwInfo = new BouwInformatiePanel();
 		Bouwen = new BouwPanel();
 		Dobbelsteen = new DicePanel();

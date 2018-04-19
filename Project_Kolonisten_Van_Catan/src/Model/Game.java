@@ -3,6 +3,7 @@ package Model;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Database.GameDAO;
 import Database.PlayerDAO;
 
 public class Game {
@@ -10,23 +11,36 @@ public class Game {
 	private int PlayersRound;
 	private ArrayList<Player> Players;
 	private PlayerDAO PlayerDBInfo;
+	private GameDAO GameDB;
 	
 	public Game(int GameId) {
 		this.GameId = GameId;
+		
+		//PlayersRound moet elke keer worden geupdate vanuit de DAO
+		GameDB = new GameDAO();
+		
+		PlayersRound = GameDB.getPlayersRound(GameId);
+		
 		PlayerDBInfo = new PlayerDAO();	
 		Players = new ArrayList<Player>();
 		
 		for(int i =0; i<4; i++) {
 			try {
-				Players.add(new Player(PlayerDBInfo.getName(i, GameId)));
-				System.out.println(Players.get(i).getName());
+				Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i,GameId)));
+				System.out.println(Players.get(i).getName()+ ", ID: "+Players.get(i).getPlayerID());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		
 	}
 	public ArrayList<Player> GetPlayers(){
 		return Players;
 	}
+	public int getRound() {
+		return PlayersRound;
+	}
+	
+	
 }

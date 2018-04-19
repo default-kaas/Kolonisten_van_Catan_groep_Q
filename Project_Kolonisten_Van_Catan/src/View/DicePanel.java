@@ -22,7 +22,10 @@ public class DicePanel extends JPanel implements MouseListener {
 	
 	private JLabel text = new JLabel("Dobbelsteen gooien");
 
-	public DicePanel() {
+	private DiceController diceController;
+	
+	public DicePanel(DiceController diceController) {
+		this.diceController = diceController;
 		this.setLayout(new GridBagLayout());
 		screenHeight = ScreenHeight();
 		this.setPreferredSize(new Dimension(215, 110));
@@ -59,10 +62,16 @@ public class DicePanel extends JPanel implements MouseListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		remove(text);
-		this.setBackground(Color.GREEN);
-		pressed = true;
-		repaint();
+		if(!pressed) {
+			diceController.setDiceImages();
+			remove(text);
+			this.setBackground(Color.GREEN);
+			pressed = true;
+			repaint();
+		}else {
+			
+		}
+		
 	}
 	
 	@Override

@@ -12,19 +12,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import Controller.LobbyController;
+
 public class LobbyPanel extends JPanel {
 	private JTable playerList;
 	private JTable playerFinding;
+	public LobbyController lobbyController;
 
 	/**
 	 * Create the panel.
 	 */
 	public LobbyPanel() {
+		lobbyController = new LobbyController();
+		Object[][] data = lobbyController.showUsers();
 		setPreferredSize(new Dimension(350, 300));
 		setBackground(new Color(157, 24, 31));
-		String[] columns = new String[] { "Id", "Name" };
-		// values
-		Object[][] data = new Object[][] { { 1, "John" }, { 2, "Rambo" }, { 3, "Zorro", 60.0, true }, };
+		String[] columns = new String[] { "Name" };
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		setLayout(gridBagLayout);
 

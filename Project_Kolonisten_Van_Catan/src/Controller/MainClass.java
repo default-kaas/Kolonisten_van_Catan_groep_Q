@@ -1,9 +1,9 @@
-package View;
+package Controller;
 
 import java.sql.SQLException;
 
-import Controller.GameController;
 import DatabaseConnect.DatabaseConnect;
+import View.GUI;
 
 public class MainClass {
 

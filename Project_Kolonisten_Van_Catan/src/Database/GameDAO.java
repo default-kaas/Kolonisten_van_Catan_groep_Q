@@ -11,7 +11,6 @@ public class GameDAO {
 	private Connection m_Conn;
 
 	public GameDAO() {
-		System.out.println("GameDAO is made!");
 		DatabaseConnect Connection = new DatabaseConnect();
 		try {
 			m_Conn = Connection.getConnection();

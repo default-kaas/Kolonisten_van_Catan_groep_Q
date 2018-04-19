@@ -11,7 +11,6 @@ public class PlayerDAO {
 	Connection m_Conn;
 
 	public PlayerDAO() {
-		System.out.println("PlayerDAO is made!");
 		DatabaseConnect Connection = new DatabaseConnect();
 		try {
 			m_Conn = Connection.getConnection();
@@ -40,6 +39,5 @@ public class PlayerDAO {
 		} catch (SQLException e) {
 			return 0;
 		}
-
 	}
 }

@@ -63,7 +63,7 @@ public class Spelscherm extends JPanel {
 		SpelBord = new BordPanel();
 		SpelChat = new ChatPanel(GameController);
 		SpelerInfo = GameController.getSpelerInfoPanel();
-		Bouwen = new BouwPanel();
+		Bouwen = GameController.getBouwPanel();
 		Dobbelsteen = GameController.getDicePanel();
 	}
 }

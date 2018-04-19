@@ -2,13 +2,19 @@ package Controller;
 
 import Model.Game;
 import Model.Player;
+import View.BouwPanel;
 
 public class BouwPanelController {
 
 	private Game game;
-
+	private BouwPanel bouwPanel;
 	public BouwPanelController(Game game) {
 		this.game = game;
+		bouwPanel = new BouwPanel(this);
+	}
+	
+	public BouwPanel getBouwPanel() {
+		return bouwPanel;
 	}
 
 	public boolean checkRecoursesRoad() {

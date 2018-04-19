@@ -44,6 +44,13 @@ public class Game {
 	public int getRound() {
 		return PlayersRound;
 	}
-	
+	public Player getMe() {
+		for(Player x : Players) {
+			if(x.isItMe()) {
+				return x;
+			}
+		}
+		return null;
+	}
 	
 }

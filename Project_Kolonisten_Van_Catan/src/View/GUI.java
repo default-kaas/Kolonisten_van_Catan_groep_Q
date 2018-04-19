@@ -49,7 +49,7 @@ public class GUI extends JFrame {
 			//this.getContentPane().remove(LogInPanel);
 			
 			//De username moet worden meegegeven tijdens het inloggen of na het zijn in de lobby
-			String UserName = "tom"; 
+			String UserName = "lesley"; 
 			Spelscherm = new Spelscherm(gameID, UserName);
 			this.setContentPane(Spelscherm);
 			settings();

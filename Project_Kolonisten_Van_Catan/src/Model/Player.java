@@ -15,6 +15,7 @@ public class Player {
 	public Player(String Name, int PlayerID) {
 		this.Name = setName(Name);
 		this.PlayerId = PlayerID;
+		this.Color = "TestColor";
 	}
 
 	private String setName(String Name) {
@@ -23,6 +24,9 @@ public class Player {
 	}
 	public void itsMe() {
 		itsMe = true;
+	}
+	public boolean isItMe() {
+		return itsMe;
 	}
 	public String getName() {
 		return Name;

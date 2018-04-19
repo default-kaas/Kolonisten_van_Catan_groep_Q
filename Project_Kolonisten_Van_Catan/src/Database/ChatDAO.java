@@ -20,7 +20,7 @@ public class ChatDAO {
 		}
 	}
 
-	public boolean setChatMessage(int PlayerID, String Message) {
+	public boolean setChatMessage(String Message, int PlayerID) {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			stmt.executeUpdate("INSERT INTO chatregel (tijdstip, idspeler, bericht)  VALUES (CURRENT_TIMESTAMP,"+PlayerID+", '"+Message+"')");

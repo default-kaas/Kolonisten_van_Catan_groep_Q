@@ -22,10 +22,10 @@ public class ChatPanel extends JPanel {
 	public JTextField inputField;
 	ChatPanelController chatPanelController;
 	public JTextArea textField;
-	private GameController gameController;
+
 
 	public ChatPanel(GameController gameController) {
-		this.gameController = gameController;
+		
 		
 		// Dit is ff blauw voor een test, mag je weghalen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,7 +34,7 @@ public class ChatPanel extends JPanel {
 		this.setBackground(Color.BLUE);
 		
 		
-		chatPanelController = new ChatPanelController();
+		chatPanelController = new ChatPanelController(gameController);
 
 		inputField = new JTextField();
 		inputField.setPreferredSize(new Dimension(540, 25));
@@ -63,7 +63,7 @@ public class ChatPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!(inputField.getText().equals(""))) {
-					chatPanelController.setUserInput(gameController.getGame().GetPlayers().get(0).getName() +" - "+ inputField.getText());
+					chatPanelController.setUserInput(inputField.getText());
 					inputField.setText("");
 				}
 				textField.setText(chatPanelController.getTextArray());

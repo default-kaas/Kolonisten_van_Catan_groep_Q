@@ -21,9 +21,9 @@ public class Chat {
 		return text;
 	}
 
-	public void addTextToArray(String s) {
-		chatArray.add(s);
-		if(!ChatDAO.setChatMessage(44, s)) {
+	public void addTextToArray(String Message, Player Player) {
+		chatArray.add(Player.getName() + " ("+Player.getColor()+") " + Message);
+		if(!ChatDAO.setChatMessage(Message, Player.getPlayerID())) {
 			chatArray.add("Error, Couldn't send message!");
 		}
 	}

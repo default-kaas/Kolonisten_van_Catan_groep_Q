@@ -9,7 +9,7 @@ import DatabaseConnect.DatabaseConnect;
 
 public class GameDAO {
 	private Connection m_Conn;
-	
+
 	public GameDAO() {
 		System.out.println("GameDAO is made!");
 		DatabaseConnect Connection = new DatabaseConnect();
@@ -19,21 +19,21 @@ public class GameDAO {
 
 		}
 	}
-	
+
 	public int getPlayersRound(int gameId) {
 		try {
-		Statement stmt = m_Conn.createStatement();
-		ResultSet rs;
-	
-			rs = stmt.executeQuery("select beurt_idspeler from spel where idspel="+ gameId);
-		rs.next();
-		int beurt = rs.getInt("beurt_idspeler");
-		return beurt;
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+
+			rs = stmt.executeQuery("select beurt_idspeler from spel where idspel=" + gameId);
+			rs.next();
+			int beurt = rs.getInt("beurt_idspeler");
+			return beurt;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			return 0;
 		}
-		
+
 	}
 
 }

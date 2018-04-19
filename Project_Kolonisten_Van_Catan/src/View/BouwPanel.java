@@ -20,6 +20,7 @@ public class BouwPanel extends JPanel {
 		setRoad();
 		setHouse();
 		setCity();
+		setDevelopmentCard();
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
@@ -110,28 +111,28 @@ public class BouwPanel extends JPanel {
 		ImageIcon stone1 = new ImageIcon("images/Resources/stone1.png");
 		JLabel houseStone = new JLabel(stone1);
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 2;
+		c.gridx = 3;
 		c.gridy = 3;
 		this.add(houseStone, c);
 
 		ImageIcon wood1 = new ImageIcon("images/Resources/wood1.png");
 		JLabel houseWood = new JLabel(wood1);
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 3;
+		c.gridx = 4;
 		c.gridy = 3;
 		this.add(houseWood, c);
 
 		ImageIcon wheat = new ImageIcon("images/Resources/wheat1.png");
 		JLabel houseWheat = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 4;
+		c.gridx = 5;
 		c.gridy = 3;
 		this.add(houseWheat, c);
 
 		ImageIcon wool1 = new ImageIcon("images/Resources/sheep1.png");
 		JLabel houseWool = new JLabel(wool1);
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 5;
+		c.gridx = 6;
 		c.gridy = 3;
 		this.add(houseWool, c);
 
@@ -148,7 +149,7 @@ public class BouwPanel extends JPanel {
 	public void setCity() {
 		
 		ImageIcon city = new ImageIcon("images/Buy/city.png");
-		city.setDescription("Road");
+		city.setDescription("City");
 		JLabel cityLabel = new JLabel(city);
 		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
@@ -195,6 +196,55 @@ public class BouwPanel extends JPanel {
 		c.gridx = 7;
 		c.gridy = 4;
 		this.add(buyCity, c);
+		
+	}
+	
+	public void setDevelopmentCard() {
+		ImageIcon development = new ImageIcon("images/Buy/development.png");
+		development.setDescription("Development");
+		JLabel developmentLabel = new JLabel(development);
+		c.anchor = GridBagConstraints.WEST;
+		c.gridx = 0;
+		c.gridy = 5;
+		this.add(developmentLabel, c);
+		
+		
+		
+		ImageIcon ore = new ImageIcon("images/Resources/ore1.png");
+		ore.setDescription("Ore");
+		JLabel cityOre = new JLabel(ore);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 3;
+		c.gridy = 5;
+		this.add(cityOre, c);
+		
+		ImageIcon wheat = new ImageIcon("images/Resources/wheat1.png");
+		wheat.setDescription("Wheat");
+		JLabel cityWheat = new JLabel(wheat);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 4;
+		c.gridy = 5;
+		this.add(cityWheat, c);
+		
+		ImageIcon wool = new ImageIcon("images/Resources/sheep1.png");
+		wool.setDescription("Wool");
+		JLabel cityWool = new JLabel(wool);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 5;
+		c.gridy = 5;
+		this.add(cityWool, c);
+		
+		JButton buyDevelopmentCard = new JButton("Buy Dev. Card");
+		buyDevelopmentCard.setBackground(new Color(59, 89, 182));
+		buyDevelopmentCard.setForeground(Color.WHITE);
+		buyDevelopmentCard.setPreferredSize(new Dimension(120, 30));
+		c.anchor = GridBagConstraints.EAST;
+		c.gridx = 7;
+		c.gridy = 5;
+		this.add(buyDevelopmentCard, c);
+		
+		
+		//graan, schaap en erts.
 		
 	}
 }

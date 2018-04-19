@@ -9,7 +9,6 @@ public class GUIController {
 	}
 	
 	private void accesSteps() {
-		gui.showGamePane(true, 770);
-		
+		gui.showLoginPane();
 	}
 }

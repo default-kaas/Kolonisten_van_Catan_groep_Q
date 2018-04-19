@@ -8,6 +8,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import Controller.LoginController;
+
 public class GUI extends JFrame implements ActionListener{
 	private Spelscherm Spelscherm;
 	private LogInPanel LogInPanel;
@@ -40,9 +42,10 @@ public class GUI extends JFrame implements ActionListener{
 		
 	}
 	
+	private LoginController loginController;
 	public void showLoginPane() {
-		LogInPanel = new LogInPanel();
-		this.setContentPane(LogInPanel);
+		loginController = new LoginController();
+		this.setContentPane(loginController.getLoginPanel());
 		settings();
 	}
 

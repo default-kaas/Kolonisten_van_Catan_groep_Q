@@ -22,11 +22,13 @@ public class LogInPanel extends JPanel implements ActionListener {
 	JTextField nameField;
 	JButton button;
 	JPasswordField passwordField;
-
-	public LogInPanel() {
+	private LoginController loginController;
+	
+	public LogInPanel(LoginController loginController) {
+		this.loginController = loginController;
 		this.setLayout(new GridBagLayout());
 		this.setPreferredSize(new Dimension(600, 600));
-
+		
 		title = new JLabel("Login");
 		username = new JLabel("Username: ");
 		password = new JLabel("Password: ");
@@ -38,8 +40,8 @@ public class LogInPanel extends JPanel implements ActionListener {
 
 		GridBagConstraints c = new GridBagConstraints();
 
-		c.gridwidth = 2;
-		c.gridx = 0;
+		c.gridwidth = 3;
+		c.gridx = 1;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.CENTER;
 		this.add(title, c);
@@ -52,7 +54,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 		c.gridy++;
 		this.add(password, c);
 
-		c.gridx = 1;
+		c.gridx = 2;
 		c.gridy = 1;
 		c.anchor = GridBagConstraints.LINE_START;
 		this.add(nameField, c);
@@ -60,7 +62,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 		this.add(passwordField, c);
 
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridwidth = 2;
+		c.gridwidth = 3;
 		c.gridx = 0;
 		c.gridy = 3;
 		this.add(button, c);
@@ -68,14 +70,15 @@ public class LogInPanel extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource().equals(button)) {
-			String name = nameField.getText();
-			char[] input = passwordField.getPassword();
-			char[] correctPassword = { 'a' };
-			Boolean isCorrect = Arrays.equals(input, correctPassword);
-			if (isCorrect) {
-			} else {
-				JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
-			}
+			//String name = nameField.getText();
+			//char[] input = passwordField.getPassword();
+			//char[] correctPassword = { 'a' };
+			//Boolean isCorrect = Arrays.equals(input, correctPassword);
+			//if (isCorrect) {
+			//} else {
+			//	JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
+			//}
+			loginController.setLogInInformation(getInputPassword(), getInputName());
 		}
 	}
 	

@@ -5,16 +5,18 @@ import View.DicePanel;
 
 public class DiceController {	
 	private Dice dice;
-	private DicePanel dicePanel;
+
+//	@Dogen, DiceController word aangemaakt in DicePanel en DicePanel in DiceController!
+//	private DicePanel dicePanel;
 	
 	public DiceController() {
 		dice = new Dice();
-		dicePanel = new DicePanel();
+//		dicePanel = new DicePanel();
 	}
 	
 	private void setDiceImages() {
 		dice.throwDice();
-		dicePanel.setImages(getValue1(), getValue2());
+//		dicePanel.setImages(getValue1(), getValue2());
 	}
 	public void throwDice() {
 		dice.throwDice();

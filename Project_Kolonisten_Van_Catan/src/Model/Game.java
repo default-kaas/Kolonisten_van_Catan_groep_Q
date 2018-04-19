@@ -29,6 +29,7 @@ public class Game {
 		addPlayers();
 		
 		Resources = new ArrayList<ResourceCards>();
+		
 		for(int x = 1; x<=19;x++) {
 			Resources.add(new ResourceCards('W', ("w"+ x)));
 		}

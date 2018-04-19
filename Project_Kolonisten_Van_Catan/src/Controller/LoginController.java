@@ -4,8 +4,8 @@ import View.LogInPanel;
 
 public class LoginController {
 	private boolean correctLogIn;
-	LogInPanel LogInPanel;
-
+	private LogInPanel LogInPanel;
+	
 	public boolean checkSignIn() {
 		LogInPanel = new LogInPanel();
 		// search database op username

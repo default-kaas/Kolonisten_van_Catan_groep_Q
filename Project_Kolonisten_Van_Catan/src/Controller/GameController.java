@@ -4,14 +4,17 @@ import Model.Game;
 
 public class GameController {
 	private Game Game;
-	private PlayerInfoController PlayerInfoController;
-
+	private PlayerInfoController playerInfoController;
+	private DiceController diceController;
+	
 	public GameController(int IdGame, String userName) {
 		Game = new Game(IdGame, userName);
-		PlayerInfoController = new PlayerInfoController(Game);
-		PlayerInfoController.getPlayerInfoPanel();
+		playerInfoController = new PlayerInfoController(Game);
+		playerInfoController.getPlayerInfoPanel();
+		diceController = new DiceController();
+		diceController.getDicePanel();
 	}
-
+	
 	public Game getGame() {
 		return Game;
 	}

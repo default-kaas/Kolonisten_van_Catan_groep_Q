@@ -14,6 +14,10 @@ public class DiceController {
 		dicePanel = new DicePanel();
 	}
 	
+	public DicePanel getDicePanel() {
+		return dicePanel;
+	}
+	
 	private void setDiceImages() {
 		dice.throwDice();
 		dicePanel.setImages(getValue1(), getValue2());

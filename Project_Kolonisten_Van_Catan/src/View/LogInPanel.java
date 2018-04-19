@@ -22,8 +22,6 @@ public class LogInPanel extends JPanel implements ActionListener {
 	JTextField nameField;
 	JButton button;
 	JPasswordField passwordField;
-	private char[] inputName;
-	private char[] inputPassword;
 
 	public LogInPanel() {
 		this.setLayout(new GridBagLayout());
@@ -80,12 +78,16 @@ public class LogInPanel extends JPanel implements ActionListener {
 			}
 		}
 	}
-
-	public char[] getInputName() {
-		return inputName;
+	
+	public void notCorrectLoginInformation() {
+		
 	}
-
+	
+	public String getInputName() {
+		return nameField.getText();
+	}
 	public char[] getInputPassword() {
-		return inputPassword;
+		return passwordField.getPassword();
 	}
+	
 }

@@ -52,7 +52,18 @@ public class DicePanel extends JPanel implements MouseListener {
 			g.drawImage(image1, 110, 5, 100, 100, this);
 		}
 	}
-
+	
+	public void setImages(int value1, int value2) {
+		try {
+			image = ImageIO.read(new File("images/Dice/dice"+value1+".png"));
+			image1 = ImageIO.read(new File("images/Dice/dice"+value2+".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	/*
+	 * This give the dice panel the options to add the dice pictures when then panel is pressed
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		remove(text);
@@ -60,7 +71,7 @@ public class DicePanel extends JPanel implements MouseListener {
 		pressed = true;
 		repaint();
 	}
-
+	
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub

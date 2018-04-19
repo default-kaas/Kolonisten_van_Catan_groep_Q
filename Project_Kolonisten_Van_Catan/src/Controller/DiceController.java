@@ -1,15 +1,17 @@
 package Controller;
 
 import Model.Dice;
+import Model.Game;
 import View.DicePanel;
 
 public class DiceController {	
 	private Dice dice;
-
+	private Game game;
 //	@Dogen, DiceController word aangemaakt in DicePanel en DicePanel in DiceController!
 	private DicePanel dicePanel;
 	
-	public DiceController() {
+	public DiceController(Game game) {
+		this.game = game;
 		dice = new Dice();
 		dicePanel = new DicePanel(this);
 		
@@ -20,11 +22,11 @@ public class DiceController {
 	}
 	
 	public void setDiceImages() {
-		dice.throwDice();
+		dice.throwDice(game.getGameID());
 		dicePanel.setImages(getValue1(), getValue2());
 	}
 	public void throwDice() {
-		dice.throwDice();
+		dice.throwDice(game.getGameID());
 	}
 	private int getValue1() {
 		return dice.getValue1();

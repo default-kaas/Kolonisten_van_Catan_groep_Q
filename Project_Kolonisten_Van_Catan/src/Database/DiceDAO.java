@@ -20,10 +20,10 @@ public class DiceDAO {
 	}
 	
 	
-	public boolean setDiceValues(int value1,int value2) {
+	public boolean setDiceValues(int value1,int value2, int GameID) {
 		try {
 			Statement stmt = m_Conn.createStatement();
-			stmt.executeUpdate("INSERT INTO spel (gedobbeld,laatste_worp_steen1,laatste_worp_steen2)  VALUES (1,"+value1+","+value2+")");
+			stmt.executeUpdate("UPDATE spel SET gedobbeld = 1, laatste_worp_steen1 = "+value1+", laatste_worp_steen2 = "+value2+" WHERE idspel = "+ GameID);
 			return true;
 		} catch (SQLException e) {
 			return false;

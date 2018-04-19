@@ -17,10 +17,10 @@ public class Dice {
 		diceDAO = new DiceDAO();
 	}
 	
-	public void throwDice() {
+	public void throwDice(int GameID) {
 		setValue1();
 		setValue2();
-		diceDAO.setDiceValues(getValue1(), getValue2());
+		diceDAO.setDiceValues(getValue1(), getValue2(), GameID);
 	}
 	
 	public int getValue1() {

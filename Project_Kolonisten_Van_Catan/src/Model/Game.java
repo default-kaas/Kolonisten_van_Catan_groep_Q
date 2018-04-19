@@ -89,6 +89,10 @@ public class Game {
 	public int getRound() {
 		return PlayersRound;
 	}
+	
+	public int getGameID() {
+		return GameId;
+	}
 
 	public Player getMe() {
 		for (Player x : Players) {

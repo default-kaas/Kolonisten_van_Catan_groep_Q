@@ -13,7 +13,7 @@ public class GameController {
 		Game = new Game(IdGame, userName);
 		playerInfoController = new PlayerInfoController(Game);
 
-		diceController = new DiceController();
+		diceController = new DiceController(Game);
 
 	}
 

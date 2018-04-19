@@ -24,10 +24,12 @@ public class GUI extends JFrame implements ActionListener{
 		this.setTitle("Project Kolonisten van Catan, Groep Q");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+		System.out.println(menuBar.getHeight());
 	}
 
 	private void addMenuBar() {
 		menuBar = new JMenuBar();
+		
 		menu = new JMenu("Menu");
 		exit = new JMenuItem("Exit");
 		menuBar.add(menu);

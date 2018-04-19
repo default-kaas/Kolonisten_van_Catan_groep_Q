@@ -29,8 +29,10 @@ public class ChatPanel extends JPanel {
 		
 		// Dit is ff blauw voor een test, mag je weghalen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int Height = (int) (screenSize.getHeight() * 0.2);
-		this.setPreferredSize(new Dimension(400, Height));
+		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
+		int height = (int) (screenSize.getHeight() * 0.2);
+		this.setPreferredSize(new Dimension(width, height));
+		
 		this.setBackground(Color.BLUE);
 		
 		

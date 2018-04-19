@@ -10,20 +10,34 @@ public class Game {
 	private int GameId;
 	private int PlayersRound;
 	private ArrayList<Player> Players;
+	private ArrayList<ResourceCards> Resources;
+	
 	private PlayerDAO PlayerDBInfo;
 	private GameDAO GameDB;
+	private String userName;
 	
 	public Game(int GameId, String userName) {
 		this.GameId = GameId;
+		this.userName = userName;
 		
 		//PlayersRound moet elke keer worden geupdate vanuit de DAO
 		GameDB = new GameDAO();
-		
 		PlayersRound = GameDB.getPlayersRound(GameId);
-		
 		PlayerDBInfo = new PlayerDAO();	
-		Players = new ArrayList<Player>();
 		
+		Players = new ArrayList<Player>();
+		addPlayers();
+		
+		Resources = new ArrayList<ResourceCards>();
+		for(int x = 1; x<=19;x++) {
+			Resources.add(new ResourceCards('W', ("w"+ x)));
+		}
+		System.out.println(Resources.get(0).getID());
+		
+		
+	}
+	
+	private void addPlayers() {
 		for(int i =0; i<4; i++) {
 			try {
 				Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i,GameId)));
@@ -36,8 +50,8 @@ public class Game {
 				e.printStackTrace();
 			}
 		}
-		
 	}
+	
 	public ArrayList<Player> GetPlayers(){
 		return Players;
 	}

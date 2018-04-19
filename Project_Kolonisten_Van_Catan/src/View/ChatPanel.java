@@ -25,21 +25,19 @@ public class ChatPanel extends JPanel {
 
 
 	public ChatPanel(GameController gameController) {
-		
-		
-		// Dit is ff blauw voor een test, mag je weghalen
+			
+		//Panel
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.2);
 		this.setPreferredSize(new Dimension(width, height));
-		
 		this.setBackground(Color.BLUE);
 		
 		
 		chatPanelController = new ChatPanelController(gameController);
 
 		inputField = new JTextField();
-		inputField.setPreferredSize(new Dimension(540, 25));
+		inputField.setPreferredSize(new Dimension(width-20, (int)(height*0.1)));
 		textField = new JTextArea();
 		
 		textField.setEditable(false);
@@ -49,7 +47,7 @@ public class ChatPanel extends JPanel {
 		
 		JScrollPane x = new JScrollPane(textField);
 		
-		x.setPreferredSize(new Dimension(540, 150));
+		x.setPreferredSize(new Dimension(width-20, (int)(height*0.8)));
 		x.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
 

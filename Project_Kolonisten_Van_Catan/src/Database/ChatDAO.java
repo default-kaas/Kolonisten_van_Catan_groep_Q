@@ -11,7 +11,6 @@ public class ChatDAO {
 	Connection m_Conn;
 
 	public ChatDAO() {
-		System.out.println("ChatDAO is made!");
 		DatabaseConnect Connection = new DatabaseConnect();
 		try {
 			m_Conn = Connection.getConnection();

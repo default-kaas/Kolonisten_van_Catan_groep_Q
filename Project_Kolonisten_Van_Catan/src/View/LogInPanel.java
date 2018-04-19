@@ -1,5 +1,7 @@
 package View;
 
+import Controller.LoginController;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -20,7 +22,8 @@ public class LogInPanel extends JPanel implements ActionListener {
 	JTextField nameField;
 	JButton button;
 	JPasswordField passwordField;
-	private boolean signedIn = false;
+	private char[] inputName;
+	private char[] inputPassword;
 
 	public LogInPanel() {
 		this.setLayout(new GridBagLayout());
@@ -66,22 +69,25 @@ public class LogInPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
+		
+		
 		if (ae.getSource().equals(button)) {
 			String name = nameField.getText();
 			char[] input = passwordField.getPassword();
 			char[] correctPassword = { 'a' };
 			Boolean isCorrect = Arrays.equals(input, correctPassword);
 			if (isCorrect) {
-				signedIn = true;
 			} else {
 				JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-
 	}
 
-	public boolean isSignedIn() {
-		return signedIn;
+	public char[] getInputName() {
+		return inputName;
 	}
 
+	public char[] getInputPassword() {
+		return inputPassword;
+	}
 }

@@ -10,6 +10,9 @@ import Controller.GameController;
 public class ChatPanelController {
 
 	public Chat chatModel = new Chat();
+	
+	
+	
 	private GameController gameController;
 
 	public ChatPanelController(GameController gameController) {

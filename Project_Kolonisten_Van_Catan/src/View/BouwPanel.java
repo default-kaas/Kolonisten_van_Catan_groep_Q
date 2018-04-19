@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
@@ -38,41 +39,50 @@ public class BouwPanel extends JPanel {
 		ImageIcon road = new ImageIcon("images/road.png");
 		road.setDescription("Road");
 		JLabel roadLabel = new JLabel(road);
+		c.insets = new Insets(0, 0, 5, 0);
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
-		c.gridy = 0;
+		c.gridy = 1;
 		this.add(roadLabel, c);
 		
 		JButton buyRoad = new JButton("Buy Road");
-		c.gridx = 3;
-		c.gridy = 0;
+		c.anchor = GridBagConstraints.EAST;
+		c.gridx = 1;
+		c.gridy = 1;
 		this.add(buyRoad, c);
 		
 	
 		ImageIcon house = new ImageIcon("images/home.png");
 		house.setDescription("Road");
 		JLabel houseLabel = new JLabel(house);
+		//c.insets = new Insets(0, 0, 5, 0);
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
-		c.gridy = 1;
+		c.gridy = 2;
 		this.add(houseLabel, c);
 		
 		
 		JButton buyHouse = new JButton("Buy House");
-		c.gridx = 3;
-		c.gridy = 1;
+		c.anchor = GridBagConstraints.EAST;
+		c.gridx = 2;
+		c.gridy = 2;
 		this.add(buyHouse, c);
 		
 		
 		ImageIcon city = new ImageIcon("images/city.png");
 		city.setDescription("Road");
 		JLabel cityLabel = new JLabel(city);
+		c.insets = new Insets(0, 0, 5, 0);
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
-		c.gridy = 2;
+		c.gridy = 3;
 		this.add(cityLabel, c);
 		
 		
 		JButton buyCity = new JButton("Buy City");
-		c.gridx = 3;
-		c.gridy = 2;
+		c.anchor = GridBagConstraints.EAST;
+		c.gridx = 2;
+		c.gridy = 3;
 		this.add(buyCity, c);
 		
 

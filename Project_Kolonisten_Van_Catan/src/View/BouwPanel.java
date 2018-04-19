@@ -1,12 +1,19 @@
 package View;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
 public class BouwPanel extends JPanel {
+
+	private JButton buyRoad;
+	private JButton buyHouse;
+	private JButton buyCity;
+	private JButton buyDevelopmentCard;
 	private TitledBorder title;
 	GridBagConstraints c;
 
@@ -27,6 +34,38 @@ public class BouwPanel extends JPanel {
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBorder(title);
 		this.setBackground(Color.LIGHT_GRAY);
+
+		buyRoad.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		buyHouse.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		buyCity.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		buyDevelopmentCard.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 	}
 
 	public void setTitles() {
@@ -86,7 +125,7 @@ public class BouwPanel extends JPanel {
 		c.gridy = 2;
 		this.add(roadWood, c);
 
-		JButton buyRoad = new JButton("Buy Road");
+		buyRoad = new JButton("Koop Straat");
 		buyRoad.setBackground(new Color(59, 89, 182));
 		buyRoad.setForeground(Color.WHITE);
 		buyRoad.setPreferredSize(new Dimension(120, 30));
@@ -133,7 +172,7 @@ public class BouwPanel extends JPanel {
 		c.gridy = 3;
 		this.add(houseWool, c);
 
-		JButton buyHouse = new JButton("Buy House");
+		buyHouse = new JButton("Koop Dorp");
 		buyHouse.setBackground(new Color(59, 89, 182));
 		buyHouse.setForeground(Color.WHITE);
 		buyHouse.setPreferredSize(new Dimension(120, 30));
@@ -185,7 +224,7 @@ public class BouwPanel extends JPanel {
 		c.gridy = 4;
 		this.add(cityWheat2, c);
 
-		JButton buyCity = new JButton("Buy City");
+		buyCity = new JButton("Koop Stad");
 		buyCity.setBackground(new Color(59, 89, 182));
 		buyCity.setForeground(Color.WHITE);
 		buyCity.setPreferredSize(new Dimension(120, 30));
@@ -229,7 +268,7 @@ public class BouwPanel extends JPanel {
 		c.gridy = 5;
 		this.add(cityWool, c);
 
-		JButton buyDevelopmentCard = new JButton("Buy Dev. Card");
+		buyDevelopmentCard = new JButton("Koop kaart");
 		buyDevelopmentCard.setBackground(new Color(59, 89, 182));
 		buyDevelopmentCard.setForeground(Color.WHITE);
 		buyDevelopmentCard.setPreferredSize(new Dimension(120, 30));

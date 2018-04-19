@@ -3,8 +3,13 @@ package Controller;
 import View.GUI;
 
 public class GUIController {
+	GUI gui = new GUI();
 	public GUIController() {
-		GUI gui = new GUI();
-		gui.showLoginPane();
+		accesSteps();
+	}
+	
+	private void accesSteps() {
+		gui.showGamePane(true, 770);
+		
 	}
 }

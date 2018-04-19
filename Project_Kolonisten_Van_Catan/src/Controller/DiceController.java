@@ -7,16 +7,16 @@ public class DiceController {
 	private Dice dice;
 
 //	@Dogen, DiceController word aangemaakt in DicePanel en DicePanel in DiceController!
-//	private DicePanel dicePanel;
+	private DicePanel dicePanel;
 	
 	public DiceController() {
 		dice = new Dice();
-//		dicePanel = new DicePanel();
+		dicePanel = new DicePanel();
 	}
 	
 	private void setDiceImages() {
 		dice.throwDice();
-//		dicePanel.setImages(getValue1(), getValue2());
+		dicePanel.setImages(getValue1(), getValue2());
 	}
 	public void throwDice() {
 		dice.throwDice();

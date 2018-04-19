@@ -19,7 +19,7 @@ public class DicePanel extends JPanel implements MouseListener {
 	private BufferedImage image;
 	private BufferedImage image1;
 	private boolean pressed = false;
-	DiceController dobbelsteen = new DiceController();
+	
 	private JLabel text = new JLabel("Dobbelsteen gooien");
 
 	public DicePanel() {
@@ -29,13 +29,6 @@ public class DicePanel extends JPanel implements MouseListener {
 		this.setBackground(Color.WHITE);
 		this.add(text);
 		this.addMouseListener(this);
-		
-		try {
-			image = ImageIO.read(new File("images/Dice/dice"+dobbelsteen.getValue1()+".png"));
-			image1 = ImageIO.read(new File("images/Dice/dice"+dobbelsteen.getValue2()+".png"));
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 	}
 
 	private int ScreenHeight() {
@@ -57,6 +50,7 @@ public class DicePanel extends JPanel implements MouseListener {
 		try {
 			image = ImageIO.read(new File("images/Dice/dice"+value1+".png"));
 			image1 = ImageIO.read(new File("images/Dice/dice"+value2+".png"));
+			repaint();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

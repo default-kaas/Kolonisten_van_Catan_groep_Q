@@ -11,7 +11,6 @@ public class DiceDAO {
 	Connection m_Conn;
 	
 	public DiceDAO() {
-		System.out.println("DiceDAO is made!");
 		DatabaseConnect Connection = new DatabaseConnect();
 		try {
 			m_Conn = Connection.getConnection();

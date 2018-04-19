@@ -7,8 +7,13 @@ public class ResourceCards {
 		this.ResourceType = ResourceType;
 		this.ResourceID = ResourceID;
 	}
-	public String getID() {
+	public String getResourceID() {
 		// TODO Auto-generated method stub
 		return ResourceID;
 	}
+	public char getResourceType() {
+		// TODO Auto-generated method stub
+		return ResourceType;
+	}
+	
 }

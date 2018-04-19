@@ -1,6 +1,6 @@
 package Model;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Player {
 	private String Name;
@@ -9,13 +9,30 @@ public class Player {
 	private int Points;
 	private boolean itsMe = false;
 //	private boolean myTurn;
+	private ArrayList<ResourceCards> Resources;
 	private int GameNumber;
 	//private Database.PlayerDAO PlayerDAO;
 	
+	private ArrayList<ResourceCards> WoodStack;
+	private ArrayList<ResourceCards> WheatStack;
+	private ArrayList<ResourceCards> StoneStack;
+	private ArrayList<ResourceCards> OreStack;
+	private ArrayList<ResourceCards> WoolStack;
+	
 	public Player(String Name, int PlayerID) {
+		setArray();
 		this.Name = setName(Name);
 		this.PlayerId = PlayerID;
 		this.Color = "TestColor";
+		Resources = new ArrayList<ResourceCards>();
+	}
+	
+	private void setArray() {
+		WoodStack = new ArrayList<ResourceCards>();
+		WheatStack = new ArrayList<ResourceCards>();
+		StoneStack = new ArrayList<ResourceCards>();
+		OreStack = new ArrayList<ResourceCards>();
+		WoolStack = new ArrayList<ResourceCards>();
 	}
 
 	private String setName(String Name) {
@@ -43,6 +60,33 @@ public class Player {
 		return Points;
 	}
 	
+	public void addResource(ResourceCards Resources, char ResourceType) {
+		switch(ResourceType) {
+		case 'W': this.WoodStack.add(Resources);
+		case 'G': this.WheatStack.add(Resources);
+		case 'B': this.StoneStack.add(Resources);
+		case 'E': this.OreStack.add(Resources);
+		case 'H': this.WoolStack.add(Resources);
+		}
+		
+		
+	}
+	
+	public int getWoodAmount() {
+		return WoodStack.size();
+	}
+	public int getWheatAmount() {
+		return WheatStack.size();
+	}
+	public int getStoneAmount() {
+		return StoneStack.size();
+	}
+	public int getOreAmount() {
+		return OreStack.size();
+	}
+	public int getWoolAmount() {
+		return WoolStack.size();
+	}
 //	public boolean isMyTurn() {
 //		return myTurn;
 //	}

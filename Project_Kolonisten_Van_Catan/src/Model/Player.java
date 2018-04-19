@@ -5,13 +5,15 @@ import java.sql.SQLException;
 public class Player {
 	private String Name;
 	private String Color;
+	private int PlayerId;
 	private int Points;
-	private boolean myTurn;
+//	private boolean myTurn;
 	private int GameNumber;
 	//private Database.PlayerDAO PlayerDAO;
 	
-	public Player(String Name) {
+	public Player(String Name, int PlayerID) {
 		this.Name = setName(Name);
+		this.PlayerId = PlayerID;
 		
 	}
 
@@ -23,7 +25,10 @@ public class Player {
 	public String getName() {
 		return Name;
 	}
-
+	public int getPlayerID() {
+		return PlayerId;
+	}
+	
 	public String getColor() {
 		return Color;
 	}
@@ -31,10 +36,10 @@ public class Player {
 	public int getPoints() {
 		return Points;
 	}
-
-	public boolean isMyTurn() {
-		return myTurn;
-	}
+	
+//	public boolean isMyTurn() {
+//		return myTurn;
+//	}
 	
 	
 	

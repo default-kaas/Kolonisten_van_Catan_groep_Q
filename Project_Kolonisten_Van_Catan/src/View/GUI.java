@@ -1,5 +1,7 @@
 package View;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -13,25 +15,18 @@ public class GUI extends JFrame {
 	private JMenuItem exit, login, lobby;
 
 	public GUI() {
-
-		addMenuBar();
-		showGamePane(false);
 		// Voor nu ff zo gedaan dat we rechts boven kunnen afsluiten!
-
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setUndecorated(true);
 		this.setTitle("Project Kolonisten van Catan, Groep Q");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
-		this.pack();
-		this.setLocationRelativeTo(null);
-
 	}
 
 	private void addMenuBar() {
 		menuBar = new JMenuBar();
-		menu = new JMenu();
+		menu = new JMenu("Exit");
 		exit = new JMenuItem("Exit");
 		menuBar.add(menu);
 		menu.add(exit);
@@ -39,17 +34,28 @@ public class GUI extends JFrame {
 
 	}
 
-	private void showLobbyScreen() {
-
+	public void showLobbyScreen() {
+		
 	}
-
-	private void showGamePane(boolean loginSucces) {
+	
+	public void showLoginPane() {
 		LogInPanel = new LogInPanel();
 		this.setContentPane(LogInPanel);
-		if (!LogInPanel.isSignedIn()) {
-			this.getContentPane().remove(LogInPanel);
-			Spelscherm = new Spelscherm(770);
+		settings();
+	}
+
+	public void showGamePane(boolean loginSucces, int gameID) {
+		if(loginSucces) {
+			//this.getContentPane().remove(LogInPanel);
+			Spelscherm = new Spelscherm(gameID);
 			this.setContentPane(Spelscherm);
+			settings();
 		}
+	}
+	
+	private void settings() {
+		this.revalidate();
+		this.pack();
+		this.setLocationRelativeTo(null);
 	}
 }

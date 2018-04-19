@@ -8,10 +8,9 @@ import View.GUI;
 public class MainClass {
 
 	public static void main(String[] args) {
-		GUI Spel = new GUI();
-		
+		SuperController superController = new SuperController();
+		superController.CreateGUIController();
 //		DatabaseConnect Test = new DatabaseConnect();
-
 	}
 
 }

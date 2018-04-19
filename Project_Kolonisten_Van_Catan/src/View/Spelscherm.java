@@ -62,7 +62,7 @@ public class Spelscherm extends JPanel {
 		// TODO Auto-generated method stub
 		SpelBord = new BordPanel();
 		SpelChat = new ChatPanel(GameController);
-		SpelerInfo = new SpelerInformatiePanel(GameController);
+//		SpelerInfo = new SpelerInformatiePanel(GameController);
 		Bouwen = new BouwPanel();
 		Dobbelsteen = new DicePanel();
 	}

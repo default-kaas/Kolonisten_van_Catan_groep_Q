@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import Controller.GameController;
 import Controller.PlayerInfoController;
 import Model.Player;
 
@@ -29,31 +28,23 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 	private BufferedImage StoneImage;
 	private BufferedImage OreImage;
 
-	private PlayerInfoController Controller;
+	// private PlayerInfoController Controller;
 
 	private JLabel Player1;
 	private JLabel Player2;
 	private JLabel Player3;
 	private JLabel Player4;
 
-	GameController gameController;
+	private PlayerInfoController controller;
 
-	public SpelerInformatiePanel(GameController gameController) {
-
-		this.gameController = gameController;
+	public SpelerInformatiePanel(PlayerInfoController controller) {
+		this.controller = controller;
 
 		SetVariables();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(Box.createRigidArea(new Dimension(5, 10)));
 		this.add(close);
 		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(Player1);
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(Player2);
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(Player3);
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(Player4);
 		close.addActionListener(this);
 
 		// Panel size + Background and border
@@ -61,9 +52,10 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
 		this.setPreferredSize(new Dimension(width, height));
-		
+
 		this.setBackground(Color.white);
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
+
 	}
 
 	private void SetVariables() {
@@ -79,32 +71,8 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 
-		//
-		Controller = new PlayerInfoController(gameController);
-
 		// Buttons for closing game
 		close = new JButton("Close game!");
-
-		// Names of Players in game
-		Player1 = new JLabel("Rood: " + Controller.getPlayerInfo().get(0));
-		if ((boolean) Controller.getPlayerInfo().get(2)) {
-			Player1.setText(Player1.getText() + " - bezig met zijn beurt!");
-		}
-
-		Player2 = new JLabel("Wit: " + Controller.getPlayerInfo().get(3));
-		if ((boolean) Controller.getPlayerInfo().get(5)) {
-			Player2.setText(Player2.getText() + " - bezig met zijn beurt!");
-		}
-
-		Player3 = new JLabel("Blauw: " + Controller.getPlayerInfo().get(6));
-		if ((boolean) Controller.getPlayerInfo().get(8)) {
-			Player3.setText(Player3.getText() + " - bezig met zijn beurt!");
-		}
-
-		Player4 = new JLabel("Orangje: " + Controller.getPlayerInfo().get(9));
-		if ((boolean) Controller.getPlayerInfo().get(11)) {
-			Player4.setText(Player3.getText() + " - bezig met zijn beurt!");
-		}
 
 	}
 
@@ -122,5 +90,35 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		System.exit(0);
+	}
+
+	public void ShowPlayers() {
+		// Names of Players in game
+		Player1 = new JLabel(controller.getPlayerColor(0) + ": " + controller.getPlayerName(0));
+		if (controller.myTurn(0)) {
+			Player1.setText(Player1.getText() + " - bezig met zijn beurt!");
+		}
+
+		Player2 = new JLabel("Wit: " + controller.getPlayerName(1));
+		if (controller.myTurn(1)) {
+			Player2.setText(Player2.getText() + " - bezig met zijn beurt!");
+		}
+
+		Player3 = new JLabel("Blauw: " + controller.getPlayerName(2));
+		if (controller.myTurn(2)) {
+			Player3.setText(Player3.getText() + " - bezig met zijn beurt!");
+		}
+
+		Player4 = new JLabel("Orangje: " + controller.getPlayerName(3));
+		if (controller.myTurn(3)) {
+			Player4.setText(Player3.getText() + " - bezig met zijn beurt!");
+		}
+		this.add(Player1);
+		this.add(Box.createRigidArea(new Dimension(5, 10)));
+		this.add(Player2);
+		this.add(Box.createRigidArea(new Dimension(5, 10)));
+		this.add(Player3);
+		this.add(Box.createRigidArea(new Dimension(5, 10)));
+		this.add(Player4);
 	}
 }

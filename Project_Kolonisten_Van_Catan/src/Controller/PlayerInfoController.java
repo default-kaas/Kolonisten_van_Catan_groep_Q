@@ -1,33 +1,38 @@
 package Controller;
 
 import java.util.ArrayList;
-
+import View.SpelerInformatiePanel;
 import Model.Game;
 import Model.Player;
 
 public class PlayerInfoController {
-	private GameController gameController;
 	private Game game;
+	private SpelerInformatiePanel SpelerInformatiePanel;
 
-	public PlayerInfoController(GameController gameController) {
-		this.gameController = gameController;
-		game = gameController.getGame();
+	public PlayerInfoController(Game game) {
+		SpelerInformatiePanel = new SpelerInformatiePanel(this);
+		this.game = game;
+		SpelerInformatiePanel.ShowPlayers();
+
 	}
 
-	public ArrayList getPlayerInfo() {
-		ArrayList PlayerInfo = new ArrayList();
-		for(Player x : game.GetPlayers()) {
-			//Naam op plek 0,3,6,9
-			PlayerInfo.add(x.getName());
-			//PlayerID op plek 1,4,7,10
-			PlayerInfo.add(x.getPlayerID());
-			//Of het de players beurt is op plek 2,5,8,11
-			if (x.getPlayerID() == game.getRound()) {
-				PlayerInfo.add(true);
-			} else {
-				PlayerInfo.add(false);
-			}
-		}		
-		return PlayerInfo;
+	public String getPlayerName(int volgnr) {
+		return game.GetPlayers().get(volgnr).getName();
+	}
+
+	public String getPlayerColor(int volgnr) {
+		return game.GetPlayers().get(volgnr).getColor();
+	}
+
+	public boolean myTurn(int volgnr) {
+		if (game.getRound() == game.GetPlayers().get(volgnr).getPlayerID()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public SpelerInformatiePanel getPlayerInfoPanel() {
+		return SpelerInformatiePanel;
 	}
 }

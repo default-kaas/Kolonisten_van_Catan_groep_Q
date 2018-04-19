@@ -1,40 +1,44 @@
 package View;
 
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Toolkit;
+import java.awt.*;
 
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
+@SuppressWarnings("serial")
 public class BouwPanel extends JPanel {
 	private TitledBorder title;
+	GridBagConstraints c;
 
 	public BouwPanel() {
+		
+		this.setLayout(new GridBagLayout());
+		c = new GridBagConstraints();
+		
+		setTitles();
+		setRoad();
+		setHouse();
+		setCity();
 
-		// Dit is ff LightGray voor een test, mag je weghalen
-		// this.setPreferredSize(new Dimension(300,475));
-
-		// Creates a title inside the panel.
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
+		int height = (int) (screenSize.getHeight() * 0.4);
+		this.setPreferredSize(new Dimension(width, height));
+		this.setBorder(title);
+		this.setBackground(Color.LIGHT_GRAY);
+	}
+	
+	
+	
+	public void setTitles() {
+		//Sets Panel title
 		title = new TitledBorder("Kopen & Bouwen");
 		title.setTitleJustification(TitledBorder.CENTER);
 		title.setTitlePosition(TitledBorder.TOP);
 		title.setTitleFont(new Font("Arial", Font.BOLD, 20));
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
 		
-		
+		//Sets images titles
 		JLabel type = new JLabel("Soort");
 		type.setFont(new Font("Arial", Font.BOLD, 20));
 		c.anchor = GridBagConstraints.WEST;
@@ -55,8 +59,9 @@ public class BouwPanel extends JPanel {
 		c.gridx = 7;
 		c.gridy = 1;
 		this.add(buy, c);
-
-		// street images
+	}
+	
+	public void setRoad() {
 		ImageIcon road = new ImageIcon("images/Buy/road.png");
 		road.setDescription("Road");
 		JLabel roadLabel = new JLabel(road);
@@ -84,8 +89,9 @@ public class BouwPanel extends JPanel {
 		c.gridx = 7;
 		c.gridy = 2;
 		this.add(buyRoad, c);
-
-		// house images
+	}
+	
+	public void setHouse() {
 		ImageIcon house = new ImageIcon("images/Buy/home.png");
 		house.setDescription("House");
 		JLabel houseLabel = new JLabel(house);
@@ -94,13 +100,15 @@ public class BouwPanel extends JPanel {
 		c.gridy = 3;
 		this.add(houseLabel, c);
 
-		JLabel houseStone = new JLabel(stone);
+		ImageIcon stone1 = new ImageIcon("images/Resources/stone1.png");
+		JLabel houseStone = new JLabel(stone1);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 2;
 		c.gridy = 3;
 		this.add(houseStone, c);
 
-		JLabel houseWood = new JLabel(wood);
+		ImageIcon wood1 = new ImageIcon("images/Resources/wood1.png");
+		JLabel houseWood = new JLabel(wood1);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 3;
 		c.gridy = 3;
@@ -125,9 +133,10 @@ public class BouwPanel extends JPanel {
 		c.gridx = 7;
 		c.gridy = 3;
 		this.add(buyHouse, c);
-
-		// city images
-
+	}
+	
+	public void setCity() {
+		
 		ImageIcon city = new ImageIcon("images/Buy/city.png");
 		city.setDescription("Road");
 		JLabel cityLabel = new JLabel(city);
@@ -155,14 +164,14 @@ public class BouwPanel extends JPanel {
 		c.gridx = 4;
 		c.gridy = 4;
 		this.add(cityOre3, c);
-
-		JLabel cityWheat1 = new JLabel(wheat);
+		ImageIcon wheat1 = new ImageIcon("images/Resources/wheat1.png");
+		JLabel cityWheat1 = new JLabel(wheat1);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 5;
 		c.gridy = 4;
 		this.add(cityWheat1, c);
-
-		JLabel cityWheat2 = new JLabel(wheat);
+		ImageIcon wheat2 = new ImageIcon("images/Resources/wheat1.png");
+		JLabel cityWheat2 = new JLabel(wheat2);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 6;
 		c.gridy = 4;
@@ -173,12 +182,6 @@ public class BouwPanel extends JPanel {
 		c.gridx = 7;
 		c.gridy = 4;
 		this.add(buyCity, c);
-
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
-		int height = (int) (screenSize.getHeight() * 0.4);
-		this.setPreferredSize(new Dimension(width, height));
-		this.setBorder(title);
-		this.setBackground(Color.LIGHT_GRAY);
+		
 	}
 }

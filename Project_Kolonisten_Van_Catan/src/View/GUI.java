@@ -1,13 +1,14 @@
 package View;
 
-import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame implements ActionListener{
 	private Spelscherm Spelscherm;
 	private LogInPanel LogInPanel;
 	private JMenuBar menuBar;
@@ -15,6 +16,7 @@ public class GUI extends JFrame {
 	private JMenuItem exit, login, lobby;
 
 	public GUI() {
+		addMenuBar();
 		// Voor nu ff zo gedaan dat we rechts boven kunnen afsluiten!
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(true);
@@ -26,12 +28,12 @@ public class GUI extends JFrame {
 
 	private void addMenuBar() {
 		menuBar = new JMenuBar();
-		menu = new JMenu("Exit");
+		menu = new JMenu("Menu");
 		exit = new JMenuItem("Exit");
 		menuBar.add(menu);
 		menu.add(exit);
+		exit.addActionListener(this);
 		this.setJMenuBar(menuBar);
-
 	}
 
 	public void showLobbyScreen() {
@@ -60,5 +62,12 @@ public class GUI extends JFrame {
 		this.revalidate();
 		this.pack();
 		this.setLocationRelativeTo(null);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent a) {
+		if(a.getSource()==exit) {
+			System.exit(0);
+		}	
 	}
 }

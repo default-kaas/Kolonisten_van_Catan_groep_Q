@@ -21,10 +21,10 @@ public class DiceController {
 	public void throwDice() {
 		dice.throwDice();
 	}
-	public int getValue1() {
+	private int getValue1() {
 		return dice.getValue1();
 	}
-	public int getValue2() {
+	private int getValue2() {
 		return dice.getValue2();
 	}
 }

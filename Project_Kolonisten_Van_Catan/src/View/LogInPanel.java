@@ -69,8 +69,6 @@ public class LogInPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		
-		
 		if (ae.getSource().equals(button)) {
 			String name = nameField.getText();
 			char[] input = passwordField.getPassword();

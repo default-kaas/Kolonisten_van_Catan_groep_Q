@@ -13,7 +13,7 @@ public class Game {
 	private PlayerDAO PlayerDBInfo;
 	private GameDAO GameDB;
 	
-	public Game(int GameId) {
+	public Game(int GameId, String userName) {
 		this.GameId = GameId;
 		
 		//PlayersRound moet elke keer worden geupdate vanuit de DAO
@@ -27,6 +27,9 @@ public class Game {
 		for(int i =0; i<4; i++) {
 			try {
 				Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i,GameId)));
+				if(Players.get(i).getName().equals(userName)) {
+					Players.get(i).itsMe();
+				}
 				System.out.println(Players.get(i).getName()+ ", ID: "+Players.get(i).getPlayerID());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

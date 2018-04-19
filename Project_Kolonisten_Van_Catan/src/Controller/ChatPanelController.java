@@ -8,25 +8,18 @@ import View.ChatPanel;
 
 public class ChatPanelController {
 
-
 	public Chat chatModel = new Chat();
-	
 
 	public ChatPanelController() {
 
-		
-
 	}
-	
+
 	public String getTextArray() {
-		
 		return chatModel.showTextarray();
 	}
 
+	public void setUserInput(String x) {
+		chatModel.addTextToArray(x);
+	}
 
-public void setUserInput(String x) {
-	chatModel.addTextToArray(x);
-}
-
-	
 }

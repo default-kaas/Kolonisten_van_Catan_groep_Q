@@ -20,8 +20,8 @@ public class Spelscherm extends JPanel {
 	GameController GameController;
 	
 
-	public Spelscherm(int GameID) {
-		GameController = new GameController(GameID);
+	public Spelscherm(int GameID, String userName) {
+		GameController = new GameController(GameID, userName);
 		
 		MakePanels();
 
@@ -91,7 +91,7 @@ public class Spelscherm extends JPanel {
 	private void MakePanels() {
 		// TODO Auto-generated method stub
 		SpelBord = new BordPanel();
-		SpelChat = new ChatPanel();
+		SpelChat = new ChatPanel(GameController);
 		SpelLog = new LogPanel();
 		SpelerInfo = new SpelerInformatiePanel(GameController);
 		BouwInfo = new BouwInformatiePanel();

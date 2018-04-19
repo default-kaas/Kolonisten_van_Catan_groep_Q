@@ -15,20 +15,24 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 import Controller.ChatPanelController;
+import Controller.GameController;
 
 public class ChatPanel extends JPanel {
 
 	public JTextField inputField;
 	ChatPanelController chatPanelController;
 	public JTextArea textField;
+	private GameController gameController;
 
-	public ChatPanel() {
-
+	public ChatPanel(GameController gameController) {
+		this.gameController = gameController;
+		
 		// Dit is ff blauw voor een test, mag je weghalen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int Height = (int) (screenSize.getHeight() * 0.2);
 		this.setPreferredSize(new Dimension(400, Height));
 		this.setBackground(Color.BLUE);
+		
 		
 		chatPanelController = new ChatPanelController();
 
@@ -59,7 +63,7 @@ public class ChatPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!(inputField.getText().equals(""))) {
-					chatPanelController.setUserInput(inputField.getText());
+					chatPanelController.setUserInput(gameController.getGame().GetPlayers().get(0).getName() +" - "+ inputField.getText());
 					inputField.setText("");
 				}
 				textField.setText(chatPanelController.getTextArray());

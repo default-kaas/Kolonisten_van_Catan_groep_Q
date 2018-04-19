@@ -47,7 +47,10 @@ public class GUI extends JFrame {
 	public void showGamePane(boolean loginSucces, int gameID) {
 		if(loginSucces) {
 			//this.getContentPane().remove(LogInPanel);
-			Spelscherm = new Spelscherm(gameID);
+			
+			//De username moet worden meegegeven tijdens het inloggen of na het zijn in de lobby
+			String UserName = "tom"; 
+			Spelscherm = new Spelscherm(gameID, UserName);
 			this.setContentPane(Spelscherm);
 			settings();
 		}

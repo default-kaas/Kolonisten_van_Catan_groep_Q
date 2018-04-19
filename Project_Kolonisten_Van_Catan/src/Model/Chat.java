@@ -21,24 +21,14 @@ public class Chat {
 		return text;
 	}
 
-//	public void setText(String text) {
-//		text = chatPanelController.getUserText();
-//
-//		this.text = text;
-//	}
-
 	public void addTextToArray(String s) {
 		chatArray.add(s);
 		if(!ChatDAO.setChatMessage(44, s)) {
 			chatArray.add("Error, Couldn't send message!");
 		}
-		
-
 	}
 
 	public String showTextarray() {
-		
-		
 		String chat = "";
 		for (String x : chatArray) {
 			chat += x + "\n\r" ;

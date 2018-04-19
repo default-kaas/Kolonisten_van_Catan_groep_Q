@@ -26,10 +26,6 @@ public class LobbyPanel extends JPanel {
 		// values
 		Object[][] data = new Object[][] { { 1, "John" }, { 2, "Rambo" }, { 3, "Zorro", 60.0, true }, };
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 186, 164, 0 };
-		gridBagLayout.rowHeights = new int[] { 22, 48, 25, 0, 0, 0, 58, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
 		JLabel lblLobby = new JLabel("Lobby");

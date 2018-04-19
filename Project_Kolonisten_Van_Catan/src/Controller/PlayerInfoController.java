@@ -14,52 +14,20 @@ public class PlayerInfoController {
 		game = gameController.getGame();
 	}
 
-	public ArrayList getPlayerInfo1() {
+	public ArrayList getPlayerInfo() {
 		ArrayList PlayerInfo = new ArrayList();
-		PlayerInfo.add(game.GetPlayers().get(0).getName());
-		PlayerInfo.add(game.GetPlayers().get(0).getPlayerID());
-		if (game.GetPlayers().get(0).getPlayerID() == game.getRound()) {
-			PlayerInfo.add(true);
-		} else {
-			PlayerInfo.add(false);
-		}
+		for(Player x : game.GetPlayers()) {
+			//Naam op plek 0,3,6,9
+			PlayerInfo.add(x.getName());
+			//PlayerID op plek 1,4,7,10
+			PlayerInfo.add(x.getPlayerID());
+			//Of het de players beurt is op plek 2,5,8,11
+			if (x.getPlayerID() == game.getRound()) {
+				PlayerInfo.add(true);
+			} else {
+				PlayerInfo.add(false);
+			}
+		}		
 		return PlayerInfo;
 	}
-
-	public ArrayList getPlayerInfo2() {
-		ArrayList PlayerInfo = new ArrayList();
-		PlayerInfo.add(game.GetPlayers().get(1).getName());
-		PlayerInfo.add(game.GetPlayers().get(1).getPlayerID());
-		if (game.GetPlayers().get(1).getPlayerID() == game.getRound()) {
-			PlayerInfo.add(true);
-		} else {
-			PlayerInfo.add(false);
-		}
-		return PlayerInfo;
-	}
-
-	public ArrayList getPlayerInfo3() {
-		ArrayList PlayerInfo = new ArrayList();
-		PlayerInfo.add(game.GetPlayers().get(2).getName());
-		PlayerInfo.add(game.GetPlayers().get(2).getPlayerID());
-		if (game.GetPlayers().get(2).getPlayerID() == game.getRound()) {
-			PlayerInfo.add(true);
-		} else {
-			PlayerInfo.add(false);
-		}
-		return PlayerInfo;
-	}
-
-	public ArrayList getPlayerInfo4() {
-		ArrayList PlayerInfo = new ArrayList();
-		PlayerInfo.add(game.GetPlayers().get(3).getName());
-		PlayerInfo.add(game.GetPlayers().get(3).getPlayerID());
-		if (game.GetPlayers().get(3).getPlayerID() == game.getRound()) {
-			PlayerInfo.add(true);
-		} else {
-			PlayerInfo.add(false);
-		}
-		return PlayerInfo;
-	}
-
 }

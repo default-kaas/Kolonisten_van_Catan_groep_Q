@@ -87,23 +87,23 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 		
 		
 		//Names of Players in game
-		Player1 = new JLabel("Rood: " + Controller.getPlayerInfo1().get(0));
-		if((boolean) Controller.getPlayerInfo1().get(2)) {
+		Player1 = new JLabel("Rood: " + Controller.getPlayerInfo().get(0));
+		if((boolean) Controller.getPlayerInfo().get(2)) {
 			Player1.setText(Player1.getText()+ " - bezig met zijn beurt!");
 		}
 		
-		Player2 = new JLabel("Wit: " + Controller.getPlayerInfo2().get(0));
-		if((boolean) Controller.getPlayerInfo2().get(2)) {
+		Player2 = new JLabel("Wit: " + Controller.getPlayerInfo().get(3));
+		if((boolean) Controller.getPlayerInfo().get(5)) {
 			Player2.setText(Player2.getText()+ " - bezig met zijn beurt!");
 		}
 		
-		Player3 = new JLabel("Blauw: "+Controller.getPlayerInfo3().get(0));
-		if((boolean) Controller.getPlayerInfo3().get(2)) {
+		Player3 = new JLabel("Blauw: "+Controller.getPlayerInfo().get(6));
+		if((boolean) Controller.getPlayerInfo().get(8)) {
 			Player3.setText(Player3.getText()+ " - bezig met zijn beurt!");
 		}
 		
-		Player4 = new JLabel("Orangje: "+ Controller.getPlayerInfo4().get(0));
-		if((boolean) Controller.getPlayerInfo4().get(2)) {
+		Player4 = new JLabel("Orangje: "+ Controller.getPlayerInfo().get(9));
+		if((boolean) Controller.getPlayerInfo().get(11)) {
 			Player4.setText(Player3.getText()+ " - bezig met zijn beurt!");
 		}
 		

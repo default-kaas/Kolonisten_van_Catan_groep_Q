@@ -64,10 +64,15 @@ public class Player {
 		System.out.println(Resources.getResourceID());
 		switch(ResourceType) {
 		case 'W': this.WoodStack.add(Resources);
+		break;
 		case 'G': this.WheatStack.add(Resources);
+		break;
 		case 'B': this.StoneStack.add(Resources);
+		break;
 		case 'E': this.OreStack.add(Resources);
+		break;
 		case 'H': this.WoolStack.add(Resources);
+		break;
 		}
 		
 		

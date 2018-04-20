@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -64,6 +65,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		JLabel type = new JLabel("Soort");
 		type.setFont(new Font("Arial", Font.BOLD, 20));
 		type.setForeground(Color.BLACK);
+		c.insets = new Insets(-70, 0, 50, 0);
 		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -73,6 +75,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		price.setFont(new Font("Arial", Font.BOLD, 20));
 		price.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(-70, 0, 50, 0);
 		c.gridx = 4;
 		c.gridy = 1;
 		this.add(price, c);
@@ -81,6 +84,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		buy.setFont(new Font("Arial", Font.BOLD, 20));
 		buy.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.EAST;
+		c.insets = new Insets(-70, 0, 50, 0);
 		c.gridx = 7;
 		c.gridy = 1;
 		this.add(buy, c);
@@ -91,12 +95,14 @@ public class BouwPanel extends JPanel implements ActionListener {
 		road.setDescription("Road");
 		JLabel roadLabel = new JLabel(road);
 		c.anchor = GridBagConstraints.WEST;
+		c.insets = new Insets(0, 0, 30, 50);
 		c.gridx = 0;
 		c.gridy = 2;
 		this.add(roadLabel, c);
 
 		ImageIcon stone = new ImageIcon("images/Resources/stone1.png");
 		JLabel roadStone = new JLabel(stone);
+		c.insets = new Insets(0, 100, 30, 20);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 3;
 		c.gridy = 2;
@@ -105,6 +111,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon wood = new ImageIcon("images/Resources/wood1.png");
 		JLabel roadWood = new JLabel(wood);
 		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 0, 30, 50);
 		c.gridx = 4;
 		c.gridy = 2;
 		this.add(roadWood, c);
@@ -114,6 +121,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		buyRoad.setForeground(Color.WHITE);
 		buyRoad.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
+		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
 		c.gridy = 2;
 		this.add(buyRoad, c);
@@ -123,6 +131,8 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon house = new ImageIcon("images/Buy/home.png");
 		house.setDescription("House");
 		JLabel houseLabel = new JLabel(house);
+		c.insets = new Insets(0, 0, 30, 50);
+		c.anchor = GridBagConstraints.WEST;
 		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 3;
@@ -131,6 +141,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon stone1 = new ImageIcon("images/Resources/stone1.png");
 		JLabel houseStone = new JLabel(stone1);
 		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 100, 30, 20);
 		c.gridx = 3;
 		c.gridy = 3;
 		this.add(houseStone, c);
@@ -138,6 +149,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon wood1 = new ImageIcon("images/Resources/wood1.png");
 		JLabel houseWood = new JLabel(wood1);
 		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 20, 30, 20);
 		c.gridx = 4;
 		c.gridy = 3;
 		this.add(houseWood, c);
@@ -145,6 +157,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon wheat = new ImageIcon("images/Resources/wheat1.png");
 		JLabel houseWheat = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 20, 30, 20);
 		c.gridx = 5;
 		c.gridy = 3;
 		this.add(houseWheat, c);
@@ -152,6 +165,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon wool1 = new ImageIcon("images/Resources/sheep1.png");
 		JLabel houseWool = new JLabel(wool1);
 		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 20, 30, 20);
 		c.gridx = 6;
 		c.gridy = 3;
 		this.add(houseWool, c);
@@ -161,6 +175,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		buyHouse.setForeground(Color.WHITE);
 		buyHouse.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
+		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
 		c.gridy = 3;
 		this.add(buyHouse, c);
@@ -172,6 +187,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		city.setDescription("City");
 		JLabel cityLabel = new JLabel(city);
 		c.anchor = GridBagConstraints.WEST;
+		c.insets = new Insets(0, 0, 30, 50);
 		c.gridx = 0;
 		c.gridy = 4;
 		this.add(cityLabel, c);
@@ -213,6 +229,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		buyCity.setForeground(Color.WHITE);
 		buyCity.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
+		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
 		c.gridy = 4;
 		this.add(buyCity, c);
@@ -224,6 +241,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		development.setDescription("Development");
 		JLabel developmentLabel = new JLabel(development);
 		c.anchor = GridBagConstraints.WEST;
+		c.insets = new Insets(0, 0, 10, 50);
 		c.gridx = 0;
 		c.gridy = 5;
 		this.add(developmentLabel, c);
@@ -257,6 +275,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		buyDevelopmentCard.setForeground(Color.WHITE);
 		buyDevelopmentCard.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
+		c.insets = new Insets(0, 50, 10, 0);
 		c.gridx = 7;
 		c.gridy = 5;
 		this.add(buyDevelopmentCard, c);

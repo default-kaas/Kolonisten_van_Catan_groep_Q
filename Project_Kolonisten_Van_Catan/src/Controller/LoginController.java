@@ -2,21 +2,21 @@ package Controller;
 
 import java.sql.Connection;
 
-import Model.Login;
+import Model.Invite;
 import View.GUI;
 import View.LogInPanel;
 
 public class LoginController {
 	private boolean correctLogIn;
 	private LogInPanel LogInPanel;
-	private Login login;
+	private Invite login;
 	private GUI gui;
 	
 	public LoginController(GUI gui, Connection db_conn) {
 		
 		this.gui = gui;
 		LogInPanel = new LogInPanel(this);
-		login = new Login(db_conn);
+		login = new Invite(db_conn);
 //		String x = "hallo";
 //		System.out.println(login.loginAttempt("vincent", x.toCharArray()));
 	}

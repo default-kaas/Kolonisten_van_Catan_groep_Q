@@ -9,14 +9,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import Controller.LobbyController;
+import Controller.InviteController;
 import Controller.LoginController;
 import DatabaseConnect.DatabaseConnect;
 
 public class GUI extends JFrame implements ActionListener{
 	private Spelscherm Spelscherm;
 	private LogInPanel LogInPanel;
-	private LobbyPanel lobbyPanel;
+	private InvitePanel lobbyPanel;
 	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem exit, login, lobby;
@@ -52,7 +52,7 @@ public class GUI extends JFrame implements ActionListener{
 	}
 
 	public void showLobbyScreen() {
-		LobbyController lobbyController = new LobbyController(this, db_conn);
+		InviteController lobbyController = new InviteController(this, db_conn);
 		lobbyPanel = lobbyController.getlobbyPanel();
 		
 		this.setContentPane(lobbyPanel);

@@ -52,7 +52,6 @@ public class Game {
 				if (Players.get(i).getName().equals(userName)) {
 					Players.get(i).itsMe();
 				}
-				System.out.println(Players.get(i).getName() + ", ID: " + Players.get(i).getPlayerID());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -117,5 +116,6 @@ public class Game {
 		}
 		return null;
 	}
+	
 
 }

@@ -8,20 +8,20 @@ import View.InvitePanel;
 
 
 public class InviteController {
-	InviteDAO lobbyDAO;
-	InvitePanel lobbyPanel;
+	InviteDAO InviteDAO;
+	InvitePanel invitePanel;
 		
 	public InviteController(GUI gui, Connection db_conn) {
-		lobbyDAO = new InviteDAO(db_conn);
-		lobbyPanel  = new InvitePanel(this);
+		InviteDAO = new InviteDAO(db_conn);
+		invitePanel  = new InvitePanel(this);
 	}
 	
 	public Object[][] showUsers(){
-		return lobbyDAO.getUserList();
+		return InviteDAO.getUserList();
 	}
 
-	public InvitePanel getlobbyPanel() {
-		return lobbyPanel;
+	public InvitePanel getInvitePanel() {
+		return invitePanel;
 	}
 
 }

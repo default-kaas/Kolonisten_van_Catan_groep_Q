@@ -6,6 +6,7 @@ import Controller.TradePanelController;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,9 +26,9 @@ public class TradeView extends JFrame {
 	private BufferedImage erts;
 	
 	private JLabel panel = new JLabel("Handelspaneel");	
-	private JLabel yourCards = new JLabel("Uw kaarten:");	
+	private JLabel yourCards = new JLabel("Aanbod:");	
 	private JButton propose = new JButton("Stel handel voor");
-	private JLabel theirCards = new JLabel("Selecteer speler kaarten:");
+	private JLabel theirCards = new JLabel("Vraag:");
 	
 	//het onderstaande moet veranderd worden naar data uit de database
 	private JLabel your_wool = new JLabel("0");
@@ -52,7 +53,7 @@ public class TradeView extends JFrame {
 	
 	//het onderstaande moet veranderd worden 
 	private JLabel playerdd = new JLabel("Select a player to trade with");
-	private String[] players = { "Player 2","Player 3", "Player 4", "Bank"};
+	private String[] players = { "Players","Bank"};
 	private final JComboBox<String> cb = new JComboBox<String>(players);
 	
 	public TradeView() {
@@ -139,7 +140,7 @@ public class TradeView extends JFrame {
 		propose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 		    {
-		        System.exit(0);
+				dispose();
 		    }
 		});
 		
@@ -166,7 +167,7 @@ public class TradeView extends JFrame {
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 		    {
-		        System.exit(0);
+		        dispose();
 		    }
 		});
 

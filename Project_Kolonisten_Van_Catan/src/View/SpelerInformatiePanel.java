@@ -17,11 +17,13 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import Controller.PlayerInfoController;
+import Controller.TradePanelController;
 import Model.Player;
 
 public class SpelerInformatiePanel extends JPanel implements ActionListener {
 	// private Player speler1 = new Player();
 	private JButton close;
+	private JButton trade;
 	private BufferedImage WoolImage;
 	private BufferedImage WheatImage;
 	private BufferedImage WoodImage;
@@ -44,6 +46,8 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(Box.createRigidArea(new Dimension(5, 10)));
 		this.add(close);
+		this.add(Box.createRigidArea(new Dimension(5, 10)));
+		this.add(trade);
 		this.add(Box.createRigidArea(new Dimension(5, 10)));
 		close.addActionListener(this);
 
@@ -73,6 +77,15 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 
 		// Buttons for closing game
 		close = new JButton("Close game!");
+		
+		//Button for trading
+		trade = new JButton("Handelspaneel");
+		trade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+		    {
+				TradePanelController tpc = new TradePanelController();
+		    }
+		});
 
 	}
 

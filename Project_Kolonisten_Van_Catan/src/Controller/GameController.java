@@ -24,13 +24,10 @@ public class GameController {
 		diceController = new DiceController(Game, db_conn);
 		chatPanelController = new ChatPanelController(Game, db_conn);
 		
-		
 		//Als lobby af is moet ik dit stukje nog wat veranderen.
 		if((Game.getRound() == Game.getMe().getPlayerID())&& !(Game.getMe().gethasTrown())) {
 			showDice();
 		}
-		
-		
 	}
 	public void showDice() {
 		diceController.showDice();

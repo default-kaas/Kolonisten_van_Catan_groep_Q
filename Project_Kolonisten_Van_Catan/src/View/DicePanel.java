@@ -29,7 +29,7 @@ public class DicePanel extends JPanel implements MouseListener {
 		this.setLayout(new GridBagLayout());
 		screenHeight = ScreenHeight();
 		this.setPreferredSize(new Dimension(215, 110));
-		this.setBackground(Color.BLUE);
+		this.setBackground(new Color(1, 207, 203));
 	}
 	public void showDice() {
 		System.out.println("Test!");

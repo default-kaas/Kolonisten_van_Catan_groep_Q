@@ -187,7 +187,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		city.setDescription("City");
 		JLabel cityLabel = new JLabel(city);
 		c.anchor = GridBagConstraints.WEST;
-		c.insets = new Insets(0, 0, 30, 50);
+		c.insets = new Insets(0, 0, 30, 70);
 		c.gridx = 0;
 		c.gridy = 4;
 		this.add(cityLabel, c);
@@ -202,14 +202,14 @@ public class BouwPanel extends JPanel implements ActionListener {
 
 		JLabel cityOre2 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
-		
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 3;
 		c.gridy = 4;
 		this.add(cityOre2, c);
 
 		JLabel cityOre3 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
-		
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 4;
 		c.gridy = 4;
 		this.add(cityOre3, c);
@@ -217,13 +217,14 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon wheat1 = new ImageIcon("images/Resources/wheat1.png");
 		JLabel cityWheat1 = new JLabel(wheat1);
 		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 5;
 		c.gridy = 4;
 		this.add(cityWheat1, c);
 		ImageIcon wheat2 = new ImageIcon("images/Resources/wheat1.png");
 		JLabel cityWheat2 = new JLabel(wheat2);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 100, 50, 0);
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 6;
 		c.gridy = 4;
 		this.add(cityWheat2, c);

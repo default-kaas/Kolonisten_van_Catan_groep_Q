@@ -13,7 +13,7 @@ public class BordPanel extends JPanel {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int size = (int)(screenSize.getHeight());
 		this.setPreferredSize(new Dimension(size, size-23));
-		this.setBackground(Color.BLUE);
+		this.setBackground(new Color(1, 207, 203));
 	}
 	
 }

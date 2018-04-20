@@ -195,7 +195,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon ore = new ImageIcon("images/Resources/ore1.png");
 		JLabel cityOre1 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 100, 30, 0);
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 2;
 		c.gridy = 4;
 		this.add(cityOre1, c);

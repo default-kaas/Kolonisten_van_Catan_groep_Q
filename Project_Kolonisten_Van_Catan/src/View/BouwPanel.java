@@ -65,7 +65,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		JLabel type = new JLabel("Soort");
 		type.setFont(new Font("Arial", Font.BOLD, 20));
 		type.setForeground(Color.BLACK);
-		c.insets = new Insets(-70, 0, 50, 0);
+		c.insets = new Insets(0, 0, 50, 0);
 		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -75,7 +75,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		price.setFont(new Font("Arial", Font.BOLD, 20));
 		price.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(-70, 0, 50, 0);
+		c.insets = new Insets(0, 0, 50, 0);
 		c.gridx = 4;
 		c.gridy = 1;
 		this.add(price, c);
@@ -84,7 +84,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		buy.setFont(new Font("Arial", Font.BOLD, 20));
 		buy.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.EAST;
-		c.insets = new Insets(-70, 0, 50, 0);
+		c.insets = new Insets(0, 0, 50, 0);
 		c.gridx = 7;
 		c.gridy = 1;
 		this.add(buy, c);
@@ -187,7 +187,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		city.setDescription("City");
 		JLabel cityLabel = new JLabel(city);
 		c.anchor = GridBagConstraints.WEST;
-		c.insets = new Insets(0, 0, 30, 70);
+		c.insets = new Insets(0, 0, 30, 100);
 		c.gridx = 0;
 		c.gridy = 4;
 		this.add(cityLabel, c);
@@ -195,7 +195,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon ore = new ImageIcon("images/Resources/ore1.png");
 		JLabel cityOre1 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 0, 30, 0);
+		c.insets = new Insets(50, 0, 30, 0);
 		c.gridx = 2;
 		c.gridy = 4;
 		this.add(cityOre1, c);
@@ -234,7 +234,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		buyCity.setForeground(Color.WHITE);
 		buyCity.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
-		c.insets = new Insets(0, 50, 30, 0);
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 7;
 		c.gridy = 4;
 		this.add(buyCity, c);

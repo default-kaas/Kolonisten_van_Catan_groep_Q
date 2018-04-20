@@ -1,5 +1,7 @@
 package Controller;
 
+import java.sql.Connection;
+
 import Model.Game;
 import Model.Player;
 import View.BouwPanel;
@@ -8,7 +10,7 @@ public class BouwPanelController {
 
 	private Game game;
 	private BouwPanel bouwPanel;
-	public BouwPanelController(Game game) {
+	public BouwPanelController(Game game, Connection db_conn) {
 		this.game = game;
 		bouwPanel = new BouwPanel(this);
 	}

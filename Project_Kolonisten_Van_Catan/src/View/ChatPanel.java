@@ -21,12 +21,13 @@ import Controller.GameController;
 public class ChatPanel extends JPanel {
 
 	public JTextField inputField;
-	ChatPanelController chatPanelController;
+	private ChatPanelController chatPanelController;
 	public JTextArea textField;
 
 
-	public ChatPanel(GameController gameController, Connection db_conn) {
-			
+	public ChatPanel(ChatPanelController chatPanelController) {
+		this.chatPanelController = chatPanelController;
+		
 		//Panel
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
@@ -34,8 +35,6 @@ public class ChatPanel extends JPanel {
 		this.setPreferredSize(new Dimension(width, height-23));
 		this.setBackground(Color.GREEN);
 		
-		
-		chatPanelController = new ChatPanelController(gameController, db_conn);
 
 		inputField = new JTextField();
 		inputField.setPreferredSize(new Dimension(width-20, (int)(height*0.1)));

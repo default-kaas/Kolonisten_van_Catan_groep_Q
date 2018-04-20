@@ -1,5 +1,6 @@
 package Controller;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import View.SpelerInformatiePanel;
 import Model.Game;
@@ -7,12 +8,12 @@ import Model.Player;
 
 public class PlayerInfoController {
 	private Game game;
-	private SpelerInformatiePanel SpelerInformatiePanel;
+	private SpelerInformatiePanel spelerInformatiePanel;
 
-	public PlayerInfoController(Game game) {
-		SpelerInformatiePanel = new SpelerInformatiePanel(this);
+	public PlayerInfoController(Game game, Connection db_conn) {
+		spelerInformatiePanel = new SpelerInformatiePanel(this);
 		this.game = game;
-		SpelerInformatiePanel.ShowPlayers();
+		spelerInformatiePanel.ShowPlayers();
 
 	}
 
@@ -33,6 +34,6 @@ public class PlayerInfoController {
 	}
 
 	public SpelerInformatiePanel getPlayerInfoPanel() {
-		return SpelerInformatiePanel;
+		return spelerInformatiePanel;
 	}
 }

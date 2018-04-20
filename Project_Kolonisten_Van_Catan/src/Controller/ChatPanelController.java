@@ -5,20 +5,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Model.Chat;
+import Model.Game;
 import View.ChatPanel;
 import Controller.GameController;
 
 public class ChatPanelController {
 
+	
+	
+	
+	private ChatPanel chatPanel;
 	public Chat chatModel; 
-	
-	
-	
-	private GameController gameController;
+	private Game game;
 
-	public ChatPanelController(GameController gameController, Connection db_conn) {
-		this.gameController = gameController;
+	public ChatPanelController(Game game, Connection db_conn) {
+		this.game = game;
 		chatModel = new Chat(db_conn);
+		chatPanel = new ChatPanel(this);
+		
+		
 	}
 
 	public String getTextArray() {
@@ -26,8 +31,13 @@ public class ChatPanelController {
 	}
 
 	public void setUserInput(String x) {
-		chatModel.addTextToArray(x, gameController.getGame().getMe());
+		chatModel.addTextToArray(x, game.getMe());
 		
+	}
+
+	public ChatPanel getChatPanel() {
+		// TODO Auto-generated method stub
+		return chatPanel;
 	}
 
 }

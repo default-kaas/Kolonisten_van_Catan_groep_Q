@@ -1,5 +1,7 @@
 package Controller;
 
+import java.sql.Connection;
+
 import Model.Dice;
 import Model.Game;
 import View.DicePanel;
@@ -10,7 +12,7 @@ public class DiceController {
 //	@Dogen, DiceController word aangemaakt in DicePanel en DicePanel in DiceController!
 	private DicePanel dicePanel;
 	
-	public DiceController(Game game) {
+	public DiceController(Game game, Connection db_conn) {
 		this.game = game;
 		dice = new Dice();
 		dicePanel = new DicePanel(this);

@@ -29,9 +29,14 @@ public class DicePanel extends JPanel implements MouseListener {
 		this.setLayout(new GridBagLayout());
 		screenHeight = ScreenHeight();
 		this.setPreferredSize(new Dimension(215, 110));
+		this.setBackground(Color.BLUE);
+	}
+	public void showDice() {
+		System.out.println("Test!");
 		this.setBackground(Color.WHITE);
 		this.add(text);
 		this.addMouseListener(this);
+		repaint();
 	}
 
 	private int ScreenHeight() {
@@ -65,7 +70,7 @@ public class DicePanel extends JPanel implements MouseListener {
 		if(!pressed) {
 			diceController.setDiceImages();
 			remove(text);
-			this.setBackground(Color.GREEN);
+			this.setBackground(Color.BLUE);
 			pressed = true;
 			repaint();
 		}else {

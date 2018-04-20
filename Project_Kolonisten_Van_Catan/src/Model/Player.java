@@ -11,6 +11,7 @@ public class Player {
 //	private boolean myTurn;
 	private ArrayList<ResourceCards> Resources;
 	private int GameNumber;
+	private boolean hasThrown;
 	//private Database.PlayerDAO PlayerDAO;
 	
 	private ArrayList<ResourceCards> WoodStack;
@@ -24,6 +25,7 @@ public class Player {
 		this.Name = setName(Name);
 		this.PlayerId = PlayerID;
 		this.Color = "TestColor";
+		hasThrown = false;
 	}
 	
 	private void setArray() {
@@ -37,6 +39,9 @@ public class Player {
 	private String setName(String Name) {
 		// TODO Auto-generated method stub
 		return Name;
+	}
+	public void setThrown() {
+		hasThrown = true;
 	}
 	public void itsMe() {
 		itsMe = true;
@@ -57,6 +62,9 @@ public class Player {
 
 	public int getPoints() {
 		return Points;
+	}
+	public boolean gethasTrown() {
+		return hasThrown;
 	}
 	
 	public void addResource(ResourceCards Resources, char ResourceType) {

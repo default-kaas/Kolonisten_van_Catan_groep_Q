@@ -23,6 +23,7 @@ public class DiceController {
 	
 	public void setDiceImages() {
 		dice.throwDice(game.getGameID());
+		game.getMe().setThrown();
 		dicePanel.setImages(getValue1(), getValue2());
 	}
 	public void throwDice() {
@@ -33,5 +34,10 @@ public class DiceController {
 	}
 	private int getValue2() {
 		return dice.getValue2();
+	}
+
+	public void showDice() {
+		// TODO Auto-generated method stub
+		dicePanel.showDice();
 	}
 }

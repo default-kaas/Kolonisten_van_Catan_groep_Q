@@ -1,5 +1,6 @@
 package Model;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -21,14 +22,14 @@ public class Game {
 	private GameDAO GameDB;
 	private String userName;
 
-	public Game(int GameId, String userName) {
+	public Game(int GameId, String userName, Connection db_conn) {
 		this.GameId = GameId;
 		this.userName = userName;
 
 		// PlayersRound moet elke keer worden geupdate vanuit de DAO
-		GameDB = new GameDAO();
+		GameDB = new GameDAO(db_conn);
 		PlayersRound = GameDB.getPlayersRound(GameId);
-		PlayerDBInfo = new PlayerDAO();
+		PlayerDBInfo = new PlayerDAO(db_conn);
 
 		Players = new ArrayList<Player>();
 		addPlayers();

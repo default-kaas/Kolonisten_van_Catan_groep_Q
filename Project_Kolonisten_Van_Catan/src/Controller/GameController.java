@@ -17,7 +17,7 @@ public class GameController {
 	private ChatPanelController chatPanelController;
 
 	public GameController(int IdGame, String userName, Connection db_conn) {
-		Game = new Game(IdGame, userName);
+		Game = new Game(IdGame, userName, db_conn);
 		
 		bouwPanelController = new BouwPanelController(Game, db_conn);
 		playerInfoController = new PlayerInfoController(Game, db_conn);

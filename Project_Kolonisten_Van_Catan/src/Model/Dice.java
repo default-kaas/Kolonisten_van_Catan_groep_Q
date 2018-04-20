@@ -1,5 +1,6 @@
 package Model;
 
+import java.sql.Connection;
 import java.util.Random;
 
 import Database.DiceDAO;
@@ -13,8 +14,8 @@ public class Dice {
 	
 	Random random = new Random();
 	
-	public Dice() {
-		diceDAO = new DiceDAO();
+	public Dice(Connection db_conn) {
+		diceDAO = new DiceDAO(db_conn);
 	}
 	
 	public void throwDice(int GameID) {

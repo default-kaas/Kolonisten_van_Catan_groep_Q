@@ -14,7 +14,7 @@ public class DiceController {
 	
 	public DiceController(Game game, Connection db_conn) {
 		this.game = game;
-		dice = new Dice();
+		dice = new Dice(db_conn);
 		dicePanel = new DicePanel(this);
 		
 	}

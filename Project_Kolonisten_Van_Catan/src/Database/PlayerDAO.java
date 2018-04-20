@@ -10,18 +10,14 @@ import DatabaseConnect.DatabaseConnect;
 public class PlayerDAO {
 	Connection m_Conn;
 
-	public PlayerDAO() {
-		DatabaseConnect Connection = new DatabaseConnect();
-		try {
-			m_Conn = Connection.getConnection();
-		} catch (Exception e) {
-
-		}
+	public PlayerDAO(Connection db_conn) {
+		m_Conn = db_conn;
 	}
 
 	public String getName(int volgnr, int GameID) throws SQLException {
 		Statement stmt = m_Conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select username from speler where idspel=" + GameID + " and volgnr = " + (volgnr + 1));
+		ResultSet rs = stmt
+				.executeQuery("select username from speler where idspel=" + GameID + " and volgnr = " + (volgnr + 1));
 		rs.next();
 		String name = rs.getString("username");
 		return name;

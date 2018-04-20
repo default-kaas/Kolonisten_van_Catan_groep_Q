@@ -10,13 +10,9 @@ import DatabaseConnect.DatabaseConnect;
 public class GameDAO {
 	private Connection m_Conn;
 
-	public GameDAO() {
-		DatabaseConnect Connection = new DatabaseConnect();
-		try {
-			m_Conn = Connection.getConnection();
-		} catch (Exception e) {
+	public GameDAO(Connection db_conn) {
+		m_Conn = db_conn;
 
-		}
 	}
 
 	public int getPlayersRound(int gameId) {

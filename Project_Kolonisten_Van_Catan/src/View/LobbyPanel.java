@@ -53,7 +53,7 @@ public class LobbyPanel extends JPanel {
 		
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.WEST;
-		gbc_table.insets = new Insets(0, 0, 0, 1000);
+		gbc_table.insets = new Insets(0, 0, 0, 1000);	
 		gbc_table.gridwidth = 3;
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 2;

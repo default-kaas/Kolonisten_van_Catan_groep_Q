@@ -45,7 +45,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		int height = (int) (screenSize.getHeight() * 0.4);
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBorder(title);
-		this.setBackground(Color.LIGHT_GRAY);
+		this.setBackground(new Color(192, 236, 237));
 		
 		buyRoad.addActionListener(this);
 		buyHouse.addActionListener(this);
@@ -149,7 +149,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon wood1 = new ImageIcon("images/Resources/wood1.png");
 		JLabel houseWood = new JLabel(wood1);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 20, 30, 20);
+		c.insets = new Insets(0, 0, 30, 0);;
 		c.gridx = 4;
 		c.gridy = 3;
 		this.add(houseWood, c);
@@ -157,7 +157,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon wheat = new ImageIcon("images/Resources/wheat1.png");
 		JLabel houseWheat = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 20, 30, 20);
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 5;
 		c.gridy = 3;
 		this.add(houseWheat, c);
@@ -165,7 +165,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon wool1 = new ImageIcon("images/Resources/sheep1.png");
 		JLabel houseWool = new JLabel(wool1);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 20, 30, 20);
+		c.insets = new Insets(0, 0, 30, 50);
 		c.gridx = 6;
 		c.gridy = 3;
 		this.add(houseWool, c);
@@ -193,24 +193,27 @@ public class BouwPanel extends JPanel implements ActionListener {
 		this.add(cityLabel, c);
 
 		ImageIcon ore = new ImageIcon("images/Resources/ore1.png");
-		city.setDescription("Ore");
 		JLabel cityOre1 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 100, 30, 0);
 		c.gridx = 2;
 		c.gridy = 4;
 		this.add(cityOre1, c);
 
 		JLabel cityOre2 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
+		
 		c.gridx = 3;
 		c.gridy = 4;
 		this.add(cityOre2, c);
 
 		JLabel cityOre3 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
+		
 		c.gridx = 4;
 		c.gridy = 4;
 		this.add(cityOre3, c);
+		
 		ImageIcon wheat1 = new ImageIcon("images/Resources/wheat1.png");
 		JLabel cityWheat1 = new JLabel(wheat1);
 		c.anchor = GridBagConstraints.CENTER;
@@ -220,6 +223,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		ImageIcon wheat2 = new ImageIcon("images/Resources/wheat1.png");
 		JLabel cityWheat2 = new JLabel(wheat2);
 		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 100, 50, 0);
 		c.gridx = 6;
 		c.gridy = 4;
 		this.add(cityWheat2, c);

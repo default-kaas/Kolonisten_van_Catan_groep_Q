@@ -32,7 +32,7 @@ public class InvitePanel extends JPanel {
 		JLabel lblLobby = new JLabel("Lobby");
 		lblLobby.setFont(new Font("Arial", Font.BOLD, 100));
 		GridBagConstraints gbc_lblLobby = new GridBagConstraints();
-		gbc_lblLobby.insets = new Insets(0, 0, 0, 1000);
+		gbc_lblLobby.insets = new Insets(0, 0, 0, 500);
 		gbc_lblLobby.anchor = GridBagConstraints.WEST;
 		gbc_lblLobby.gridx = 0;
 		gbc_lblLobby.gridy = 1;
@@ -50,7 +50,7 @@ public class InvitePanel extends JPanel {
 		
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.WEST;
-		gbc_table.insets = new Insets(0, 0, 0, 1000);	
+		gbc_table.insets = new Insets(0, 0, 0, 500);	
 		gbc_table.gridwidth = 3;
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 2;
@@ -64,7 +64,7 @@ public class InvitePanel extends JPanel {
 		refreshBtn.setForeground(Color.BLACK);
 		refreshBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_inviteBtn = new GridBagConstraints();
-		gbc_inviteBtn.insets = new Insets(0,150, 0, 1000);
+		gbc_inviteBtn.insets = new Insets(0,150, 0, 500);
 		
 		gbc_inviteBtn.anchor = GridBagConstraints.CENTER;
 		gbc_inviteBtn.gridx = 0;

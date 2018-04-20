@@ -40,11 +40,18 @@ public class Game {
 	private void addPlayers() {
 		for (int i = 0; i < 4; i++) {
 			try {
-				Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i, GameId)));
+				String Color = "";
+				switch(i) {
+				case 0: Color = "Rood"; break;
+				case 1: Color = "Wit"; break;
+				case 2: Color = "Blauw"; break;
+				case 3: Color = "Orangje"; break;
+				}
+				
+				Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i, GameId), Color));
 				if (Players.get(i).getName().equals(userName)) {
 					Players.get(i).itsMe();
 				}
-				System.out.println(Players.get(i).getName() + ", ID: " + Players.get(i).getPlayerID());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -109,5 +116,6 @@ public class Game {
 		}
 		return null;
 	}
+	
 
 }

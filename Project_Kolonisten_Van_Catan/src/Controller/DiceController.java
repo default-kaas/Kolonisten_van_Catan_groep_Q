@@ -9,7 +9,6 @@ import View.DicePanel;
 public class DiceController {	
 	private Dice dice;
 	private Game game;
-//	@Dogen, DiceController word aangemaakt in DicePanel en DicePanel in DiceController!
 	private DicePanel dicePanel;
 	
 	public DiceController(Game game, Connection db_conn) {

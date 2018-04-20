@@ -44,11 +44,10 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 
 		SetVariables();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+//		this.add(Box.createRigidArea(new Dimension(5, 10)));
+//		this.add(close);
 		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(close);
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(trade);
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
+		
 		close.addActionListener(this);
 
 		// Panel size + Background and border
@@ -79,13 +78,6 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 		close = new JButton("Close game!");
 		
 		//Button for trading
-		trade = new JButton("Handelspaneel");
-		trade.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e)
-		    {
-				TradePanelController tpc = new TradePanelController();
-		    }
-		});
 
 	}
 
@@ -104,34 +96,35 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		System.exit(0);
 	}
-
-	public void ShowPlayers() {
+	
+	public void ShowResources() {
+		
+	}
+	
+	public void ShowTradeButton() {
+		trade = new JButton("Handelspaneel");
+		this.add(Box.createRigidArea(new Dimension(5, 10)));
+		this.add(trade);
+		
+		trade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+		    {
+				TradePanelController tpc = new TradePanelController();
+		    }
+		});
+	}
+	
+	public void UpdatePlayerTurn() {
 		// Names of Players in game
-		Player1 = new JLabel(controller.getPlayerColor(0) + ": " + controller.getPlayerName(0));
-		if (controller.myTurn(0)) {
-			Player1.setText(Player1.getText() + " - bezig met zijn beurt!");
+		
+		for(int i = 0; i< 4; i++) {
+			if (controller.myTurn(i)) {
+				this.add(new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)+ " - bezig met zijn beurt!"));
+			}
+			else {
+				this.add(new JLabel(controller.getPlayerColor(i)+": " + controller.getPlayerName(i)));
+			}
+			this.add(Box.createRigidArea(new Dimension(5, 10)));
 		}
-
-		Player2 = new JLabel("Wit: " + controller.getPlayerName(1));
-		if (controller.myTurn(1)) {
-			Player2.setText(Player2.getText() + " - bezig met zijn beurt!");
-		}
-
-		Player3 = new JLabel("Blauw: " + controller.getPlayerName(2));
-		if (controller.myTurn(2)) {
-			Player3.setText(Player3.getText() + " - bezig met zijn beurt!");
-		}
-
-		Player4 = new JLabel("Orangje: " + controller.getPlayerName(3));
-		if (controller.myTurn(3)) {
-			Player4.setText(Player3.getText() + " - bezig met zijn beurt!");
-		}
-		this.add(Player1);
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(Player2);
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(Player3);
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(Player4);
 	}
 }

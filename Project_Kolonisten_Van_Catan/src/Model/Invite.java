@@ -4,12 +4,12 @@ import java.sql.Connection;
 
 import Database.LoginDAO;
 
-public class Login {
+public class Invite {
 	boolean loginSucces;
 	int loginAttempts;
 	private LoginDAO loginDao;
 	
-	public Login(Connection db_conn) {
+	public Invite(Connection db_conn) {
 		loginDao = new LoginDAO(db_conn);
 		loginSucces = false;
 		loginAttempts = 0;

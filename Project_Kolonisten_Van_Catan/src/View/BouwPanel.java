@@ -47,10 +47,14 @@ public class BouwPanel extends JPanel implements ActionListener {
 		this.setBorder(title);
 		this.setBackground(new Color(192, 236, 237));
 		
+		
+		
 		buyRoad.addActionListener(this);
 		buyHouse.addActionListener(this);
 		buyCity.addActionListener(this);
 		buyDevelopmentCard.addActionListener(this);
+		
+		
 	}
 
 	public void setTitles() {

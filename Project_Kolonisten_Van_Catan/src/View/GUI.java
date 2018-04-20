@@ -52,7 +52,7 @@ public class GUI extends JFrame implements ActionListener{
 	}
 
 	public void showLobbyScreen() {
-		 LobbyController lobbyController = new LobbyController();
+		LobbyController lobbyController = new LobbyController(this, db_conn);
 		lobbyPanel = lobbyController.getlobbyPanel();
 		
 		this.setContentPane(lobbyPanel);

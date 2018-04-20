@@ -9,13 +9,13 @@ import DatabaseConnect.DatabaseConnect;
 
 public class LobbyDAO {
 	private boolean status;
-	DatabaseConnect Connection;
+
 	Connection m_Conn;
 
-	public LobbyDAO() {
+	public LobbyDAO(Connection db_conn) {
 
 		try {
-			m_Conn = Connection.getConnection();
+			m_Conn = db_conn;
 		} catch (Exception e) {
 
 		}
@@ -48,7 +48,7 @@ public class LobbyDAO {
 
 				int j = 0;
 
-				data[i][j++] = rs.getInt("username");
+				data[i][j++] = rs.getString("username");
 
 				i++;
 			}

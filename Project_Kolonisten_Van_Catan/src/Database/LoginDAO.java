@@ -11,13 +11,8 @@ import DatabaseConnect.DatabaseConnect;
 public class LoginDAO {
 	Connection m_Conn;
 	
-	public LoginDAO() {
-		DatabaseConnect Connection = new DatabaseConnect();
-		try {
-			m_Conn = Connection.getConnection();
-		} catch (Exception e) {
-
-		}
+	public LoginDAO(Connection db_conn) {
+		this.m_Conn =  db_conn;
 	}
 	/**
 	 * 

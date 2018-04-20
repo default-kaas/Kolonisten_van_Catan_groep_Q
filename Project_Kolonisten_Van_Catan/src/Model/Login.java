@@ -1,5 +1,7 @@
 package Model;
 
+import java.sql.Connection;
+
 import Database.LoginDAO;
 
 public class Login {
@@ -7,8 +9,8 @@ public class Login {
 	int loginAttempts;
 	private LoginDAO loginDao;
 	
-	public Login() {
-		loginDao = new LoginDAO();
+	public Login(Connection db_conn) {
+		loginDao = new LoginDAO(db_conn);
 		loginSucces = false;
 		loginAttempts = 0;
 	}

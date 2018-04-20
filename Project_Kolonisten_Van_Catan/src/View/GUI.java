@@ -55,19 +55,19 @@ public class GUI extends JFrame implements ActionListener{
 	
 	private LoginController loginController;
 	public void showLoginPane() {
-		loginController = new LoginController(this);
+		loginController = new LoginController(this, db_conn);
 		this.setContentPane(loginController.getLoginPanel());
 		this.setVisible(true);
 		settings();
 	}
 
-	public void showGamePane(boolean loginSucces, int gameID, String UserName) {
+	public void showGamePane(boolean loginSucces, int gameID, String UserName, boolean newGame) {
 		if(loginSucces) {
 			//this.getContentPane().remove(LogInPanel);
 			
 			//De username moet worden meegegeven tijdens het inloggen of na het zijn in de lobby
 			
-			Spelscherm = new Spelscherm(gameID, UserName, db_conn);
+			Spelscherm = new Spelscherm(gameID, UserName, db_conn, newGame);
 			this.setContentPane(Spelscherm);
 			settings();
 		}

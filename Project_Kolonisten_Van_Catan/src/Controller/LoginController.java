@@ -11,10 +11,9 @@ public class LoginController {
 	private LogInPanel LogInPanel;
 	private Login login;
 	private GUI gui;
-	private Connection db_conn;
 	
 	public LoginController(GUI gui, Connection db_conn) {
-		this.db_conn = db_conn;
+		
 		this.gui = gui;
 		LogInPanel = new LogInPanel(this);
 		login = new Login(db_conn);
@@ -28,7 +27,11 @@ public class LoginController {
 		
 	public void setLogInInformation(char[] password, String name) {
 		if(login.loginAttempt(name, password)) {
-			gui.showGamePane(true, 770, name, true);
+			if(login.activeGame(name)) {
+				gui.showGamePane(true, 770, name, true);
+			}else {
+				gui.showGamePane(true, 770, name, false);
+			}
 		}else {
 			LogInPanel.showError();
 		}

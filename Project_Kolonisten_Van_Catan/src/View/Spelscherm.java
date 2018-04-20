@@ -20,6 +20,7 @@ public class Spelscherm extends JPanel {
 	
 
 	public Spelscherm(int GameID, String userName, Connection db_conn, boolean newGame) {
+		System.out.println("newGame: "+newGame);
 		GameController = new GameController(GameID, userName);
 		SpelChat = new ChatPanel(GameController, db_conn);
 		MakePanels();

@@ -16,11 +16,19 @@ public class Login {
 	}
 	
 	public boolean loginAttempt(String username, char[] password) {
+		loginAttempts++;
 		if(loginDao.searchPasswordWithUserName(username, password)) {
 			return true; 
-		}else {
-			return false;
 		}
+		return false;
+	}
+
+	public boolean activeGame(String name) {
+		// TODO Auto-generated method stub
+		if(loginDao.activeGame(name)) {
+			return true;
+		}
+		return false;
 	}
 	
 }

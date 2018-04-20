@@ -31,7 +31,7 @@ public class ChatPanel extends JPanel {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.2);
-		this.setPreferredSize(new Dimension(width, height));
+		this.setPreferredSize(new Dimension(width, height-23));
 		this.setBackground(Color.GREEN);
 		
 		
@@ -48,7 +48,7 @@ public class ChatPanel extends JPanel {
 		
 		JScrollPane x = new JScrollPane(textField);
 		
-		x.setPreferredSize(new Dimension(width-20, (int)(height*0.8)));
+		x.setPreferredSize(new Dimension(width-20, (int)(height*0.8)-23));
 		x.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
 

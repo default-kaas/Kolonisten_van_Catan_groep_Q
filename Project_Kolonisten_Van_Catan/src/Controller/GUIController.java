@@ -9,6 +9,6 @@ public class GUIController {
 	}
 	
 	private void accesSteps() {
-		gui.showLoginPane();
+		gui.showLobbyScreen();
 	}
 }

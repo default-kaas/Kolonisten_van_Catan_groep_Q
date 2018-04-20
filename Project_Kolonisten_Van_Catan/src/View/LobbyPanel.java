@@ -22,8 +22,8 @@ public class LobbyPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LobbyPanel() {
-		lobbyController = new LobbyController();
+	public LobbyPanel(LobbyController lobbyController) {
+		this.lobbyController = lobbyController;
 		Object[][] data = lobbyController.showUsers();
 		setPreferredSize(new Dimension(350, 300));
 		setBackground(new Color(157, 24, 31));

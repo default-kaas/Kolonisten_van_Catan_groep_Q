@@ -3,8 +3,7 @@ package Database;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.mysql.jdbc.Statement;
+import java.sql.Statement;
 
 import DatabaseConnect.DatabaseConnect;
 
@@ -31,7 +30,7 @@ public class LobbyDAO {
 
 		try {
 
-			Statement statement = (Statement) m_Conn.createStatement();
+			Statement statement =  m_Conn.createStatement();
 
 			ResultSet rs = statement.executeQuery(QUERY);
 

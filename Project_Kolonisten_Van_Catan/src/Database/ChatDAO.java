@@ -8,20 +8,15 @@ import java.sql.Statement;
 import DatabaseConnect.DatabaseConnect;
 
 public class ChatDAO {
-	Connection m_Conn;
+	Connection connection;
 
-	public ChatDAO() {
-		DatabaseConnect Connection = new DatabaseConnect();
-		try {
-			m_Conn = Connection.getConnection();
-		} catch (Exception e) {
-
-		}
+	public ChatDAO(Connection connection) {
+		this.connection = connection;
 	}
 
 	public boolean setChatMessage(String Message, int PlayerID) {
 		try {
-			Statement stmt = m_Conn.createStatement();
+			Statement stmt = connection.createStatement();
 			stmt.executeUpdate("INSERT INTO chatregel (tijdstip, idspeler, bericht)  VALUES (CURRENT_TIMESTAMP,"+PlayerID+", '"+ Message +"')");System.out.println("TEST");
 			return true;
 		} catch (SQLException e) {

@@ -1,5 +1,6 @@
 package Model;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import Database.ChatDAO;
 import Controller.ChatPanelController;
@@ -10,8 +11,8 @@ public class Chat {
 	public ArrayList<String> chatArray;
 //	ChatPanelController chatPanelController = new ChatPanelController();
 
-	public Chat() {
-		ChatDAO = new ChatDAO();
+	public Chat(Connection db_conn) {
+		ChatDAO = new ChatDAO(db_conn);
 		chatArray = new ArrayList<String>();
 		chatArray.add("Welkom bij Catan chat!");
 		

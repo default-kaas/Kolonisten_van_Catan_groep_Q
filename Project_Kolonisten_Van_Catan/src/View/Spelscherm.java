@@ -2,6 +2,7 @@ package View;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.sql.Connection;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -18,9 +19,9 @@ public class Spelscherm extends JPanel {
 	GameController GameController;
 	
 
-	public Spelscherm(int GameID, String userName) {
+	public Spelscherm(int GameID, String userName, Connection db_conn) {
 		GameController = new GameController(GameID, userName);
-		
+		SpelChat = new ChatPanel(GameController, db_conn);
 		MakePanels();
 
 		this.setLayout(new GridBagLayout());
@@ -61,7 +62,7 @@ public class Spelscherm extends JPanel {
 	private void MakePanels() {
 		// TODO Auto-generated method stub
 		SpelBord = new BordPanel();
-		SpelChat = new ChatPanel(GameController);
+		
 		SpelerInfo = GameController.getSpelerInfoPanel();
 		Bouwen = GameController.getBouwPanel();
 		Dobbelsteen = GameController.getDicePanel();

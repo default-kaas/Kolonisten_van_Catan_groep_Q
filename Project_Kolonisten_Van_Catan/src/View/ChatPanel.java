@@ -6,6 +6,7 @@ import java.awt.ScrollPane;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -24,7 +25,7 @@ public class ChatPanel extends JPanel {
 	public JTextArea textField;
 
 
-	public ChatPanel(GameController gameController) {
+	public ChatPanel(GameController gameController, Connection db_conn) {
 			
 		//Panel
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,7 +35,7 @@ public class ChatPanel extends JPanel {
 		this.setBackground(Color.GREEN);
 		
 		
-		chatPanelController = new ChatPanelController(gameController);
+		chatPanelController = new ChatPanelController(gameController, db_conn);
 
 		inputField = new JTextField();
 		inputField.setPreferredSize(new Dimension(width-20, (int)(height*0.1)));

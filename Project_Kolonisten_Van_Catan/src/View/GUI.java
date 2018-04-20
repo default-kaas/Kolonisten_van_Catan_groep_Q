@@ -2,6 +2,7 @@ package View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -9,6 +10,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Controller.LoginController;
+import DatabaseConnect.DatabaseConnect;
 
 public class GUI extends JFrame implements ActionListener{
 	private Spelscherm Spelscherm;
@@ -16,8 +18,15 @@ public class GUI extends JFrame implements ActionListener{
 	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem exit, login, lobby;
+	private Connection db_conn;
 
 	public GUI() {
+		DatabaseConnect Connection = new DatabaseConnect();
+		try {
+			db_conn = Connection.getConnection();
+		} catch (Exception e) {
+
+		}
 		addMenuBar();
 		// Voor nu ff zo gedaan dat we rechts boven kunnen afsluiten!
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -27,6 +36,7 @@ public class GUI extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		this.setVisible(true);
 	}
+	
 
 	private void addMenuBar() {
 		menuBar = new JMenuBar();
@@ -57,7 +67,7 @@ public class GUI extends JFrame implements ActionListener{
 			
 			//De username moet worden meegegeven tijdens het inloggen of na het zijn in de lobby
 			
-			Spelscherm = new Spelscherm(gameID, UserName);
+			Spelscherm = new Spelscherm(gameID, UserName, db_conn);
 			this.setContentPane(Spelscherm);
 			settings();
 		}

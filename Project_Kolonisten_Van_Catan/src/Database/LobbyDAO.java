@@ -26,7 +26,7 @@ public class LobbyDAO {
 
 		Object[][] data = null;
 
-		final String QUERY = "Select username from account";
+		final String QUERY = "SELECT * FROM speler WHERE NOT speelstatus = 'uitdager'";
 
 		try {
 
@@ -49,6 +49,7 @@ public class LobbyDAO {
 				int j = 0;
 
 				data[i][j++] = rs.getString("username");
+				data[i][j++] = rs.getString("speelstatus");
 
 				i++;
 			}
@@ -101,5 +102,9 @@ public class LobbyDAO {
 
 		return 0;
 	}
+	
+	
+	
+	
 
 }

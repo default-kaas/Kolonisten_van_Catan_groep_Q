@@ -65,7 +65,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		JLabel type = new JLabel("Soort");
 		type.setFont(new Font("Arial", Font.BOLD, 20));
 		type.setForeground(Color.BLACK);
-		c.insets = new Insets(0, 0, 50, 0);
+		c.insets = new Insets(0, 0, 0, 0);
 		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -75,7 +75,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		price.setFont(new Font("Arial", Font.BOLD, 20));
 		price.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 0, 50, 0);
+		c.insets = new Insets(0, 0, 0, 0);
 		c.gridx = 4;
 		c.gridy = 1;
 		this.add(price, c);
@@ -84,7 +84,7 @@ public class BouwPanel extends JPanel implements ActionListener {
 		buy.setFont(new Font("Arial", Font.BOLD, 20));
 		buy.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.EAST;
-		c.insets = new Insets(0, 0, 50, 0);
+		c.insets = new Insets(0, 0, 0, 0);
 		c.gridx = 7;
 		c.gridy = 1;
 		this.add(buy, c);

@@ -20,11 +20,11 @@ public class Player {
 	private ArrayList<ResourceCards> OreStack;
 	private ArrayList<ResourceCards> WoolStack;
 	
-	public Player(String Name, int PlayerID) {
+	public Player(String Name, int PlayerID, String Color) {
 		setArray();
 		this.Name = setName(Name);
 		this.PlayerId = PlayerID;
-		this.Color = "TestColor";
+		this.Color = Color;
 		hasThrown = false;
 	}
 	

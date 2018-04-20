@@ -13,8 +13,9 @@ public class PlayerInfoController {
 	public PlayerInfoController(Game game, Connection db_conn) {
 		spelerInformatiePanel = new SpelerInformatiePanel(this);
 		this.game = game;
-		spelerInformatiePanel.ShowPlayers();
-
+		spelerInformatiePanel.UpdatePlayerTurn();
+		spelerInformatiePanel.ShowResources();
+		spelerInformatiePanel.ShowTradeButton();
 	}
 
 	public String getPlayerName(int volgnr) {
@@ -35,5 +36,8 @@ public class PlayerInfoController {
 
 	public SpelerInformatiePanel getPlayerInfoPanel() {
 		return spelerInformatiePanel;
+	}
+	public void UpdateResourcePanel() {
+		spelerInformatiePanel.ShowResources();
 	}
 }

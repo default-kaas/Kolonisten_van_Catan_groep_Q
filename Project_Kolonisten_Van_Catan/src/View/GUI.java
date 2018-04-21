@@ -69,11 +69,9 @@ public class GUI extends JFrame implements ActionListener {
 	public void showLobbyScreen() {
 		lobbyController = new LobbyController(this, db_conn);
 		lobbyPanel = lobbyController.getLobbyPanel();
-
 		this.setContentPane(lobbyPanel);
-		
 		this.setVisible(true);
-
+		settings();
 	}
 
 	private LoginController loginController;

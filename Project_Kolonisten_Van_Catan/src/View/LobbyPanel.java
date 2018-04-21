@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,7 +27,9 @@ public class LobbyPanel extends JPanel {
 	GridBagConstraints c;
 
 	public LobbyPanel(LobbyController lobbyController) {
-
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int size = (int)(screenSize.getHeight());
+		this.setPreferredSize(new Dimension(size, size /2));
 		this.setLayout(new GridBagLayout());
 
 		this.lobbyController = lobbyController;
@@ -90,7 +93,7 @@ public class LobbyPanel extends JPanel {
 
 		// finding
 
-		JLabel lblFinding = new JLabel("Nieuw Spel maken");
+	/*	JLabel lblFinding = new JLabel("Nieuw Spel maken");
 		lblFinding.setFont(new Font("Arial", Font.BOLD, 80));
 		GridBagConstraints gbc_lblFinding = new GridBagConstraints();
 		gbc_lblFinding.insets = new Insets(0, 0, 5, 5);
@@ -106,9 +109,9 @@ public class LobbyPanel extends JPanel {
 		// gbc_table_1.gridx = 1;
 		// gbc_table_1.gridy = 2;
 		// add(playerFinding, gbc_table_1);
-
-		 normalMode = new JButton("Normaal");
-		 normalMode.setPreferredSize(new Dimension(200, 100));
+*/
+		 normalMode = new JButton("Normale spel crieëren");
+		 normalMode.setPreferredSize(new Dimension(400, 100));
 		 normalMode.setBackground(new Color(59, 89, 182));
 		 normalMode.setForeground(Color.BLACK);
 		 normalMode.setFont(new Font("Calibri", Font.BOLD, 30));
@@ -116,19 +119,19 @@ public class LobbyPanel extends JPanel {
 		gbc_normalBtn.insets = new Insets(0, 0, 0, 150);
 		gbc_normalBtn.anchor = GridBagConstraints.CENTER;
 		gbc_normalBtn.gridx = 1;
-		gbc_normalBtn.gridy = 3;
+		gbc_normalBtn.gridy = 1;
 		add(normalMode, gbc_normalBtn);
 		
-		 advancedMode = new JButton("Geavanceerd");
-		 advancedMode.setPreferredSize(new Dimension(200, 100));
+		 advancedMode = new JButton("Geavanceerde spel crieëren");
+		 advancedMode.setPreferredSize(new Dimension(400, 100));
 		 advancedMode.setBackground(new Color(59, 89, 182));
 		 advancedMode.setForeground(Color.BLACK);
 		 advancedMode.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_advancedBtn = new GridBagConstraints();
-		gbc_advancedBtn.insets = new Insets(0, 350, 0, 0);
+		gbc_advancedBtn.insets = new Insets(0, 350, 0,150);
 		gbc_advancedBtn.anchor = GridBagConstraints.CENTER;
 		gbc_advancedBtn.gridx = 1;
-		gbc_advancedBtn.gridy = 3;
+		gbc_advancedBtn.gridy = 2;
 		add(advancedMode, gbc_advancedBtn);
 	}
 

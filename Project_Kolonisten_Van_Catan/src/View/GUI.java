@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -70,6 +71,7 @@ public class GUI extends JFrame implements ActionListener {
 		lobbyPanel = lobbyController.getLobbyPanel();
 
 		this.setContentPane(lobbyPanel);
+		
 		this.setVisible(true);
 
 	}

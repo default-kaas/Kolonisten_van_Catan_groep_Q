@@ -19,7 +19,7 @@ public class GamePanel extends JPanel {
 	private GameController GameController;
 
 	public GamePanel(int GameID, String userName, Connection db_conn, boolean newGame) {
-		GameController = new GameController(GameID, userName, db_conn);
+		GameController = new GameController(GameID, userName, db_conn, newGame);
 		MakePanels();
 
 		this.setLayout(new GridBagLayout());

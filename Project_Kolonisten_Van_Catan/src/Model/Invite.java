@@ -15,7 +15,7 @@ public class Invite {
 		loginAttempts = 0;
 	}
 	
-	public boolean loginAttempt(String username, char[] password) {
+	public boolean loginAttempt(String username, String password) {
 		loginAttempts++;
 		if(loginDao.searchPasswordWithUserName(username, password)) {
 			return true; 
@@ -23,12 +23,12 @@ public class Invite {
 		return false;
 	}
 
-	public boolean activeGame(String name) {
-		// TODO Auto-generated method stub
-		if(loginDao.activeGame(name)) {
-			return true;
-		}
-		return false;
-	}
+//	public boolean activeGame(String name) {
+//		// TODO Auto-generated method stub
+//		if(loginDao.activeGame(name)) {
+//			return true;
+//		}
+//		return false;
+//	}
 	
 }

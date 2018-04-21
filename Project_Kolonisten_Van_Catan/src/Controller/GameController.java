@@ -16,7 +16,7 @@ public class GameController {
 	private BuildPanelController bouwPanelController;
 	private ChatPanelController chatPanelController;
 
-	public GameController(int IdGame, String userName, Connection db_conn) {
+	public GameController(int IdGame, String userName, Connection db_conn, boolean newGame) {
 		Game = new Game(IdGame, userName, db_conn);
 		
 		bouwPanelController = new BuildPanelController(Game, db_conn);

@@ -3,7 +3,6 @@ package Controller;
 import java.sql.SQLException;
 
 import DatabaseConnect.DatabaseConnect;
-import View.GUI;
 import View.TradeView;
 
 public class MainClass {

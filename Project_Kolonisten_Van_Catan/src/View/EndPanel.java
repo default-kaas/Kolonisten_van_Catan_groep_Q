@@ -36,7 +36,7 @@ public class EndPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				end();
+//				end();
 			}
 		});
 		
@@ -63,7 +63,7 @@ public class EndPanel extends JPanel {
 		// restart game met zelfde players
 	}
 
-	public void end() {
-		endController.endGame();
-	}
+//	public void end() {
+//		endController.endGame();
+//	}
 }

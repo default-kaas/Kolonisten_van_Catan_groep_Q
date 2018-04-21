@@ -23,7 +23,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 	private JLabel username, password, title;
 	private JTextField nameField;
 	private JButton loginButton,creatNewAccountButton;
-	private JPasswordField passwordField;
+	private JTextField passwordField;
 	private LoginController loginController;
 
 	public LogInPanel(LoginController loginController) {
@@ -39,7 +39,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 		username = new JLabel("Gebruikersnaam: ");
 		password = new JLabel("Wachtwoord: ");
 		nameField = new JTextField(8);
-		passwordField = new JPasswordField(8);
+		passwordField = new JTextField(8);
 		loginButton = new JButton("Login");
 		creatNewAccountButton = new JButton("Creëer account");
 
@@ -100,7 +100,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource().equals(loginButton) || ae.getSource().equals(passwordField)) {
-			loginController.setLogInInformation(getInputPassword(), getInputName());
+			loginController.setLogInInformation(getInputName(), getInputPassword());
 		}
 	}
 
@@ -112,8 +112,8 @@ public class LogInPanel extends JPanel implements ActionListener {
 		return nameField.getText();
 	}
 
-	public char[] getInputPassword() {
-		return passwordField.getPassword();
+	public String getInputPassword() {
+		return passwordField.getText();
 	}
 
 	public void showError() {

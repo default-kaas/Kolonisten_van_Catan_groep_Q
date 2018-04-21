@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import DatabaseConnect.DatabaseConnect;
-
 public class GameDAO {
 	private Connection m_Conn;
 

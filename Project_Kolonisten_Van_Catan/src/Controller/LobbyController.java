@@ -3,7 +3,7 @@ package Controller;
 import java.sql.Connection;
 
 import Database.LobbyDAO;
-import View.GUI;
+import View.LobbyFrame;
 import View.LobbyPanel;
 
 public class LobbyController {
@@ -12,9 +12,9 @@ public class LobbyController {
 	LobbyDAO lobbyDAO;
 	LobbyPanel lobbyPanel;
 	
-	public LobbyController(GUI gui,Connection db) {
+	public LobbyController(LobbyFrame lobbyFrame, Connection db) {
 		lobbyDAO = new LobbyDAO(db);
-		lobbyPanel = new LobbyPanel(this);
+		lobbyPanel = new LobbyPanel(lobbyFrame, this);
 	}
 	
 	public LobbyPanel getLobbyPanel() {

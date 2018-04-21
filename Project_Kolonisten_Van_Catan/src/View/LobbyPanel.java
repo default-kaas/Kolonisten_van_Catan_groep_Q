@@ -19,10 +19,11 @@ public class LobbyPanel extends JPanel {
 	private JButton rejectBtn;
 	private JButton normalMode;
 	private JButton advancedMode;
+	private JButton SPELOPENNU;
 	public LobbyController lobbyController;
 	GridBagConstraints c;
 
-	public LobbyPanel(LobbyController lobbyController) {
+	public LobbyPanel(LobbyFrame lobbyFrame, LobbyController lobbyController) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int size = (int) (screenSize.getHeight());
 		this.setPreferredSize(new Dimension(size, size / 2));
@@ -30,6 +31,19 @@ public class LobbyPanel extends JPanel {
 		this.setLayout(new GridBagLayout());
 
 		this.lobbyController = lobbyController;
+		
+		SPELOPENNU = new JButton("SPEL OPEN NU!!");
+		this.add(SPELOPENNU);
+		SPELOPENNU.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				lobbyFrame.showGameScreen();
+			}
+			
+		});
+		
 		Object[][] data = lobbyController.showUsers();
 		setBackground(new Color(157, 24, 31));
 		String[] columns = new String[] { "Name", "speelstatus" };

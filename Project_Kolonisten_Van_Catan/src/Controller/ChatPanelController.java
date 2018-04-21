@@ -7,7 +7,6 @@ import java.util.Scanner;
 import Model.Chat;
 import Model.Game;
 import View.ChatPanel;
-import Controller.GameController;
 
 public class ChatPanelController {
 

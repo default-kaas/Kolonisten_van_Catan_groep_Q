@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import DatabaseConnect.DatabaseConnect;
-
 public class DiceDAO {
 
 	Connection m_Conn;

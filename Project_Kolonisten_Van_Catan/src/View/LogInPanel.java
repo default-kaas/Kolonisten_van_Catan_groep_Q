@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -19,10 +20,10 @@ import javax.swing.JTextField;
 import Controller.LoginController;
 
 public class LogInPanel extends JPanel implements ActionListener {
-	JLabel username, password, title;
-	JTextField nameField;
-	JButton button;
-	JPasswordField passwordField;
+	private JLabel username, password, title;
+	private JTextField nameField;
+	private JButton loginButton,creatNewAccountButton;
+	private JPasswordField passwordField;
 	private LoginController loginController;
 
 	public LogInPanel(LoginController loginController) {
@@ -32,34 +33,41 @@ public class LogInPanel extends JPanel implements ActionListener {
         int sizeWidthPanel = (int)(screenSize.getWidth()*0.5);
         this.setPreferredSize(new Dimension(sizeWidthPanel, sizeHeightPanel));
 		this.setLayout(new GridBagLayout());
+		this.setBackground(Color.DARK_GRAY);
 		
-		
-		title = new JLabel("Login");
-		username = new JLabel("Username: ");
-		password = new JLabel("Password: ");
+		title = new JLabel("Login scherm");
+		username = new JLabel("Gebruikersnaam: ");
+		password = new JLabel("Wachtwoord: ");
 		nameField = new JTextField(8);
 		passwordField = new JPasswordField(8);
-		button = new JButton("Login");
+		loginButton = new JButton("Login");
+		creatNewAccountButton = new JButton("Creer");
 
 		passwordField.addActionListener(this);
-		button.addActionListener(this);
+		loginButton.addActionListener(this);
 
 		GridBagConstraints c = new GridBagConstraints();
 		
 		int sizeHeight = (int)(screenSize.getHeight());
 		int sizeWidth = (int)(screenSize.getWidth());
-		this.setFont(new Font("Arial Black",1,25));
 		
-		c.insets = new Insets(10,10,10,10);  //top padding
+		title.setFont(new Font("Arial Black",1,50));
+		title.setForeground(Color.WHITE);
+		username.setForeground(Color.WHITE);
+		password.setForeground(Color.WHITE);
 		
-		c.gridwidth = 3;
+		
+		//This is the title of the login panel
+		c.insets = new Insets(0,0,50,0);  
+		c.gridwidth = 1;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.CENTER;
-	
 		this.add(title, c);
 		
-		c.insets = new Insets(2,10,2,10);  //top padding
+		  
+		//This is the left colom with the jlabels
+		c.insets = new Insets(0,0,10,-100); 
 		c.gridwidth = 1;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -67,7 +75,9 @@ public class LogInPanel extends JPanel implements ActionListener {
 		this.add(username, c);
 		c.gridy++;
 		this.add(password, c);
-
+		
+		//This is the right colom with the textfields (paswordfield)
+		c.insets = new Insets(0,-100,10,0); 
 		c.gridx = 2;
 		c.gridy = 1;
 		c.anchor = GridBagConstraints.LINE_START;
@@ -75,16 +85,21 @@ public class LogInPanel extends JPanel implements ActionListener {
 		c.gridy++;
 		this.add(passwordField, c);
 		
-		c.insets = new Insets(10,0,0,0);  //top padding
+		//This is the login button and create account button
+		c.insets = new Insets(30,0,0,0);  
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridwidth = 3;
+		c.gridwidth = 2;
 		c.gridx = 0;
 		c.gridy = 3;
-		this.add(button, c);
+		this.add(loginButton, c);
+		c.insets = new Insets(10,0,0,0); 
+		c.gridy ++;
+		this.add(creatNewAccountButton, c);
+		
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		if (ae.getSource().equals(button) || ae.getSource().equals(passwordField)) {
+		if (ae.getSource().equals(loginButton) || ae.getSource().equals(passwordField)) {
 			loginController.setLogInInformation(getInputPassword(), getInputName());
 		}
 	}

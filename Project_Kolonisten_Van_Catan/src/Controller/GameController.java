@@ -3,23 +3,23 @@ package Controller;
 import java.sql.Connection;
 
 import Model.Game;
-import View.BordPanel;
-import View.BouwPanel;
+import View.BoardPanel;
+import View.BuildPanel;
 import View.ChatPanel;
 import View.DicePanel;
-import View.SpelerInformatiePanel;
+import View.PlayerInformationPanel;
 
 public class GameController {
 	private Game Game;
 	private PlayerInfoController playerInfoController;
 	private DiceController diceController;
-	private BouwPanelController bouwPanelController;
+	private BuildPanelController bouwPanelController;
 	private ChatPanelController chatPanelController;
 
 	public GameController(int IdGame, String userName, Connection db_conn) {
 		Game = new Game(IdGame, userName, db_conn);
 		
-		bouwPanelController = new BouwPanelController(Game, db_conn);
+		bouwPanelController = new BuildPanelController(Game, db_conn);
 		playerInfoController = new PlayerInfoController(Game, db_conn);
 		diceController = new DiceController(Game, db_conn);
 		chatPanelController = new ChatPanelController(Game, db_conn);
@@ -33,7 +33,7 @@ public class GameController {
 		diceController.showDice();
 	}
 	
-	public BouwPanel getBouwPanel() { 
+	public BuildPanel getBouwPanel() { 
 		return bouwPanelController.getBouwPanel();
 	}
 
@@ -41,7 +41,7 @@ public class GameController {
 		return Game;
 	}
 
-	public SpelerInformatiePanel getSpelerInfoPanel() {
+	public PlayerInformationPanel getSpelerInfoPanel() {
 		// TODO Auto-generated method stub
 		return playerInfoController.getPlayerInfoPanel();
 	}
@@ -53,8 +53,8 @@ public class GameController {
 		// TODO Auto-generated method stub
 		return chatPanelController.getChatPanel();
 	}
-	public BordPanel getBordPanel() {
+	public BoardPanel getBordPanel() {
 		// TODO Auto-generated method stub
-		return new BordPanel();
+		return new BoardPanel();
 	}
 }

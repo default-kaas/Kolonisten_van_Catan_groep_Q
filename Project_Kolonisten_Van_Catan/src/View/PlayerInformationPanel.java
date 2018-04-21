@@ -20,7 +20,7 @@ import Controller.PlayerInfoController;
 import Controller.TradePanelController;
 import Model.Player;
 
-public class SpelerInformatiePanel extends JPanel implements ActionListener {
+public class PlayerInformationPanel extends JPanel implements ActionListener {
 	// private Player speler1 = new Player();
 	private JButton close;
 	private JButton trade;
@@ -39,7 +39,7 @@ public class SpelerInformatiePanel extends JPanel implements ActionListener {
 
 	private PlayerInfoController controller;
 
-	public SpelerInformatiePanel(PlayerInfoController controller) {
+	public PlayerInformationPanel(PlayerInfoController controller) {
 		this.controller = controller;
 
 		SetVariables();

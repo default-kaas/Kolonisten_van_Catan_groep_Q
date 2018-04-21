@@ -10,15 +10,15 @@ import javax.swing.JPanel;
 
 import Controller.GameController;
 
-public class Spelscherm extends JPanel {
-	private BordPanel SpelBord;
+public class GamePanel extends JPanel {
+	private BoardPanel SpelBord;
 	private ChatPanel SpelChat;
-	private SpelerInformatiePanel SpelerInfo;
-	private BouwPanel Bouwen;
+	private PlayerInformationPanel SpelerInfo;
+	private BuildPanel Bouwen;
 	private DicePanel Dobbelsteen;
 	private GameController GameController;
 
-	public Spelscherm(int GameID, String userName, Connection db_conn, boolean newGame) {
+	public GamePanel(int GameID, String userName, Connection db_conn, boolean newGame) {
 		GameController = new GameController(GameID, userName, db_conn);
 		MakePanels();
 

@@ -4,18 +4,18 @@ import java.sql.Connection;
 
 import Model.Game;
 import Model.Player;
-import View.BouwPanel;
+import View.BuildPanel;
 
-public class BouwPanelController {
+public class BuildPanelController {
 
 	private Game game;
-	private BouwPanel bouwPanel;
-	public BouwPanelController(Game game, Connection db_conn) {
+	private BuildPanel bouwPanel;
+	public BuildPanelController(Game game, Connection db_conn) {
 		this.game = game;
-		bouwPanel = new BouwPanel(this);
+		bouwPanel = new BuildPanel(this);
 	}
 	
-	public BouwPanel getBouwPanel() {
+	public BuildPanel getBouwPanel() {
 		return bouwPanel;
 	}
 

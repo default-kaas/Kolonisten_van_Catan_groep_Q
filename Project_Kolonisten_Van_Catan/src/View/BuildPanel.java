@@ -16,20 +16,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-import Controller.BouwPanelController;
+import Controller.BuildPanelController;
 
 @SuppressWarnings("serial")
-public class BouwPanel extends JPanel implements ActionListener {
+public class BuildPanel extends JPanel implements ActionListener {
 
 	private JButton buyRoad;
 	private JButton buyHouse;
 	private JButton buyCity;
 	private JButton buyDevelopmentCard;
 	private TitledBorder title;
-	private BouwPanelController bouwPanelController;
+	private BuildPanelController bouwPanelController;
 	GridBagConstraints c;
 
-	public BouwPanel(BouwPanelController bouwPanelController) {
+	public BuildPanel(BuildPanelController bouwPanelController) {
 		this.bouwPanelController = bouwPanelController;
 		this.setLayout(new GridBagLayout());
 		c = new GridBagConstraints();

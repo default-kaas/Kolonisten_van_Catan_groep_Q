@@ -15,8 +15,8 @@ import Controller.LobbyController;
 import Controller.LoginController;
 import DatabaseConnect.DatabaseConnect;
 
-public class GUI extends JFrame implements ActionListener{
-	private Spelscherm Spelscherm;
+public class GUI extends JFrame implements ActionListener {
+	private GamePanel Spelscherm;
 	private LogInPanel LogInPanel;
 	private InvitePanel invitePanel;
 	private LobbyPanel lobbyPanel;
@@ -39,13 +39,12 @@ public class GUI extends JFrame implements ActionListener{
 		this.setUndecorated(true);
 		this.setTitle("Project Kolonisten van Catan, Groep Q");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		this.setVisible(true);
+		// this.setVisible(true);
 	}
-	
 
 	private void addMenuBar() {
 		menuBar = new JMenuBar();
-		
+
 		menu = new JMenu("Menu");
 		exit = new JMenuItem("Exit");
 		menuBar.add(menu);
@@ -55,33 +54,37 @@ public class GUI extends JFrame implements ActionListener{
 	}
 
 	private InviteController inviteController;
+
 	public void showInviteScreen() {
-		 inviteController = new InviteController(this, db_conn);
+		inviteController = new InviteController(this, db_conn);
 		invitePanel = inviteController.getInvitePanel();
-		
+
 		this.setContentPane(invitePanel);
 		this.setVisible(true);
 	}
-	
+
 	private LobbyController lobbyController;
+
 	public void showLobbyScreen() {
 		lobbyController = new LobbyController(this, db_conn);
-			lobbyPanel = lobbyController.getLobbyPanel();
-			
-			this.setContentPane(lobbyPanel);
-			this.setVisible(true);
-	
+		lobbyPanel = lobbyController.getLobbyPanel();
+
+		this.setContentPane(lobbyPanel);
+		this.setVisible(true);
+
 	}
-	
+
 	private LoginController loginController;
+
 	public void showLoginPane() {
 		loginController = new LoginController(this, db_conn);
 		this.setContentPane(loginController.getLoginPanel());
 		this.setVisible(true);
 		settings();
 	}
-	
+
 	private EndController endController;
+
 	public void showENDPane() {
 		endController = new EndController(this, db_conn);
 		this.setContentPane(endController.getEndPanel());
@@ -90,17 +93,18 @@ public class GUI extends JFrame implements ActionListener{
 	}
 
 	public void showGamePane(boolean loginSucces, int gameID, String UserName, boolean newGame) {
-		if(loginSucces) {
-			//this.getContentPane().remove(LogInPanel);
-			
-			//De username moet worden meegegeven tijdens het inloggen of na het zijn in de lobby
-			
-			Spelscherm = new Spelscherm(gameID, UserName, db_conn, newGame);
+		if (loginSucces) {
+			// this.getContentPane().remove(LogInPanel);
+
+			// De username moet worden meegegeven tijdens het inloggen of na het zijn in de
+			// lobby
+
+			Spelscherm = new GamePanel(gameID, UserName, db_conn, newGame);
 			this.setContentPane(Spelscherm);
 			settings();
 		}
 	}
-	
+
 	private void settings() {
 		this.revalidate();
 		this.pack();
@@ -109,8 +113,8 @@ public class GUI extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent a) {
-		if(a.getSource()==exit) {
+		if (a.getSource() == exit) {
 			System.exit(0);
-		}	
+		}
 	}
 }

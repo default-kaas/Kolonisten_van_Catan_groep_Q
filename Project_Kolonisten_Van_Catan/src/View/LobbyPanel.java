@@ -31,7 +31,7 @@ public class LobbyPanel extends JPanel {
 
 		this.lobbyController = lobbyController;
 		Object[][] data = lobbyController.showUsers();
-		setPreferredSize(new Dimension(350, 300));
+//		setPreferredSize(new Dimension(350, 300));
 		setBackground(new Color(157, 24, 31));
 		String[] columns = new String[] { "Name", "speelstatus" };
 		GridBagLayout gridBagLayout = new GridBagLayout();

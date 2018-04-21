@@ -70,7 +70,10 @@ public class TradeView extends JFrame {
 
 		trade.setBackground(Color.white);	
 		trade.setVisible(true);
-		trade.setPreferredSize(new Dimension(1000, 600));
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int size = (int)(screenSize.getHeight());
+        trade.setPreferredSize(new Dimension(size, size/2));
+//		trade.setPreferredSize(new Dimension(1000, 600));
 		trade.setBackground(new Color(245,245,220));
 		
 		importImages();
@@ -80,7 +83,7 @@ public class TradeView extends JFrame {
 		panel.setFont(new Font("Arial Black",1,25));
 		trade.add(panel, c);
 		
-		c.insets = new Insets(100, -730, 0, 0);
+		c.insets = new Insets(100, 0, 0, 730);
 		yourCards.setFont(new Font("Monotype Corsiva",1,20));
 		trade.add(yourCards, c);
 		
@@ -91,28 +94,29 @@ public class TradeView extends JFrame {
 		c.insets = new Insets(550, 0, 0, 0);
 		trade.add(propose, c);
 		
-		c.insets = new Insets(160, -620, 0, 0);
+		c.insets = new Insets(160, 0, 0, 620);
 		trade.add(your_wool, c);
-		c.insets = new Insets(230, -620, 0, 0);
+		c.insets = new Insets(230, 0, 0, 620);
 		trade.add(your_wheat, c);
-		c.insets = new Insets(300, -620, 0, 0);
+		c.insets = new Insets(300, 0, 0, 620);
 		trade.add(your_wood, c);
-		c.insets = new Insets(370, -620, 0, 0);
+		c.insets = new Insets(370, 0, 0, 620);
 		trade.add(your_stone, c);
-		c.insets = new Insets(440, -620, 0, 0);
+		c.insets = new Insets(440, 0, 0, 620);
 		trade.add(your_ore, c);
 		
-		c.insets = new Insets(140, -470, 0, 0);
+		c.insets = new Insets(140, 0, 0, 470);
+		c.ipadx = 15;
 		trade.add(resource_input, c);
-		c.insets = new Insets(160, -470, 0, 0);
+		c.insets = new Insets(160, 0, 0, 470);
 		trade.add(your_woolt, c);
-		c.insets = new Insets(230, -470, 0, 0);
+		c.insets = new Insets(230, 0, 0, 470);
 		trade.add(your_wheatt, c);
-		c.insets = new Insets(300, -470, 0, 0);
+		c.insets = new Insets(300, 0, 0, 470);
 		trade.add(your_woodt, c);
-		c.insets = new Insets(370, -470, 0, 0);
+		c.insets = new Insets(370, 0, 0, 470);
 		trade.add(your_stonet, c);
-		c.insets = new Insets(440, -470, 0, 0);
+		c.insets = new Insets(440, 0, 0, 470);
 		trade.add(your_oret, c);
 		
 		c.insets = new Insets(140, 630, 0, 0);

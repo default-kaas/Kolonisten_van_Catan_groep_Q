@@ -44,7 +44,7 @@ public class LobbyPanel extends JPanel {
 		JLabel lblLobby = new JLabel("Uitnodiging");
 		lblLobby.setFont(new Font("Arial", Font.BOLD, 80));
 		GridBagConstraints gbc_lblLobby = new GridBagConstraints();
-		gbc_lblLobby.insets = new Insets(0, 0, 0, 500);
+		gbc_lblLobby.insets = new Insets(0, 0, 0, 100);
 		gbc_lblLobby.anchor = GridBagConstraints.WEST;
 		gbc_lblLobby.gridx = 0;
 		gbc_lblLobby.gridy = 1;
@@ -61,11 +61,13 @@ public class LobbyPanel extends JPanel {
 
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.WEST;
-		gbc_table.insets = new Insets(0, 0, 0, 500);
+		gbc_table.insets = new Insets(0, 0, 0, 0);
 		gbc_table.gridwidth = 3;
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 2;
 		add(invitedList, gbc_table);
+		
+		
 
 		acceptBtn = new JButton("Accepteer");
 		acceptBtn.setPreferredSize(new Dimension(200, 100));
@@ -73,19 +75,21 @@ public class LobbyPanel extends JPanel {
 		acceptBtn.setForeground(Color.BLACK);
 		acceptBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_acceptBtn = new GridBagConstraints();
-		gbc_acceptBtn.insets = new Insets(0, 150, 0, 500);
-
+		gbc_acceptBtn.insets = new Insets(0, 0, 20, 0);
+		
 		gbc_acceptBtn.anchor = GridBagConstraints.CENTER;
 		gbc_acceptBtn.gridx = 0;
 		gbc_acceptBtn.gridy = 3;
 		add(acceptBtn, gbc_acceptBtn);
+		
+		
 		rejectBtn = new JButton("Weiger");
 		rejectBtn.setPreferredSize(new Dimension(200, 100));
 		rejectBtn.setBackground(new Color(59, 89, 182));
 		rejectBtn.setForeground(Color.BLACK);
 		rejectBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_rejectBtn = new GridBagConstraints();
-		gbc_rejectBtn.insets = new Insets(0, 0, 0, 800);
+		gbc_rejectBtn.insets = new Insets(0, 0, 20, 400);
 
 		gbc_rejectBtn.anchor = GridBagConstraints.CENTER;
 		gbc_rejectBtn.gridx = 0;
@@ -117,10 +121,10 @@ public class LobbyPanel extends JPanel {
 		 normalMode.setForeground(Color.BLACK);
 		 normalMode.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_normalBtn = new GridBagConstraints();
-		gbc_normalBtn.insets = new Insets(0, 0, 0, 150);
+		gbc_normalBtn.insets = new Insets(200, 0, 0, 0);
 		gbc_normalBtn.anchor = GridBagConstraints.CENTER;
 		gbc_normalBtn.gridx = 1;
-		gbc_normalBtn.gridy = 1;
+		gbc_normalBtn.gridy = 2;
 		add(normalMode, gbc_normalBtn);
 		
 		 advancedMode = new JButton("Geavanceerde spel crieëren");
@@ -129,7 +133,7 @@ public class LobbyPanel extends JPanel {
 		 advancedMode.setForeground(Color.BLACK);
 		 advancedMode.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_advancedBtn = new GridBagConstraints();
-		gbc_advancedBtn.insets = new Insets(0, 350, 0,150);
+		gbc_advancedBtn.insets = new Insets(0, 0, 0,0);
 		gbc_advancedBtn.anchor = GridBagConstraints.CENTER;
 		gbc_advancedBtn.gridx = 1;
 		gbc_advancedBtn.gridy = 2;

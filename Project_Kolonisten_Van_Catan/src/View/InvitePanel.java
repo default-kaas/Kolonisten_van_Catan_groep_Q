@@ -40,6 +40,8 @@ public class InvitePanel extends JPanel {
 		playerList = new JTable(data, columns);
 		playerList.setFont(new Font("Calibri", Font.BOLD, 30));
 		playerList.setRowHeight(100);
+		
+	
 		TableColumnModel columnModel = playerList.getColumnModel();
 		playerList.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		

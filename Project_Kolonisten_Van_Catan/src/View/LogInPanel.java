@@ -29,8 +29,8 @@ public class LogInPanel extends JPanel implements ActionListener {
 	public LogInPanel(LoginController loginController) {
 		this.loginController = loginController;
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int sizeHeightPanel = (int)(screenSize.getHeight()*0.5);
-        int sizeWidthPanel = (int)(screenSize.getWidth()*0.5);
+        int sizeHeightPanel = (int)(screenSize.getHeight()*0.3);
+        int sizeWidthPanel = (int)(screenSize.getWidth()*0.3);
         this.setPreferredSize(new Dimension(sizeWidthPanel, sizeHeightPanel));
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.DARK_GRAY);
@@ -41,7 +41,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 		nameField = new JTextField(8);
 		passwordField = new JPasswordField(8);
 		loginButton = new JButton("Login");
-		creatNewAccountButton = new JButton("Creer");
+		creatNewAccountButton = new JButton("Creëer account");
 
 		passwordField.addActionListener(this);
 		loginButton.addActionListener(this);
@@ -51,15 +51,15 @@ public class LogInPanel extends JPanel implements ActionListener {
 		int sizeHeight = (int)(screenSize.getHeight());
 		int sizeWidth = (int)(screenSize.getWidth());
 		
-		title.setFont(new Font("Arial Black",1,50));
+		title.setFont(new Font("Arial Black",1,30));
 		title.setForeground(Color.WHITE);
 		username.setForeground(Color.WHITE);
 		password.setForeground(Color.WHITE);
 		
 		
 		//This is the title of the login panel
-		c.insets = new Insets(0,0,50,0);  
-		c.gridwidth = 1;
+		c.insets = new Insets(0,0,30,0);  
+		c.gridwidth = 2;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.CENTER;
@@ -67,7 +67,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 		
 		  
 		//This is the left colom with the jlabels
-		c.insets = new Insets(0,0,10,-100); 
+		c.insets = new Insets(0,5,10,5); 
 		c.gridwidth = 1;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -77,8 +77,8 @@ public class LogInPanel extends JPanel implements ActionListener {
 		this.add(password, c);
 		
 		//This is the right colom with the textfields (paswordfield)
-		c.insets = new Insets(0,-100,10,0); 
-		c.gridx = 2;
+		c.insets = new Insets(0,0,10,0); 
+		c.gridx = 1;
 		c.gridy = 1;
 		c.anchor = GridBagConstraints.LINE_START;
 		this.add(nameField, c);
@@ -86,7 +86,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 		this.add(passwordField, c);
 		
 		//This is the login button and create account button
-		c.insets = new Insets(30,0,0,0);  
+		c.insets = new Insets(5,0,0,0);  
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridwidth = 2;
 		c.gridx = 0;

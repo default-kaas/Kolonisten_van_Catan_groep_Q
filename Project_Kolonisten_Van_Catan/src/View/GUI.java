@@ -9,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import Controller.EndController;
 import Controller.InviteController;
 import Controller.LobbyController;
 import Controller.LoginController;
@@ -76,6 +77,14 @@ public class GUI extends JFrame implements ActionListener{
 	public void showLoginPane() {
 		loginController = new LoginController(this, db_conn);
 		this.setContentPane(loginController.getLoginPanel());
+		this.setVisible(true);
+		settings();
+	}
+	
+	private EndController endController;
+	public void showENDPane() {
+		endController = new EndController(this, db_conn);
+		this.setContentPane(endController.getEndPanel());
 		this.setVisible(true);
 		settings();
 	}

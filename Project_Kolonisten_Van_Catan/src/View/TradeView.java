@@ -52,8 +52,8 @@ public class TradeView extends JFrame {
 	private JTextField their_oret = new JTextField(2);
 
 	// het onderstaande moet veranderd worden
-	private JLabel playerdd = new JLabel("Select a player to trade with");
-	private String[] players = { "Players", "Bank" };
+	private JLabel playerdd = new JLabel("Who do you want to trade with?");
+	private String[] players = { "Players", "The Bank" };
 	private final JComboBox<String> cb = new JComboBox<String>(players);
 
 	public TradeView() {
@@ -70,10 +70,10 @@ public class TradeView extends JFrame {
 
 		trade.setBackground(Color.white);
 		trade.setVisible(true);
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int size = (int) (screenSize.getHeight());
-		trade.setPreferredSize(new Dimension(size, size / 2));
-		// trade.setPreferredSize(new Dimension(1000, 600));
+//		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//		int size = (int) (screenSize.getHeight());
+//		trade.setPreferredSize(new Dimension(size, size/2));
+		trade.setPreferredSize(new Dimension(1000, 600));
 		trade.setBackground(new Color(245, 245, 220));
 
 		importImages();
@@ -108,7 +108,6 @@ public class TradeView extends JFrame {
 		trade.add(your_ore, c);
 
 		c.insets = new Insets(140, 0, 0, 470);
-		c.ipadx = 15;
 		trade.add(resource_input, c);
 		c.insets = new Insets(160, 0, 0, 470);
 		trade.add(your_woolt, c);

@@ -96,7 +96,11 @@ public class TradeView extends JFrame {
 		
 		c.insets = new Insets(160, 0, 0, 620);
 		trade.add(your_wool, c);
+<<<<<<< HEAD
 		c.insets = new Insets(230, 0, 0, 620);
+=======
+		c.insets = new Insets(230, 0, 0,620);
+>>>>>>> 10db5bc2481e245d5bdd7ce6e82028e54db0a9d4
 		trade.add(your_wheat, c);
 		c.insets = new Insets(300, 0, 0, 620);
 		trade.add(your_wood, c);

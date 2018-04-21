@@ -1,11 +1,14 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -44,9 +47,9 @@ public class EndPanel extends JPanel {
 	public void SetVariables() {
 		// Add all images to Variables
 		try {
-			backgroundImage = ImageIO.read(new File("locatie"));
+			backgroundImage = ImageIO.read(new File("images/Backgroung/catan.jpg"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			setBackground(new Color(59, 89, 182));
 		}
 	}
 

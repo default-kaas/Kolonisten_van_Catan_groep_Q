@@ -26,7 +26,7 @@ public class LobbyDAO {
 
 		Object[][] data = null;
 
-		final String QUERY = "SELECT * FROM speler WHERE NOT speelstatus = 'uitdager'";
+		final String QUERY = "SELECT * FROM speler WHERE speelstatus = 'uitdager'";
 
 		try {
 

@@ -83,6 +83,15 @@ public class LobbyPanel extends JPanel {
 		acceptBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_acceptBtn = new GridBagConstraints();
 		gbc_acceptBtn.insets = new Insets(0, 0, 20, 0);
+		
+		acceptBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//uitnodiging accepteren
+				
+			}
+		});
 
 		gbc_acceptBtn.anchor = GridBagConstraints.CENTER;
 		gbc_acceptBtn.gridx = 0;
@@ -101,6 +110,15 @@ public class LobbyPanel extends JPanel {
 		gbc_rejectBtn.gridx = 0;
 		gbc_rejectBtn.gridy = 3;
 		add(rejectBtn, gbc_rejectBtn);
+		
+		rejectBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//uitnodiging weigeren.
+				
+			}
+		});
 
 		normalMode = new JButton("Normale spel crieëren");
 		normalMode.setPreferredSize(new Dimension(400, 100));

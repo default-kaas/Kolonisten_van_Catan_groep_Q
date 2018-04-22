@@ -22,7 +22,7 @@ import Controller.LoginController;
 public class LogInPanel extends JPanel implements ActionListener {
 	private JLabel username, password, title;
 	private JTextField nameField;
-	private JButton loginButton,creatNewAccountButton;
+	private JButton loginButton,createNewAccountButton;
 	private JTextField passwordField;
 	private LoginController loginController;
 
@@ -41,7 +41,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 		nameField = new JTextField(8);
 		passwordField = new JTextField(8);
 		loginButton = new JButton("Login");
-		creatNewAccountButton = new JButton("Creëer account");
+		createNewAccountButton = new JButton("Creëer account");
 
 		passwordField.addActionListener(this);
 		loginButton.addActionListener(this);
@@ -94,18 +94,24 @@ public class LogInPanel extends JPanel implements ActionListener {
 		this.add(loginButton, c);
 		c.insets = new Insets(10,0,0,0); 
 		c.gridy ++;
-		this.add(creatNewAccountButton, c);
+		this.add(createNewAccountButton, c);
 		
 	}
 
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource().equals(loginButton) || ae.getSource().equals(passwordField)) {
-			loginController.setLogInInformation(getInputName(), getInputPassword());
+			loginInformation(getInputName(), getInputPassword());
+		}else if(ae.getSource()==createNewAccountButton) {
+			
 		}
 	}
+	
+	public void createAccount() {
+		
+	}
 
-	public void notCorrectLoginInformation() {
-
+	public void loginInformation(String name, String password) {
+		loginController.setLogInInformation(name, password);
 	}
 
 	public String getInputName() {
@@ -117,7 +123,6 @@ public class LogInPanel extends JPanel implements ActionListener {
 	}
 
 	public void showError() {
-
 		JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
 
 	}

@@ -21,9 +21,8 @@ import Controller.LoginController;
 
 public class LogInPanel extends JPanel implements ActionListener {
 	private JLabel username, password, title;
-	private JTextField nameField;
+	private JTextField nameField,passwordField;
 	private JButton loginButton,createNewAccountButton;
-	private JTextField passwordField;
 	private LoginController loginController;
 
 	public LogInPanel(LoginController loginController) {
@@ -45,6 +44,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 
 		passwordField.addActionListener(this);
 		loginButton.addActionListener(this);
+		createNewAccountButton.addActionListener(this);
 
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -95,19 +95,18 @@ public class LogInPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(10,0,0,0); 
 		c.gridy ++;
 		this.add(createNewAccountButton, c);
-		
 	}
 
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource().equals(loginButton) || ae.getSource().equals(passwordField)) {
 			loginInformation(getInputName(), getInputPassword());
 		}else if(ae.getSource()==createNewAccountButton) {
-			
+			createAccount(getInputName(), getInputPassword());
 		}
 	}
 	
-	public void createAccount() {
-		
+	public void createAccount(String name, String password) {
+		loginController.setAccountInformation(name, password);
 	}
 
 	public void loginInformation(String name, String password) {
@@ -124,6 +123,22 @@ public class LogInPanel extends JPanel implements ActionListener {
 
 	public void showError() {
 		JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
-
 	}
+	
+	public void showErrorCreateAccountUsername() {
+		JOptionPane.showMessageDialog(this, "De gebruikersnaam is al in gebruik", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void showErrorCreateAccountToShortPasswordOrUsername() {
+		JOptionPane.showMessageDialog(this, "Gebruikersnaam en wachtwoord moet minimaal uit 3 tekens bestaan", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void showErrorCreateAccountIncorrectPasswordOrUsername() {
+		JOptionPane.showMessageDialog(this, "Gebruikersnaam en wachtwoord mag alleen uit cijfers, letters en spaties bestaan.", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void createAccountMessage() {
+		JOptionPane.showMessageDialog(this, "Het is gelukt om een account te maken", "Succes", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 }

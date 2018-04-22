@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class LoginDAO {
+public class AccountDAO {
 	Connection m_Conn;
 
-	public LoginDAO(Connection db_conn) {
+	public AccountDAO(Connection db_conn) {
 		this.m_Conn = db_conn;
 	}
 
@@ -30,5 +30,16 @@ public class LoginDAO {
 		} catch (SQLException e) {
 			return false;
 		}
+	}
+	
+	public boolean createAccountDOA(String username, String password) {
+		try {
+            Statement stmt = m_Conn.createStatement();
+            stmt.executeUpdate("INSERT INTO account (username, wachtwoord)  VALUES ('"+username+"', '"+password+"')");
+            return true;
+        } catch (SQLException e) {
+        	System.out.println(e);
+            return false;
+        }
 	}
 }

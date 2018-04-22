@@ -1,6 +1,12 @@
 package View;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,7 +35,7 @@ public class LobbyPanel extends JPanel {
 		this.setPreferredSize(new Dimension(size, size / 2));
 
 		this.setLayout(new GridBagLayout());
-
+	
 		this.lobbyController = lobbyController;
 		
 		SPELOPENNU = new JButton("SPEL OPEN NU!!");
@@ -60,12 +66,13 @@ public class LobbyPanel extends JPanel {
 		add(lblLobby, gbc_lblLobby);
 		invitedList = new JTable(data, columns);
 		invitedList.setFont(new Font("Calibri", Font.BOLD, 30));
-		invitedList.setRowHeight(100);
+		invitedList.setRowHeight(80);
 		TableColumnModel columnModel = invitedList.getColumnModel();
 		invitedList.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
+		//loop to set the width of the table.
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {
-			invitedList.getColumnModel().getColumn(i).setPreferredWidth(250);
+			invitedList.getColumnModel().getColumn(i).setPreferredWidth(200);
 		}
 
 		GridBagConstraints gbc_table = new GridBagConstraints();
@@ -77,12 +84,12 @@ public class LobbyPanel extends JPanel {
 		add(invitedList, gbc_table);
 
 		acceptBtn = new JButton("Accepteer");
-		acceptBtn.setPreferredSize(new Dimension(200, 100));
+		acceptBtn.setPreferredSize(new Dimension(200, 70));
 		acceptBtn.setBackground(new Color(59, 89, 182));
 		acceptBtn.setForeground(Color.BLACK);
 		acceptBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_acceptBtn = new GridBagConstraints();
-		gbc_acceptBtn.insets = new Insets(0, 0, 20, 0);
+		gbc_acceptBtn.insets = new Insets(0, 20, 20, 0);
 		
 		acceptBtn.addActionListener(new ActionListener() {
 			
@@ -99,12 +106,13 @@ public class LobbyPanel extends JPanel {
 		add(acceptBtn, gbc_acceptBtn);
 
 		rejectBtn = new JButton("Weiger");
-		rejectBtn.setPreferredSize(new Dimension(200, 100));
+		rejectBtn.setPreferredSize(new Dimension(200, 70));
 		rejectBtn.setBackground(new Color(59, 89, 182));
 		rejectBtn.setForeground(Color.BLACK);
 		rejectBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_rejectBtn = new GridBagConstraints();
 		gbc_rejectBtn.insets = new Insets(0, 0, 20, 400);
+		
 
 		gbc_rejectBtn.anchor = GridBagConstraints.CENTER;
 		gbc_rejectBtn.gridx = 0;

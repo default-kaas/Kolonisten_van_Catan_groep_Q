@@ -1,9 +1,6 @@
 package Controller;
 
-import java.sql.SQLException;
 
-import DatabaseConnect.DatabaseConnect;
-import View.TradeView;
 
 public class MainClass {
 

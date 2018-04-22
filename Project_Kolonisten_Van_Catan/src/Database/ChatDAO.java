@@ -15,7 +15,7 @@ public class ChatDAO {
 	public boolean setChatMessage(String Message, int PlayerID) {
 		try {
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("INSERT INTO chatregel (tijdstip, idspeler, bericht)  VALUES (CURRENT_TIMESTAMP,"+PlayerID+", '"+ Message +"')");System.out.println("TEST");
+			stmt.executeUpdate("INSERT INTO chatregel (tijdstip, idspeler, bericht)  VALUES (CURRENT_TIMESTAMP,"+PlayerID+", '"+ Message +"')");
 			return true;
 		} catch (SQLException e) {
 			return false;

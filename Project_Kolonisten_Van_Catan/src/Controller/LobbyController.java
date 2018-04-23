@@ -9,8 +9,8 @@ import View.LobbyPanel;
 public class LobbyController {
 
 	
-	LobbyDAO lobbyDAO;
-	LobbyPanel lobbyPanel;
+	private LobbyDAO lobbyDAO;
+	private LobbyPanel lobbyPanel;
 	private String username;
 	
 	public LobbyController(LobbyFrame lobbyFrame, Connection db, String username) {

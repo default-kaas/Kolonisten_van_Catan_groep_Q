@@ -31,9 +31,9 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 	public LobbyPanel(LobbyFrame lobbyFrame, LobbyController lobbyController) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int) (screenSize.getHeight());
-		int width = (int) (screenSize.getWidth());
-		this.setPreferredSize(new Dimension(width /2  , height /2));
+		int height = (int) (screenSize.getHeight()*0.8);
+		int width = (int) (screenSize.getWidth()*0.8);
+		this.setPreferredSize(new Dimension(width, height));
 
 		this.setLayout(new GridBagLayout());
 
@@ -124,7 +124,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_acceptBtn.gridx = 0;
 		gbc_acceptBtn.gridy = 3;
 		add(acceptBtn, gbc_acceptBtn);
-
+		
 
 	}
 	

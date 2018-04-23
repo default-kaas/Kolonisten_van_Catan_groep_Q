@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -41,7 +42,12 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		int height = (int) (screenSize.getHeight() * 0.8);
 		int width = (int) (screenSize.getWidth() * 0.8);
 		this.setPreferredSize(new Dimension(width, height));
-
+		
+		/*ImageIcon icon = new ImageIcon("/images/lobbyPanelBg"); 
+		JLabel thumb = new JLabel();
+		thumb.setIcon(icon);
+		thumb.setPreferredSize(new Dimension(width, height));
+		this.add(thumb);*/
 		this.setLayout(new GridBagLayout());
 
 		this.lobbyController = lobbyController;
@@ -250,11 +256,11 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		if (a.getSource() == rejectBtn) {
 			int x = Uitnodiging.getSelectedRow();
-			if (x == -1) {
+			if (x == -1) { //If a user doesn't select a cell OR user selects a sell from a different table
 				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd", JOptionPane.ERROR_MESSAGE);
 
 			}
-			else if (Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
+			else if (Uitnodiging.getValueAt(x, 0).equals(" Geen")) { // shows an error message if a user selects an empty cell (I.E cell with "GEEN GAME") 
 				JOptionPane.showMessageDialog(this, "Je kan de geselecteerde cel niet weigeren!", "ERROR!", JOptionPane.ERROR_MESSAGE);
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), false);
@@ -266,7 +272,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		if (a.getSource() == acceptBtn) {
 			int x = Uitnodiging.getSelectedRow();
-			if (x == -1) {
+			if (x == -1) { //If a user doesn't select a cell OR user selects a sell from a different table
 				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd", JOptionPane.ERROR_MESSAGE);
 
 			} else if (Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
@@ -280,6 +286,8 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		}
 
 		if (a.getSource() == rejoin) {
+			lobbyFrame.dispose();  
+			
 			int x = invitedList.getSelectedRow();
 			if (x == -1) {
 				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd", JOptionPane.ERROR_MESSAGE);
@@ -289,6 +297,8 @@ public class LobbyPanel extends JPanel implements ActionListener {
 			} else {
 				lobbyController.joinOldGame((int) invitedList.getValueAt(x, 0));
 			}
+			
+			
 		}
 
 	}

@@ -42,6 +42,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		int height = (int) (screenSize.getHeight() * 0.8);
 		int width = (int) (screenSize.getWidth() * 0.8);
 		this.setPreferredSize(new Dimension(width, height));
+		this.setBackground(new Color(57, 121, 186));
 		
 		/*ImageIcon icon = new ImageIcon("/images/lobbyPanelBg"); 
 		JLabel thumb = new JLabel();
@@ -112,7 +113,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		rejectBtn = new JButton("Weiger");
 		rejectBtn.setPreferredSize(new Dimension(160, 50));
-		rejectBtn.setBackground(new Color(59, 89, 182));
+		rejectBtn.setBackground(new Color(186, 56, 56));
 		rejectBtn.setForeground(Color.BLACK);
 		rejectBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		rejectBtn.addActionListener(this);
@@ -120,12 +121,12 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		gbc_rejectBtn.anchor = GridBagConstraints.WEST;
 		gbc_rejectBtn.gridx = 0;
-		gbc_rejectBtn.gridy = 2;
+		gbc_rejectBtn.gridy = 3;
 		add(rejectBtn, gbc_rejectBtn);
 
 		acceptBtn = new JButton("Accepteer");
 		acceptBtn.setPreferredSize(new Dimension(160, 50));
-		acceptBtn.setBackground(new Color(59, 89, 182));
+		acceptBtn.setBackground(new Color(117, 186, 56));
 		acceptBtn.setForeground(Color.BLACK);
 		acceptBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		acceptBtn.addActionListener(this);
@@ -133,7 +134,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_acceptBtn.insets = new Insets(0, 0, 0, 100);
 		gbc_acceptBtn.anchor = GridBagConstraints.WEST;
 		gbc_acceptBtn.gridx = 0;
-		gbc_acceptBtn.gridy = 3;
+		gbc_acceptBtn.gridy = 2;
 		add(acceptBtn, gbc_acceptBtn);
 
 	}
@@ -179,13 +180,13 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	public void rejoinButton() {
 		rejoin = new JButton("Naar Spel");
 		rejoin.setPreferredSize(new Dimension(160, 50));
-		rejoin.setBackground(new Color(59, 89, 182));
+		rejoin.setBackground(new Color(117, 186, 56));
 		rejoin.setForeground(Color.BLACK);
 		rejoin.setFont(new Font("Calibri", Font.BOLD, 30));
 		rejoin.addActionListener(this);
 		GridBagConstraints gbc_rejectBtn = new GridBagConstraints();
 
-		gbc_rejectBtn.anchor = GridBagConstraints.WEST;
+		gbc_rejectBtn.anchor = GridBagConstraints.CENTER;
 		gbc_rejectBtn.gridx = 1;
 		gbc_rejectBtn.gridy = 2;
 		add(rejoin, gbc_rejectBtn);
@@ -207,7 +208,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		normalMode = new JButton("Normaal");
 		normalMode.setPreferredSize(new Dimension(200, 50));
-		normalMode.setBackground(new Color(59, 89, 182));
+		normalMode.setBackground(new Color(198, 155, 13));
 		normalMode.setForeground(Color.BLACK);
 		normalMode.setFont(new Font("Calibri", Font.BOLD, 30));
 		normalMode.addActionListener(this);
@@ -224,7 +225,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		advancedMode = new JButton("Geavanceerd");
 		advancedMode.setPreferredSize(new Dimension(200, 50));
-		advancedMode.setBackground(new Color(59, 89, 182));
+		advancedMode.setBackground(new Color(198, 155, 13));
 		advancedMode.setForeground(Color.BLACK);
 		advancedMode.setFont(new Font("Calibri", Font.BOLD, 30));
 		advancedMode.addActionListener(this);

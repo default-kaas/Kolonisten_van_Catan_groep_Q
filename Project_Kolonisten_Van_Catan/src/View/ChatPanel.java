@@ -51,8 +51,10 @@ public class ChatPanel extends JPanel {
 		this.add(x);
 		this.add(inputField);
 		
+		
 		textField.setText(chatPanelController.getTextArray());
 
+		
 		inputField.addActionListener(new ActionListener() {
 
 			@Override
@@ -66,5 +68,8 @@ public class ChatPanel extends JPanel {
 			}
 		});
 
+	}
+	public void updateText() {
+		textField.setText(chatPanelController.getTextArray());
 	}
 }

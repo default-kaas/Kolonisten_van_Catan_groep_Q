@@ -28,6 +28,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	private JButton normalMode;
 	public JButton advancedMode;
 	private JButton rejoin;
+	private JButton refreshBtn;
 	public LobbyController lobbyController;
 	private LobbyFrame lobbyFrame;
 
@@ -59,6 +60,8 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		activeGames();
 
 		rejoinButton();
+		
+		refreshButton();
 
 		// row 3
 		newGameTitle();
@@ -233,6 +236,21 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_advancedBtn.gridx = 3;
 		gbc_advancedBtn.gridy = 2;
 		add(advancedMode, gbc_advancedBtn);
+	}
+	
+	public void refreshButton() {
+		refreshBtn = new JButton("REFRESH");
+		refreshBtn .setPreferredSize(new Dimension(200, 50));
+		refreshBtn .setBackground(new Color(198, 155, 13));
+		refreshBtn .setForeground(Color.BLACK);
+		refreshBtn .setFont(new Font("Calibri", Font.BOLD, 30));
+		refreshBtn .addActionListener(this);
+		GridBagConstraints gbc_refreshBtn  = new GridBagConstraints();
+		gbc_refreshBtn.anchor = GridBagConstraints.CENTER;
+		gbc_refreshBtn.insets = new Insets(100, 0, 0, 0);
+		gbc_refreshBtn.gridx = 1;
+		gbc_refreshBtn.gridy = 3;
+		add(refreshBtn, gbc_refreshBtn);
 	}
 
 	public void advancedModeaddActionListener(ActionListener l) {

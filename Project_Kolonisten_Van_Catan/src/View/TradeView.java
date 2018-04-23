@@ -51,7 +51,6 @@ public class TradeView extends JFrame {
 	private JTextField their_stonet = new JTextField(2);
 	private JTextField their_oret = new JTextField(2);
 
-	// het onderstaande moet veranderd worden
 	private JLabel playerdd = new JLabel("Hoe wil je ruilen?");
 	private String[] players = { "Spelers", "De Bank" };
 	private final JComboBox<String> cb = new JComboBox<String>(players);
@@ -70,9 +69,6 @@ public class TradeView extends JFrame {
 
 		trade.setBackground(Color.white);
 		trade.setVisible(true);
-//		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//		int size = (int) (screenSize.getHeight());
-//		trade.setPreferredSize(new Dimension(size, size/2));
 		trade.setPreferredSize(new Dimension(1000, 600));
 		trade.setBackground(new Color(245, 245, 220));
 

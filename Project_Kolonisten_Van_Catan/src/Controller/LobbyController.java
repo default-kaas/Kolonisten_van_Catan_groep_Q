@@ -11,8 +11,12 @@ public class LobbyController {
 	
 	LobbyDAO lobbyDAO;
 	LobbyPanel lobbyPanel;
+	private String username;
 	
-	public LobbyController(LobbyFrame lobbyFrame, Connection db) {
+	public LobbyController(LobbyFrame lobbyFrame, Connection db, String username) {
+		
+		this.username = username;
+		System.out.println(username);
 		lobbyDAO = new LobbyDAO(db);
 		lobbyPanel = new LobbyPanel(lobbyFrame, this);
 	}
@@ -23,6 +27,6 @@ public class LobbyController {
 	
 	
 	public Object[][] showUsers(){
-		return lobbyDAO.getUserList();
+		return lobbyDAO.getUserList(username);
 	}
 }

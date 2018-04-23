@@ -18,7 +18,7 @@ public class SuperController {
 		try {
 			db_conn = Connection.getConnection();
 		} catch (Exception e) {
-
+			System.out.println("Kan geen connectie maken!");
 		}
 		loginFrame = new LoginFrame(this, db_conn);
 	}

@@ -3,14 +3,9 @@ package Database;
 import java.sql.Connection;
 
 public class EndDAO {
-	Connection m_Conn;
+	Connection db_conn;
 
 	public EndDAO(Connection db_conn) {
-
-		try {
-			m_Conn = db_conn;
-		} catch (Exception e) {
-			e.getMessage();
-		}
+		this.db_conn = db_conn;
 	}
 }

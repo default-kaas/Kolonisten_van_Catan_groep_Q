@@ -43,15 +43,15 @@ public class GameController implements Runnable{
 	}
 	
 	public void runGame() {
-		while(true) {
-			System.out.println("xD");
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+//		while(true) {
+//			System.out.println("xD");
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 		
 	}
 

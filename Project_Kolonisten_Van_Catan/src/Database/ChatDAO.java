@@ -32,9 +32,9 @@ public class ChatDAO {
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
 			chatArray.clear();
-			rs = stmt.executeQuery("select * from chatregel");
+			rs = stmt.executeQuery("select username, kleur, bericht from chatregel join speler on speler.idspeler = chatregel.idspeler and idspel = "+ game.getGameID());
 			while (rs.next()) {
-				chatArray.add(rs.getString("idspeler") + " zei: " +rs.getString("bericht"));
+				chatArray.add(rs.getString("username") + "("+ rs.getString("kleur") +") " +rs.getString("bericht"));
 			}
 
 		} catch (SQLException e) {

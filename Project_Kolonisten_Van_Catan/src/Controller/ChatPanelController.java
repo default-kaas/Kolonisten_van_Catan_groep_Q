@@ -43,10 +43,10 @@ public class ChatPanelController implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
-			System.out.println("test");
+//			System.out.println("test");
 			updateChat();
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

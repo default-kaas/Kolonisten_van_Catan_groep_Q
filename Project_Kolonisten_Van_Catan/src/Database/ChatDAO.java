@@ -31,10 +31,10 @@ public class ChatDAO {
 		try {
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select * from chatregel where idspeler !=" + game.getMe().getPlayerID());
+			chatArray.clear();
+			rs = stmt.executeQuery("select * from chatregel");
 			while (rs.next()) {
-				System.out.println(rs.getString("bericht"));
-				chatArray.add(rs.getString("bericht"));
+				chatArray.add(rs.getString("idspeler") + " zei: " +rs.getString("bericht"));
 			}
 
 		} catch (SQLException e) {

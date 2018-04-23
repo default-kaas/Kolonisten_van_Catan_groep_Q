@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultCaret;
 
 import Controller.ChatPanelController;
 
@@ -39,6 +40,8 @@ public class ChatPanel extends JPanel {
 		textField.setAutoscrolls(true);
 		textField.setLineWrap(true);
 		textField.setWrapStyleWord(true);
+		DefaultCaret caret = (DefaultCaret)textField.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		
 		JScrollPane x = new JScrollPane(textField);
 		

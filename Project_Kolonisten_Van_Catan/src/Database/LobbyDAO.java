@@ -25,7 +25,8 @@ public class LobbyDAO {
 		try {
 
 			Statement statement = m_Conn.createStatement();
-			final String QUERY = "SELECT * FROM speler WHERE username = '" + username+ "' and speelstatus = 'uitgedaagde'";
+			final String QUERY = "SELECT * FROM speler WHERE username = '" + username
+					+ "' and speelstatus = 'uitgedaagde'";
 			ResultSet rs = statement.executeQuery(QUERY);
 			if (rs.next()) {
 
@@ -48,9 +49,9 @@ public class LobbyDAO {
 					int j = 0;
 
 					data[i][j++] = rx.getInt("idspel");
-					
+
 					data[i][j++] = rx.getString("username");
-					
+
 					i++;
 				}
 
@@ -121,6 +122,22 @@ public class LobbyDAO {
 
 		return data;
 
+	}
+
+	public boolean respondToInvite(String userName, int gameId, boolean Accept) {
+		try {
+			Statement stmt = m_Conn.createStatement();
+			if(Accept) {
+				stmt.executeUpdate("UPDATE speler SET speelstatus = 'geaccepteerd' WHERE idspel = " + gameId+ " and username = '" + userName+ "'");
+			}else {
+				stmt.executeUpdate("UPDATE speler SET speelstatus = 'geweigerd' WHERE idspel = " + gameId+ " and username = '" + userName+ "'");
+			}
+			
+			return true;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return false;
+		}
 	}
 
 	private int getColumnCount(ResultSet rs) {

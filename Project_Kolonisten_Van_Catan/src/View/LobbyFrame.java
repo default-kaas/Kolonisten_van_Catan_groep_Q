@@ -32,6 +32,7 @@ public class LobbyFrame extends JFrame implements ActionListener {
 	}
 
 	private void setContent() {
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setContentPane(lobbyController.getLobbyPanel());
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(true);

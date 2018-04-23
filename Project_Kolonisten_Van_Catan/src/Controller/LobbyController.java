@@ -20,6 +20,7 @@ public class LobbyController {
 		this.username = username;
 		lobbyDAO = new LobbyDAO(db);
 		lobbyPanel = new LobbyPanel(lobbyFrame, this);
+		
 	/*	inviteController = new InviteController(db);
 		invitePanel = new InvitePanel(inviteController);*/		
 	}
@@ -38,5 +39,8 @@ public class LobbyController {
 	}*/
 	public Object[][] showInvites(){
 		return lobbyDAO.getInvitedGames(username);
+	}
+	public void respondToInvite(int gameId, boolean Accept) {
+		lobbyDAO.respondToInvite(username, gameId, Accept);
 	}
 }

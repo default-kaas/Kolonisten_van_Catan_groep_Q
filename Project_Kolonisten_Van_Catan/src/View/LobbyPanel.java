@@ -21,6 +21,7 @@ import Controller.LobbyController;
 public class LobbyPanel extends JPanel implements ActionListener {
 
 	private JTable invitedList;
+	private JTable Uitnodiging;
 	private JButton acceptBtn;
 	private JButton rejectBtn;
 	private JButton normalMode;
@@ -73,15 +74,15 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_lblLobby.gridx = 0;
 		gbc_lblLobby.gridy = 0;
 		add(lblLobby, gbc_lblLobby);
-		invitedList = new JTable(data, columns);
-		invitedList.setFont(new Font("Calibri", Font.BOLD, 30));
-		invitedList.setRowHeight(50);
-		TableColumnModel columnModel = invitedList.getColumnModel();
-		invitedList.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		Uitnodiging = new JTable(data, columns);
+		Uitnodiging.setFont(new Font("Calibri", Font.BOLD, 30));
+		Uitnodiging.setRowHeight(50);
+		TableColumnModel columnModel = Uitnodiging.getColumnModel();
+		Uitnodiging.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		// loop to set the width of the table.
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {
-			invitedList.getColumnModel().getColumn(i).setPreferredWidth(100);
+			Uitnodiging.getColumnModel().getColumn(i).setPreferredWidth(100);
 		}
 
 		GridBagConstraints gbc_table = new GridBagConstraints();
@@ -89,8 +90,9 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_table.insets = new Insets(50, 0, 0, 200);
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
-		add(invitedList, gbc_table);
-
+		add(Uitnodiging, gbc_table);
+		Uitnodiging.setDefaultEditor(Object.class, null);
+		
 	}
 
 	public void rejectAndAcceptButton() {
@@ -100,6 +102,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		rejectBtn.setBackground(new Color(59, 89, 182));
 		rejectBtn.setForeground(Color.BLACK);
 		rejectBtn.setFont(new Font("Calibri", Font.BOLD, 30));
+		rejectBtn.addActionListener(this);
 		GridBagConstraints gbc_rejectBtn = new GridBagConstraints();
 
 		gbc_rejectBtn.anchor = GridBagConstraints.WEST;
@@ -112,12 +115,14 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		acceptBtn.setBackground(new Color(59, 89, 182));
 		acceptBtn.setForeground(Color.BLACK);
 		acceptBtn.setFont(new Font("Calibri", Font.BOLD, 30));
+		acceptBtn.addActionListener(this);
 		GridBagConstraints gbc_acceptBtn = new GridBagConstraints();
 		gbc_acceptBtn.insets = new Insets(0, 0, 0, 100);
 		gbc_acceptBtn.anchor = GridBagConstraints.WEST;
 		gbc_acceptBtn.gridx = 0;
 		gbc_acceptBtn.gridy = 3;
 		add(acceptBtn, gbc_acceptBtn);
+		
 	}
 
 	public void activeGames() {
@@ -136,6 +141,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_lblLobby.gridy = 0;
 		add(lblLobby, gbc_lblLobby);
 		invitedList = new JTable(data, columns);
+		
 		invitedList.setFont(new Font("Calibri", Font.BOLD, 30));
 		invitedList.setRowHeight(50);
 		TableColumnModel columnModel = invitedList.getColumnModel();
@@ -145,7 +151,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {
 			invitedList.getColumnModel().getColumn(i).setPreferredWidth(100);
 		}
-
+		
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.CENTER;
 		// table insets
@@ -154,6 +160,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_table.gridx = 1;
 		gbc_table.gridy = 1;
 		add(invitedList, gbc_table);
+		invitedList.setDefaultEditor(Object.class, null);
 	}
 
 	public void rejoinButton() {
@@ -225,11 +232,29 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		}
 
 		if (a.getSource() == rejectBtn) {
-
+			int x = Uitnodiging.getSelectedRow();
+			if(Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
+				System.out.println("Dit valt niet te weigeren!");
+			}else {
+				lobbyController.respondToInvite((int)Uitnodiging.getValueAt(x, 0),false);
+				Uitnodiging.setValueAt(" Geen", x, 0);
+				Uitnodiging.setValueAt(" game", x, 1);
+			}
+			
+			
 		}
 
 		if (a.getSource() == acceptBtn) {
-
+			int x = Uitnodiging.getSelectedRow();
+			if(Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
+				System.out.println("Dit valt niet te accepteren!");
+			}else {
+				lobbyController.respondToInvite((int)Uitnodiging.getValueAt(x, 0),true);
+				Uitnodiging.setValueAt(" Geen", x, 0);
+				Uitnodiging.setValueAt(" game", x, 1);
+			}
+			
+			
 		}
 
 		if (a.getSource() == rejoin) {

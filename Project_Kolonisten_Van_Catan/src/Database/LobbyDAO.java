@@ -20,6 +20,58 @@ public class LobbyDAO {
 
 	}
 
+	public Object[][] getInvitedGames(String username) {
+		Object[][] data = null;
+		System.out.println(username);
+		try {
+
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "SELECT * FROM speler WHERE username = '" + username+ "' and speelstatus = 'uitgedaagde'";
+			ResultSet rs = statement.executeQuery(QUERY);
+			if (rs.next()) {
+
+				int spel = rs.getInt("idspel");
+
+				final String QUERY2 = "SELECT * FROM speler WHERE idspel = " + spel + " and speelstatus = 'uitdager';";
+				ResultSet rx = statement.executeQuery(QUERY2);
+				int rowCount = getRowCount(rx); // Row Count
+				int columnCount = getColumnCount(rx); // Column Count
+
+				data = new Object[rowCount][columnCount];
+
+				// Starting from First Row for Iteration
+				rx.beforeFirst();
+
+				int i = 0;
+
+				while (rx.next()) {
+
+					int j = 0;
+
+					data[i][j++] = rx.getInt("idspel");
+					
+					data[i][j++] = rx.getString("username");
+					
+					i++;
+				}
+
+				statement.close();
+
+			} else {
+				// Nep data xD
+				data = new Object[1][2];
+				data[0][0] = " Geen";
+				data[0][1] = " game";
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return data;
+
+	}
+
 	public Object[][] getUserList(String username) {
 		Object[][] data = null;
 		try {
@@ -27,36 +79,44 @@ public class LobbyDAO {
 			Statement statement = m_Conn.createStatement();
 
 			final String QUERY = "SELECT idspel FROM speler WHERE username = '" + username
-					+ "' and speelstatus = 'geaccepteerd'";
+					+ "' and (speelstatus = 'geaccepteerd' or speelstatus = 'uitdager')";
 			ResultSet rs = statement.executeQuery(QUERY);
-			rs.next();
-			int spel = rs.getInt("idspel");
+			if (rs.next()) {
+				int spel = rs.getInt("idspel");
 
-			final String QUERY2 = "select * from speler where idspel = " + spel + " and username != 'ger' and speelstatus = 'uitdager'";
-			ResultSet rx = statement.executeQuery(QUERY2);
-			int rowCount = getRowCount(rx); // Row Count
-			int columnCount = getColumnCount(rx); // Column Count
+				final String QUERY2 = "select * from speler where idspel = " + spel + " and speelstatus = 'uitdager'";
+				ResultSet rx = statement.executeQuery(QUERY2);
+				int rowCount = getRowCount(rx); // Row Count
+				int columnCount = getColumnCount(rx); // Column Count
 
-			data = new Object[rowCount][columnCount];
+				data = new Object[rowCount][columnCount];
 
-			// Starting from First Row for Iteration
-			rx.beforeFirst();
+				// Starting from First Row for Iteration
+				rx.beforeFirst();
 
-			int i = 0;
+				int i = 0;
 
-			while (rx.next()) {
+				while (rx.next()) {
 
-				int j = 0;
+					int j = 0;
 
-				data[i][j++] = rx.getInt("idspel");
-				data[i][j++] = rx.getString("username");
+					data[i][j++] = rx.getInt("idspel");
+					data[i][j++] = rx.getString("username");
 
-				i++;
+					i++;
+				}
+
+				statement.close();
+
+			} else {
+				// Nep data xD
+				data = new Object[1][2];
+				data[0][0] = " Geen";
+				data[0][1] = " game";
 			}
+		}
 
-			statement.close();
-
-		} catch (Exception e) {
+		catch (Exception e) {
 			System.out.println(e);
 		}
 
@@ -72,8 +132,6 @@ public class LobbyDAO {
 				return rs.getMetaData().getColumnCount();
 
 		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
@@ -92,8 +150,6 @@ public class LobbyDAO {
 			}
 
 		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 

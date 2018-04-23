@@ -17,28 +17,33 @@ public class AccountDAO {
 	 * This is used by the model to control if the username exists in the database
 	 */
 
-	public boolean searchPasswordWithUserName(String username,String password) {
+	public boolean searchPasswordWithUserName(String username, String password) {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT wachtwoord FROM account WHERE username = '" + username + "'");
-			rs.next();
-			if (rs.getString("wachtwoord").equals(password)) {
-				return true;
+			if (rs.next()) {
+				if (rs.getString("wachtwoord").equals(password)) {
+					return true;
+				} else {
+					return false;
+				}
 			} else {
+				System.out.println("No pass");
 				return false;
 			}
 		} catch (SQLException e) {
 			return false;
 		}
 	}
-	
+
 	public boolean createAccountDOA(String username, String password) {
 		try {
-            Statement stmt = m_Conn.createStatement();
-            stmt.executeUpdate("INSERT INTO account (username, wachtwoord)  VALUES ('"+username+"', '"+password+"')");
-            return true;
-        } catch (SQLException e) {
-            return false;
-        }
+			Statement stmt = m_Conn.createStatement();
+			stmt.executeUpdate(
+					"INSERT INTO account (username, wachtwoord)  VALUES ('" + username + "', '" + password + "')");
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
 	}
 }

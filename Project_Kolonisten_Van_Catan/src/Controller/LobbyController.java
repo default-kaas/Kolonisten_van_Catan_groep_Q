@@ -17,11 +17,12 @@ public class LobbyController {
 	private InviteController inviteController;
 	
 	public LobbyController(LobbyFrame lobbyFrame, Connection db, String username) {
+		this.username = username;
 		lobbyDAO = new LobbyDAO(db);
 		lobbyPanel = new LobbyPanel(lobbyFrame, this);
 	/*	inviteController = new InviteController(db);
 		invitePanel = new InvitePanel(inviteController);*/
-		this.username = username;
+
 		System.out.println(username);
 		
 	}
@@ -38,4 +39,8 @@ public class LobbyController {
 /*	public InvitePanel getInvitePanel() {
 		return invitePanel;
 	}*/
+	public Object[][] showInvites(){
+		System.out.println(username);
+		return lobbyDAO.getInvitedGames(username);
+	}
 }

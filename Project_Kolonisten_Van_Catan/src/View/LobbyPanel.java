@@ -38,17 +38,17 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		this.setLayout(new GridBagLayout());
 
 		this.lobbyController = lobbyController;
-		//Row 1
+		// Row 1
 		lobbyTable();
 
 		rejectAndAcceptButton();
-		
-		//Row 2
+
+		// Row 2
 		activeGames();
-		
+
 		rejoinButton();
-		
-		//row 3
+
+		// row 3
 		newGameTitle();
 
 		normalButton();
@@ -59,7 +59,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 	public void lobbyTable() {
 
-		Object[][] data = lobbyController.showUsers();
+		Object[][] data = lobbyController.showInvites();
 		// setBackground(new Color(157, 24, 31));
 		String[] columns = new String[] { "Name", "speelstatus" };
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -155,7 +155,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_table.gridy = 1;
 		add(invitedList, gbc_table);
 	}
-	
+
 	public void rejoinButton() {
 		rejoin = new JButton("Naar Spel");
 		rejoin.setPreferredSize(new Dimension(160, 50));
@@ -219,8 +219,9 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		}
 
 		if (a.getSource() == advancedMode) {
-			/*lobbyController.getInvitePanel();
-			add(lobbyController.getInvitePanel());*/
+			/*
+			 * lobbyController.getInvitePanel(); add(lobbyController.getInvitePanel());
+			 */
 		}
 
 		if (a.getSource() == rejectBtn) {
@@ -230,9 +231,9 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		if (a.getSource() == acceptBtn) {
 
 		}
-		
-		if (a.getSource() == rejoin) { 
-			
+
+		if (a.getSource() == rejoin) {
+
 		}
 
 	}

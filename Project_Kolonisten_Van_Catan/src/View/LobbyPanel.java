@@ -31,35 +31,32 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 	public LobbyPanel(LobbyFrame lobbyFrame, LobbyController lobbyController) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int) (screenSize.getHeight()*0.8);
-		int width = (int) (screenSize.getWidth()*0.8);
+		int height = (int) (screenSize.getHeight() * 0.8);
+		int width = (int) (screenSize.getWidth() * 0.8);
 		this.setPreferredSize(new Dimension(width, height));
 
 		this.setLayout(new GridBagLayout());
 
 		this.lobbyController = lobbyController;
 
-
 		lobbyTable();
-		
+
 		rejectAndAcceptButton();
-		
+
 		activeGames();
-		
+
 		newGameTitle();
-		
+
 		normalButton();
-		
+
 		advancedButton();
 
 	}
-	
-	
+
 	public void lobbyTable() {
-		
-		Object[][] data = lobbyController.showUsers();
-		// setBackground(new Color(157, 24, 31));
-		String[] columns = new String[] { "Name", "speelstatus" };
+
+		Object[][] data = lobbyController.showInvites();
+		String[] columns = new String[] { "Spel id", "Uitdager" };
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		setLayout(gridBagLayout);
 
@@ -85,32 +82,33 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.WEST;
 		gbc_table.insets = new Insets(0, 0, 0, 0);
-//		gbc_table.gridwidth = 1;
+		// gbc_table.gridwidth = 1;
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
 		add(invitedList, gbc_table);
-		
+
 	}
-	
-	
+
 	public void activeGames() {
-		
 
 		Object[][] data = lobbyController.showUsers();
-		// setBackground(new Color(157, 24, 31));
 		String[] columns = new String[] { "Name", "speelstatus" };
-//		GridBagLayout gridBagLayout = new GridBagLayout();
-//		setLayout(gridBagLayout);
+
+		// setBackground(new Color(157, 24, 31));
+		// String[] columns = new String[] { "Name", "speelstatus" };
+		// GridBagLayout gridBagLayout = new GridBagLayout();
+		// setLayout(gridBagLayout);
 
 		JLabel lblLobby = new JLabel("Actieve spellen");
 		lblLobby.setFont(new Font("Arial", Font.BOLD, 30));
 		GridBagConstraints gbc_lblLobby = new GridBagConstraints();
-		//title insets
+		// title insets
 		gbc_lblLobby.insets = new Insets(0, 0, 0, 0);
 		gbc_lblLobby.anchor = GridBagConstraints.NORTH;
 		gbc_lblLobby.gridx = 1;
 		gbc_lblLobby.gridy = 0;
 		add(lblLobby, gbc_lblLobby);
+
 		invitedList = new JTable(data, columns);
 		invitedList.setFont(new Font("Calibri", Font.BOLD, 30));
 		invitedList.setRowHeight(50);
@@ -124,7 +122,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.CENTER;
-		//table insets
+		// table insets
 		gbc_table.insets = new Insets(0, 0, 0, 0);
 		gbc_table.gridwidth = 1;
 		gbc_table.gridx = 1;
@@ -140,14 +138,12 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		rejectBtn.setForeground(Color.BLACK);
 		rejectBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_rejectBtn = new GridBagConstraints();
-	
 
 		gbc_rejectBtn.anchor = GridBagConstraints.WEST;
 		gbc_rejectBtn.gridx = 0;
 		gbc_rejectBtn.gridy = 2;
 		add(rejectBtn, gbc_rejectBtn);
-		
-		
+
 		acceptBtn = new JButton("Accepteer");
 		acceptBtn.setPreferredSize(new Dimension(160, 50));
 		acceptBtn.setBackground(new Color(59, 89, 182));
@@ -160,10 +156,9 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_acceptBtn.gridy = 3;
 		add(acceptBtn, gbc_acceptBtn);
 	}
-	
+
 	public void newGameTitle() {
-		
-		
+
 		JLabel lblLobby = new JLabel("Spel crieëren");
 		lblLobby.setFont(new Font("Arial", Font.BOLD, 30));
 		GridBagConstraints gbc_lobbyTitle = new GridBagConstraints();
@@ -171,7 +166,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_lobbyTitle.gridy = 0;
 		gbc_lobbyTitle.anchor = GridBagConstraints.EAST;
 		add(lblLobby, gbc_lobbyTitle);
-		
+
 	}
 
 	public void normalButton() {
@@ -207,7 +202,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent a) {
 		if (a.getSource() == normalMode) {
-			
+
 		}
 
 		if (a.getSource() == advancedMode) {

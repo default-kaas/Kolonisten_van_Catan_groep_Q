@@ -29,4 +29,7 @@ public class LobbyController {
 	public Object[][] showUsers(){
 		return lobbyDAO.getUserList(username);
 	}
+	public Object[][] showInvites(){
+		return lobbyDAO.getInvitedGames(username);
+	}
 }

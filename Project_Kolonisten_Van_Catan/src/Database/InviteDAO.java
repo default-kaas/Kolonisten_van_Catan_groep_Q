@@ -20,46 +20,57 @@ public class InviteDAO {
 
 	}
 
-	public Object[][] getUserList() {
-
+	public Object[][] getUserList(String username) {
 		Object[][] data = null;
-
-		final String QUERY = "SELECT * FROM speler WHERE NOT speelstatus = 'uitdager'";
-
 		try {
 
-			Statement statement =  m_Conn.createStatement();
-
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "SELECT idspel FROM speler WHERE username = '" + username
+					+ "' and (speelstatus = 'geaccepteerd' or speelstatus = 'uitdager')";
 			ResultSet rs = statement.executeQuery(QUERY);
+			if(rs.next()) {
+				
+			
 
-			int rowCount = getRowCount(rs); // Row Count
-			int columnCount = getColumnCount(rs); // Column Count
+			int spel = rs.getInt("idspel");
+
+			final String QUERY2 = "select * from speler where idspel = " + spel + " and speelstatus = 'uitdager'";
+			ResultSet rx = statement.executeQuery(QUERY2);
+			int rowCount = getRowCount(rx); // Row Count
+			int columnCount = getColumnCount(rx); // Column Count
 
 			data = new Object[rowCount][columnCount];
 
 			// Starting from First Row for Iteration
-			rs.beforeFirst();
+			rx.beforeFirst();
 
 			int i = 0;
 
-			while (rs.next()) {
+			while (rx.next()) {
 
 				int j = 0;
-
-				data[i][j++] = rs.getString("username");
-				data[i][j++] = rs.getString("speelstatus");
-
+				
+				data[i][j++] = rx.getInt("idspel");
+				System.out.println(j);
+				data[i][j++] = rx.getString("username");
+				System.out.println(j);
 				i++;
 			}
 
-			status = true;
-
 			statement.close();
 
-		} catch (Exception e) {
-
-			e.printStackTrace();
+		}else {
+			//Nep data xD
+			data = new Object[1][2];
+			data[0][0] = " Geen";
+			data[0][1] = " game";
 		}
+			
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		
 
 		return data;
 

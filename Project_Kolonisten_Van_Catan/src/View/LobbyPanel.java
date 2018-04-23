@@ -24,12 +24,16 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	private JButton acceptBtn;
 	private JButton rejectBtn;
 	private JButton normalMode;
-	private JButton advancedMode;
+	public JButton advancedMode;
 	private JButton rejoin;
 	public LobbyController lobbyController;
+	private LobbyFrame lobbyFrame;
+	
 	GridBagConstraints c;
 
 	public LobbyPanel(LobbyFrame lobbyFrame, LobbyController lobbyController) {
+		this.lobbyFrame = lobbyFrame;
+	
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int) (screenSize.getHeight() * 0.8);
 		int width = (int) (screenSize.getWidth() * 0.8);
@@ -54,6 +58,9 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		normalButton();
 
 		advancedButton();
+		
+		
+	
 
 	}
 
@@ -78,7 +85,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		invitedList.setRowHeight(50);
 		TableColumnModel columnModel = invitedList.getColumnModel();
 		invitedList.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
 		// loop to set the width of the table.
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {
 			invitedList.getColumnModel().getColumn(i).setPreferredWidth(100);
@@ -189,6 +195,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		normalMode.setBackground(new Color(59, 89, 182));
 		normalMode.setForeground(Color.BLACK);
 		normalMode.setFont(new Font("Calibri", Font.BOLD, 30));
+		normalMode.addActionListener(this);
 		GridBagConstraints gbc_normalBtn = new GridBagConstraints();
 		gbc_normalBtn.insets = new Insets(200, 200, 0, 0);
 		gbc_normalBtn.anchor = GridBagConstraints.EAST;
@@ -205,6 +212,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		advancedMode.setBackground(new Color(59, 89, 182));
 		advancedMode.setForeground(Color.BLACK);
 		advancedMode.setFont(new Font("Calibri", Font.BOLD, 30));
+		advancedMode.addActionListener(this);
 		GridBagConstraints gbc_advancedBtn = new GridBagConstraints();
 		gbc_advancedBtn.insets = new Insets(0, 200, 0, 0);
 		gbc_advancedBtn.anchor = GridBagConstraints.EAST;
@@ -212,27 +220,43 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_advancedBtn.gridy = 2;
 		add(advancedMode, gbc_advancedBtn);
 	}
+	
+	public void advancedModeaddActionListener(ActionListener l) {
+		advancedMode.addActionListener(l);
+	}
+ 	
+	
+	public JButton getButton(){
+		return advancedMode;
+		}
 
 	public void actionPerformed(ActionEvent a) {
+		
 		if (a.getSource() == normalMode) {
-
+			lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 		}
-
+		
 		if (a.getSource() == advancedMode) {
-			/*
-			 * lobbyController.getInvitePanel(); add(lobbyController.getInvitePanel());
-			 */
+			lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 		}
+
+	
 
 		if (a.getSource() == rejectBtn) {
 
 		}
+		
+		
 
 		if (a.getSource() == acceptBtn) {
 
 		}
 
+		
+		
 		if (a.getSource() == rejoin) {
+			
+			
 
 		}
 

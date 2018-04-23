@@ -58,12 +58,12 @@ public class Hexagon extends Polygon {
 
 	private double findAngle(double fraction) {
 		return fraction * Math.PI * 2 + Math.toRadians((rotation + 180) % 360);
+		
 	}
 
 	private Point findPoint(double angle) {
 		int x = (int) (center.x + Math.cos(angle) * radius);
 		int y = (int) (center.y + Math.sin(angle) * radius);
-
 		return new Point(x, y);
 	}
 

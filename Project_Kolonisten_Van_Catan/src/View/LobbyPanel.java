@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
@@ -248,10 +249,11 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		if (a.getSource() == rejectBtn) {
 			int x = Uitnodiging.getSelectedRow();
 			if (x == -1) {
+				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd", JOptionPane.ERROR_MESSAGE);
 
 			}
 			else if (Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
-				System.out.println("Dit valt niet te weigeren!");
+				JOptionPane.showMessageDialog(this, "Je kan de geselecteerde cel niet weigeren!", "ERROR!", JOptionPane.ERROR_MESSAGE);
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), false);
 				Uitnodiging.setValueAt(" Geen", x, 0);
@@ -263,9 +265,10 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		if (a.getSource() == acceptBtn) {
 			int x = Uitnodiging.getSelectedRow();
 			if (x == -1) {
+				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd", JOptionPane.ERROR_MESSAGE);
 
 			} else if (Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
-				System.out.println("Dit valt niet te accepteren!");
+				JOptionPane.showMessageDialog(this, "Je kan de geselecteerde cel niet accepteren :<", "ERROR!", JOptionPane.ERROR_MESSAGE);
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), true);
 				Uitnodiging.setValueAt(" Geen", x, 0);

@@ -21,18 +21,13 @@ public class AccountDAO {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT wachtwoord FROM account WHERE username = '" + username + "'");
-			if(rs.next()) {
-			
+			rs.next();
 			if (rs.getString("wachtwoord").equals(password)) {
 				return true;
 			} else {
 				return false;
-			}}else {
-				System.out.println("No pass");
-				return false;
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
 			return false;
 		}
 	}
@@ -43,7 +38,6 @@ public class AccountDAO {
             stmt.executeUpdate("INSERT INTO account (username, wachtwoord)  VALUES ('"+username+"', '"+password+"')");
             return true;
         } catch (SQLException e) {
-        	System.out.println(e);
             return false;
         }
 	}

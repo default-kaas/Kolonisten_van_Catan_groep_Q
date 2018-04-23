@@ -16,7 +16,7 @@ public class InviteController {
 	}
 	
 	public Object[][] showUsers(){
-		return InviteDAO.getUserList("test");
+		return InviteDAO.getUserList();
 	}
 
 	public InvitePanel getInvitePanel() {

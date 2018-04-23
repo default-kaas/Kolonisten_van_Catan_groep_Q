@@ -61,7 +61,7 @@ public class InvitePanel extends JPanel {
 		JLabel lblLobby = new JLabel("Lobby");
 		lblLobby.setFont(new Font("Arial", Font.BOLD, 50));
 		
-		gbc_lblLobby.insets = new Insets(0, 0, 0, 150);
+		gbc_lblLobby.insets = new Insets(0, 0, 80, 150);
 		gbc_lblLobby.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblLobby.gridx = 0;
 		gbc_lblLobby.gridy = 0;
@@ -87,7 +87,7 @@ public class InvitePanel extends JPanel {
 		
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.WEST;
-		gbc_table.insets = new Insets(0, 0, 0, 150);	
+		gbc_table.insets = new Insets(0, 0, 80, 150);	
 		
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
@@ -103,7 +103,7 @@ public class InvitePanel extends JPanel {
 		refreshBtn.setForeground(Color.BLACK);
 		refreshBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_inviteBtn = new GridBagConstraints();
-		gbc_inviteBtn.insets = new Insets(0 ,0, 0, 150);
+		gbc_inviteBtn.insets = new Insets(0 ,0, 80, 150);
 		
 		gbc_inviteBtn.anchor = GridBagConstraints.WEST;
 		gbc_inviteBtn.gridx = 0;
@@ -116,7 +116,7 @@ public class InvitePanel extends JPanel {
 		JLabel lblFinding = new JLabel("Finding Players");
 		lblFinding.setFont(new Font("Arial", Font.BOLD, 50));
 		GridBagConstraints gbc_lblFinding = new GridBagConstraints();
-		gbc_lblFinding.insets = new Insets(150, 0, 0, 0);
+		gbc_lblFinding.insets = new Insets(0, 150, 80, 0);
 		gbc_lblFinding.anchor = GridBagConstraints.NORTHEAST;
 		gbc_lblFinding.gridx = 1;
 		gbc_lblFinding.gridy = 0;
@@ -138,7 +138,7 @@ public class InvitePanel extends JPanel {
 		
 		GridBagConstraints gbc_table_1 = new GridBagConstraints();
 		gbc_table_1.gridwidth = 3;
-		gbc_table_1.insets = new Insets(150, 0, 0, 0);
+		gbc_table_1.insets = new Insets(0, 150, 80, 0);
 		gbc_table_1.anchor = GridBagConstraints.EAST;
 		gbc_table_1.gridx = 1;
 		gbc_table_1.gridy = 1;
@@ -154,7 +154,7 @@ public class InvitePanel extends JPanel {
 		inviteBtn.setForeground(Color.BLACK);
 		inviteBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_inviteBtn1 = new GridBagConstraints();
-		gbc_inviteBtn1.insets = new Insets(150, 0, 0, 0);
+		gbc_inviteBtn1.insets = new Insets(0, 150, 80, 0);
 		gbc_inviteBtn1.anchor = GridBagConstraints.EAST;
 		gbc_inviteBtn1.gridx = 1;
 		gbc_inviteBtn1.gridy = 2;

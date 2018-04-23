@@ -94,6 +94,42 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	
 	
 	public void activeGames() {
+		
+
+		Object[][] data = lobbyController.showUsers();
+		// setBackground(new Color(157, 24, 31));
+		String[] columns = new String[] { "Name", "speelstatus" };
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		setLayout(gridBagLayout);
+
+		JLabel lblLobby = new JLabel("Uitnodiging");
+		lblLobby.setFont(new Font("Arial", Font.BOLD, 60));
+		GridBagConstraints gbc_lblLobby = new GridBagConstraints();
+		//title insets
+		gbc_lblLobby.insets = new Insets(0, 100, 0, 0);
+		gbc_lblLobby.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblLobby.gridx = 1;
+		gbc_lblLobby.gridy = 0;
+		add(lblLobby, gbc_lblLobby);
+		invitedList = new JTable(data, columns);
+		invitedList.setFont(new Font("Calibri", Font.BOLD, 30));
+		invitedList.setRowHeight(50);
+		TableColumnModel columnModel = invitedList.getColumnModel();
+		invitedList.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		// loop to set the width of the table.
+		for (int i = 0; i < columnModel.getColumnCount(); i++) {
+			invitedList.getColumnModel().getColumn(i).setPreferredWidth(100);
+		}
+
+		GridBagConstraints gbc_table = new GridBagConstraints();
+		gbc_table.anchor = GridBagConstraints.WEST;
+		//table insets
+		gbc_table.insets = new Insets(0, 100, 0, 0);
+		gbc_table.gridwidth = 3;
+		gbc_table.gridx = 1;
+		gbc_table.gridy = 2;
+		add(invitedList, gbc_table);
 	
 	}
 

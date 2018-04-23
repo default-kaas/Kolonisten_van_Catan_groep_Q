@@ -35,19 +35,28 @@ public class Game {
 		addPlayers();
 
 		addResources();
+		System.out.println(this.getMe().getName());
 	}
 
 	private void addPlayers() {
 		for (int i = 0; i < 4; i++) {
 			try {
 				String Color = "";
-				switch(i) {
-				case 0: Color = "rood"; break;
-				case 1: Color = "wit"; break;
-				case 2: Color = "blauw"; break;
-				case 3: Color = "orangje"; break;
+				switch (i) {
+				case 0:
+					Color = "rood";
+					break;
+				case 1:
+					Color = "wit";
+					break;
+				case 2:
+					Color = "blauw";
+					break;
+				case 3:
+					Color = "oranje";
+					break;
 				}
-				
+
 				Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i, GameId), Color));
 				if (Players.get(i).getName().equals(userName)) {
 					Players.get(i).itsMe();
@@ -80,20 +89,20 @@ public class Game {
 		for (int x = 1; x <= 19; x++) {
 			WoolStack.add(new ResourceCards('H', ("H" + x)));
 		}
-		
+
 		getMe().addResource(StoneStack.get(0), 'B');
 		StoneStack.remove(StoneStack.get(0));
-		
+
 		getMe().addResource(WoodStack.get(0), 'W');
 		WoodStack.remove(WoodStack.get(0));
-		
+
 		System.out.println(getMe().getStoneAmount());
 		System.out.println(StoneStack.size());
 
-//		getMe().addResource(WoodStack.get(0), 'G');
-//		WoodStack.remove(WoodStack.get(0));
-//		getMe().addResource(WoodStack.get(0), 'E');
-//		WoodStack.remove(WoodStack.get(0));
+		// getMe().addResource(WoodStack.get(0), 'G');
+		// WoodStack.remove(WoodStack.get(0));
+		// getMe().addResource(WoodStack.get(0), 'E');
+		// WoodStack.remove(WoodStack.get(0));
 	}
 
 	public ArrayList<Player> GetPlayers() {
@@ -103,7 +112,7 @@ public class Game {
 	public int getRound() {
 		return PlayersRound;
 	}
-	
+
 	public int getGameID() {
 		return GameId;
 	}
@@ -116,6 +125,5 @@ public class Game {
 		}
 		return null;
 	}
-	
 
 }

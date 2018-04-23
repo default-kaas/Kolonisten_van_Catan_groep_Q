@@ -46,6 +46,7 @@ public class DiceDAO {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT laatste_worp_steen1 FROM spel where idspel = " + gameID);
 			if (rs.next()) {
+				System.out.println(rs.getInt("laatste_worp_steen1"));
 				return rs.getInt("laatste_worp_steen1");
 			}
 			return -1;
@@ -61,6 +62,7 @@ public class DiceDAO {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT laatste_worp_steen2 FROM spel where idspel = " + gameID);
 			if (rs.next()) {
+				System.out.println(rs.getInt("laatste_worp_steen2"));
 				return rs.getInt("laatste_worp_steen2");
 			}
 			return -1;

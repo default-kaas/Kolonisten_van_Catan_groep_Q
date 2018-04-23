@@ -44,14 +44,15 @@ public class Dice {
 		return diceDAO.hasTrownDice(GameID);
 	}
 
-	public int getOldValue1(int GameID) {
+	public void getOldValue1(int GameID) {
 		// TODO Auto-generated method stub
-		return diceDAO.getOldValue1(GameID);
+		
+		value1 = diceDAO.getOldValue1(GameID); 
 	}
 
-	public int getOldValue2(int GameID) {
+	public void getOldValue2(int GameID) {
 		// TODO Auto-generated method stub
-		return diceDAO.getOldValue2(GameID);
+		value2 = diceDAO.getOldValue2(GameID); 
 	}
 
 }

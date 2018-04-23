@@ -31,13 +31,22 @@ public class DicePanel extends JPanel implements MouseListener {
 		screenHeight = ScreenHeight();
 		this.setPreferredSize(new Dimension(215, 110));
 		this.setBackground(new Color(1, 207, 203));
-		
 	}
 	public void showDice() {
+		if(diceController.hasTrown()) {
+			diceController.showOldDice();
+			remove(text);
+			this.setBackground(Color.BLUE);
+			pressed = true;
+			repaint();
+		}else {
+	
+		
 		this.setBackground(Color.WHITE);
 		this.add(text);
 		this.addMouseListener(this);
 		repaint();
+		}
 	}
 
 	private int ScreenHeight() {
@@ -69,15 +78,12 @@ public class DicePanel extends JPanel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		
-		if(!pressed &&  !diceController.hasTrown()) {
+		if(!pressed) {
 			diceController.setDiceImages();
 			remove(text);
 			this.setBackground(Color.BLUE);
 			pressed = true;
 			repaint();
-		}else if(diceController.hasTrown()) {
-			
-			diceController.showOldDice();
 		}else {
 			
 		}

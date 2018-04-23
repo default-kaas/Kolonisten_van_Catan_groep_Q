@@ -15,8 +15,6 @@ public class DiceController {
 		this.game = game;
 		dice = new Dice(db_conn);
 		dicePanel = new DicePanel(this);
-		System.out.println("test");
-		System.out.println(hasTrown());
 		
 	}
 	
@@ -50,17 +48,15 @@ public class DiceController {
 	}
 
 	public void showOldDice() {
-		dicePanel.setImages(getOldValue1(), getOldValue2());
+		getOldValues();
+		dicePanel.setImages(getValue1(), getValue2());
 		
 	}
 
-	private int getOldValue1() {
-		// TODO Auto-generated method stub
-		return dice.getOldValue1(game.getGameID());
+	private void getOldValues() {
+		dice.getOldValue1(game.getGameID());
+		dice.getOldValue2(game.getGameID());
 	}
 
-	private int getOldValue2() {
-		// TODO Auto-generated method stub
-		return dice.getOldValue2(game.getGameID());
-	}
+	
 }

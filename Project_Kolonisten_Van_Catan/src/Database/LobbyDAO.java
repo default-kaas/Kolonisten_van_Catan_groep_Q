@@ -6,67 +6,63 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class LobbyDAO {
-	
+
 	Connection m_Conn;
-	
-	
+
 	public LobbyDAO(Connection db_conn) {
 
 		try {
 			m_Conn = db_conn;
 		} catch (Exception e) {
 			e.getMessage();
-			
 
 		}
 
 	}
-	
-	public Object[][] getUserList() {
 
+	public Object[][] getUserList(String username) {
 		Object[][] data = null;
-
-		final String QUERY = "SELECT * FROM speler WHERE speelstatus = 'uitdager'";
-
 		try {
 
-			Statement statement =  m_Conn.createStatement();
+			Statement statement = m_Conn.createStatement();
 
+			final String QUERY = "SELECT idspel FROM speler WHERE username = '" + username
+					+ "' and speelstatus = 'geaccepteerd'";
 			ResultSet rs = statement.executeQuery(QUERY);
+			rs.next();
+			int spel = rs.getInt("idspel");
 
-			int rowCount = getRowCount(rs); // Row Count
-			int columnCount = getColumnCount(rs); // Column Count
+			final String QUERY2 = "select * from speler where idspel = " + spel + " and username != 'ger' and speelstatus = 'uitdager'";
+			ResultSet rx = statement.executeQuery(QUERY2);
+			int rowCount = getRowCount(rx); // Row Count
+			int columnCount = getColumnCount(rx); // Column Count
 
 			data = new Object[rowCount][columnCount];
 
 			// Starting from First Row for Iteration
-			rs.beforeFirst();
+			rx.beforeFirst();
 
 			int i = 0;
 
-			while (rs.next()) {
+			while (rx.next()) {
 
 				int j = 0;
 
-				data[i][j++] = rs.getString("username");
-				data[i][j++] = rs.getString("speelstatus");
+				data[i][j++] = rx.getInt("idspel");
+				data[i][j++] = rx.getString("username");
 
 				i++;
 			}
 
-
 			statement.close();
 
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			System.out.println(e);
 		}
 
 		return data;
 
 	}
-
-	
 
 	private int getColumnCount(ResultSet rs) {
 
@@ -103,9 +99,5 @@ public class LobbyDAO {
 
 		return 0;
 	}
-	
-	
-	
-	
 
 }

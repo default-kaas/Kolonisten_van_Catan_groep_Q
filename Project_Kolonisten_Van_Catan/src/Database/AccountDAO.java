@@ -38,7 +38,6 @@ public class AccountDAO {
             stmt.executeUpdate("INSERT INTO account (username, wachtwoord)  VALUES ('"+username+"', '"+password+"')");
             return true;
         } catch (SQLException e) {
-        	System.out.println(e);
             return false;
         }
 	}

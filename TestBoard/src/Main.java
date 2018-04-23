@@ -55,7 +55,7 @@ public class Main extends JPanel {
         int h = metrics.getHeight();
 
         hex.draw(g2d, x, y, 0, 0x008844, true);
-        hex.draw(g2d, x, y, 4, 0xFFDD88, false);
+        hex.draw(g2d, x, y, 4, 0x000000, false);
 
         g.setColor(new Color(0xFFFFFF));
         g.drawString(text, x - w/2, y + h/2);

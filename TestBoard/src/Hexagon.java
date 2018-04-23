@@ -1,9 +1,4 @@
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.Stroke;
+import java.awt.*;
 
 public class Hexagon extends Polygon {
 
@@ -89,7 +84,9 @@ public class Hexagon extends Polygon {
 
         g.setColor(new Color(colorValue));
         g.setStroke(new BasicStroke(lineThickness, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
-
+        
+       
+        
         if (filled)
             g.fillPolygon(xpoints, ypoints, npoints);
         else
@@ -98,5 +95,8 @@ public class Hexagon extends Polygon {
         // Set values to previous when done.
         g.setColor(tmpC);
         g.setStroke(tmpS);
+        
+        g.setColor(Color.WHITE);
+        g.fillOval(x-15,y-15, 30, 30);
     }
 }

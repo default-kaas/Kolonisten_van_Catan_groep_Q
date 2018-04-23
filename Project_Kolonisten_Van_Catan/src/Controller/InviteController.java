@@ -22,5 +22,7 @@ public class InviteController {
 	public InvitePanel getInvitePanel() {
 		return invitePanel;
 	}
+	
+	
 
 }

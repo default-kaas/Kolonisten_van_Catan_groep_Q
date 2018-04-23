@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
 
+import Controller.InviteController;
 import Controller.LobbyController;
 
 public class LobbyPanel extends JPanel implements ActionListener {
@@ -175,6 +176,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		rejoin.setBackground(new Color(59, 89, 182));
 		rejoin.setForeground(Color.BLACK);
 		rejoin.setFont(new Font("Calibri", Font.BOLD, 30));
+		rejoin.addActionListener(this);
 		GridBagConstraints gbc_rejectBtn = new GridBagConstraints();
 
 		gbc_rejectBtn.anchor = GridBagConstraints.WEST;
@@ -278,7 +280,15 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		}
 
 		if (a.getSource() == rejoin) {
+			int x = invitedList.getSelectedRow();
+			if (x == -1) {
+				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd", JOptionPane.ERROR_MESSAGE);
 
+			} else if (invitedList.getValueAt(x, 0).equals(" Geen")) {
+				JOptionPane.showMessageDialog(this, "Je kan de geselecteerde cel niet joinen :<", "ERROR!", JOptionPane.ERROR_MESSAGE);
+			} else {
+				lobbyController.joinOldGame((int) invitedList.getValueAt(x, 0));
+			}
 		}
 
 	}

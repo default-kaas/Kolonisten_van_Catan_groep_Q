@@ -54,10 +54,6 @@ public class LoginFrame extends JFrame implements ActionListener {
 		this.setJMenuBar(menuBar);
 	}
 	
-	public void showGame(String userName) {
-		superController.showGameScreen(userName);
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent a) {
 		if (a.getSource() == exit) {

@@ -30,9 +30,9 @@ public class SuperController {
 		lobbyFrame = new LobbyFrame(this,db_conn, userName);
 	}
 
-	public void showGameScreen(String userName) {
+	public void showGameScreen(int gameID, String userName, boolean newGame) {
 		// TODO Auto-generated method stub
-		gameFrame = new GameFrame(770, userName, db_conn, false);
+		gameFrame = new GameFrame(gameID, userName, db_conn, false);
 	}
 
 }

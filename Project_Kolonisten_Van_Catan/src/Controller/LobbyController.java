@@ -14,8 +14,10 @@ public class LobbyController {
 	private String username;
 	private InvitePanel invitePanel;
 	private InviteController inviteController;
+	private LobbyFrame lobbyFrame;
 
 	public LobbyController(LobbyFrame lobbyFrame, Connection db, String username) {
+		this.lobbyFrame = lobbyFrame;
 		this.username = username;
 		lobbyDAO = new LobbyDAO(db);
 		lobbyPanel = new LobbyPanel(lobbyFrame, this);
@@ -42,5 +44,10 @@ public class LobbyController {
 
 	public void respondToInvite(int gameId, boolean Accept) {
 		lobbyDAO.respondToInvite(username, gameId, Accept);
+	}
+	
+	public void joinOldGame(int gameID) {
+		lobbyFrame.showGameScreen(gameID, username, false);
+		
 	}
 }

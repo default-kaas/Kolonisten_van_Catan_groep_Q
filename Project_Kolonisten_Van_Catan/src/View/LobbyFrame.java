@@ -27,8 +27,8 @@ public class LobbyFrame extends JFrame implements ActionListener {
 		setContent();
 	}
 	
-	public void showGameScreen() {
-		superController.showGameScreen("ger");
+	public void showGameScreen(int gameID, String userName, boolean newGame) {
+		superController.showGameScreen(gameID,userName, newGame);
 	}
 
 	private void setContent() {

@@ -22,7 +22,7 @@ public class ChatPanelController implements Runnable {
 	}
 
 	public void updateChat() {
-		chatModel.updateChat(game.getGameID());
+		chatModel.updateChat(game);
 		chatModel.showTextarray();
 	}
 

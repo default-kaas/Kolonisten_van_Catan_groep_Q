@@ -81,6 +81,7 @@ public class Hexagon extends Polygon {
     	
 
     	
+    	
         // Store before changing.
         Stroke tmpS = g.getStroke();
         Color tmpC = g.getColor();

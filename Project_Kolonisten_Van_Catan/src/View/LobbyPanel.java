@@ -85,7 +85,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.WEST;
 		gbc_table.insets = new Insets(0, 0, 0, 0);
-		gbc_table.gridwidth = 1;
+//		gbc_table.gridwidth = 1;
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
 		add(invitedList, gbc_table);
@@ -95,12 +95,12 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	
 	public void activeGames() {
 		
-/**
+
 		Object[][] data = lobbyController.showUsers();
 		// setBackground(new Color(157, 24, 31));
 		String[] columns = new String[] { "Name", "speelstatus" };
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		setLayout(gridBagLayout);
+//		GridBagLayout gridBagLayout = new GridBagLayout();
+//		setLayout(gridBagLayout);
 
 		JLabel lblLobby = new JLabel("Actieve spellen");
 		lblLobby.setFont(new Font("Arial", Font.BOLD, 30));
@@ -130,7 +130,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_table.gridx = 1;
 		gbc_table.gridy = 1;
 		add(invitedList, gbc_table);
-	*/
 	}
 
 	public void rejectAndAcceptButton() {

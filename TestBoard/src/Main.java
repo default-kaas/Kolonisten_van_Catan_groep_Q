@@ -22,7 +22,7 @@ public class Main extends JPanel {
         g2d.setFont(font);
         metrics = g.getFontMetrics();
 
-        drawCircle(g2d, origin, 380, true, true, 0x4488FF, 0);
+//        drawCircle(g2d, origin, 380, true, true, 0x4488FF, 0);
         drawHexGridLoop(g2d, origin, 5, 60, 0);
     }
 
@@ -48,7 +48,8 @@ public class Main extends JPanel {
 
     private void drawHex(Graphics g, int posX, int posY, int x, int y, int r) {
         Graphics2D g2d = (Graphics2D) g;
-
+        
+        System.out.println("x-Pos: " + posX + " - y-Pos: " + posY);
         Hexagon hex = new Hexagon(x, y, r);
         String text = String.format("%s : %s", coord(posX), coord(posY));
         int w = metrics.stringWidth(text);

@@ -42,10 +42,10 @@ public class Game {
 			try {
 				String Color = "";
 				switch(i) {
-				case 0: Color = "Rood"; break;
-				case 1: Color = "Wit"; break;
-				case 2: Color = "Blauw"; break;
-				case 3: Color = "Orangje"; break;
+				case 0: Color = "rood"; break;
+				case 1: Color = "wit"; break;
+				case 2: Color = "blauw"; break;
+				case 3: Color = "orangje"; break;
 				}
 				
 				Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i, GameId), Color));

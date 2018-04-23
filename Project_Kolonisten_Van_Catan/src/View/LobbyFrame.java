@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -10,6 +11,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Controller.LobbyController;
+import Controller.LoginController;
 import Controller.SuperController;
 
 public class LobbyFrame extends JFrame implements ActionListener {

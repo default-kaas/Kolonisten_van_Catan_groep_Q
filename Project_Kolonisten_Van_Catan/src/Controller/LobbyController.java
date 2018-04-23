@@ -34,14 +34,8 @@ public class LobbyController {
 	public Object[][] showUsers(){
 		return lobbyDAO.getUserList(username);
 	}
-<<<<<<< HEAD
 	
 /*	public InvitePanel getInvitePanel() {
 		return invitePanel;
 	}*/
-=======
-	public Object[][] showInvites(){
-		return lobbyDAO.getInvitedGames(username);
-	}
->>>>>>> 0dbc8febe30b40782f5fa0d1b1fee1be44a9d81d
 }

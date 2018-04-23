@@ -29,12 +29,12 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	private JButton rejoin;
 	public LobbyController lobbyController;
 	private LobbyFrame lobbyFrame;
-	
+
 	GridBagConstraints c;
 
 	public LobbyPanel(LobbyFrame lobbyFrame, LobbyController lobbyController) {
 		this.lobbyFrame = lobbyFrame;
-	
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int) (screenSize.getHeight() * 0.8);
 		int width = (int) (screenSize.getWidth() * 0.8);
@@ -59,9 +59,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		normalButton();
 
 		advancedButton();
-		
-		
-	
 
 	}
 
@@ -88,7 +85,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		TableColumnModel columnModel = Uitnodiging.getColumnModel();
 		Uitnodiging.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-
 		// loop to set the width of the table.
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {
 			Uitnodiging.getColumnModel().getColumn(i).setPreferredWidth(100);
@@ -101,7 +97,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_table.gridy = 1;
 		add(Uitnodiging, gbc_table);
 		Uitnodiging.setDefaultEditor(Object.class, null);
-		
+
 	}
 
 	public void rejectAndAcceptButton() {
@@ -131,7 +127,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_acceptBtn.gridx = 0;
 		gbc_acceptBtn.gridy = 3;
 		add(acceptBtn, gbc_acceptBtn);
-		
+
 	}
 
 	public void activeGames() {
@@ -150,7 +146,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_lblLobby.gridy = 0;
 		add(lblLobby, gbc_lblLobby);
 		invitedList = new JTable(data, columns);
-		
+
 		invitedList.setFont(new Font("Calibri", Font.BOLD, 30));
 		invitedList.setRowHeight(50);
 		TableColumnModel columnModel = invitedList.getColumnModel();
@@ -160,7 +156,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {
 			invitedList.getColumnModel().getColumn(i).setPreferredWidth(100);
 		}
-		
+
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.CENTER;
 		// table insets
@@ -230,61 +226,55 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_advancedBtn.gridy = 2;
 		add(advancedMode, gbc_advancedBtn);
 	}
-	
+
 	public void advancedModeaddActionListener(ActionListener l) {
 		advancedMode.addActionListener(l);
 	}
- 	
-	
-	public JButton getButton(){
+
+	public JButton getButton() {
 		return advancedMode;
-		}
+	}
 
 	public void actionPerformed(ActionEvent a) {
-		
+
 		if (a.getSource() == normalMode) {
 			lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 		}
-		
+
 		if (a.getSource() == advancedMode) {
 			lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 		}
 
-	
-
 		if (a.getSource() == rejectBtn) {
 			int x = Uitnodiging.getSelectedRow();
-			if(Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
+			if (x == -1) {
+
+			}
+			else if (Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
 				System.out.println("Dit valt niet te weigeren!");
-			}else {
-				lobbyController.respondToInvite((int)Uitnodiging.getValueAt(x, 0),false);
+			} else {
+				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), false);
 				Uitnodiging.setValueAt(" Geen", x, 0);
 				Uitnodiging.setValueAt(" game", x, 1);
 			}
-			
-			
+
 		}
-		
-		
 
 		if (a.getSource() == acceptBtn) {
 			int x = Uitnodiging.getSelectedRow();
-			if(Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
+			if (x == -1) {
+
+			} else if (Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
 				System.out.println("Dit valt niet te accepteren!");
-			}else {
-				lobbyController.respondToInvite((int)Uitnodiging.getValueAt(x, 0),true);
+			} else {
+				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), true);
 				Uitnodiging.setValueAt(" Geen", x, 0);
 				Uitnodiging.setValueAt(" game", x, 1);
 			}
-			
-			
+
 		}
 
-		
-		
 		if (a.getSource() == rejoin) {
-			
-			
 
 		}
 

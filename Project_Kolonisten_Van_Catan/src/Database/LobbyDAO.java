@@ -22,7 +22,6 @@ public class LobbyDAO {
 
 	public Object[][] getInvitedGames(String username) {
 		Object[][] data = null;
-		System.out.println(username);
 		try {
 
 			Statement statement = m_Conn.createStatement();

@@ -25,7 +25,7 @@ public class GameController {
 		chatPanelController = new ChatPanelController(Game, db_conn);
 		
 		//Als lobby af is moet ik dit stukje nog wat veranderen.
-		if((Game.getRound() == Game.getMe().getPlayerID())&& !(Game.getMe().gethasTrown())) {
+		if((Game.getRound() == Game.getMe().getPlayerID())) {
 			showDice();
 		}
 	}

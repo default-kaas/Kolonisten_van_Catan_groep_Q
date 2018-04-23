@@ -18,22 +18,24 @@ public class GameController {
 
 	public GameController(int IdGame, String userName, Connection db_conn, boolean newGame) {
 		Game = new Game(IdGame, userName, db_conn);
-		
-		bouwPanelController = new BuildPanelController(Game, db_conn);
-		playerInfoController = new PlayerInfoController(Game, db_conn);
 		diceController = new DiceController(Game, db_conn);
-		chatPanelController = new ChatPanelController(Game, db_conn);
-		
-		//Als lobby af is moet ik dit stukje nog wat veranderen.
-		if((Game.getRound() == Game.getMe().getPlayerID())) {
+		// Als lobby af is moet ik dit stukje nog wat veranderen.
+		if ((Game.getRound() == Game.getMe().getPlayerID())) {
 			showDice();
 		}
+
+		bouwPanelController = new BuildPanelController(Game, db_conn);
+		playerInfoController = new PlayerInfoController(Game, db_conn);
+
+		chatPanelController = new ChatPanelController(Game, db_conn);
+
 	}
+
 	public void showDice() {
 		diceController.showDice();
 	}
-	
-	public BuildPanel getBouwPanel() { 
+
+	public BuildPanel getBouwPanel() {
 		return bouwPanelController.getBouwPanel();
 	}
 
@@ -49,10 +51,12 @@ public class GameController {
 	public DicePanel getDicePanel() {
 		return diceController.getDicePanel();
 	}
+
 	public ChatPanel getChatPanel() {
 		// TODO Auto-generated method stub
 		return chatPanelController.getChatPanel();
 	}
+
 	public BoardPanel getBordPanel() {
 		// TODO Auto-generated method stub
 		return new BoardPanel();

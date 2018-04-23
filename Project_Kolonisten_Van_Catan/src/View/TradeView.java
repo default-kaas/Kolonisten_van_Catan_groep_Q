@@ -52,8 +52,8 @@ public class TradeView extends JFrame {
 	private JTextField their_oret = new JTextField(2);
 
 	// het onderstaande moet veranderd worden
-	private JLabel playerdd = new JLabel("Who do you want to trade with?");
-	private String[] players = { "Players", "The Bank" };
+	private JLabel playerdd = new JLabel("Hoe wil je ruilen?");
+	private String[] players = { "Spelers", "De Bank" };
 	private final JComboBox<String> cb = new JComboBox<String>(players);
 
 	public TradeView() {

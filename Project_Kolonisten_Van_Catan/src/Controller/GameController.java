@@ -9,7 +9,7 @@ import View.ChatPanel;
 import View.DicePanel;
 import View.PlayerInformationPanel;
 
-public class GameController {
+public class GameController implements Runnable{
 	private Game Game;
 	private PlayerInfoController playerInfoController;
 	private DiceController diceController;
@@ -26,9 +26,33 @@ public class GameController {
 
 		bouwPanelController = new BuildPanelController(Game, db_conn);
 		playerInfoController = new PlayerInfoController(Game, db_conn);
-
 		chatPanelController = new ChatPanelController(Game, db_conn);
+		
+		Thread t1 = new Thread(chatPanelController);
+		Thread t2 = new Thread(this);
+		t1.start();
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		t2.start();
+	
 
+	}
+	
+	public void runGame() {
+		while(true) {
+			System.out.println("xD");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	public void showDice() {
@@ -60,5 +84,11 @@ public class GameController {
 	public BoardPanel getBordPanel() {
 		// TODO Auto-generated method stub
 		return new BoardPanel();
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		runGame();
 	}
 }

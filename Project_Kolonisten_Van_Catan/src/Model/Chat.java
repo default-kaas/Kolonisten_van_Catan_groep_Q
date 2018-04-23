@@ -37,4 +37,9 @@ public class Chat {
 		return chat;
 	}
 
+	public void updateChat(int GameID) {
+		// TODO Auto-generated method stub
+		ChatDAO.updateChat(GameID, chatArray);
+	}
+
 }

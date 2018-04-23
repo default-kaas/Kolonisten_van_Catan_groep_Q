@@ -18,7 +18,7 @@ import javax.swing.table.TableColumnModel;
 
 import Controller.LobbyController;
 
-public class LobbyPanel extends JPanel {
+public class LobbyPanel extends JPanel implements ActionListener {
 
 	private JTable invitedList;
 	private JButton acceptBtn;
@@ -31,48 +31,55 @@ public class LobbyPanel extends JPanel {
 
 	public LobbyPanel(LobbyFrame lobbyFrame, LobbyController lobbyController) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int size = (int) (screenSize.getHeight());
-		this.setPreferredSize(new Dimension(size, size / 2));
+		int height = (int) (screenSize.getHeight());
+		int width = (int) (screenSize.getWidth());
+		this.setPreferredSize(new Dimension(width /2  , height /2));
 
 		this.setLayout(new GridBagLayout());
-	
-		this.lobbyController = lobbyController;
-		
-		SPELOPENNU = new JButton("SPEL OPEN NU!!");
-		this.add(SPELOPENNU);
-		SPELOPENNU.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				lobbyFrame.showGameScreen();
-			}
-			
-		});
+		this.lobbyController = lobbyController;
+
+
+		lobbyTable();
+		
+		rejectAndAcceptButton();
+		
+		activeGames();
+		
+		newGameTitle();
+		
+		normalButton();
+		
+		advancedButton();
+
+	}
+	
+	
+	public void lobbyTable() {
 		
 		Object[][] data = lobbyController.showUsers();
-//		setBackground(new Color(157, 24, 31));
+		// setBackground(new Color(157, 24, 31));
 		String[] columns = new String[] { "Name", "speelstatus" };
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		setLayout(gridBagLayout);
 
 		JLabel lblLobby = new JLabel("Uitnodiging");
-		lblLobby.setFont(new Font("Arial", Font.BOLD, 80));
+		lblLobby.setFont(new Font("Arial", Font.BOLD, 60));
 		GridBagConstraints gbc_lblLobby = new GridBagConstraints();
 		gbc_lblLobby.insets = new Insets(0, 0, 0, 100);
-		gbc_lblLobby.anchor = GridBagConstraints.WEST;
+		gbc_lblLobby.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblLobby.gridx = 0;
-		gbc_lblLobby.gridy = 1;
+		gbc_lblLobby.gridy = 0;
 		add(lblLobby, gbc_lblLobby);
 		invitedList = new JTable(data, columns);
 		invitedList.setFont(new Font("Calibri", Font.BOLD, 30));
-		invitedList.setRowHeight(80);
+		invitedList.setRowHeight(50);
 		TableColumnModel columnModel = invitedList.getColumnModel();
 		invitedList.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-		//loop to set the width of the table.
+		// loop to set the width of the table.
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {
-			invitedList.getColumnModel().getColumn(i).setPreferredWidth(200);
+			invitedList.getColumnModel().getColumn(i).setPreferredWidth(100);
 		}
 
 		GridBagConstraints gbc_table = new GridBagConstraints();
@@ -82,93 +89,106 @@ public class LobbyPanel extends JPanel {
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 2;
 		add(invitedList, gbc_table);
-
-		acceptBtn = new JButton("Accepteer");
-		acceptBtn.setPreferredSize(new Dimension(200, 70));
-		acceptBtn.setBackground(new Color(59, 89, 182));
-		acceptBtn.setForeground(Color.BLACK);
-		acceptBtn.setFont(new Font("Calibri", Font.BOLD, 30));
-		GridBagConstraints gbc_acceptBtn = new GridBagConstraints();
-		gbc_acceptBtn.insets = new Insets(0, 20, 20, 0);
 		
-		acceptBtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//uitnodiging accepteren
-				
-			}
-		});
+	}
+	
+	
+	public void activeGames() {
+	
+	}
 
-		gbc_acceptBtn.anchor = GridBagConstraints.CENTER;
-		gbc_acceptBtn.gridx = 0;
-		gbc_acceptBtn.gridy = 3;
-		add(acceptBtn, gbc_acceptBtn);
+	public void rejectAndAcceptButton() {
 
 		rejectBtn = new JButton("Weiger");
-		rejectBtn.setPreferredSize(new Dimension(200, 70));
+		rejectBtn.setPreferredSize(new Dimension(160, 50));
 		rejectBtn.setBackground(new Color(59, 89, 182));
 		rejectBtn.setForeground(Color.BLACK);
 		rejectBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_rejectBtn = new GridBagConstraints();
-		gbc_rejectBtn.insets = new Insets(0, 0, 20, 400);
-		
+	
 
-		gbc_rejectBtn.anchor = GridBagConstraints.CENTER;
+		gbc_rejectBtn.anchor = GridBagConstraints.WEST;
 		gbc_rejectBtn.gridx = 0;
 		gbc_rejectBtn.gridy = 3;
 		add(rejectBtn, gbc_rejectBtn);
 		
-		rejectBtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//uitnodiging weigeren.
-				
-			}
-		});
+		
+		acceptBtn = new JButton("Accepteer");
+		acceptBtn.setPreferredSize(new Dimension(160, 50));
+		acceptBtn.setBackground(new Color(59, 89, 182));
+		acceptBtn.setForeground(Color.BLACK);
+		acceptBtn.setFont(new Font("Calibri", Font.BOLD, 30));
+		GridBagConstraints gbc_acceptBtn = new GridBagConstraints();
+		gbc_acceptBtn.insets = new Insets(0, 200, 0, 0);
+		gbc_acceptBtn.anchor = GridBagConstraints.WEST;
+		gbc_acceptBtn.gridx = 0;
+		gbc_acceptBtn.gridy = 3;
+		add(acceptBtn, gbc_acceptBtn);
 
-		normalMode = new JButton("Normale spel crieëren");
-		normalMode.setPreferredSize(new Dimension(400, 100));
+
+	}
+	
+	public void newGameTitle() {
+		
+		
+		JLabel lblLobby = new JLabel("Spel crieëren");
+		lblLobby.setFont(new Font("Arial", Font.BOLD, 60));
+		GridBagConstraints gbc_lobbyTitle = new GridBagConstraints();
+		gbc_lobbyTitle.gridx = 3;
+		gbc_lobbyTitle.gridy = 0;
+		gbc_lobbyTitle.anchor = GridBagConstraints.EAST;
+		add(lblLobby, gbc_lobbyTitle);
+		
+	}
+
+	public void normalButton() {
+
+		normalMode = new JButton("Normaal");
+		normalMode.setPreferredSize(new Dimension(200, 100));
 		normalMode.setBackground(new Color(59, 89, 182));
 		normalMode.setForeground(Color.BLACK);
 		normalMode.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_normalBtn = new GridBagConstraints();
 		gbc_normalBtn.insets = new Insets(200, 0, 0, 0);
-		gbc_normalBtn.anchor = GridBagConstraints.CENTER;
-		gbc_normalBtn.gridx = 1;
+		gbc_normalBtn.anchor = GridBagConstraints.EAST;
+		gbc_normalBtn.gridx = 3;
 		gbc_normalBtn.gridy = 2;
 		add(normalMode, gbc_normalBtn);
 
-		normalMode.addActionListener(new ActionListener() {
+	}
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// lobby openen
+	public void advancedButton() {
 
-			}
-		});
-
-		advancedMode = new JButton("Geavanceerde spel crieëren");
-		advancedMode.setPreferredSize(new Dimension(400, 100));
+		advancedMode = new JButton("Geavanceerd");
+		advancedMode.setPreferredSize(new Dimension(200, 100));
 		advancedMode.setBackground(new Color(59, 89, 182));
 		advancedMode.setForeground(Color.BLACK);
 		advancedMode.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_advancedBtn = new GridBagConstraints();
 		gbc_advancedBtn.insets = new Insets(0, 0, 0, 0);
-		gbc_advancedBtn.anchor = GridBagConstraints.CENTER;
-		gbc_advancedBtn.gridx = 1;
+		gbc_advancedBtn.anchor = GridBagConstraints.EAST;
+		gbc_advancedBtn.gridx = 3;
 		gbc_advancedBtn.gridy = 2;
 		add(advancedMode, gbc_advancedBtn);
+	}
 
-		advancedMode.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent a) {
+		if (a.getSource() == normalMode) {
+			
+		}
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// lobby openen
+		if (a.getSource() == advancedMode) {
 
-			}
-		});
+		}
+
+		if (a.getSource() == rejectBtn) {
+
+		}
+
+		if (a.getSource() == acceptBtn) {
+
+		}
+
 	}
 
 }

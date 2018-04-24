@@ -43,6 +43,7 @@ public class ChatPanelController implements Runnable {
 
 	@Override
 	public void run() {
+		setUserInput("joined the game!");
 		while (true) {
 			// System.out.println("test");
 			updateChat();

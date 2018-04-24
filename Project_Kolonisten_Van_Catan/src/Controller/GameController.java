@@ -29,7 +29,7 @@ public class GameController implements Runnable{
 		chatPanelController = new ChatPanelController(Game, db_conn);
 		
 		Thread t1 = new Thread(chatPanelController);
-		Thread t2 = new Thread(this);
+//		Thread t2 = new Thread(this);
 		t1.start();
 		try {
 			Thread.sleep(10);
@@ -37,7 +37,7 @@ public class GameController implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		t2.start();
+//		t2.start();
 	
 
 	}

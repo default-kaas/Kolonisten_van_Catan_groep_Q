@@ -1,12 +1,21 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,6 +30,7 @@ public class InvitePanel extends JPanel {
 	private JTable playerFinding;
 	public InviteController inviteController;
 	private TitledBorder myTitle;
+	private BufferedImage myImage;
 	Object[][] data;
 	String[] column;
 
@@ -114,6 +124,13 @@ public class InvitePanel extends JPanel {
 		
 		JButton refreshBtn = new JButton("Refresh");	
 		refreshBtn.setPreferredSize(new Dimension(200, 70));
+		try {
+			myImage = ImageIO.read(new File("images/Buttons/refresh.jpg"));
+			refreshBtn.setIcon(new ImageIcon(myImage));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		refreshBtn.setBackground(new Color(13, 150, 45));
 		refreshBtn.setForeground(Color.BLACK);
 		refreshBtn.setFont(new Font("Calibri", Font.BOLD, 30));
@@ -164,7 +181,18 @@ public class InvitePanel extends JPanel {
 	public void inviteButton() {
 		
 		JButton inviteBtn = new JButton("Invite Players");	
-		inviteBtn.setPreferredSize(new Dimension(300, 70));
+		
+		
+		try {
+			
+			myImage = ImageIO.read(new File("images/Buttons/invitePlayers.jpg"));
+			inviteBtn.setPreferredSize(new Dimension(myImage.getWidth(), myImage.getHeight()));
+			   inviteBtn.setIcon(new ImageIcon(myImage));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
 		inviteBtn.setBackground(new Color(13, 150, 45));
 		inviteBtn.setForeground(Color.BLACK);
 		inviteBtn.setFont(new Font("Calibri", Font.BOLD, 30));

@@ -26,19 +26,33 @@ public class ChatDAO {
 		}
 	}
 
-	public void updateChat(Game game, ArrayList<String> chatArray) {
+	public boolean updateChat(Game game, ArrayList<String> chatArray) {
 		// TODO Auto-generated method stub
 		try {
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
-			chatArray.clear();
+			ArrayList<String> chatArrayNew = new ArrayList<String>();
+		
+			
 			rs = stmt.executeQuery("select username, kleur, bericht from chatregel join speler on speler.idspeler = chatregel.idspeler where idspel = "+ game.getGameID()+" ORDER BY tijdstip asc");
 			while (rs.next()) {
-				chatArray.add(rs.getString("username") + "("+ rs.getString("kleur") +") " +rs.getString("bericht"));
+				chatArrayNew.add(rs.getString("username") + "("+ rs.getString("kleur") +") " +rs.getString("bericht"));
+			}
+			if(chatArray.size() < chatArrayNew.size()) {
+				System.out.println("ChatCleared!");
+				chatArray.clear();
+				for(String x : chatArrayNew) {
+					chatArray.add(x);
+				}
+				return true;
+			}
+			else {
+				return false;
 			}
 
 		} catch (SQLException e) {
 			System.out.println(e);
+			return false;
 		}
 	}
 

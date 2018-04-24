@@ -22,8 +22,9 @@ public class ChatPanelController implements Runnable {
 	}
 
 	public void updateChat() {
-		chatModel.updateChat(game);
-		chatPanel.updateText();
+		if (chatModel.updateChat(game)) {
+			chatPanel.updateText();
+		}
 	}
 
 	public String getTextArray() {
@@ -43,10 +44,10 @@ public class ChatPanelController implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
-//			System.out.println("test");
+			// System.out.println("test");
 			updateChat();
 			try {
-				Thread.sleep(500);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

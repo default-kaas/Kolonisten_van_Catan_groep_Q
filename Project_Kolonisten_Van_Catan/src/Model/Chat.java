@@ -37,9 +37,9 @@ public class Chat {
 		return chat;
 	}
 
-	public void updateChat(Game game) {
+	public boolean updateChat(Game game) {
 		// TODO Auto-generated method stub
-		ChatDAO.updateChat(game, chatArray);
+		return ChatDAO.updateChat(game, chatArray);
 	}
 
 }

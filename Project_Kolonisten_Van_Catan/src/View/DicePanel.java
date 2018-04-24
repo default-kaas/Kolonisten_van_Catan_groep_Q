@@ -36,7 +36,7 @@ public class DicePanel extends JPanel implements MouseListener {
 		if(diceController.hasTrown()) {
 			diceController.showOldDice();
 			remove(text);
-			this.setBackground(Color.BLUE);
+			this.setBackground(new Color(1, 207, 203));
 			pressed = true;
 			repaint();
 		}else {

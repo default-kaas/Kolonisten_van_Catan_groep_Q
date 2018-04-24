@@ -9,6 +9,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,12 +27,14 @@ import javax.swing.table.TableColumnModel;
 
 import Controller.InviteController;
 
-public class InvitePanel extends JPanel {
+public class InvitePanel extends JPanel implements ActionListener {
 	private JTable playerList;
 	private JTable playerFinding;
 	public InviteController inviteController;
 	private TitledBorder myTitle;
 	private BufferedImage myImage;
+	private JButton refreshBtn;
+	private JButton inviteBtn;
 	Object[][] data;
 	String[] column;
 
@@ -114,7 +118,7 @@ public class InvitePanel extends JPanel {
 	}
 
 	public void lobbyButtons() {
-		JButton refreshBtn = new JButton();
+		refreshBtn = new JButton();
 		refreshBtn.setPreferredSize(new Dimension(200, 70));
 		try {
 			myImage = ImageIO.read(new File("images/Buttons/refresh.jpg"));
@@ -126,6 +130,7 @@ public class InvitePanel extends JPanel {
 		refreshBtn.setBackground(new Color(13, 150, 45));
 		refreshBtn.setForeground(Color.BLACK);
 		refreshBtn.setFont(new Font("Calibri", Font.BOLD, 30));
+		refreshBtn.addActionListener(this);
 		GridBagConstraints gbc_inviteBtn = new GridBagConstraints();
 		gbc_inviteBtn.insets = new Insets(0, 0, 80, 150);
 
@@ -169,7 +174,7 @@ public class InvitePanel extends JPanel {
 	}
 
 	public void inviteButton() {
-		JButton inviteBtn = new JButton();
+		inviteBtn = new JButton();
 		try {
 			myImage = ImageIO.read(new File("images/Buttons/invitePlayers.jpg"));
 			inviteBtn.setPreferredSize(new Dimension(myImage.getWidth(), myImage.getHeight()));
@@ -182,6 +187,7 @@ public class InvitePanel extends JPanel {
 		inviteBtn.setBackground(new Color(13, 150, 45));
 		inviteBtn.setForeground(Color.BLACK);
 		inviteBtn.setFont(new Font("Calibri", Font.BOLD, 30));
+		inviteBtn.addActionListener(this);
 		GridBagConstraints gbc_inviteBtn1 = new GridBagConstraints();
 		gbc_inviteBtn1.insets = new Insets(0, 150, 80, 0);
 		gbc_inviteBtn1.anchor = GridBagConstraints.EAST;
@@ -190,4 +196,17 @@ public class InvitePanel extends JPanel {
 		add(inviteBtn, gbc_inviteBtn1);
 
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == refreshBtn) {
+
+		}
+
+		if (e.getSource() == inviteBtn) {
+
+		}
+
+	}
+
 }

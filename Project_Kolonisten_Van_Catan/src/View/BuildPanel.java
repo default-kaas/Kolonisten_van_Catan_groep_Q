@@ -3,6 +3,7 @@ package View;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -10,6 +11,7 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,28 +38,28 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.bouwPanelController = bouwPanelController;
 		this.setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
+		
+	
 
-		setTitles();
-		setRoad();
-		setHouse();
-		setCity();
-		setDevelopmentCard();
+		
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBorder(title);
-		/*this.setBackground(new Color(192, 236, 237));*/
-	
 		
 		
+		setTitles();
+		setRoad();
+		setHouse();
+		setCity();
+		setDevelopmentCard();
 		buyRoad.addActionListener(this);
 		buyHouse.addActionListener(this);
 		buyCity.addActionListener(this);
 		buyDevelopmentCard.addActionListener(this);
-		
-		
+
 	}
 
 	public void setTitles() {
@@ -156,7 +158,8 @@ public class BuildPanel extends JPanel implements ActionListener {
 		ImageIcon wood1 = new ImageIcon("images/Resources/wood1.png");
 		JLabel houseWood = new JLabel(wood1);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 0, 30, 0);;
+		c.insets = new Insets(0, 0, 30, 0);
+		;
 		c.gridx = 4;
 		c.gridy = 3;
 		this.add(houseWood, c);
@@ -220,7 +223,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridx = 4;
 		c.gridy = 4;
 		this.add(cityOre3, c);
-		
+
 		ImageIcon wheat1 = new ImageIcon("images/Resources/wheat1.png");
 		JLabel cityWheat1 = new JLabel(wheat1);
 		c.anchor = GridBagConstraints.CENTER;
@@ -293,44 +296,62 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.add(buyDevelopmentCard, c);
 
 	}
-	
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 		if (e.getSource().equals(buyRoad)) {
-			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een straat wilt kopen?", "Straat Kopen?", JOptionPane.YES_OPTION);
+			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een straat wilt kopen?",
+					"Straat Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
 				System.out.println(bouwPanelController.checkRecoursesRoad());
-			} 			
+			}
 		}
-		
+
 		if (e.getSource().equals(buyHouse)) {
-			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een dorp wilt kopen?", "dorp Kopen?", JOptionPane.YES_OPTION);
+			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een dorp wilt kopen?",
+					"dorp Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
 				System.out.println(bouwPanelController.checkResourcesHouse());
-			} 			
-			
+			}
+
 		}
-		
+
 		if (e.getSource().equals(buyCity)) {
-			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een stad wilt kopen?", "Stad Kopen?", JOptionPane.YES_OPTION);
+			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een stad wilt kopen?",
+					"Stad Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
 				System.out.println(bouwPanelController.checkResourcesCity());
-			} 	
+			}
 		}
-		
+
 		if (e.getSource().equals(buyDevelopmentCard)) {
-			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een ontwikkelingskaart wilt kopen?", "Ontwikkelingskaart Kopen?", JOptionPane.YES_OPTION);
+			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een ontwikkelingskaart wilt kopen?",
+					"Ontwikkelingskaart Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
 				System.out.println(bouwPanelController.checkResourcesDevCard());
-			} 
-			
+			}
+
 		}
+
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
+		int height = (int) (screenSize.getHeight() * 0.4);
 		
-		
+
+		ImageIcon icon = new ImageIcon("images/Background/buildBg.jpg"); 
+		JLabel thumb = new JLabel(icon);
+		thumb.setSize(width, height);
+		this.add(thumb);
 		
 	}
+
+
 }

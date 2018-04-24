@@ -35,6 +35,8 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	public LobbyController lobbyController;
 	private LobbyFrame lobbyFrame;
 	private TitledBorder myTitle;
+	private Object[][] data;
+	private Object[][] data2;
 
 	GridBagConstraints c;
 
@@ -44,7 +46,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int) (screenSize.getHeight() * 0.8);
 		int width = (int) (screenSize.getWidth() * 0.8);
-		
+
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBackground(new Color(57, 121, 186));
 
@@ -56,9 +58,9 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		this.setLayout(new GridBagLayout());
 
 		this.lobbyController = lobbyController;
-		//setTitle
+		// setTitle
 		setTitle();
-		
+
 		// Row 1
 		lobbyTable();
 
@@ -68,7 +70,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		activeGames();
 
 		rejoinButton();
-		
+
 		refreshButton();
 
 		// row 3
@@ -78,13 +80,11 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		advancedButton();
 
-		
-		
 		this.setBorder(myTitle);
 	}
-	
+
 	public void setTitle() {
-		
+
 		myTitle = new TitledBorder("Lobby");
 		myTitle.setTitleFont(new Font("Ayuthaya", Font.BOLD, 80));
 		myTitle.setTitleJustification(TitledBorder.CENTER);
@@ -94,7 +94,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 	public void lobbyTable() {
 
-		Object[][] data = lobbyController.showInvites();
+		data = lobbyController.showInvites();
 		// setBackground(new Color(157, 24, 31));
 		String[] columns = new String[] { "Name", "speelstatus" };
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -110,6 +110,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		add(lblLobby, gbc_lblLobby);
 
 		Uitnodiging = new JTable(data, columns);
+
 		Uitnodiging.setFont(new Font("Calibri", Font.BOLD, 30));
 		Uitnodiging.setRowHeight(50);
 		TableColumnModel columnModel = Uitnodiging.getColumnModel();
@@ -131,7 +132,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	}
 
 	public void rejectAndAcceptButton() {
-		
+
 		acceptBtn = new JButton("Accepteer");
 		acceptBtn.setPreferredSize(new Dimension(160, 50));
 		acceptBtn.setBackground(new Color(117, 186, 56));
@@ -158,13 +159,11 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_rejectBtn.gridy = 3;
 		add(rejectBtn, gbc_rejectBtn);
 
-	
-
 	}
 
 	public void activeGames() {
 
-		Object[][] data = lobbyController.showUsers();
+		data2 = lobbyController.showUsers();
 
 		String[] columns = new String[] { "Name", "speelstatus" };
 
@@ -177,7 +176,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_lblLobby.gridx = 1;
 		gbc_lblLobby.gridy = 0;
 		add(lblLobby, gbc_lblLobby);
-		invitedList = new JTable(data, columns);
+		invitedList = new JTable(data2, columns);
 
 		invitedList.setFont(new Font("Calibri", Font.BOLD, 30));
 		invitedList.setRowHeight(50);
@@ -259,17 +258,17 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_advancedBtn.gridy = 3;
 		add(advancedMode, gbc_advancedBtn);
 	}
-	
+
 	public void refreshButton() {
 		refreshBtn = new JButton("REFRESH");
-		refreshBtn .setPreferredSize(new Dimension(200, 50));
-		refreshBtn .setBackground(new Color(198, 155, 13));
-		refreshBtn .setForeground(Color.BLACK);
-		refreshBtn .setFont(new Font("Calibri", Font.BOLD, 30));
-		refreshBtn .addActionListener(this);
-		GridBagConstraints gbc_refreshBtn  = new GridBagConstraints();
+		refreshBtn.setPreferredSize(new Dimension(200, 50));
+		refreshBtn.setBackground(new Color(198, 155, 13));
+		refreshBtn.setForeground(Color.BLACK);
+		refreshBtn.setFont(new Font("Calibri", Font.BOLD, 30));
+		refreshBtn.addActionListener(this);
+		GridBagConstraints gbc_refreshBtn = new GridBagConstraints();
 		gbc_refreshBtn.anchor = GridBagConstraints.CENTER;
-		/*gbc_refreshBtn.insets = new Insets(100, 0, 0, 0);*/
+		/* gbc_refreshBtn.insets = new Insets(100, 0, 0, 0); */
 		gbc_refreshBtn.gridx = 1;
 		gbc_refreshBtn.gridy = 3;
 		add(refreshBtn, gbc_refreshBtn);
@@ -281,6 +280,24 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 	public JButton getButton() {
 		return advancedMode;
+	}
+
+	public void refresh() {
+		data = lobbyController.showInvites();
+		int i = 0;
+		for (Object[] x : data) {
+			Uitnodiging.setValueAt(x[0], i, 0);
+			Uitnodiging.setValueAt(x[1], i, 1);
+			i++;
+		}
+		data2 = lobbyController.showUsers();
+		i = 0;
+		for (Object[] x : data2) {
+			invitedList.setValueAt(x[0], i, 0);
+			invitedList.setValueAt(x[1], i, 1);
+			i++;
+
+		}
 	}
 
 	public void actionPerformed(ActionEvent a) {
@@ -298,15 +315,18 @@ public class LobbyPanel extends JPanel implements ActionListener {
 			if (x == -1) { // If a user doesn't select a cell OR user selects a sell from a different table
 				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd",
 						JOptionPane.ERROR_MESSAGE);
+				Uitnodiging.clearSelection();
 
 			} else if (Uitnodiging.getValueAt(x, 0).equals(" Geen")) { // shows an error message if a user selects an
 																		// empty cell (I.E cell with "GEEN GAME")
 				JOptionPane.showMessageDialog(this, "Je kan de geselecteerde cel niet weigeren!", "ERROR!",
 						JOptionPane.ERROR_MESSAGE);
+				Uitnodiging.clearSelection();
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), false);
-				Uitnodiging.setValueAt(" Geen", x, 0);
-				Uitnodiging.setValueAt(" game", x, 1);
+				Uitnodiging.clearSelection();
+				refresh();
+
 			}
 
 		}
@@ -316,14 +336,16 @@ public class LobbyPanel extends JPanel implements ActionListener {
 			if (x == -1) { // If a user doesn't select a cell OR user selects a sell from a different table
 				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd",
 						JOptionPane.ERROR_MESSAGE);
+				Uitnodiging.clearSelection();
 
 			} else if (Uitnodiging.getValueAt(x, 0).equals(" Geen")) {
 				JOptionPane.showMessageDialog(this, "Je kan de geselecteerde cel niet accepteren :<", "ERROR!",
 						JOptionPane.ERROR_MESSAGE);
+				Uitnodiging.clearSelection();
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), true);
-				Uitnodiging.setValueAt(" Geen", x, 0);
-				Uitnodiging.setValueAt(" game", x, 1);
+				Uitnodiging.clearSelection();
+				refresh();
 			}
 
 		}
@@ -333,22 +355,24 @@ public class LobbyPanel extends JPanel implements ActionListener {
 			if (x == -1) {
 				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd",
 						JOptionPane.ERROR_MESSAGE);
+				invitedList.clearSelection();
 
 			} else if (invitedList.getValueAt(x, 0).equals(" Geen")) {
 				JOptionPane.showMessageDialog(this, "Je kan de geselecteerde cel niet joinen :<", "ERROR!",
 						JOptionPane.ERROR_MESSAGE);
+				invitedList.clearSelection();
 			} else {
 				lobbyFrame.dispose();
 				lobbyController.joinOldGame((int) invitedList.getValueAt(x, 0));
 			}
 
 		}
-		
-		if (a.getSource() == refreshBtn) {
-			
-			
-		}
 
+		if (a.getSource() == refreshBtn) {
+			Uitnodiging.clearSelection();
+			invitedList.clearSelection();
+			refresh();
+		}
 	}
 
 }

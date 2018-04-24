@@ -50,4 +50,8 @@ public class LobbyController {
 		lobbyFrame.showGameScreen(gameID, username, false);
 		
 	}
+
+	public void UpdateInviteAndGame() {
+		lobbyDAO.getInvitedGames(username);
+	}
 }

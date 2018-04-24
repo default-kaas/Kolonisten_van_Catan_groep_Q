@@ -116,7 +116,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 		trade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TradePanelController tpc = new TradePanelController();
+				// laat zien
 			}
 		});
 	}

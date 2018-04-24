@@ -1,15 +1,17 @@
 package Model;
 
+import Controller.TradePanelController;
+
 public class Trade {
+	
+	private TradePanelController tc;
 	
 	boolean accepted = false;
 	
-	private void getPlayerCards() {
-		
-		
-		
+	public Trade(TradePanelController tradePanelController) {
+		tc = tradePanelController;
 	}
-	
+
 	private void sendTradeInvitation() {
 		
 		

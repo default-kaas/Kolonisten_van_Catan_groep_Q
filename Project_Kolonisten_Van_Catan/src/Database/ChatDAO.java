@@ -39,7 +39,6 @@ public class ChatDAO {
 				chatArrayNew.add(rs.getString("username") + "("+ rs.getString("kleur") +") " +rs.getString("bericht"));
 			}
 			if(chatArray.size() < chatArrayNew.size()) {
-				System.out.println("ChatCleared!");
 				chatArray.clear();
 				for(String x : chatArrayNew) {
 					chatArray.add(x);

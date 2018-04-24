@@ -14,8 +14,9 @@ public class PlayerInfoController {
 		spelerInformatiePanel = new PlayerInformationPanel(this);
 		this.game = game;
 		spelerInformatiePanel.UpdatePlayerTurn();
-		spelerInformatiePanel.ShowResources();
 		spelerInformatiePanel.ShowTradeButton();
+		spelerInformatiePanel.ShowResources();
+		
 	}
 
 	public String getPlayerName(int volgnr) {

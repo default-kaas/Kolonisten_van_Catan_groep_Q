@@ -49,11 +49,11 @@ public class TradeView extends JFrame {
 	private JLabel theirCards = new JLabel("Vraag:");
 
 	// het onderstaande moet veranderd worden naar data uit de database
-	private JLabel your_wool = new JLabel("0");
-	private JLabel your_wheat = new JLabel("2");
-	private JLabel your_wood = new JLabel("1");
-	private JLabel your_stone = new JLabel("0");
-	private JLabel your_ore = new JLabel("3");
+	private JLabel your_wool;
+	private JLabel your_wheat;
+	private JLabel your_wood;
+	private JLabel your_stone;
+	private JLabel your_ore;
 
 	private JLabel resource_input = new JLabel("Input:");
 	private JTextField your_woolt = new JTextField(2);
@@ -72,10 +72,17 @@ public class TradeView extends JFrame {
 	private JLabel playerdd = new JLabel("Hoe wil je ruilen?");
 	private String[] players = { "Spelers", "De Bank" };
 	private final JComboBox<String> cb = new JComboBox<String>(players);
+	
+	JPanel trade;
 
-	public TradeView() {
+	public TradeView(TradePanelController tradePanelController) {
+		
+		tc = tradePanelController;
 
-		JPanel trade = new JPanel();
+	}
+	
+	public void showFrame() {
+		trade = new JPanel();
 
 		this.setAlwaysOnTop (true);
 		trade.setLayout(new GridBagLayout());
@@ -87,7 +94,7 @@ public class TradeView extends JFrame {
 		c.gridy = 0;
 
 		trade.setBackground(Color.white);
-		trade.setVisible(true);
+		trade.setVisible(false);
 		trade.setPreferredSize(new Dimension(1000, 600));
 		trade.setBackground(new Color(245, 245, 220));
 
@@ -108,12 +115,16 @@ public class TradeView extends JFrame {
 
 		c.insets = new Insets(550, 0, 0, 0);
 		trade.add(propose, c);
+		
+		your_wool = new JLabel("" + tc.getPlayerCards(1));
+		your_wheat = new JLabel("" + tc.getPlayerCards(2));
+		your_wood = new JLabel("" + tc.getPlayerCards(3));
+		your_stone = new JLabel("" + tc.getPlayerCards(4));
+		your_ore = new JLabel("" + tc.getPlayerCards(5));
 
 		c.insets = new Insets(160, 0, 0, 620);
 		trade.add(your_wool, c);
-
 		c.insets = new Insets(230, 0, 0, 620);
-
 		trade.add(your_wheat, c);
 		c.insets = new Insets(300, 0, 0, 620);
 		trade.add(your_wood, c);
@@ -193,7 +204,8 @@ public class TradeView extends JFrame {
 				dispose();
 			}
 		});
-
+		
+		trade.setVisible(true);
 	}
 
 	private void setupFrame() {

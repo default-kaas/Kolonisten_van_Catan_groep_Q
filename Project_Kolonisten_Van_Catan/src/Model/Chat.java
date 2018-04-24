@@ -14,7 +14,7 @@ public class Chat {
 	public Chat(Connection db_conn) {
 		ChatDAO = new ChatDAO(db_conn);
 		chatArray = new ArrayList<String>();
-		chatArray.add("Welkom bij Catan chat!");
+		
 		
 	}
 

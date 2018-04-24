@@ -15,10 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.TableColumnModel;
 
 import Controller.LobbyController;
 
+@SuppressWarnings("serial")
 public class LobbyPanel extends JPanel implements ActionListener {
 
 	private JTable invitedList;
@@ -31,6 +33,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	private JButton refreshBtn;
 	public LobbyController lobbyController;
 	private LobbyFrame lobbyFrame;
+	private TitledBorder myTitle;
 
 	GridBagConstraints c;
 
@@ -40,6 +43,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int) (screenSize.getHeight() * 0.8);
 		int width = (int) (screenSize.getWidth() * 0.8);
+		
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBackground(new Color(57, 121, 186));
 
@@ -51,6 +55,9 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		this.setLayout(new GridBagLayout());
 
 		this.lobbyController = lobbyController;
+		//setTitle
+		setTitle();
+		
 		// Row 1
 		lobbyTable();
 
@@ -70,6 +77,18 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		advancedButton();
 
+		
+		
+		this.setBorder(myTitle);
+	}
+	
+	public void setTitle() {
+		
+		myTitle = new TitledBorder("Lobby");
+		myTitle.setTitleFont(new Font("Ayuthaya", Font.BOLD, 80));
+		myTitle.setTitleJustification(TitledBorder.CENTER);
+		myTitle.setTitlePosition(TitledBorder.TOP);
+		myTitle.setTitle("Lobby");
 	}
 
 	public void lobbyTable() {

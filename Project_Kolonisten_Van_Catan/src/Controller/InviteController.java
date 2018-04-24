@@ -27,9 +27,9 @@ public class InviteController {
 		return InviteDAO.getInviteUserList();
 	}
 	
-	public int getSelectedRow() {
-		return invitePanel.getSelectedRow();
-	}
+//	public int getSelectedRow() {
+//		return invitePanel.getSelectedRow();
+//	}
 	
 	
 

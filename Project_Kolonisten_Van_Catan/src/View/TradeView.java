@@ -2,6 +2,8 @@ package View;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import Controller.LengthRestrictedDocument;
 import Controller.TradePanelController;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -59,6 +61,7 @@ public class TradeView extends JFrame {
 
 		JPanel trade = new JPanel();
 
+		this.setAlwaysOnTop (true);
 		trade.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.NORTH;
@@ -133,6 +136,8 @@ public class TradeView extends JFrame {
 		trade.add(playerdd, c);
 		c.insets = new Insets(280, 0, 0, 0);
 		trade.add(cb, c);
+		
+		your_woolt.setDocument(new LengthRestrictedDocument(2));
 
 		this.add(trade);
 

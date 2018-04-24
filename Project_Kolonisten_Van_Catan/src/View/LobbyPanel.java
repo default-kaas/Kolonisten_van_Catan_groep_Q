@@ -111,6 +111,19 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	}
 
 	public void rejectAndAcceptButton() {
+		
+		acceptBtn = new JButton("Accepteer");
+		acceptBtn.setPreferredSize(new Dimension(160, 50));
+		acceptBtn.setBackground(new Color(117, 186, 56));
+		acceptBtn.setForeground(Color.BLACK);
+		acceptBtn.setFont(new Font("Calibri", Font.BOLD, 30));
+		acceptBtn.addActionListener(this);
+		GridBagConstraints gbc_acceptBtn = new GridBagConstraints();
+		gbc_acceptBtn.insets = new Insets(0, 0, 0, 100);
+		gbc_acceptBtn.anchor = GridBagConstraints.WEST;
+		gbc_acceptBtn.gridx = 0;
+		gbc_acceptBtn.gridy = 2;
+		add(acceptBtn, gbc_acceptBtn);
 
 		rejectBtn = new JButton("Weiger");
 		rejectBtn.setPreferredSize(new Dimension(160, 50));
@@ -125,18 +138,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_rejectBtn.gridy = 3;
 		add(rejectBtn, gbc_rejectBtn);
 
-		acceptBtn = new JButton("Accepteer");
-		acceptBtn.setPreferredSize(new Dimension(160, 50));
-		acceptBtn.setBackground(new Color(117, 186, 56));
-		acceptBtn.setForeground(Color.BLACK);
-		acceptBtn.setFont(new Font("Calibri", Font.BOLD, 30));
-		acceptBtn.addActionListener(this);
-		GridBagConstraints gbc_acceptBtn = new GridBagConstraints();
-		gbc_acceptBtn.insets = new Insets(0, 0, 0, 100);
-		gbc_acceptBtn.anchor = GridBagConstraints.WEST;
-		gbc_acceptBtn.gridx = 0;
-		gbc_acceptBtn.gridy = 2;
-		add(acceptBtn, gbc_acceptBtn);
+	
 
 	}
 
@@ -214,10 +216,10 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		normalMode.setFont(new Font("Calibri", Font.BOLD, 30));
 		normalMode.addActionListener(this);
 		GridBagConstraints gbc_normalBtn = new GridBagConstraints();
-		gbc_normalBtn.insets = new Insets(200, 200, 0, 0);
+		gbc_normalBtn.insets = new Insets(0, 0, 100, 0);
 		gbc_normalBtn.anchor = GridBagConstraints.EAST;
 		gbc_normalBtn.gridx = 3;
-		gbc_normalBtn.gridy = 1;
+		gbc_normalBtn.gridy = 2;
 		add(normalMode, gbc_normalBtn);
 
 	}
@@ -234,7 +236,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_advancedBtn.insets = new Insets(0, 200, 0, 0);
 		gbc_advancedBtn.anchor = GridBagConstraints.EAST;
 		gbc_advancedBtn.gridx = 3;
-		gbc_advancedBtn.gridy = 2;
+		gbc_advancedBtn.gridy = 3;
 		add(advancedMode, gbc_advancedBtn);
 	}
 	
@@ -247,7 +249,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		refreshBtn .addActionListener(this);
 		GridBagConstraints gbc_refreshBtn  = new GridBagConstraints();
 		gbc_refreshBtn.anchor = GridBagConstraints.CENTER;
-		gbc_refreshBtn.insets = new Insets(100, 0, 0, 0);
+		/*gbc_refreshBtn.insets = new Insets(100, 0, 0, 0);*/
 		gbc_refreshBtn.gridx = 1;
 		gbc_refreshBtn.gridy = 3;
 		add(refreshBtn, gbc_refreshBtn);

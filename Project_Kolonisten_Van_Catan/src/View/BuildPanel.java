@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -20,7 +22,8 @@ import Controller.BuildPanelController;
 
 @SuppressWarnings("serial")
 public class BuildPanel extends JPanel implements ActionListener {
-
+	private JLabel backgroundImage;
+	Image backGround;
 	private JButton buyRoad;
 	private JButton buyHouse;
 	private JButton buyCity;
@@ -45,8 +48,8 @@ public class BuildPanel extends JPanel implements ActionListener {
 		int height = (int) (screenSize.getHeight() * 0.4);
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBorder(title);
-		this.setBackground(new Color(192, 236, 237));
-		
+		/*this.setBackground(new Color(192, 236, 237));*/
+	
 		
 		
 		buyRoad.addActionListener(this);
@@ -290,25 +293,41 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.add(buyDevelopmentCard, c);
 
 	}
+	
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		if (e.getSource().equals(buyRoad)) {
-			System.out.println(bouwPanelController.checkRecoursesRoad());
-			
+			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een straat wilt kopen?", "Straat Kopen?", JOptionPane.YES_OPTION);
+			if (YesOrNo == JOptionPane.YES_OPTION) {
+				System.out.println(bouwPanelController.checkRecoursesRoad());
+			} 			
 		}
 		
 		if (e.getSource().equals(buyHouse)) {
-			System.out.println(bouwPanelController.checkResourcesHouse());
+			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een dorp wilt kopen?", "dorp Kopen?", JOptionPane.YES_OPTION);
+			if (YesOrNo == JOptionPane.YES_OPTION) {
+				System.out.println(bouwPanelController.checkResourcesHouse());
+			} 			
+			
 		}
 		
 		if (e.getSource().equals(buyCity)) {
-			System.out.println(bouwPanelController.checkResourcesCity());
+			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een stad wilt kopen?", "Stad Kopen?", JOptionPane.YES_OPTION);
+			if (YesOrNo == JOptionPane.YES_OPTION) {
+				System.out.println(bouwPanelController.checkResourcesCity());
+			} 	
 		}
 		
 		if (e.getSource().equals(buyDevelopmentCard)) {
-			System.out.println(bouwPanelController.checkResourcesDevCard());
+			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een ontwikkelingskaart wilt kopen?", "Ontwikkelingskaart Kopen?", JOptionPane.YES_OPTION);
+			if (YesOrNo == JOptionPane.YES_OPTION) {
+				System.out.println(bouwPanelController.checkResourcesDevCard());
+			} 
+			
 		}
 		
 		

@@ -66,14 +66,14 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private void SetVariables() {
 		// Add all images to Variables
 		try {
-			WoolImage = ImageIO.read(new File("images/Resources/Wool.png"));
-			WheatImage = ImageIO.read(new File("images/Resources/Wheat.png"));
-			WoodImage = ImageIO.read(new File("images/Resources/Wood.png"));
-			StoneImage = ImageIO.read(new File("images/Resources/Stone.png"));
-			OreImage = ImageIO.read(new File("images/Resources/Ore.png"));
+			WoolImage = ImageIO.read(new File("images/Resources/sheep1.png"));
+			WheatImage = ImageIO.read(new File("images/Resources/wheat1.png"));
+			WoodImage = ImageIO.read(new File("images/Resources/wood1.png"));
+			StoneImage = ImageIO.read(new File("images/Resources/stone1.png"));
+			OreImage = ImageIO.read(new File("images/Resources/ore1.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 
@@ -82,22 +82,22 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		
 		super.paintComponent(g);
 		
-		int Width =  (int) (WoolImage.getWidth() * 0.1);
-		int Height = (int) (WoolImage.getHeight() * 0.1);
+		int Width =  (int) (WoolImage.getWidth() * 0.8);
+		int Height = (int) (WoolImage.getHeight() * 0.8);
 		g.drawImage(WoolImage, 10, 200, Width, Height, this);
-		g.drawString(" : 1", 15+Width, 200+(int)(Height*0.5));
+		g.drawString(" : 1", 15+Width, 200+(int)(Height*0.6));
 		
 		g.drawImage(WheatImage, 110, 200, Width, Height, this);
-		g.drawString(" : 1", 115+Width,200+(int)(Height*0.5));
+		g.drawString(" : 1", 115+Width,200+(int)(Height*0.6));
 		
 		g.drawImage(WoodImage, 210,200, Width, Height, this);
-		g.drawString(" : 1", 215+Width,200+(int)(Height*0.5));
+		g.drawString(" : 1", 215+Width,200+(int)(Height*0.6));
 		
 		g.drawImage(StoneImage, 310, 200, Width, Height, this);
-		g.drawString(" : 1", 315+Width,200+(int)(Height*0.5));
+		g.drawString(" : 1", 315+Width,200+(int)(Height*0.6));
 		
 		g.drawImage(OreImage, 410, 200, Width, Height, this);
-		g.drawString(" : 1", 415+Width ,200+(int)(Height*0.5));
+		g.drawString(" : 1", 415+Width,200+(int)(Height*0.6));
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

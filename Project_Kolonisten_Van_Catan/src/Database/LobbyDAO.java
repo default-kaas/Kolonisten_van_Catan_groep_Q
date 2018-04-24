@@ -20,6 +20,41 @@ public class LobbyDAO {
 
 	}
 
+	public void makeGame(String username, boolean RandomBoard) {
+		try {
+
+			final String querySpelID = "select max(idspel+1) as id from spel";
+
+			Statement spelIDstatement = m_Conn.createStatement();
+			ResultSet rs = spelIDstatement.executeQuery(querySpelID);
+			int newGameID = 0;
+			if (rs.next()) {
+				newGameID = rs.getInt("id");
+			}
+
+			final String querySpelerID = "select max(idspeler+1) as id from speler;";
+			Statement spelerIDstatement = m_Conn.createStatement();
+			ResultSet rs2 = spelerIDstatement.executeQuery(querySpelerID);
+			int newSpelerID = 0;
+			if (rs2.next()) {
+				newSpelerID = rs2.getInt("id");
+			}
+
+			final String QUERY2 = "INSERT INTO spel (idspel, israndomboard, eersteronde) VALUES (" + newGameID + ", "
+					+ RandomBoard + ", 1)";
+			Statement statement2 = m_Conn.createStatement();
+			statement2.executeUpdate(QUERY2);
+
+			final String QUERY3 = " INSERT INTO speler (idspeler, idspel, username, kleur, speelstatus, shouldrefresh, volgnr) VALUES ("
+					+ newSpelerID + ", " + newGameID + ", '" + username + "', \"rood\", \"uitdager\", 0, 1);";
+			Statement statement3 = m_Conn.createStatement();
+			statement3.executeUpdate(QUERY3);
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+
 	public Object[][] getInvitedGames(String username) {
 		Object[][] data = null;
 		try {
@@ -127,12 +162,14 @@ public class LobbyDAO {
 	public boolean respondToInvite(String userName, int gameId, boolean Accept) {
 		try {
 			Statement stmt = m_Conn.createStatement();
-			if(Accept) {
-				stmt.executeUpdate("UPDATE speler SET speelstatus = 'geaccepteerd' WHERE idspel = " + gameId+ " and username = '" + userName+ "'");
-			}else {
-				stmt.executeUpdate("UPDATE speler SET speelstatus = 'geweigerd' WHERE idspel = " + gameId+ " and username = '" + userName+ "'");
+			if (Accept) {
+				stmt.executeUpdate("UPDATE speler SET speelstatus = 'geaccepteerd' WHERE idspel = " + gameId
+						+ " and username = '" + userName + "'");
+			} else {
+				stmt.executeUpdate("UPDATE speler SET speelstatus = 'geweigerd' WHERE idspel = " + gameId
+						+ " and username = '" + userName + "'");
 			}
-			
+
 			return true;
 		} catch (SQLException e) {
 			System.out.println(e);

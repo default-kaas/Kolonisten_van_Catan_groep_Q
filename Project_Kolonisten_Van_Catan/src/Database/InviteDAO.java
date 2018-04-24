@@ -2,6 +2,7 @@ package Database;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -21,6 +22,8 @@ public class InviteDAO {
 		}
 
 	}
+
+	// select max(idspeler+1) from speler;
 
 	public Object[][] getUserList(String username) {
 
@@ -60,7 +63,7 @@ public class InviteDAO {
 
 				status = true;
 
-				statement.close();
+//				statement.close();
 
 			} else {
 				// Nep data xD
@@ -77,74 +80,62 @@ public class InviteDAO {
 
 	}
 
-	public Object[][] getInviteUserList() {
+	public Object[] getInviteUserList(String username) {
 
-		Object[][] data = null;
+		Object[] data = null;
 
 		try {
 
-			final String QUERY = "select * from speler where not speelstatus = 'uitdager'";
+			final String QUERY = "select * from account where username != '" + username + "'";
 			Statement statement = m_Conn.createStatement();
 			ResultSet rs = statement.executeQuery(QUERY);
+			int columnCount = getColumnCount(rs); // Column Count
+			System.out.println(columnCount);
 
-				
-				int rowCount = getRowCount(rs); // Row Count
-				int columnCount = getColumnCount(rs); // Column Count
+			data = new Object[10];
 
-				data = new Object[rowCount][columnCount];
+			// Starting from First Row for Iteration
+			// rs.beforeFirst();
 
-				// Starting from First Row for Iteration
-				rs.beforeFirst();
+			int i = 0;
 
-				int i = 0;
+			while (rs.next()) {
 
-				while (rs.next()) {
-
-					int j = 0;
-
-					data[i][j++] = rs.getString("username");
-
-					data[i][j++] = rs.getString("speelstatus");
-
-					i++;
-				}
-
-				status = true;
-
-				statement.close();
+				data[i] = rs.getString("username");
+				System.out.println(data[i]);
+				i++;
+			}
+//			statement.close();
 		}
 
-		 catch (Exception e) {
+		catch (Exception e) {
 			System.out.println(e);
 		}
 
 		return data;
 
 	}
-	
-	
+
 	public void invitePlayers(int playerID) {
 		try {
 
-			final String QUERY = "UPDATE speler SET speelstatus = 'uitgedaagde' WHERE idspeler = " + playerID + "   ";
+			final String QUERY = "UPDATE speler SET speelstatus = 'uitgedaagde' WHERE idspeler = " + playerID;
 			Statement statement = m_Conn.createStatement();
-			ResultSet rs = statement.executeQuery(QUERY);
+			statement.executeUpdate(QUERY);
 
-				
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.getMessage();
 		}
 	}
 
-	
-	
 	private int getColumnCount(ResultSet rs) {
-
 		try {
-
-			if (rs != null)
-				return rs.getMetaData().getColumnCount();
-
+			if (rs != null) {
+				ResultSetMetaData rsmd = rs.getMetaData();
+				int columnsNumber = rsmd.getColumnCount();
+//				System.out.println(columnsNumber);
+				return columnsNumber;
+			}
 		} catch (SQLException e) {
 
 			System.out.println(e.getMessage());

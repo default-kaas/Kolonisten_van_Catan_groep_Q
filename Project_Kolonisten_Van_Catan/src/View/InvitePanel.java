@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import Controller.InviteController;
@@ -35,15 +36,18 @@ public class InvitePanel extends JPanel implements ActionListener {
 	private BufferedImage myImage;
 	private JButton refreshBtn;
 	private JButton inviteBtn;
-	Object[][] data;
-	String[] column;
-
+	private Object[][] data;
+	private	Object[] data2;
+	private	String[] column;
+	private String[] column2;
+	
+	
 	public InvitePanel(InviteController inviteController) {
 		this.inviteController = inviteController;
-		data = inviteController.showUsers();
-		setPreferredSize(new Dimension(350, 300));
+//		setPreferredSize(new Dimension(350, 300));
 		setBackground(new Color(244, 167, 66));
 		column = new String[] { "Name", "speelstatus" };
+		column2 = new String[] { "Name"};
 		GridBagLayout gridBagLayout = new GridBagLayout();
 
 		setLayout(gridBagLayout);
@@ -95,10 +99,11 @@ public class InvitePanel extends JPanel implements ActionListener {
 	}
 
 	public void lobbyTable() {
-
+		data = inviteController.showUsers();
+		
 		playerList = new JTable(data, column);
 		playerList.setFont(new Font("Calibri", Font.BOLD, 30));
-		playerList.setRowHeight(70);
+		playerList.setRowHeight(30);
 
 		TableColumnModel columnModel = playerList.getColumnModel();
 		playerList.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -116,6 +121,30 @@ public class InvitePanel extends JPanel implements ActionListener {
 		add(playerList, gbc_table);
 
 	}
+	public void inviteTable() {
+		data2 = inviteController.showInviteUsers();
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("test",data2);
+		playerFinding = new JTable(model);
+		playerFinding.setFont(new Font("Calibri", Font.BOLD, 30));
+		playerFinding.setRowHeight(30);
+		TableColumnModel columnModel1 = playerFinding.getColumnModel();
+		playerFinding.setRowHeight(30);
+		playerFinding.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		for (int i = 0; i < columnModel1.getColumnCount(); i++) {
+			playerFinding.getColumnModel().getColumn(i).setPreferredWidth(250);
+		}
+
+		GridBagConstraints gbc_table_1 = new GridBagConstraints();
+		gbc_table_1.gridwidth = 3;
+		gbc_table_1.insets = new Insets(0, 150, 80, 0);
+		gbc_table_1.anchor = GridBagConstraints.EAST;
+		gbc_table_1.gridx = 1;
+		gbc_table_1.gridy = 1;
+		add(playerFinding, gbc_table_1);
+	}
+
 
 	public void lobbyButtons() {
 		refreshBtn = new JButton();
@@ -140,6 +169,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 		add(refreshBtn, gbc_inviteBtn);
 
 	}
+	
 
 	public void inviteTitle() {
 		JLabel lblFinding = new JLabel("Spelers uitnodigen");
@@ -152,27 +182,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 		add(lblFinding, gbc_lblFinding);
 	}
 
-	public void inviteTable() {
-
-		playerFinding = new JTable(data, column);
-		playerFinding.setFont(new Font("Calibri", Font.BOLD, 30));
-		playerFinding.setRowHeight(70);
-		TableColumnModel columnModel1 = playerFinding.getColumnModel();
-		playerFinding.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-		for (int i = 0; i < columnModel1.getColumnCount(); i++) {
-			playerFinding.getColumnModel().getColumn(i).setPreferredWidth(250);
-		}
-
-		GridBagConstraints gbc_table_1 = new GridBagConstraints();
-		gbc_table_1.gridwidth = 3;
-		gbc_table_1.insets = new Insets(0, 150, 80, 0);
-		gbc_table_1.anchor = GridBagConstraints.EAST;
-		gbc_table_1.gridx = 1;
-		gbc_table_1.gridy = 1;
-		add(playerFinding, gbc_table_1);
-	}
-
+	
 	public void inviteButton() {
 		inviteBtn = new JButton();
 		try {

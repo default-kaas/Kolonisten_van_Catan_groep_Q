@@ -15,19 +15,23 @@ public class LobbyController {
 	private InvitePanel invitePanel;
 	private InviteController inviteController;
 	private LobbyFrame lobbyFrame;
+	private Connection db;
 
 	public LobbyController(LobbyFrame lobbyFrame, Connection db, String username) {
+		this.db = db;
 		this.lobbyFrame = lobbyFrame;
 		this.username = username;
 		lobbyDAO = new LobbyDAO(db);
 		lobbyPanel = new LobbyPanel(lobbyFrame, this);
-
-		inviteController = new InviteController(db);
-		invitePanel = new InvitePanel(inviteController);
 	}
 
 	public LobbyPanel getLobbyPanel() {
 		return lobbyPanel;
+	}
+
+	public void makeInvitePanel() {
+		inviteController = new InviteController(db, username);
+//		invitePanel = new InvitePanel(inviteController);
 	}
 
 	public Object[][] showUsers() {
@@ -35,7 +39,7 @@ public class LobbyController {
 	}
 
 	public InvitePanel getInvitePanel() {
-		return invitePanel;
+		return inviteController.getInvitePanel();
 	}
 
 	public Object[][] showInvites() {
@@ -45,10 +49,14 @@ public class LobbyController {
 	public void respondToInvite(int gameId, boolean Accept) {
 		lobbyDAO.respondToInvite(username, gameId, Accept);
 	}
-	
+
 	public void joinOldGame(int gameID) {
 		lobbyFrame.showGameScreen(gameID, username, false);
-		
+
+	}
+
+	public void createNewGame(boolean RandomBoard) {
+		lobbyDAO.makeGame(username, RandomBoard);
 	}
 
 	public void UpdateInviteAndGame() {

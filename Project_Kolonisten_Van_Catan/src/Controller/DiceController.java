@@ -10,9 +10,11 @@ public class DiceController {
 	private Dice dice;
 	private Game game;
 	private DicePanel dicePanel;
+	private GameController gameController;
 	
-	public DiceController(Game game, Connection db_conn) {
-		this.game = game;
+	public DiceController(GameController gameController, Connection db_conn) {
+		this.gameController = gameController;
+		this.game = gameController.getGame();
 		dice = new Dice(db_conn);
 		dicePanel = new DicePanel(this);
 		
@@ -24,6 +26,7 @@ public class DiceController {
 	
 	public void setDiceImages() {
 		dice.throwDice(game.getGameID());
+		gameController.setDiceMessage(getValue1(), getValue2());
 		game.getMe().setThrown();
 		dicePanel.setImages(getValue1(), getValue2());
 	}

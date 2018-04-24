@@ -51,6 +51,7 @@ public class ChatDAO {
 			}
 
 		} catch (SQLException e) {
+			System.out.println("error");
 			System.out.println(e);
 			return false;
 		}

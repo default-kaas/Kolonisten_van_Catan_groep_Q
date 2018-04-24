@@ -121,6 +121,20 @@ public class InviteDAO {
 		return data;
 
 	}
+	
+	
+	public void invitePlayers(int playerID) {
+		try {
+
+			final String QUERY = "UPDATE speler SET speelstatus = 'uitgedaagde' WHERE idspeler = " + playerID + "   ";
+			Statement statement = m_Conn.createStatement();
+			ResultSet rs = statement.executeQuery(QUERY);
+
+				
+		}catch(Exception e) {
+			e.getMessage();
+		}
+	}
 
 	
 	

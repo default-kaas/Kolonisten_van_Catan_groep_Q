@@ -216,7 +216,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 	public void newGameTitle() {
 
-		JLabel lblLobby = new JLabel("Spel crieëren");
+		JLabel lblLobby = new JLabel("Spel creëren");
 		lblLobby.setFont(new Font("Arial", Font.BOLD, 30));
 		GridBagConstraints gbc_lobbyTitle = new GridBagConstraints();
 		gbc_lobbyTitle.gridx = 3;

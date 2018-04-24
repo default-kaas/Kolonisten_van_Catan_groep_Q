@@ -18,7 +18,7 @@ public class GameController implements Runnable{
 
 	public GameController(int IdGame, String userName, Connection db_conn, boolean newGame) {
 		Game = new Game(IdGame, userName, db_conn);
-		diceController = new DiceController(Game, db_conn);
+		diceController = new DiceController(this, db_conn);
 		// Als lobby af is moet ik dit stukje nog wat veranderen.
 		if ((Game.getRound() == Game.getMe().getPlayerID())) {
 			showDice();
@@ -29,7 +29,7 @@ public class GameController implements Runnable{
 		chatPanelController = new ChatPanelController(Game, db_conn);
 		
 		Thread t1 = new Thread(chatPanelController);
-		Thread t2 = new Thread(this);
+//		Thread t2 = new Thread(this);
 		t1.start();
 		try {
 			Thread.sleep(10);
@@ -37,7 +37,7 @@ public class GameController implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		t2.start();
+//		t2.start();
 	
 
 	}
@@ -90,5 +90,10 @@ public class GameController implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		runGame();
+	}
+
+	public void setDiceMessage(int value1, int value2) {
+		// TODO Auto-generated method stub
+		chatPanelController.setUserInput("heeft "+value1 + " en " + value2 + " gegooid!");
 	}
 }

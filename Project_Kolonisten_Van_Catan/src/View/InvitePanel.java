@@ -1,16 +1,26 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.TableColumnModel;
 
 import Controller.InviteController;
@@ -19,6 +29,8 @@ public class InvitePanel extends JPanel {
 	private JTable playerList;
 	private JTable playerFinding;
 	public InviteController inviteController;
+	private TitledBorder myTitle;
+	private BufferedImage myImage;
 	Object[][] data;
 	String[] column;
 
@@ -26,11 +38,17 @@ public class InvitePanel extends JPanel {
 		this.inviteController = inviteController;
 		data = inviteController.showUsers();
 		setPreferredSize(new Dimension(350, 300));
-		setBackground(new Color(157, 24, 31));
+		setBackground(new Color(244, 167, 66));
 		column = new String[] { "Name", "speelstatus" };
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		
 		setLayout(gridBagLayout);
+		
+		//Set Page Title
+		setTitle();
+		
+		
+		//Set Left Title, Table & Buttons
 
 		lobbyTitle();
 		
@@ -38,20 +56,27 @@ public class InvitePanel extends JPanel {
 		
 		lobbyButtons();
 		
-		findingTitle();
 		
-		findingTable();
+		//set Right Title, Table & Buttons
 		
-		findingButton();
-
-	
-
+		inviteTitle();
 		
+		inviteTable();
 		
-		
+		inviteButton();
 		
 		
 	
+	}
+	
+	public void setTitle() {
+		myTitle = new TitledBorder("Nieuwe Spel");
+		myTitle.setTitleFont(new Font("Ayuthaya", Font.BOLD, 80));
+		myTitle.setTitleJustification(TitledBorder.CENTER);
+		myTitle.setTitlePosition(TitledBorder.TOP);
+		myTitle.setTitle("Nieuwe Spel");
+		this.setBorder(myTitle);
+		
 	}
 	
 	public void lobbyTitle() {
@@ -74,7 +99,7 @@ public class InvitePanel extends JPanel {
 		
 		playerList = new JTable(data, column);
 		playerList.setFont(new Font("Calibri", Font.BOLD, 30));
-		playerList.setRowHeight(100);
+		playerList.setRowHeight(70);
 		
 	
 		TableColumnModel columnModel = playerList.getColumnModel();
@@ -98,8 +123,15 @@ public class InvitePanel extends JPanel {
 	public void lobbyButtons() {
 		
 		JButton refreshBtn = new JButton("Refresh");	
-		refreshBtn.setPreferredSize(new Dimension(200, 100));
-		refreshBtn.setBackground(new Color(59, 89, 182));
+		refreshBtn.setPreferredSize(new Dimension(200, 70));
+		try {
+			myImage = ImageIO.read(new File("images/Buttons/refresh.jpg"));
+			refreshBtn.setIcon(new ImageIcon(myImage));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		refreshBtn.setBackground(new Color(13, 150, 45));
 		refreshBtn.setForeground(Color.BLACK);
 		refreshBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_inviteBtn = new GridBagConstraints();
@@ -112,8 +144,8 @@ public class InvitePanel extends JPanel {
 		
 	}
 	
-	public void findingTitle() {
-		JLabel lblFinding = new JLabel("Finding Players");
+	public void inviteTitle() {
+		JLabel lblFinding = new JLabel("Spelers uitnodigen");
 		lblFinding.setFont(new Font("Arial", Font.BOLD, 50));
 		GridBagConstraints gbc_lblFinding = new GridBagConstraints();
 		gbc_lblFinding.insets = new Insets(0, 150, 80, 0);
@@ -123,11 +155,11 @@ public class InvitePanel extends JPanel {
 		add(lblFinding, gbc_lblFinding);
 	}
 	
-	public void findingTable() {
+	public void inviteTable() {
 		
 		playerFinding = new JTable(data, column);
 		playerFinding.setFont(new Font("Calibri", Font.BOLD, 30));
-		playerFinding.setRowHeight(100);
+		playerFinding.setRowHeight(70);
 		TableColumnModel columnModel1 = playerFinding.getColumnModel();
 		playerFinding.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
@@ -146,11 +178,22 @@ public class InvitePanel extends JPanel {
 		
 	}
 	
-	public void findingButton() {
+	public void inviteButton() {
 		
 		JButton inviteBtn = new JButton("Invite Players");	
-		inviteBtn.setPreferredSize(new Dimension(200, 100));
-		inviteBtn.setBackground(new Color(59, 89, 182));
+		
+		
+		try {
+			
+			myImage = ImageIO.read(new File("images/Buttons/invitePlayers.jpg"));
+			inviteBtn.setPreferredSize(new Dimension(myImage.getWidth(), myImage.getHeight()));
+			   inviteBtn.setIcon(new ImageIcon(myImage));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		inviteBtn.setBackground(new Color(13, 150, 45));
 		inviteBtn.setForeground(Color.BLACK);
 		inviteBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		GridBagConstraints gbc_inviteBtn1 = new GridBagConstraints();

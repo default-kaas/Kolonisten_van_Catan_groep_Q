@@ -5,13 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Controller.InviteController;
+
 public class InviteDAO {
 	private boolean status;
 
 	Connection m_Conn;
+	InviteController inviteController;
 
 	public InviteDAO(Connection db_conn) {
-
 		try {
 			m_Conn = db_conn;
 		} catch (Exception e) {
@@ -75,6 +77,67 @@ public class InviteDAO {
 
 	}
 
+	public Object[][] getInviteUserList() {
+
+		Object[][] data = null;
+
+		try {
+
+			final String QUERY = "select * from speler where not speelstatus = 'uitdager'";
+			Statement statement = m_Conn.createStatement();
+			ResultSet rs = statement.executeQuery(QUERY);
+
+				
+				int rowCount = getRowCount(rs); // Row Count
+				int columnCount = getColumnCount(rs); // Column Count
+
+				data = new Object[rowCount][columnCount];
+
+				// Starting from First Row for Iteration
+				rs.beforeFirst();
+
+				int i = 0;
+
+				while (rs.next()) {
+
+					int j = 0;
+
+					data[i][j++] = rs.getString("username");
+
+					data[i][j++] = rs.getString("speelstatus");
+
+					i++;
+				}
+
+				status = true;
+
+				statement.close();
+		}
+
+		 catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return data;
+
+	}
+	
+	
+	public void invitePlayers(int playerID) {
+		try {
+
+			final String QUERY = "UPDATE speler SET speelstatus = 'uitgedaagde' WHERE idspeler = " + playerID + "   ";
+			Statement statement = m_Conn.createStatement();
+			ResultSet rs = statement.executeQuery(QUERY);
+
+				
+		}catch(Exception e) {
+			e.getMessage();
+		}
+	}
+
+	
+	
 	private int getColumnCount(ResultSet rs) {
 
 		try {

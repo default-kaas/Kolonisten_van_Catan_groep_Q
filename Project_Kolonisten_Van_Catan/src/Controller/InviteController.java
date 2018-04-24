@@ -23,6 +23,14 @@ public class InviteController {
 		return invitePanel;
 	}
 	
+	public Object[][] showInviteUsers(){
+		return InviteDAO.getInviteUserList();
+	}
+	
+//	public int getSelectedRow() {
+//		return invitePanel.getSelectedRow();
+//	}
+	
 	
 
 }

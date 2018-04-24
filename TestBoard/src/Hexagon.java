@@ -102,12 +102,14 @@ public class Hexagon extends Polygon {
 		g.fillOval(x - 15, y - 15, 30, 30);
 		
 		g.setColor(Color.RED);
-		for(int i = 0; i<6; i++) {
-			if(filled) {
-				System.out.println("X-cord: " + xpoints[i]+ " - Y-cord: "+ ypoints[i]);
-				g.fillRect(xpoints[i]-10, ypoints[i]-10, 20, 20);
+
+			for(int i = 0; i<6; i++) {
+				if(filled) {
+					System.out.println("X-cord: " + xpoints[i]+ " - Y-cord: "+ ypoints[i]);
+					g.fillRect(xpoints[i]-10, ypoints[i]-10, 20, 20);
+				}
 			}
-		}
+			
 		
 	}
 }

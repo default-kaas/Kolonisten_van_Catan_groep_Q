@@ -219,7 +219,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 			x.setPreferredSize(new Dimension(300, 200));
 			add(x, gbc_table);
 		}else {
-			add(Uitnodiging, gbc_table);
+			add(invitedList, gbc_table);
 		}
 		
 		

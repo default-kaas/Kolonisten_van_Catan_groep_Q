@@ -2,9 +2,16 @@ package Model;
 
 import java.util.ArrayList;
 
+import Database.BoardDAO;
+
 public class Tile {
 	private ArrayList<CornerPoint> arrayListCornerPoints = new ArrayList<CornerPoint>();
 	private ArrayList<Line> arrayListLines = new ArrayList<Line>();
+	private BoardDAO boardDAO;
+	
+	public Tile(BoardDAO boardDAO){
+		this.boardDAO = boardDAO;
+	}
 	
 	public ArrayList<CornerPoint> getArrayListCornerPoints() {
 		return arrayListCornerPoints;

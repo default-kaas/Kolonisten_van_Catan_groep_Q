@@ -3,9 +3,16 @@ package Model;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import Database.BoardDAO;
+
 public class Line {
-	ArrayList<Point> tileCenterPoints = new ArrayList<Point>();
-	ArrayList<Point> inBetweenPoints = new ArrayList<Point>();
+	private ArrayList<Point> tileCenterPoints = new ArrayList<Point>();
+	private ArrayList<Point> inBetweenPoints = new ArrayList<Point>();
+	private BoardDAO boardDAO = new BoardDAO();
+	
+	public Line(BoardDAO boardDAO){
+		this.boardDAO = boardDAO;
+	}
 	
 	public ArrayList<Point> getTileCenterPoints() {
 		return tileCenterPoints;

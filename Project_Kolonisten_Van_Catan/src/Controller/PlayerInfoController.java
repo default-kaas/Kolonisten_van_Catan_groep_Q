@@ -9,13 +9,15 @@ import Model.Player;
 public class PlayerInfoController {
 	private Game game;
 	private PlayerInformationPanel spelerInformatiePanel;
+	private GameController gameController;
 
-	public PlayerInfoController(Game game, Connection db_conn) {
+	public PlayerInfoController(Game game, Connection db_conn, GameController gameController) {
 		spelerInformatiePanel = new PlayerInformationPanel(this);
 		this.game = game;
 		spelerInformatiePanel.UpdatePlayerTurn();
 		spelerInformatiePanel.ShowTradeButton();
 		spelerInformatiePanel.ShowResources();
+		this.gameController = gameController;
 		
 	}
 
@@ -43,6 +45,7 @@ public class PlayerInfoController {
 	}
 	
 	public void getTradePanel() {
-		
+		System.out.println("gg hij is in de player controller gekomen nou gaan we terug naar de gamecontroller");
+		gameController.getTradeFrame();
 	}
 }

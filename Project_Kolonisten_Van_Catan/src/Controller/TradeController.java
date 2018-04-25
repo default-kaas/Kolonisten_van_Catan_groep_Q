@@ -58,6 +58,11 @@ public class TradeController {
 		else return Card;
 	}
 	
+	public void getTradeFrame() {
+		System.out.println("nog een stap, op naar de view demzelve");
+		tradeview.showFrame();
+	}
+	
 	
 }
 

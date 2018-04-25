@@ -102,11 +102,20 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		g.drawImage(OreImage, 410, 200, Width, Height, this);
 		g.drawString(" : 1", 415+Width,200+(int)(Height*0.6));
 	}
+	
+	public void ShowTradeButton() {
+		trade = new JButton("Handelspaneel");
+		this.add(Box.createRigidArea(new Dimension(5, 10)));
+		this.add(trade);
+		System.out.println("hij is aangemaakt");
+		trade.addActionListener(this);
+	}
 
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource()== trade) {
 			//JOptionPane.showMessageDialog(trade, "Under Construction!", "Error", JOptionPane.ERROR_MESSAGE);
 			getTradePanel();
+			System.out.println("je hebt erop geklikt");
 		}else if(arg0.getSource() == close) {
 			System.exit(0);
 		}
@@ -117,14 +126,9 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(Box.createRigidArea(new Dimension(5, 20)));
 		this.add(your_resources);
 	}
-
-	public void ShowTradeButton() {
-		trade = new JButton("Handelspaneel");
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(trade);
-	}
 	
 	public void getTradePanel() {
+		System.out.println("je hebt erop geklikt en het doet iets");
 		controller.getTradePanel();
 	}
 

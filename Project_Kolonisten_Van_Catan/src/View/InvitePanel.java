@@ -215,17 +215,19 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 	}
 
-	public void refreshPanel() {
-		if (creator) {
+	public void refreshPanel(boolean InvitedIntoGame) {
+		if (creator && InvitedIntoGame) {
 			if (playerFinding.getSelectedRow() != -1) {
 				ToInvite.removeRow(playerFinding.getSelectedRow());
 			}
 		}
-		int invited = Invited.getRowCount();
-		for (int i = 0; i < invited; i++) {
-			Invited.removeRow(0);
-		}
 
+			int invited = Invited.getRowCount();
+			for (int i = 0; i < invited; i++) {
+				Invited.removeRow(0);
+			}
+
+		
 		Object[][] newInvited = inviteController.showUsers();
 		for (Object[] y : newInvited) {
 			Invited.addRow(y);
@@ -237,18 +239,15 @@ public class InvitePanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == refreshBtn) {
-			refreshPanel();
+			refreshPanel(false);
 		}
-
 		if (e.getSource() == inviteBtn) {
-			System.out.println("Invited: " + Invited.getRowCount());
-			if (Invited.getRowCount() < 3) {
+			if (inviteController.getNumberInvited() < 3 && playerFinding.getSelectedRow() != -1) {
 				int x = playerFinding.getSelectedRow();
 				inviteController.invitePlayer((String) playerFinding.getValueAt(x, 0));
 				playerList.clearSelection();
-				refreshPanel();
+				refreshPanel(true);
 			}
-
 		}
 
 	}

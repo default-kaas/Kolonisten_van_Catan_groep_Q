@@ -79,7 +79,7 @@ public class InviteDAO {
 			Statement statement = m_Conn.createStatement();
 			final String QUERY = "select * from account where username != '" + username + "'";
 			ResultSet rs = statement.executeQuery(QUERY);
-			
+
 			int getRowCount = getRowCount(rs); // Row Count
 
 			data = new Object[getRowCount][2];
@@ -103,7 +103,7 @@ public class InviteDAO {
 
 	}
 
-	public void invitePlayers(String userName, int gameID) {
+	public int invitePlayers(String userName, int gameID, int newVolgNr) {
 		try {
 			final String querySpelerID = "select max(idspeler+1) as id from speler;";
 			Statement spelerIDstatement = m_Conn.createStatement();
@@ -112,14 +112,6 @@ public class InviteDAO {
 			if (rs2.next()) {
 				newSpelerID = rs2.getInt("id");
 			}
-			final String queryVolgNr = "select max(volgnr+1) as volgnr from speler where idspel =" + gameID;
-			Statement volgNrstatement = m_Conn.createStatement();
-			ResultSet volgnr = spelerIDstatement.executeQuery(queryVolgNr);
-			int newVolgNr = 0;
-			if (volgnr.next()) {
-				newVolgNr = volgnr.getInt("volgnr");
-			}
-			System.out.println(newVolgNr);
 			String newColor = "";
 			switch (newVolgNr) {
 			case 2:
@@ -137,10 +129,41 @@ public class InviteDAO {
 					+ newVolgNr + ")";
 			Statement statement = m_Conn.createStatement();
 			statement.executeUpdate(InvitePlayer);
-
+			return newVolgNr;
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
+		return -1;
+	}
+	public int getRejectedVolgnr(int idspel) {
+
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "select volgnr from speler where idspel = "+idspel+" and speelstatus = 'geweigerd' and not volgnr in (select volgnr from speler where idspel = "+idspel+" and speelstatus = 'uitgedaagde' and speelstatus = 'geaccepteerd')";
+			ResultSet rs = statement.executeQuery(QUERY);
+			rs.next();
+			return rs.getInt("volgnr");
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+
+		return -1;
+
+	}
+
+	public int getNumberInvited(int idspel) {
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "select count(idspeler) as count from speler where idspel = " + idspel
+					+ " and (speelstatus = 'geaccepteerd'  or speelstatus = 'uitgedaagde')";
+			ResultSet rs = statement.executeQuery(QUERY);
+			rs.next();
+			return rs.getInt("count");
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+
+		return -1;
 	}
 
 	private int getColumnCount(ResultSet rs) {
@@ -179,4 +202,5 @@ public class InviteDAO {
 		return 0;
 	}
 
+	
 }

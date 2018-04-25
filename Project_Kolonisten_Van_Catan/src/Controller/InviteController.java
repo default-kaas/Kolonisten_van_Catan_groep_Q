@@ -3,42 +3,45 @@ package Controller;
 import java.sql.Connection;
 
 import Database.InviteDAO;
+import Model.Invite;
 import View.InvitePanel;
 
-
 public class InviteController {
-	InviteDAO InviteDAO;
+
 	InvitePanel invitePanel;
-	private String username;
-	private int idspel;	
-	
+
+	private Invite invite;
+
 	public InviteController(Connection db_conn, String username, int idspel, boolean creator) {
-		this.idspel = idspel;
-		this.username = username;
-		InviteDAO = new InviteDAO(db_conn);
-		invitePanel  = new InvitePanel(this, creator);
+
+		invite = new Invite(db_conn, idspel, username);
+		invitePanel = new InvitePanel(this, creator);
 	}
-	
-	public Object[][] showUsers(){
-		return InviteDAO.getUserList(username, idspel);
+
+	public Object[][] showUsers() {
+		return invite.showUsers();
 	}
 
 	public InvitePanel getInvitePanel() {
 		return invitePanel;
 	}
-	
-	public Object[][] showInviteUsers(){
-		return InviteDAO.getInviteUserList(username);
+
+	public Object[][] showInviteUsers() {
+		return invite.showInviteUsers();
 	}
-	
+
 	public void invitePlayer(String userName) {
-		InviteDAO.invitePlayers(userName, idspel);
+		invite.invitePlayer(userName);
 	}
-	
-//	public int getSelectedRow() {
-//		return invitePanel.getSelectedRow();
-//	}
-	
-	
+
+	public int getNumberInvited() {
+		// TODO Auto-generated method stub
+
+		return invite.getNumberInvited();
+	}
+
+	// public int getSelectedRow() {
+	// return invitePanel.getSelectedRow();
+	// }
 
 }

@@ -73,6 +73,10 @@ public class GameController implements Runnable{
 		// TODO Auto-generated method stub
 		return playerInfoController.getPlayerInfoPanel();
 	}
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void getTradeFrame() {
+		playerInfoController.getTradePanel();
+	}
 
 	public DicePanel getDicePanel() {
 		return diceController.getDicePanel();

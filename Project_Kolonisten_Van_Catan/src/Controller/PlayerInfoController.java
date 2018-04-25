@@ -41,4 +41,8 @@ public class PlayerInfoController {
 	public void UpdateResourcePanel() {
 		spelerInformatiePanel.ShowResources();
 	}
+	
+	public void getTradePanel() {
+		
+	}
 }

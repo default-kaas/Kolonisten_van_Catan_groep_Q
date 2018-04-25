@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -100,6 +101,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 	public void lobbyTable() {
 		// Reply table
+		
 		data = inviteController.showUsers();
 		Invited = new DefaultTableModel(data, INVITEDCOLUMNS);
 		playerList = new JTable(Invited);
@@ -120,8 +122,10 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
+		
 		add(playerList, gbc_table);
 		playerList.setDefaultEditor(Object.class, null);
+		
 
 	}
 
@@ -132,11 +136,12 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 		playerFinding.setFont(new Font("Calibri", Font.BOLD, 30));
 		playerFinding.setRowHeight(30);
-		TableColumnModel columnModel1 = playerFinding.getColumnModel();
-		playerFinding.setRowHeight(30);
-		playerFinding.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-		playerFinding.getColumnModel().getColumn(0).setPreferredWidth(250);
+		TableColumnModel columnModel1 = playerFinding.getColumnModel();
+//		playerFinding.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
+		
+		playerFinding.getColumnModel().getColumn(0).setPreferredWidth(300);
 
 		playerFinding.getColumnModel().getColumn(1).setPreferredWidth(0);
 
@@ -146,7 +151,9 @@ public class InvitePanel extends JPanel implements ActionListener {
 		gbc_table_1.anchor = GridBagConstraints.EAST;
 		gbc_table_1.gridx = 1;
 		gbc_table_1.gridy = 1;
-		add(playerFinding, gbc_table_1);
+		JScrollPane x = new JScrollPane(playerFinding, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+		add(x, gbc_table_1);
 		playerFinding.setDefaultEditor(Object.class, null);
 	}
 

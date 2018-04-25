@@ -20,9 +20,9 @@ public class AccountDAO {
 	public boolean searchPasswordWithUserName(String username, String password) {
 		try {
 			Statement stmt = m_Conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT wachtwoord FROM account WHERE username = '" + username + "'");
+			ResultSet rs = stmt.executeQuery("SELECT wachtwoord, username FROM account WHERE username = '" + username + "'");
 			if (rs.next()) {
-				if (rs.getString("wachtwoord").equals(password)) {
+				if (rs.getString("wachtwoord").equals(password) && rs.getString("username").equals(username)) {
 					return true;
 				} else {
 					return false;

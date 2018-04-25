@@ -100,6 +100,8 @@ public class TradeView extends JFrame {
 
 		importImages();
 		addMenuBar();
+		
+		// Insets wordt nog veranderd.
 
 		c.insets = new Insets(20, 0, 0, 0);
 		panel.setFont(new Font("Arial Black", 1, 25));
@@ -164,36 +166,39 @@ public class TradeView extends JFrame {
 		c.insets = new Insets(280, 0, 0, 0);
 		trade.add(cb, c);
 		
-		your_woolt.setDocument(new TradeInputLimit(2));
-		your_wheatt.setDocument(new TradeInputLimit(2));
-		your_woodt.setDocument(new TradeInputLimit(2));
-		your_stonet.setDocument(new TradeInputLimit(2));
-		your_oret.setDocument(new TradeInputLimit(2));
-		their_woolt.setDocument(new TradeInputLimit(2));
-		their_wheatt.setDocument(new TradeInputLimit(2));
-		their_woodt.setDocument(new TradeInputLimit(2));
-		their_stonet.setDocument(new TradeInputLimit(2));
-		their_oret.setDocument(new TradeInputLimit(2));
+		TradeInputLimit til = new TradeInputLimit(2);
+		TradeNoLetters tnl = new TradeNoLetters();
+		
+		your_woolt.setDocument(til);
+		your_wheatt.setDocument(til); 
+		your_woodt.setDocument(til);
+		your_stonet.setDocument(til);
+		your_oret.setDocument(til);
+		their_woolt.setDocument(til);
+		their_wheatt.setDocument(til);
+		their_woodt.setDocument(til);
+		their_stonet.setDocument(til);
+		their_oret.setDocument(til);
 		PlainDocument doc = (PlainDocument) your_woolt.getDocument();
-	    doc.setDocumentFilter(new TradeNoLetters());
+	    doc.setDocumentFilter(tnl);
 		PlainDocument doc2 = (PlainDocument) your_wheatt.getDocument();
-	    doc2.setDocumentFilter(new TradeNoLetters());
+	    doc2.setDocumentFilter(tnl);
 		PlainDocument doc3 = (PlainDocument) your_woodt.getDocument();
-	    doc3.setDocumentFilter(new TradeNoLetters());
+	    doc3.setDocumentFilter(tnl);
 		PlainDocument doc4 = (PlainDocument) your_stonet.getDocument();
-	    doc4.setDocumentFilter(new TradeNoLetters());
+	    doc4.setDocumentFilter(tnl);
 		PlainDocument doc5 = (PlainDocument) your_oret.getDocument();
-	    doc5.setDocumentFilter(new TradeNoLetters());
+	    doc5.setDocumentFilter(tnl);
 		PlainDocument doc6 = (PlainDocument) their_woolt.getDocument();
-	    doc6.setDocumentFilter(new TradeNoLetters());
+	    doc6.setDocumentFilter(tnl);
 		PlainDocument doc7 = (PlainDocument) their_wheatt.getDocument();
-	    doc7.setDocumentFilter(new TradeNoLetters());
+	    doc7.setDocumentFilter(tnl);
 		PlainDocument doc8 = (PlainDocument) their_woodt.getDocument();
-	    doc8.setDocumentFilter(new TradeNoLetters());
+	    doc8.setDocumentFilter(tnl);
 		PlainDocument doc9 = (PlainDocument) their_stonet.getDocument();
-	    doc9.setDocumentFilter(new TradeNoLetters());
+	    doc9.setDocumentFilter(tnl);
 		PlainDocument doc10 = (PlainDocument) their_oret.getDocument();
-	    doc10.setDocumentFilter(new TradeNoLetters());
+	    doc10.setDocumentFilter(tnl);
 
 		this.add(trade);
 

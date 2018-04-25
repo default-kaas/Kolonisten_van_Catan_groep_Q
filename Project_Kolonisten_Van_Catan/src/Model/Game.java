@@ -113,6 +113,22 @@ public class Game {
 		// WoodStack.remove(WoodStack.get(0));
 	}
 
+	public void removeStreet() {
+		getMe().removeRoadResources();
+	}
+	
+	public void removeHouse() {
+		getMe().removeHouseResources();
+	}
+	
+	public void removeCity() {
+		getMe().removeCityResources();
+	}
+	
+	public void removeDev() {
+		getMe().removeDevResources();
+	}
+
 	public ArrayList<Player> GetPlayers() {
 		return Players;
 	}

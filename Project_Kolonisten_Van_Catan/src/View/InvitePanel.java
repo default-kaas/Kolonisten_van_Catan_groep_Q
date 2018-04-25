@@ -119,6 +119,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
 		add(playerList, gbc_table);
+		playerList.setDefaultEditor(Object.class, null);
 
 	}
 	public void inviteTable() {
@@ -143,6 +144,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 		gbc_table_1.gridx = 1;
 		gbc_table_1.gridy = 1;
 		add(playerFinding, gbc_table_1);
+		playerFinding.setDefaultEditor(Object.class, null);
 	}
 
 
@@ -206,6 +208,25 @@ public class InvitePanel extends JPanel implements ActionListener {
 		add(inviteBtn, gbc_inviteBtn1);
 
 	}
+	public void refreshPanel() {
+		data = inviteController.showUsers();
+		int i = 0;
+		for (Object[] x : data) {
+			System.out.println(x[0]);
+			System.out.println(x[1]);
+			System.out.println(i);
+			playerList.setValueAt(x[0], i, 0);
+			playerList.setValueAt(x[1], i, 1);
+			i++;
+		}
+		data2 = inviteController.showInviteUsers();
+		i = 0;
+		for (Object x : data2) {
+			playerFinding.setValueAt(x, i, 0);
+			i++;
+
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -214,7 +235,10 @@ public class InvitePanel extends JPanel implements ActionListener {
 		}
 
 		if (e.getSource() == inviteBtn) {
-
+			int x = playerFinding.getSelectedRow();
+			inviteController.invitePlayer((String)playerFinding.getValueAt(x, 0));
+			playerList.clearSelection();
+			refreshPanel();
 		}
 
 	}

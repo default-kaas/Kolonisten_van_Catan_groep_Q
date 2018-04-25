@@ -49,11 +49,9 @@ public class InviteDAO {
 
 				while (rs.next()) {
 
-					int j = 0;
+					data[i][0] = rs.getString("username");
 
-					data[i][j++] = rs.getInt("username");
-
-					data[i][j++] = rs.getString("speelstatus");
+					data[i][1] = rs.getString("speelstatus");
 
 					i++;
 				}
@@ -77,9 +75,6 @@ public class InviteDAO {
 
 	}
 	
-	public void invitePlayer(String username, int idspel) {
-		
-	}
 
 	public Object[] getInviteUserList(String username) {
 
@@ -115,15 +110,37 @@ public class InviteDAO {
 
 	}
 
-	public void invitePlayers(int playerID) {
+	public void invitePlayers(String userName, int gameID) {
 		try {
-
-			final String QUERY = "UPDATE speler SET speelstatus = 'uitgedaagde' WHERE idspeler = " + playerID;
+			final String querySpelerID = "select max(idspeler+1) as id from speler;";
+			Statement spelerIDstatement = m_Conn.createStatement();
+			ResultSet rs2 = spelerIDstatement.executeQuery(querySpelerID);
+			int newSpelerID = 0;
+			if (rs2.next()) {
+				newSpelerID = rs2.getInt("id");
+			}
+			final String queryVolgNr = "select max(volgnr+1) as volgnr from speler where idspel ="+ gameID;
+			Statement volgNrstatement = m_Conn.createStatement();
+			ResultSet volgnr = spelerIDstatement.executeQuery(queryVolgNr);
+			int newVolgNr = 0;
+			if (volgnr.next()) {
+				newVolgNr = volgnr.getInt("volgnr");
+			}
+			String newColor = "";
+			switch (newVolgNr) {
+			case 2: newColor = "wit";
+			break;
+			case 3: newColor = "blauw";
+			break;
+			case 4: newColor = "oranje";
+			break;
+			}
+			final String InvitePlayer = "INSERT INTO speler (idspeler, idspel, username, kleur, speelstatus, shouldrefresh, volgnr) VALUES ("+newSpelerID +"," + gameID +", '" + userName + "', '"+newColor+"', 'uitgedaagde', 0, "+newVolgNr+")";
 			Statement statement = m_Conn.createStatement();
-			statement.executeUpdate(QUERY);
+			statement.executeUpdate(InvitePlayer);
 
-		} catch (Exception e) {
-			e.getMessage();
+		} catch (SQLException e) {
+			System.out.println(e);
 		}
 	}
 
@@ -156,8 +173,7 @@ public class InviteDAO {
 			}
 
 		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
+			System.out.println(e);
 			e.printStackTrace();
 		}
 

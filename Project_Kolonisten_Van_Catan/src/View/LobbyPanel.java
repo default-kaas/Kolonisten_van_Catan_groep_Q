@@ -370,7 +370,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 				lobbyFrame.dispose();
 				lobbyController.joinOldGame((int) invitedList.getValueAt(x, 0));
 			}
-
 		}
 
 		if (a.getSource() == refreshBtn) {

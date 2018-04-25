@@ -26,7 +26,7 @@ public class GameController implements Runnable{
 		}
 
 		bouwPanelController = new BuildPanelController(Game, db_conn);
-		playerInfoController = new PlayerInfoController(Game, db_conn);
+		playerInfoController = new PlayerInfoController(Game, db_conn, this);
 		chatPanelController = new ChatPanelController(Game, db_conn);
 		tradePanelController = new TradeController(Game, db_conn);
 		
@@ -72,6 +72,11 @@ public class GameController implements Runnable{
 	public PlayerInformationPanel getSpelerInfoPanel() {
 		// TODO Auto-generated method stub
 		return playerInfoController.getPlayerInfoPanel();
+	}
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void getTradeFrame() {
+		System.out.println("je zit nu in de game controller, op naar de tpc!");
+		tradePanelController.getTradeFrame();
 	}
 
 	public DicePanel getDicePanel() {

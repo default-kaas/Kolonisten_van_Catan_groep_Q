@@ -82,6 +82,8 @@ public class TradeView extends JFrame {
 	}
 	
 	public void showFrame() {
+		System.out.println("should work now");
+		
 		trade = new JPanel();
 
 		this.setAlwaysOnTop (true);

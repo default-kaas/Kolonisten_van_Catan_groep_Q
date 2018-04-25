@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class LobbyDAO {
 
@@ -118,29 +119,26 @@ public class LobbyDAO {
 					+ "' and (speelstatus = 'geaccepteerd' or speelstatus = 'uitdager')";
 			ResultSet rs = statement.executeQuery(QUERY);
 			if (rs.next()) {
-				int spel = rs.getInt("idspel");
+				rs.beforeFirst();
+				ArrayList GameID = new ArrayList<>();
+				while (rs.next()) {
+					GameID.add(rs.getInt("idspel"));
+				}
+				System.out.println(GameID.get(0));
 
-				final String QUERY2 = "select * from speler where idspel = " + spel + " and speelstatus = 'uitdager'";
-				ResultSet rx = statement.executeQuery(QUERY2);
-				int rowCount = getRowCount(rx); // Row Count
-				int columnCount = getColumnCount(rx); // Column Count
+				int rowCount = getRowCount(rs); // Row Count
+				data = new Object[rowCount][2];
 
-				data = new Object[rowCount][columnCount];
+				for (int i = 0; i < GameID.size(); i++) {
+					final String QUERY2 = "select * from speler where idspel = " + GameID.get(i) + " and speelstatus = 'uitdager'";
+					ResultSet rx = statement.executeQuery(QUERY2);
+					rx.next();
+					data[i][0] = rx.getInt("idspel");
+					data[i][1] = rx.getString("username");
+					System.out.println(i);
+				}
 
 				// Starting from First Row for Iteration
-				rx.beforeFirst();
-
-				int i = 0;
-
-				while (rx.next()) {
-
-					int j = 0;
-
-					data[i][j++] = rx.getInt("idspel");
-					data[i][j++] = rx.getString("username");
-
-					i++;
-				}
 
 				statement.close();
 
@@ -152,7 +150,9 @@ public class LobbyDAO {
 			}
 		}
 
-		catch (Exception e) {
+		catch (
+
+		Exception e) {
 			System.out.println(e);
 		}
 

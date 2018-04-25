@@ -24,11 +24,13 @@ public class LobbyFrame extends JFrame implements ActionListener {
 	public LobbyFrame(SuperController superController, Connection db_conn, String userName) {
 		this.superController = superController;
 		lobbyController = new LobbyController(this, db_conn, userName);
+
 		setContent();
+		addMenuBar();
 	}
-	
+
 	public void showGameScreen(int gameID, String userName, boolean newGame) {
-		superController.showGameScreen(gameID,userName, newGame);
+		superController.showGameScreen(gameID, userName, newGame);
 	}
 
 	private void setContent() {

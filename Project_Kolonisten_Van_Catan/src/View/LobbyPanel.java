@@ -103,7 +103,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		JLabel lblLobby = new JLabel("Uitnodiging");
 		lblLobby.setFont(new Font("Arial", Font.BOLD, 30));
 		GridBagConstraints gbc_lblLobby = new GridBagConstraints();
-		gbc_lblLobby.insets = new Insets(0, 0, 0, 200);
+		gbc_lblLobby.insets = new Insets(0, 0, 0, 177);
 		gbc_lblLobby.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblLobby.gridx = 0;
 		gbc_lblLobby.gridy = 0;
@@ -123,7 +123,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.WEST;
-		gbc_table.insets = new Insets(50, 0, 0, 200);
+		gbc_table.insets = new Insets(50, 0, 0, 177);
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
 		add(Uitnodiging, gbc_table);

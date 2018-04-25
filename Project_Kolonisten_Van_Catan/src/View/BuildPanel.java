@@ -43,7 +43,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.buildPanelController = buildPanelController;
 		this.setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
-
+		buildPanelController.testinstuff();
 		setScreenSize();
 		setTitles();
 		setRoad();
@@ -456,11 +456,11 @@ public class BuildPanel extends JPanel implements ActionListener {
 				}
 
 			} else {
-				JOptionPane.showMessageDialog(buyHouse, "Niet genoeg grondstoffen meer!", "Straat Bouwen",
+				JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Straat Bouwen",
 						JOptionPane.INFORMATION_MESSAGE);
-				buyHouse.setBackground(new Color(163, 0, 0));
-				buyHouse.setForeground(Color.BLACK);
-				buyHouse.setEnabled(false);
+				buyDevelopmentCard.setBackground(new Color(163, 0, 0));
+				buyDevelopmentCard.setForeground(Color.BLACK);
+				buyDevelopmentCard.setEnabled(false);
 			}
 		}
 

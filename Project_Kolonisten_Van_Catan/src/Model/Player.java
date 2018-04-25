@@ -97,30 +97,90 @@ public class Player {
 	}
 
 	public void removeRoadResources() {
-		WoodStack.remove(0);
-		StoneStack.remove(0);
-		
+		for (int i = 0; i < WoodStack.size(); i++) {
+			if (i == 0) {
+				WoodStack.remove(i);
+				break;
+			}
+		}
+
+		for (int i = 0; i < StoneStack.size(); i++) {
+			if (i == 0) {
+				StoneStack.remove(i);
+				break;
+			}
+		}
+
 	}
-	
+
 	public void removeHouseResources() {
-		WoodStack.remove(0);
-		StoneStack.remove(0);
-		WheatStack.remove(0);
-		WoolStack.remove(0);
+
+		for (int i = 0; i < WoodStack.size(); i++) {
+			if (i == 0) {
+				WoodStack.remove(i);
+				break;
+			}
+		}
+
+		for (int i = 0; i < StoneStack.size(); i++) {
+			if (i == 0) {
+				StoneStack.remove(i);
+				break;
+			}
+		}
+
+		for (int i = 0; i < WoolStack.size(); i++) {
+			if (i == 0) {
+				WoolStack.remove(i);
+				break;
+			}
+		}
+
+		for (int i = 0; i < WheatStack.size(); i++) {
+			if (i == 0) {
+				WheatStack.remove(i);
+				break;
+			}
+		}
+
 	}
-	
+
 	public void removeCityResources() {
-		OreStack.remove(2);
-		OreStack.remove(1);
-		OreStack.remove(0);
-		WheatStack.remove(1);
-		WheatStack.remove(0);
+		int i = 0;
+		while (i < 3) {
+			OreStack.remove(i);
+			i++;
+		}
+
+		while (i < 2) {
+			WheatStack.remove(i);
+			i++;
+		}
+
 	}
-	
+
 	public void removeDevResources() {
-		OreStack.remove(0);
-		WheatStack.remove(0);
-		WoolStack.remove(0);
+		
+		for (int i = 0; i < WoolStack.size(); i++) {
+			if (i == 0) {
+				WoolStack.remove(i);
+				break;
+			}
+		}
+		
+		for (int i = 0; i < OreStack.size(); i++) {
+			if (i == 0) {
+				WoolStack.remove(i);
+				break;
+			}
+		}
+		
+		for (int i = 0; i < WoolStack.size(); i++) {
+			if (i == 0) {
+				WheatStack.remove(i);
+				break;
+			}
+		}
 	}
 
 	public int getWoodAmount() {

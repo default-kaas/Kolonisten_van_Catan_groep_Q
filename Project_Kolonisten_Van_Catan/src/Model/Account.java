@@ -43,6 +43,14 @@ public class Account {
 		}
 	}
 	
+	public boolean createAccountMaximumLength(String username, String password) {
+		if(username.length()>25||password.length()>25) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
 	public boolean createAccountCorrectSigns(String username, String password) {
 		String usernameLowerCase = username.toLowerCase();
 		String passwordLowerCase = password.toLowerCase();

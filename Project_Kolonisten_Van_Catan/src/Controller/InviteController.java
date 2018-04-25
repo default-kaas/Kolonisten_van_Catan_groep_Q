@@ -32,7 +32,7 @@ public class InviteController {
 	}
 	
 	public void invitePlayer(String userName) {
-		InviteDAO.invitePlayer(userName, idspel);
+		InviteDAO.invitePlayers(userName, idspel);
 	}
 	
 //	public int getSelectedRow() {

@@ -291,13 +291,18 @@ public class LobbyPanel extends JPanel implements ActionListener {
 			i++;
 		}
 		data2 = lobbyController.showUsers();
-		i = 0;
-		for (Object[] x : data2) {
-			invitedList.setValueAt(x[0], i, 0);
-			invitedList.setValueAt(x[1], i, 1);
-			i++;
-
-		}
+		String[] columns = new String[] { "Name", "speelstatus" };
+		Uitnodiging = new JTable(data, columns);
+		Uitnodiging.revalidate();
+//		i = 0;
+//		for (Object[] x : lobbyController.showUsers()) {
+//			System.out.println(i);
+//			invitedList.setValueAt(x[0], i, 0);
+//			invitedList.setValueAt(x[1], i, 1);
+//			i++;
+//
+//		}
+		
 	}
 
 	public void actionPerformed(ActionEvent a) {

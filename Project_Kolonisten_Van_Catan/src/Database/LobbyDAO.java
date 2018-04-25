@@ -46,7 +46,7 @@ public class LobbyDAO {
 			Statement statement2 = m_Conn.createStatement();
 			statement2.executeUpdate(QUERY2);
 
-			final String QUERY3 = " INSERT INTO speler (idspeler, idspel, username, kleur, speelstatus, shouldrefresh, volgnr) VALUES ("
+			final String QUERY3 = "INSERT INTO speler (idspeler, idspel, username, kleur, speelstatus, shouldrefresh, volgnr) VALUES ("
 					+ newSpelerID + ", " + newGameID + ", '" + username + "', \"rood\", \"uitdager\", 0, 1);";
 			Statement statement3 = m_Conn.createStatement();
 			statement3.executeUpdate(QUERY3);
@@ -65,34 +65,28 @@ public class LobbyDAO {
 			final String QUERY = "SELECT * FROM speler WHERE username = '" + username
 					+ "' and speelstatus = 'uitgedaagde'";
 			ResultSet rs = statement.executeQuery(QUERY);
+		
 			if (rs.next()) {
-
-				int spel = rs.getInt("idspel");
-
-				final String QUERY2 = "SELECT * FROM speler WHERE idspel = " + spel + " and speelstatus = 'uitdager';";
-				ResultSet rx = statement.executeQuery(QUERY2);
-				int rowCount = getRowCount(rx); // Row Count
-				int columnCount = getColumnCount(rx); // Column Count
-
-				data = new Object[rowCount][columnCount];
+				rs.beforeFirst();
+				ArrayList spel = new ArrayList<>();
+				while (rs.next()) {
+					spel.add(rs.getInt("idspel"));
+				}
+				int rowCount = getRowCount(rs);
+				
+				data = new Object[rowCount][2];
 
 				// Starting from First Row for Iteration
-				rx.beforeFirst();
 
-				int i = 0;
+				for (int i = 0; i < spel.size(); i++) {
+					Statement statement2 = m_Conn.createStatement();
+					final String QUERY2 = "SELECT * FROM speler WHERE idspel = " + spel.get(i)+ " and speelstatus = 'uitdager';";
+					ResultSet rx = statement2.executeQuery(QUERY2);
+					rx.next();
+					data[i][0] = rx.getInt("idspel");
+					data[i][1] = rx.getString("username");
 
-				while (rx.next()) {
-
-					int j = 0;
-
-					data[i][j++] = rx.getInt("idspel");
-
-					data[i][j++] = rx.getString("username");
-
-					i++;
 				}
-
-				statement.close();
 
 			} else {
 				// Nep data xD
@@ -101,7 +95,7 @@ public class LobbyDAO {
 				data[0][1] = " game";
 			}
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println(e);
 		}
 
@@ -124,23 +118,23 @@ public class LobbyDAO {
 				while (rs.next()) {
 					GameID.add(rs.getInt("idspel"));
 				}
-				System.out.println(GameID.get(0));
 
 				int rowCount = getRowCount(rs); // Row Count
+				System.out.println(rowCount);
+				
 				data = new Object[rowCount][2];
 
 				for (int i = 0; i < GameID.size(); i++) {
-					final String QUERY2 = "select * from speler where idspel = " + GameID.get(i) + " and speelstatus = 'uitdager'";
+					final String QUERY2 = "select * from speler where idspel = " + GameID.get(i)
+							+ " and speelstatus = 'uitdager'";
 					ResultSet rx = statement.executeQuery(QUERY2);
 					rx.next();
 					data[i][0] = rx.getInt("idspel");
 					data[i][1] = rx.getString("username");
-					System.out.println(i);
 				}
 
 				// Starting from First Row for Iteration
 
-				statement.close();
 
 			} else {
 				// Nep data xD
@@ -150,9 +144,7 @@ public class LobbyDAO {
 			}
 		}
 
-		catch (
-
-		Exception e) {
+		catch (SQLException e) {
 			System.out.println(e);
 		}
 

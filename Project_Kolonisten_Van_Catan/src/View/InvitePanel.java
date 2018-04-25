@@ -141,7 +141,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 		// playerFinding.getColumnModel().getColumn(0).setPreferredWidth(300);
 		//
-		 playerFinding.getColumnModel().getColumn(1).setPreferredWidth(0);
+		playerFinding.getColumnModel().getColumn(1).setPreferredWidth(0);
 
 		GridBagConstraints gbc_table_1 = new GridBagConstraints();
 		gbc_table_1.gridwidth = 3;
@@ -149,7 +149,8 @@ public class InvitePanel extends JPanel implements ActionListener {
 		gbc_table_1.anchor = GridBagConstraints.EAST;
 		gbc_table_1.gridx = 1;
 		gbc_table_1.gridy = 1;
-		JScrollPane x = new JScrollPane(playerFinding, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane x = new JScrollPane(playerFinding, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		x.setPreferredSize(new Dimension(600, 200));
 		add(x, gbc_table_1);
 		playerFinding.setDefaultEditor(Object.class, null);
@@ -215,11 +216,11 @@ public class InvitePanel extends JPanel implements ActionListener {
 	}
 
 	public void refreshPanel() {
-
-		if (playerFinding.getSelectedRow() != -1 && creator) {
-			ToInvite.removeRow(playerFinding.getSelectedRow());
+		if (creator) {
+			if (playerFinding.getSelectedRow() != -1) {
+				ToInvite.removeRow(playerFinding.getSelectedRow());
+			}
 		}
-
 		int invited = Invited.getRowCount();
 		for (int i = 0; i < invited; i++) {
 			Invited.removeRow(0);

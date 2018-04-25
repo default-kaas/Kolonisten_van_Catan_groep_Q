@@ -1,10 +1,11 @@
 package Model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Grid {
-	private HashMap<Point, AdjacentPoints> pointAndAdjacentPoints = new HashMap<Point, AdjacentPoints>();
+	private HashMap<RealPoint, DataBasePointRealPoint> pointAndAdjacentPoints = new HashMap<RealPoint, DataBasePointRealPoint>();
 
 	public void saveData() {
 		// Excute sql querie
@@ -18,11 +19,14 @@ public class Grid {
 			int y = (int) tileCenter.getY();
 			for (int points = 0; points < 6; points++) {
 				// left first x2 y4
+				RealPoint realPoint = new RealPoint();
+				
+				
 				Point point = new Point();
 				int xpoint = x - 1;
 				int ypoint = y - 1;
 				point.setLocation(xpoint, ypoint);
-				if (pointAndAdjacentPoints.containsKey(point) != true) {
+				if (pointAndAdjacentPoints.containsKey( point) != true) {
 
 				}
 				// left second
@@ -77,6 +81,8 @@ public class Grid {
 		Point point1 = new Point();
 		Point point2 = new Point();
 		Point point3 = new Point();
+		
+		ArrayList<RealPoint> arrayList = new ArrayList<RealPoint>();
 
 		switch (pointValue) {
 		case 13:
@@ -332,5 +338,7 @@ public class Grid {
 			point2.setLocation(11, 8);
 			break;
 		}
+	
+	
 	}
 }

@@ -27,7 +27,7 @@ public class InviteController {
 		return invitePanel;
 	}
 	
-	public Object[] showInviteUsers(){
+	public Object[][] showInviteUsers(){
 		return InviteDAO.getInviteUserList(username);
 	}
 	

@@ -1,13 +1,10 @@
 package View;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -37,17 +33,17 @@ public class InvitePanel extends JPanel implements ActionListener {
 	private JButton refreshBtn;
 	private JButton inviteBtn;
 	private Object[][] data;
-	private	Object[] data2;
-	private	String[] column;
-	private String[] column2;
-	
-	
+	private Object[][] data2;
+
+	private DefaultTableModel Invited;
+	private final String[] INVITEDCOLUMNS = new String[] { "Naam", "Speelstatus" };
+	private DefaultTableModel ToInvite;
+	private final String[] TOINVITECOLUMNS = new String[] { "Naam", "Speelstatus" };
+
 	public InvitePanel(InviteController inviteController) {
 		this.inviteController = inviteController;
-//		setPreferredSize(new Dimension(350, 300));
+		// setPreferredSize(new Dimension(350, 300));
 		setBackground(new Color(244, 167, 66));
-		column = new String[] { "Name", "speelstatus" };
-		column2 = new String[] { "Name"};
 		GridBagLayout gridBagLayout = new GridBagLayout();
 
 		setLayout(gridBagLayout);
@@ -99,9 +95,11 @@ public class InvitePanel extends JPanel implements ActionListener {
 	}
 
 	public void lobbyTable() {
+		// Reply table
 		data = inviteController.showUsers();
-		
-		playerList = new JTable(data, column);
+		Invited = new DefaultTableModel(data, INVITEDCOLUMNS);
+		playerList = new JTable(Invited);
+
 		playerList.setFont(new Font("Calibri", Font.BOLD, 30));
 		playerList.setRowHeight(30);
 
@@ -122,20 +120,21 @@ public class InvitePanel extends JPanel implements ActionListener {
 		playerList.setDefaultEditor(Object.class, null);
 
 	}
+
 	public void inviteTable() {
 		data2 = inviteController.showInviteUsers();
-		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("test",data2);
-		playerFinding = new JTable(model);
+		ToInvite = new DefaultTableModel(data2, TOINVITECOLUMNS);
+		playerFinding = new JTable(ToInvite);
+
 		playerFinding.setFont(new Font("Calibri", Font.BOLD, 30));
 		playerFinding.setRowHeight(30);
 		TableColumnModel columnModel1 = playerFinding.getColumnModel();
 		playerFinding.setRowHeight(30);
 		playerFinding.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-		for (int i = 0; i < columnModel1.getColumnCount(); i++) {
-			playerFinding.getColumnModel().getColumn(i).setPreferredWidth(250);
-		}
+		playerFinding.getColumnModel().getColumn(0).setPreferredWidth(250);
+
+		playerFinding.getColumnModel().getColumn(1).setPreferredWidth(0);
 
 		GridBagConstraints gbc_table_1 = new GridBagConstraints();
 		gbc_table_1.gridwidth = 3;
@@ -146,7 +145,6 @@ public class InvitePanel extends JPanel implements ActionListener {
 		add(playerFinding, gbc_table_1);
 		playerFinding.setDefaultEditor(Object.class, null);
 	}
-
 
 	public void lobbyButtons() {
 		refreshBtn = new JButton();
@@ -171,7 +169,6 @@ public class InvitePanel extends JPanel implements ActionListener {
 		add(refreshBtn, gbc_inviteBtn);
 
 	}
-	
 
 	public void inviteTitle() {
 		JLabel lblFinding = new JLabel("Spelers uitnodigen");
@@ -184,7 +181,6 @@ public class InvitePanel extends JPanel implements ActionListener {
 		add(lblFinding, gbc_lblFinding);
 	}
 
-	
 	public void inviteButton() {
 		inviteBtn = new JButton();
 		try {
@@ -208,37 +204,41 @@ public class InvitePanel extends JPanel implements ActionListener {
 		add(inviteBtn, gbc_inviteBtn1);
 
 	}
+
 	public void refreshPanel() {
-		data = inviteController.showUsers();
-		int i = 0;
-		for (Object[] x : data) {
-			System.out.println(x[0]);
-			System.out.println(x[1]);
-			System.out.println(i);
-			playerList.setValueAt(x[0], i, 0);
-			playerList.setValueAt(x[1], i, 1);
-			i++;
+
+		if (playerFinding.getSelectedRow() != -1) {
+			ToInvite.removeRow(playerFinding.getSelectedRow());
 		}
-		data2 = inviteController.showInviteUsers();
-		i = 0;
-		for (Object x : data2) {
-			playerFinding.setValueAt(x, i, 0);
-			i++;
+
+		int invited = Invited.getRowCount();
+		for (int i = 0; i < invited; i++) {
+			Invited.removeRow(0);
+		}
+
+		Object[][] newInvited = inviteController.showUsers();
+		for (Object[] y : newInvited) {
+			Invited.addRow(y);
 
 		}
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == refreshBtn) {
-
+			refreshPanel();
 		}
 
 		if (e.getSource() == inviteBtn) {
-			int x = playerFinding.getSelectedRow();
-			inviteController.invitePlayer((String)playerFinding.getValueAt(x, 0));
-			playerList.clearSelection();
-			refreshPanel();
+			System.out.println("Invited: " + Invited.getRowCount());
+			if (Invited.getRowCount() < 3) {
+				int x = playerFinding.getSelectedRow();
+				inviteController.invitePlayer((String) playerFinding.getValueAt(x, 0));
+				playerList.clearSelection();
+				refreshPanel();
+			}
+
 		}
 
 	}

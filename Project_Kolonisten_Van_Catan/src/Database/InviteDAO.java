@@ -66,7 +66,7 @@ public class InviteDAO {
 				// Nep data xD
 				data = new Object[1][2];
 				data[0][0] = " Niemand";
-				data[0][1] = " uitgenodigt!";
+				data[0][1] = " uitgenodigd!";
 			}
 
 		} catch (Exception e) {

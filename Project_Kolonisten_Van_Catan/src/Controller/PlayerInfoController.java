@@ -45,7 +45,6 @@ public class PlayerInfoController {
 	}
 	
 	public void getTradePanel() {
-		System.out.println("gg hij is in de player controller gekomen nou gaan we terug naar de gamecontroller");
 		gameController.getTradeFrame();
 	}
 }

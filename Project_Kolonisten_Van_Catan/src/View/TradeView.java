@@ -42,36 +42,31 @@ public class TradeView extends JFrame {
 	private BufferedImage hout;
 	private BufferedImage steen;
 	private BufferedImage erts;
+ 
+	private JLabel panel;
+	private JLabel yourCards;
+	private JButton propose;
+	private JLabel theirCards;
 
-	private JLabel panel = new JLabel("Handelspaneel");
-	private JLabel yourCards = new JLabel("Aanbod:");
-	private JButton propose = new JButton("Stel handel voor");
-	private JLabel theirCards = new JLabel("Vraag:");
-
-	// het onderstaande moet veranderd worden naar data uit de database
 	private JLabel your_wool;
 	private JLabel your_wheat;
 	private JLabel your_wood;
 	private JLabel your_stone;
 	private JLabel your_ore;
 
-	private JLabel resource_input = new JLabel("Input:");
-	private JTextField your_woolt = new JTextField(2);
-	private JTextField your_wheatt = new JTextField(2);
-	private JTextField your_woodt = new JTextField(2);
-	private JTextField your_stonet = new JTextField(2);
-	private JTextField your_oret = new JTextField(2);
+	private JLabel resource_input;
+	private JTextField your_woolt;
+	private JTextField your_wheatt;
+	private JTextField your_woodt;
+	private JTextField your_stonet;
+	private JTextField your_oret;
 
-	private JLabel their_input = new JLabel("Input:");
-	private JTextField their_woolt = new JTextField(2);
-	private JTextField their_wheatt = new JTextField(2);
-	private JTextField their_woodt = new JTextField(2);
-	private JTextField their_stonet = new JTextField(2);
-	private JTextField their_oret = new JTextField(2);
-
-	private JLabel playerdd = new JLabel("Hoe wil je ruilen?");
-	private String[] players = { "Spelers", "De Bank" };
-	private final JComboBox<String> cb = new JComboBox<String>(players);
+	private JLabel their_input;
+	private JTextField their_woolt;
+	private JTextField their_wheatt;
+	private JTextField their_woodt;
+	private JTextField their_stonet;
+	private JTextField their_oret;
 	
 	JPanel trade;
 
@@ -82,8 +77,6 @@ public class TradeView extends JFrame {
 	}
 	
 	public void showFrame() {
-
-		System.out.println("should work now");
 		
 		trade = new JPanel();
 
@@ -101,10 +94,9 @@ public class TradeView extends JFrame {
 		trade.setPreferredSize(new Dimension(1000, 600));
 		trade.setBackground(new Color(245, 245, 220));
 
+		createStuff();
 		importImages();
 		addMenuBar();
-		
-		// Insets wordt nog veranderd.
 
 		c.insets = new Insets(20, 0, 0, 0);
 		panel.setFont(new Font("Arial Black", 1, 25));
@@ -120,12 +112,6 @@ public class TradeView extends JFrame {
 
 		c.insets = new Insets(550, 0, 0, 0);
 		trade.add(propose, c);
-		
-		your_wool = new JLabel("" + tc.getPlayerCards(1));
-		your_wheat = new JLabel("" + tc.getPlayerCards(2));
-		your_wood = new JLabel("" + tc.getPlayerCards(3));
-		your_stone = new JLabel("" + tc.getPlayerCards(4));
-		your_ore = new JLabel("" + tc.getPlayerCards(5));
 
 		c.insets = new Insets(160, 0, 0, 620);
 		trade.add(your_wool, c);
@@ -163,6 +149,10 @@ public class TradeView extends JFrame {
 		trade.add(their_stonet, c);
 		c.insets = new Insets(440, 630, 0, 0);
 		trade.add(their_oret, c);
+		
+		JLabel playerdd = new JLabel("Hoe wil je ruilen?");
+		String[] players = { "Spelers", "De Bank" };
+		final JComboBox<String> cb = new JComboBox<String>(players);
 
 		c.insets = new Insets(250, 0, 0, 0);
 		trade.add(playerdd, c);
@@ -225,6 +215,32 @@ public class TradeView extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
+	}
+	
+	private void createStuff() {
+		
+		panel = new JLabel("Handelspaneel");
+		yourCards = new JLabel("Aanbod:");
+		propose = new JButton("Stel handel voor");
+		your_wool = new JLabel("" + tc.getPlayerCards(1));
+		your_wheat = new JLabel("" + tc.getPlayerCards(2));
+		your_wood = new JLabel("" + tc.getPlayerCards(3));
+		your_stone = new JLabel("" + tc.getPlayerCards(4));
+		your_ore = new JLabel("" + tc.getPlayerCards(5));
+		theirCards = new JLabel("Vraag:");
+		resource_input = new JLabel("Input:");
+		your_woolt = new JTextField(2);
+		your_wheatt = new JTextField(2);
+		your_woodt = new JTextField(2);
+		your_stonet = new JTextField(2);
+		your_oret = new JTextField(2);
+		their_input = new JLabel("Input:");
+		their_woolt = new JTextField(2);
+		their_wheatt = new JTextField(2);
+		their_woodt = new JTextField(2);
+		their_stonet = new JTextField(2);
+		their_oret = new JTextField(2);
+		
 	}
 
 	private void addMenuBar() {

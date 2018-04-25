@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import Controller.LobbyController;
@@ -38,6 +39,11 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	private Object[][] data;
 	private Object[][] data2;
 
+	private DefaultTableModel Reply;
+	private final String[] REPLYCOLUMNS = new String[] { "Naam", "Speelstatus" };
+	private DefaultTableModel Games;
+	private final String[] GAMESCOLUMNS = new String[] { "Naam", "Speelstatus" };
+
 	GridBagConstraints c;
 
 	public LobbyPanel(LobbyFrame lobbyFrame, LobbyController lobbyController) {
@@ -55,7 +61,10 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		 * JLabel(); thumb.setIcon(icon); thumb.setPreferredSize(new Dimension(width,
 		 * height)); this.add(thumb);
 		 */
-		this.setLayout(new GridBagLayout());
+		// this.setLayout(new GridBagLayout());
+		// // setBackground(new Color(157, 24, 31));
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		setLayout(gridBagLayout);
 
 		this.lobbyController = lobbyController;
 		// setTitle
@@ -93,13 +102,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	}
 
 	public void lobbyTable() {
-
-		data = lobbyController.showInvites();
-		// setBackground(new Color(157, 24, 31));
-		String[] columns = new String[] { "Name", "speelstatus" };
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		setLayout(gridBagLayout);
-
+		// Button Uitnodiging
 		JLabel lblLobby = new JLabel("Uitnodiging");
 		lblLobby.setFont(new Font("Arial", Font.BOLD, 30));
 		GridBagConstraints gbc_lblLobby = new GridBagConstraints();
@@ -109,7 +112,10 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_lblLobby.gridy = 0;
 		add(lblLobby, gbc_lblLobby);
 
-		Uitnodiging = new JTable(data, columns);
+		// Reply table
+		data = lobbyController.showInvites();
+		Reply = new DefaultTableModel(data, REPLYCOLUMNS);
+		Uitnodiging = new JTable(Reply);
 
 		Uitnodiging.setFont(new Font("Calibri", Font.BOLD, 30));
 		Uitnodiging.setRowHeight(50);
@@ -163,10 +169,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 	public void activeGames() {
 
-		data2 = lobbyController.showUsers();
-
-		String[] columns = new String[] { "Name", "speelstatus" };
-
 		JLabel lblLobby = new JLabel("Actieve spellen");
 		lblLobby.setFont(new Font("Arial", Font.BOLD, 30));
 		GridBagConstraints gbc_lblLobby = new GridBagConstraints();
@@ -176,8 +178,10 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_lblLobby.gridx = 1;
 		gbc_lblLobby.gridy = 0;
 		add(lblLobby, gbc_lblLobby);
-		invitedList = new JTable(data2, columns);
 
+		data2 = lobbyController.showUsers();
+		Games = new DefaultTableModel(data2, GAMESCOLUMNS);
+		invitedList = new JTable(Games);
 		invitedList.setFont(new Font("Calibri", Font.BOLD, 30));
 		invitedList.setRowHeight(50);
 		TableColumnModel columnModel = invitedList.getColumnModel();
@@ -283,32 +287,30 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	}
 
 	public void refresh() {
-		data = lobbyController.showInvites();
-		int i = 0;
-		for (Object[] x : data) {
-			Uitnodiging.setValueAt(x[0], i, 0);
-			Uitnodiging.setValueAt(x[1], i, 1);
-			i++;
+		int reply = Reply.getRowCount();
+		for (int i = 0; i < reply; i++) {
+			Reply.removeRow(0);
 		}
-		data2 = lobbyController.showUsers();
-		String[] columns = new String[] { "Name", "speelstatus" };
-		Uitnodiging = new JTable(data, columns);
-		Uitnodiging.revalidate();
-//		i = 0;
-//		for (Object[] x : lobbyController.showUsers()) {
-//			System.out.println(i);
-//			invitedList.setValueAt(x[0], i, 0);
-//			invitedList.setValueAt(x[1], i, 1);
-//			i++;
-//
-//		}
+		int games = Games.getRowCount();
+		for (int i = 0; i < games; i++) {
+			Games.removeRow(0);	
+		}
 		
+		Object[][] newReply = lobbyController.showInvites();
+		for (Object[] y : newReply) {
+			Reply.addRow(y);
+		}
+
+		Object[][] newGame = lobbyController.showUsers();
+		for (Object[] z : newGame) {
+			Games.addRow(z);
+		}
 	}
 
 	public void actionPerformed(ActionEvent a) {
 
 		if (a.getSource() == normalMode) {
-		
+
 			int gameid = lobbyController.createNewGame(false);
 			lobbyController.makeInvitePanel(gameid);
 			lobbyFrame.setContentPane(lobbyController.getInvitePanel());
@@ -334,9 +336,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 				Uitnodiging.clearSelection();
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), false);
-				Uitnodiging.clearSelection();
 				refresh();
-
 			}
 
 		}
@@ -354,7 +354,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 				Uitnodiging.clearSelection();
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), true);
-				Uitnodiging.clearSelection();
 				refresh();
 			}
 
@@ -378,8 +377,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		}
 
 		if (a.getSource() == refreshBtn) {
-			Uitnodiging.clearSelection();
-			invitedList.clearSelection();
 			refresh();
 		}
 	}

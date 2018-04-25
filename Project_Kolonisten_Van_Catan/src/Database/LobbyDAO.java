@@ -65,7 +65,7 @@ public class LobbyDAO {
 			final String QUERY = "SELECT * FROM speler WHERE username = '" + username
 					+ "' and speelstatus = 'uitgedaagde'";
 			ResultSet rs = statement.executeQuery(QUERY);
-		
+
 			if (rs.next()) {
 				rs.beforeFirst();
 				ArrayList spel = new ArrayList<>();
@@ -73,14 +73,15 @@ public class LobbyDAO {
 					spel.add(rs.getInt("idspel"));
 				}
 				int rowCount = getRowCount(rs);
-				
+
 				data = new Object[rowCount][2];
 
 				// Starting from First Row for Iteration
 
 				for (int i = 0; i < spel.size(); i++) {
 					Statement statement2 = m_Conn.createStatement();
-					final String QUERY2 = "SELECT * FROM speler WHERE idspel = " + spel.get(i)+ " and speelstatus = 'uitdager';";
+					final String QUERY2 = "SELECT * FROM speler WHERE idspel = " + spel.get(i)
+							+ " and speelstatus = 'uitdager';";
 					ResultSet rx = statement2.executeQuery(QUERY2);
 					rx.next();
 					data[i][0] = rx.getInt("idspel");
@@ -106,45 +107,28 @@ public class LobbyDAO {
 	public Object[][] getUserList(String username) {
 		Object[][] data = null;
 		try {
-
 			Statement statement = m_Conn.createStatement();
-
-			final String QUERY = "SELECT idspel FROM speler WHERE username = '" + username
-					+ "' and (speelstatus = 'geaccepteerd' or speelstatus = 'uitdager')";
+			final String QUERY = "select * from speler where speelstatus = 'uitdager' and idspel in (SELECT idspel FROM speler WHERE username = '"+ username + "' and (speelstatus = 'geaccepteerd' or speelstatus = 'uitdager'))";
 			ResultSet rs = statement.executeQuery(QUERY);
-			if (rs.next()) {
-				rs.beforeFirst();
-				ArrayList GameID = new ArrayList<>();
-				while (rs.next()) {
-					GameID.add(rs.getInt("idspel"));
-				}
+			
+			int rowCount = getRowCount(rs); // Row Count
+			
+			rs.beforeFirst();
 
-				int rowCount = getRowCount(rs); // Row Count
-				System.out.println(rowCount);
-				
-				data = new Object[rowCount][2];
-
-				for (int i = 0; i < GameID.size(); i++) {
-					final String QUERY2 = "select * from speler where idspel = " + GameID.get(i)
-							+ " and speelstatus = 'uitdager'";
-					ResultSet rx = statement.executeQuery(QUERY2);
-					rx.next();
-					data[i][0] = rx.getInt("idspel");
-					data[i][1] = rx.getString("username");
-				}
-
-				// Starting from First Row for Iteration
-
-
-			} else {
-				// Nep data xD
-				data = new Object[1][2];
-				data[0][0] = " Geen";
-				data[0][1] = " game";
+			data = new Object[rowCount][2];
+			for (int i = 0; i < rowCount; i++) {
+				rs.next();
+				data[i][0] = rs.getInt("idspel");
+				data[i][1] = rs.getString("username");
 			}
 		}
 
-		catch (SQLException e) {
+		catch (
+
+		SQLException e) {
+			data = new Object[1][2];
+			data[0][0] = " Geen";
+			data[0][1] = " game";
 			System.out.println(e);
 		}
 

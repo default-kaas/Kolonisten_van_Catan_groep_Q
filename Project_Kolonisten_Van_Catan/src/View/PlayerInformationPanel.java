@@ -13,11 +13,12 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import Controller.PlayerInfoController;
-import Controller.TradePanelController;
+import Controller.TradeController;
 import Model.Player;
 
 public class PlayerInformationPanel extends JPanel implements ActionListener {
@@ -29,6 +30,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private BufferedImage WoodImage;
 	private BufferedImage StoneImage;
 	private BufferedImage OreImage;
+	
+	
 
 	// private PlayerInfoController Controller;
 
@@ -113,10 +116,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		trade = new JButton("Handelspaneel");
 		this.add(Box.createRigidArea(new Dimension(5, 10)));
 		this.add(trade);
-
+		
 		trade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// laat zien
+				JOptionPane.showMessageDialog(trade, "Under Construction!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 	}

@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.color.ColorSpace;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.ImageObserver;
@@ -31,11 +32,11 @@ public class BuildPanel extends JPanel implements ActionListener {
 	private JButton buyCity;
 	private JButton buyDevelopmentCard;
 	private TitledBorder title;
-	private BuildPanelController bouwPanelController;
+	private BuildPanelController buildPanelController;
 	private GridBagConstraints c;
 
-	public BuildPanel(BuildPanelController bouwPanelController) {
-		this.bouwPanelController = bouwPanelController;
+	public BuildPanel(BuildPanelController buildPanelController) {
+		this.buildPanelController = buildPanelController;
 		this.setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
 
@@ -132,6 +133,13 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
 		c.gridy = 2;
+		
+		if (buildPanelController.checkRecoursesRoad()) {
+			buyRoad.setBackground(new Color(5, 162, 0));
+		}else if (!buildPanelController.checkRecoursesRoad()) {
+			buyRoad.setBackground(new Color(163, 0, 0));
+			buyRoad.setEnabled(false);
+		}
 		this.add(buyRoad, c);
 	}
 
@@ -180,13 +188,18 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.add(houseWool, c);
 
 		buyHouse = new JButton("Koop Dorp");
-		buyHouse.setBackground(new Color(59, 89, 182));
-		buyHouse.setForeground(Color.WHITE);
 		buyHouse.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
 		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
 		c.gridy = 3;
+		
+		if (buildPanelController.checkResourcesHouse()) {
+			buyHouse.setBackground(new Color(5, 162, 0));
+		}else if (!buildPanelController.checkResourcesHouse()) {
+			buyHouse.setBackground(new Color(163, 0, 0));
+			buyHouse.setEnabled(false);
+		}
 		this.add(buyHouse, c);
 	}
 
@@ -239,13 +252,19 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.add(cityWheat2, c);
 
 		buyCity = new JButton("Koop Stad");
-		buyCity.setBackground(new Color(59, 89, 182));
-		buyCity.setForeground(Color.WHITE);
+		
 		buyCity.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
 		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 7;
 		c.gridy = 4;
+		
+		if (buildPanelController.checkResourcesCity()) {
+			buyCity.setBackground(new Color(5, 162, 0));
+		}else if (!buildPanelController.checkResourcesCity()) {
+			buyCity.setBackground(new Color(163, 0, 0));
+			buyCity.setEnabled(false);
+		}
 		this.add(buyCity, c);
 
 	}
@@ -276,7 +295,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridx = 4;
 		c.gridy = 5;
 		this.add(cityWheat, c);
-
+		
 		ImageIcon wool = new ImageIcon("images/Resources/sheep1.png");
 		wool.setDescription("Wool");
 		JLabel cityWool = new JLabel(wool);
@@ -287,12 +306,18 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 		buyDevelopmentCard = new JButton("Koop kaart");
 		buyDevelopmentCard.setBackground(new Color(59, 89, 182));
-		buyDevelopmentCard.setForeground(Color.WHITE);
 		buyDevelopmentCard.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
 		c.insets = new Insets(0, 50, 10, 0);
 		c.gridx = 7;
 		c.gridy = 5;
+		
+		if (buildPanelController.checkResourcesDevCard()) {
+			buyDevelopmentCard.setBackground(new Color(5, 162, 0));
+		} else if (!buildPanelController.checkResourcesDevCard()) {
+			buyDevelopmentCard.setBackground(new Color(163, 0, 0));
+			buyDevelopmentCard.setEnabled(false);
+		}
 		this.add(buyDevelopmentCard, c);
 
 	}
@@ -305,7 +330,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een straat wilt kopen?",
 					"Straat Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
-				System.out.println(bouwPanelController.checkRecoursesRoad());
+				System.out.println(buildPanelController.checkRecoursesRoad());
 			}
 		}
 
@@ -313,7 +338,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een dorp wilt kopen?",
 					"dorp Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
-				System.out.println(bouwPanelController.checkResourcesHouse());
+				System.out.println(buildPanelController.checkResourcesHouse());
 			}
 
 		}
@@ -322,7 +347,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een stad wilt kopen?",
 					"Stad Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
-				System.out.println(bouwPanelController.checkResourcesCity());
+				System.out.println(buildPanelController.checkResourcesCity());
 			}
 		}
 
@@ -330,7 +355,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een ontwikkelingskaart wilt kopen?",
 					"Ontwikkelingskaart Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
-				System.out.println(bouwPanelController.checkResourcesDevCard());
+				System.out.println(buildPanelController.checkResourcesDevCard());
 			}
 
 		}

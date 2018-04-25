@@ -186,6 +186,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 		buyHouse = new JButton("Koop Dorp");
 		buyHouse.setPreferredSize(new Dimension(120, 30));
+		
 		c.anchor = GridBagConstraints.EAST;
 		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
@@ -193,8 +194,10 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 		if (buildPanelController.checkResourcesHouse()) {
 			buyHouse.setBackground(new Color(5, 162, 0));
+			buyHouse.setForeground(Color.WHITE);
 		} else if (!buildPanelController.checkResourcesHouse()) {
 			buyHouse.setBackground(new Color(163, 0, 0));
+			buyHouse.setForeground(Color.BLACK);
 			buyHouse.setEnabled(false);
 		}
 		this.add(buyHouse, c);
@@ -256,8 +259,10 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 		if (buildPanelController.checkResourcesCity()) {
 			buyCity.setBackground(new Color(5, 162, 0));
+			buyCity.setForeground(Color.WHITE);
 		} else if (!buildPanelController.checkResourcesCity()) {
 			buyCity.setBackground(new Color(163, 0, 0));
+			buyCity.setForeground(Color.BLACK);
 			buyCity.setEnabled(false);
 		}
 		this.add(buyCity, c);
@@ -305,8 +310,10 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 		if (buildPanelController.checkResourcesDevCard()) {
 			buyDevelopmentCard.setBackground(new Color(5, 162, 0));
+			buyDevelopmentCard.setForeground(Color.WHITE);
 		} else if (!buildPanelController.checkResourcesDevCard()) {
 			buyDevelopmentCard.setBackground(new Color(163, 0, 0));
+			buyDevelopmentCard.setForeground(Color.BLACK);
 			buyDevelopmentCard.setEnabled(false);
 		}
 		this.add(buyDevelopmentCard, c);

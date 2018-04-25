@@ -328,9 +328,13 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een straat wilt kopen?",
 					"Straat Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
+				if (buildPanelController.checkRecoursesRoad()) {
 				buildPanelController.removeStreetRes();
 				JOptionPane.showMessageDialog(buyRoad, "Selecteer nu een plek om een Straat te bouwen", "Straat Bouwen", JOptionPane.INFORMATION_MESSAGE );
 				System.out.println(buildPanelController.checkRecoursesRoad());
+				}else {
+					JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Straat Bouwen", JOptionPane.INFORMATION_MESSAGE );
+				}
 			} else {
 				System.out.println(buildPanelController.checkRecoursesRoad());
 			}
@@ -340,9 +344,15 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een dorp wilt kopen?",
 					"dorp Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
+				if (buildPanelController.checkResourcesHouse()) {
 				buildPanelController.removeHouseRes();
 				JOptionPane.showMessageDialog(buyHouse, "Selecteer nu een plek om een Dorp te bouwen", "Dorp Bouwen", JOptionPane.INFORMATION_MESSAGE );
 				System.out.println(buildPanelController.checkResourcesHouse());
+			}else {
+				JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Dorp Bouwen", JOptionPane.INFORMATION_MESSAGE );
+			}
+			}else {
+				System.out.println(buildPanelController.checkResourcesDevCard());
 			}
 
 		}
@@ -351,9 +361,15 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een stad wilt kopen?",
 					"Stad Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
+				if (buildPanelController.checkResourcesCity()) {
 				buildPanelController.removeCityRes();
 				JOptionPane.showMessageDialog(buyCity, "Selecteer nu een plek om een Stad te bouwen", "Stad Bouwen", JOptionPane.INFORMATION_MESSAGE );
 				System.out.println(buildPanelController.checkResourcesCity());
+			}else {
+				JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Stad Bouwen", JOptionPane.INFORMATION_MESSAGE );
+			}
+			}else {
+				System.out.println(buildPanelController.checkResourcesDevCard());
 			}
 			
 			System.out.println(buildPanelController.checkResourcesCity());
@@ -363,7 +379,13 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een ontwikkelingskaart wilt kopen?",
 					"Ontwikkelingskaart Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
+				if (buildPanelController.checkResourcesDevCard()) {
 				buildPanelController.removeDevRes();
+				System.out.println(buildPanelController.checkResourcesDevCard());
+				}else {
+					JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Dev Kopen", JOptionPane.INFORMATION_MESSAGE );
+				}
+			}else {
 				System.out.println(buildPanelController.checkResourcesDevCard());
 			}
 

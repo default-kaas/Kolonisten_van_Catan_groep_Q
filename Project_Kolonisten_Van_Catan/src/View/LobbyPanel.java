@@ -358,8 +358,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 				Uitnodiging.clearSelection();
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), false);
-				lobbyController.makeInvitePanel((int) Uitnodiging.getValueAt(x, 0), false);
-				lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 				refresh();
 			}
 

@@ -10,6 +10,7 @@ public class Line {
 	public ArrayList<Point> getTileCenterPoints() {
 		return tileCenterPoints;
 	}
+	
 	public void setTileCenterPoints(ArrayList<Point> tileCenterPoints) {
 		this.tileCenterPoints = tileCenterPoints;
 	}
@@ -17,9 +18,8 @@ public class Line {
 	public ArrayList<Point> getInBetweenPoints() {
 		return inBetweenPoints;
 	}
+	
 	public void setInBetweenPoints(ArrayList<Point> inBetweenPoints) {
 		this.inBetweenPoints = inBetweenPoints;
 	}
-	
-	
 }

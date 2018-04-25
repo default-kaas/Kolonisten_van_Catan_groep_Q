@@ -133,6 +133,10 @@ public class LogInPanel extends JPanel implements ActionListener {
 		JOptionPane.showMessageDialog(this, "Gebruikersnaam en wachtwoord moet minimaal uit 3 tekens bestaan", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	public void showErrorCreateAccountToLongPasswordOrUsername() {
+		JOptionPane.showMessageDialog(this, "Gebruikersnaam en wachtwoord mag maximaal uit 25 tekens bestaan", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
 	public void showErrorCreateAccountIncorrectPasswordOrUsername() {
 		JOptionPane.showMessageDialog(this, "Gebruikersnaam en wachtwoord mag alleen uit cijfers, letters en spaties bestaan.", "Error", JOptionPane.ERROR_MESSAGE);
 	}

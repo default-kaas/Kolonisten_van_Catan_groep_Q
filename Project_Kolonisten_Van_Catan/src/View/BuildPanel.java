@@ -26,7 +26,6 @@ import Controller.BuildPanelController;
 @SuppressWarnings("serial")
 public class BuildPanel extends JPanel implements ActionListener {
 
-	private Image backGround;
 	private JButton buyRoad;
 	private JButton buyHouse;
 	private JButton buyCity;
@@ -34,6 +33,11 @@ public class BuildPanel extends JPanel implements ActionListener {
 	private TitledBorder title;
 	private BuildPanelController buildPanelController;
 	private GridBagConstraints c;
+	private ImageIcon stone = new ImageIcon("images/Resources/stone1.png");
+	private ImageIcon wood = new ImageIcon("images/Resources/wood1.png");
+	private ImageIcon ore = new ImageIcon("images/Resources/ore1.png");
+	private ImageIcon wool = new ImageIcon("images/Resources/sheep1.png");
+	private ImageIcon wheat = new ImageIcon("images/Resources/wheat1.png");
 
 	public BuildPanel(BuildPanelController buildPanelController) {
 		this.buildPanelController = buildPanelController;
@@ -61,16 +65,15 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.setBorder(title);
 	}
 
-	public void setTitles() {
+	public void setTitles() { // This void sets all the initializes Titles.
 		Font myFont = new Font("Arial", Font.BOLD, 20);
-		// Sets Panel title
+
 		title = new TitledBorder("Kopen & Bouwen");
 		title.setTitleJustification(TitledBorder.CENTER);
 		title.setTitlePosition(TitledBorder.TOP);
 		title.setTitleFont(myFont);
 		title.setTitleColor(Color.BLACK);
 
-		// Sets images titles
 		JLabel type = new JLabel("Soort");
 		type.setFont(myFont);
 		type.setForeground(Color.BLACK);
@@ -99,7 +102,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.add(buy, c);
 	}
 
-	public void setRoad() {
+	public void setRoad() { // Sets the Road Image, cost images and buttons.
 		ImageIcon road = new ImageIcon("images/Buy/road.png");
 		road.setDescription("Road");
 		JLabel roadLabel = new JLabel(road);
@@ -109,7 +112,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridy = 2;
 		this.add(roadLabel, c);
 
-		ImageIcon stone = new ImageIcon("images/Resources/stone1.png");
 		JLabel roadStone = new JLabel(stone);
 		c.insets = new Insets(0, 100, 30, 20);
 		c.anchor = GridBagConstraints.CENTER;
@@ -117,7 +119,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridy = 2;
 		this.add(roadStone, c);
 
-		ImageIcon wood = new ImageIcon("images/Resources/wood1.png");
 		JLabel roadWood = new JLabel(wood);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 50);
@@ -133,17 +134,17 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
 		c.gridy = 2;
-		
+
 		if (buildPanelController.checkRecoursesRoad()) {
 			buyRoad.setBackground(new Color(5, 162, 0));
-		}else if (!buildPanelController.checkRecoursesRoad()) {
+		} else if (!buildPanelController.checkRecoursesRoad()) {
 			buyRoad.setBackground(new Color(163, 0, 0));
 			buyRoad.setEnabled(false);
 		}
 		this.add(buyRoad, c);
 	}
 
-	public void setHouse() {
+	public void setHouse() { // sets the House Image, cost images and buttons.
 		ImageIcon house = new ImageIcon("images/Buy/home.png");
 		house.setDescription("House");
 		JLabel houseLabel = new JLabel(house);
@@ -154,16 +155,14 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridy = 3;
 		this.add(houseLabel, c);
 
-		ImageIcon stone1 = new ImageIcon("images/Resources/stone1.png");
-		JLabel houseStone = new JLabel(stone1);
+		JLabel houseStone = new JLabel(stone);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 100, 30, 20);
 		c.gridx = 3;
 		c.gridy = 3;
 		this.add(houseStone, c);
 
-		ImageIcon wood1 = new ImageIcon("images/Resources/wood1.png");
-		JLabel houseWood = new JLabel(wood1);
+		JLabel houseWood = new JLabel(wood);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
 		;
@@ -171,7 +170,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridy = 3;
 		this.add(houseWood, c);
 
-		ImageIcon wheat = new ImageIcon("images/Resources/wheat1.png");
 		JLabel houseWheat = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
@@ -179,8 +177,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridy = 3;
 		this.add(houseWheat, c);
 
-		ImageIcon wool1 = new ImageIcon("images/Resources/sheep1.png");
-		JLabel houseWool = new JLabel(wool1);
+		JLabel houseWool = new JLabel(wool);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 50);
 		c.gridx = 6;
@@ -193,17 +190,17 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
 		c.gridy = 3;
-		
+
 		if (buildPanelController.checkResourcesHouse()) {
 			buyHouse.setBackground(new Color(5, 162, 0));
-		}else if (!buildPanelController.checkResourcesHouse()) {
+		} else if (!buildPanelController.checkResourcesHouse()) {
 			buyHouse.setBackground(new Color(163, 0, 0));
 			buyHouse.setEnabled(false);
 		}
 		this.add(buyHouse, c);
 	}
 
-	public void setCity() {
+	public void setCity() { // sets the City Image, cost images and buttons.
 
 		ImageIcon city = new ImageIcon("images/Buy/city.png");
 		city.setDescription("City");
@@ -214,7 +211,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridy = 4;
 		this.add(cityLabel, c);
 
-		ImageIcon ore = new ImageIcon("images/Resources/ore1.png");
 		JLabel cityOre1 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
@@ -235,16 +231,15 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridx = 4;
 		c.gridy = 4;
 		this.add(cityOre3, c);
-		// dubbele images verwijderen. Boven 1 aanmaken.
-		ImageIcon wheat1 = new ImageIcon("images/Resources/wheat1.png");
-		JLabel cityWheat1 = new JLabel(wheat1);
+
+		JLabel cityWheat1 = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 5;
 		c.gridy = 4;
 		this.add(cityWheat1, c);
-		ImageIcon wheat2 = new ImageIcon("images/Resources/wheat1.png");
-		JLabel cityWheat2 = new JLabel(wheat2);
+
+		JLabel cityWheat2 = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 6;
@@ -252,16 +247,16 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.add(cityWheat2, c);
 
 		buyCity = new JButton("Koop Stad");
-		
+
 		buyCity.setPreferredSize(new Dimension(120, 30));
 		c.anchor = GridBagConstraints.EAST;
 		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 7;
 		c.gridy = 4;
-		
+
 		if (buildPanelController.checkResourcesCity()) {
 			buyCity.setBackground(new Color(5, 162, 0));
-		}else if (!buildPanelController.checkResourcesCity()) {
+		} else if (!buildPanelController.checkResourcesCity()) {
 			buyCity.setBackground(new Color(163, 0, 0));
 			buyCity.setEnabled(false);
 		}
@@ -270,7 +265,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 	}
 
 	public void setDevelopmentCard() {
-		// dubbele images verwijderen. 1 boven in aanmaken.
 		ImageIcon development = new ImageIcon("images/Buy/development.png");
 		development.setDescription("Development");
 		JLabel developmentLabel = new JLabel(development);
@@ -280,7 +274,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridy = 5;
 		this.add(developmentLabel, c);
 
-		ImageIcon ore = new ImageIcon("images/Resources/ore1.png");
 		ore.setDescription("Ore");
 		JLabel cityOre = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
@@ -288,15 +281,13 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridy = 5;
 		this.add(cityOre, c);
 
-		ImageIcon wheat = new ImageIcon("images/Resources/wheat1.png");
 		wheat.setDescription("Wheat");
 		JLabel cityWheat = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 4;
 		c.gridy = 5;
 		this.add(cityWheat, c);
-		
-		ImageIcon wool = new ImageIcon("images/Resources/sheep1.png");
+
 		wool.setDescription("Wool");
 		JLabel cityWool = new JLabel(wool);
 		c.anchor = GridBagConstraints.CENTER;
@@ -311,7 +302,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(0, 50, 10, 0);
 		c.gridx = 7;
 		c.gridy = 5;
-		
+
 		if (buildPanelController.checkResourcesDevCard()) {
 			buyDevelopmentCard.setBackground(new Color(5, 162, 0));
 		} else if (!buildPanelController.checkResourcesDevCard()) {

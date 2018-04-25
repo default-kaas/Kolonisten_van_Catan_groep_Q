@@ -346,7 +346,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		int height = (int) (screenSize.getHeight() * 0.4);
 
 		ImageIcon icon = new ImageIcon("images/Background/buildBg.jpg");
-		System.out.println("Test!");
+
 		JLabel thumb = new JLabel(icon);
 		thumb.setSize(width, height);
 		this.add(thumb);

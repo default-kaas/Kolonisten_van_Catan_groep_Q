@@ -32,11 +32,10 @@ public class InviteDAO {
 		try {
 
 			Statement statement = m_Conn.createStatement();
-			final String QUERY = "SELECT * FROM speler WHERE not speelstatus = 'uitdager' and idspel = "+idspel;
+			final String QUERY = "SELECT * FROM speler WHERE not speelstatus = 'uitdager' and idspel = " + idspel;
 			ResultSet rs = statement.executeQuery(QUERY);
 
 			if (rs.next()) {
-
 				int rowCount = getRowCount(rs); // Row Count
 				int columnCount = getColumnCount(rs); // Column Countt
 
@@ -52,7 +51,6 @@ public class InviteDAO {
 					data[i][0] = rs.getString("username");
 
 					data[i][1] = rs.getString("speelstatus");
-
 					i++;
 				}
 
@@ -74,35 +72,30 @@ public class InviteDAO {
 		return data;
 
 	}
-	
 
-	public Object[] getInviteUserList(String username) {
-
-		Object[] data = null;
+	public Object[][] getInviteUserList(String username) {
+		Object[][] data = null;
 		try {
-			final String QUERY = "select * from account where username != '" + username + "'";
 			Statement statement = m_Conn.createStatement();
+			final String QUERY = "select * from account where username != '" + username + "'";
 			ResultSet rs = statement.executeQuery(QUERY);
-			int getRowCount = getRowCount(rs); // Column Count
-			System.out.println(getRowCount);
+			
+			int getRowCount = getRowCount(rs); // Row Count
 
-			data = new Object[getRowCount];
+			data = new Object[getRowCount][2];
 
 			// Starting from First Row for Iteration
-			 rs.beforeFirst();
+			rs.beforeFirst();
 
-			int i = 0;
-
-			while (rs.next()) {
-
-				data[i] = rs.getString("username");
-				System.out.println(data[i]);
-				i++;
+			for (int i = 0; i < getRowCount; i++) {
+				rs.next();
+				data[i][0] = rs.getString("username");
+				data[i][1] = " - ";
 			}
 			// statement.close();
 		}
 
-		catch (Exception e) {
+		catch (SQLException e) {
 			System.out.println(e);
 		}
 
@@ -119,23 +112,29 @@ public class InviteDAO {
 			if (rs2.next()) {
 				newSpelerID = rs2.getInt("id");
 			}
-			final String queryVolgNr = "select max(volgnr+1) as volgnr from speler where idspel ="+ gameID;
+			final String queryVolgNr = "select max(volgnr+1) as volgnr from speler where idspel =" + gameID;
 			Statement volgNrstatement = m_Conn.createStatement();
 			ResultSet volgnr = spelerIDstatement.executeQuery(queryVolgNr);
 			int newVolgNr = 0;
 			if (volgnr.next()) {
 				newVolgNr = volgnr.getInt("volgnr");
 			}
+			System.out.println(newVolgNr);
 			String newColor = "";
 			switch (newVolgNr) {
-			case 2: newColor = "wit";
-			break;
-			case 3: newColor = "blauw";
-			break;
-			case 4: newColor = "oranje";
-			break;
+			case 2:
+				newColor = "wit";
+				break;
+			case 3:
+				newColor = "blauw";
+				break;
+			case 4:
+				newColor = "oranje";
+				break;
 			}
-			final String InvitePlayer = "INSERT INTO speler (idspeler, idspel, username, kleur, speelstatus, shouldrefresh, volgnr) VALUES ("+newSpelerID +"," + gameID +", '" + userName + "', '"+newColor+"', 'uitgedaagde', 0, "+newVolgNr+")";
+			final String InvitePlayer = "INSERT INTO speler (idspeler, idspel, username, kleur, speelstatus, shouldrefresh, volgnr) VALUES ("
+					+ newSpelerID + "," + gameID + ", '" + userName + "', '" + newColor + "', 'uitgedaagde', 0, "
+					+ newVolgNr + ")";
 			Statement statement = m_Conn.createStatement();
 			statement.executeUpdate(InvitePlayer);
 

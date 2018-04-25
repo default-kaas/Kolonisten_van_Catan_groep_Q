@@ -310,15 +310,14 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent a) {
 
 		if (a.getSource() == normalMode) {
-
 			int gameid = lobbyController.createNewGame(false);
-			lobbyController.makeInvitePanel(gameid);
+			lobbyController.makeInvitePanel(gameid, true);
 			lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 		}
 
 		if (a.getSource() == advancedMode) {
 			int gameid = lobbyController.createNewGame(true);
-			lobbyController.makeInvitePanel(gameid);
+			lobbyController.makeInvitePanel(gameid, true);
 			lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 		}
 
@@ -336,6 +335,8 @@ public class LobbyPanel extends JPanel implements ActionListener {
 				Uitnodiging.clearSelection();
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), false);
+				lobbyController.makeInvitePanel((int) Uitnodiging.getValueAt(x, 0), false);
+				lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 				refresh();
 			}
 
@@ -354,6 +355,8 @@ public class LobbyPanel extends JPanel implements ActionListener {
 				Uitnodiging.clearSelection();
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), true);
+				lobbyController.makeInvitePanel((int) Uitnodiging.getValueAt(x, 0), false);
+				lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 				refresh();
 			}
 

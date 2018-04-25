@@ -8,18 +8,18 @@ public class Player {
 	private int PlayerId;
 	private int Points;
 	private boolean itsMe = false;
-//	private boolean myTurn;
+	// private boolean myTurn;
 	private ArrayList<ResourceCards> Resources;
 	private int GameNumber;
 	private boolean hasThrown;
-	//private Database.PlayerDAO PlayerDAO;
-	
+	// private Database.PlayerDAO PlayerDAO;
+
 	private ArrayList<ResourceCards> WoodStack;
 	private ArrayList<ResourceCards> WheatStack;
 	private ArrayList<ResourceCards> StoneStack;
 	private ArrayList<ResourceCards> OreStack;
 	private ArrayList<ResourceCards> WoolStack;
-	
+
 	public Player(String Name, int PlayerID, String Color) {
 		setArray();
 		this.Name = setName(Name);
@@ -27,7 +27,7 @@ public class Player {
 		this.Color = Color;
 		hasThrown = false;
 	}
-	
+
 	private void setArray() {
 		WoodStack = new ArrayList<ResourceCards>();
 		WheatStack = new ArrayList<ResourceCards>();
@@ -40,22 +40,27 @@ public class Player {
 		// TODO Auto-generated method stub
 		return Name;
 	}
+
 	public void setThrown() {
 		hasThrown = true;
 	}
+
 	public void itsMe() {
 		itsMe = true;
 	}
+
 	public boolean isItMe() {
 		return itsMe;
 	}
+
 	public String getName() {
 		return Name;
 	}
+
 	public int getPlayerID() {
 		return PlayerId;
 	}
-	
+
 	public String getColor() {
 		return Color;
 	}
@@ -63,48 +68,82 @@ public class Player {
 	public int getPoints() {
 		return Points;
 	}
+
 	public boolean gethasTrown() {
 		return hasThrown;
 	}
-	
+
 	public void addResource(ResourceCards Resources, char ResourceType) {
 		System.out.println(ResourceType);
 		System.out.println(Resources.getResourceID());
-		switch(ResourceType) {
-		case 'W': this.WoodStack.add(Resources);
-		break;
-		case 'G': this.WheatStack.add(Resources);
-		break;
-		case 'B': this.StoneStack.add(Resources);
-		break;
-		case 'E': this.OreStack.add(Resources);
-		break;
-		case 'H': this.WoolStack.add(Resources);
-		break;
+		switch (ResourceType) {
+		case 'W':
+			this.WoodStack.add(Resources);
+			break;
+		case 'G':
+			this.WheatStack.add(Resources);
+			break;
+		case 'B':
+			this.StoneStack.add(Resources);
+			break;
+		case 'E':
+			this.OreStack.add(Resources);
+			break;
+		case 'H':
+			this.WoolStack.add(Resources);
+			break;
 		}
-		
+
+	}
+
+	public void removeRoadResources() {
+		WoodStack.remove(0);
+		StoneStack.remove(0);
 		
 	}
 	
+	public void removeHouseResources() {
+		WoodStack.remove(0);
+		StoneStack.remove(0);
+		WheatStack.remove(0);
+		WoolStack.remove(0);
+	}
+	
+	public void removeCityResources() {
+		OreStack.remove(2);
+		OreStack.remove(1);
+		OreStack.remove(0);
+		WheatStack.remove(1);
+		WheatStack.remove(0);
+	}
+	
+	public void removeDevResources() {
+		OreStack.remove(0);
+		WheatStack.remove(0);
+		WoolStack.remove(0);
+	}
+
 	public int getWoodAmount() {
 		return WoodStack.size();
 	}
+
 	public int getWheatAmount() {
 		return WheatStack.size();
 	}
+
 	public int getStoneAmount() {
 		return StoneStack.size();
 	}
+
 	public int getOreAmount() {
 		return OreStack.size();
 	}
+
 	public int getWoolAmount() {
 		return WoolStack.size();
 	}
-//	public boolean isMyTurn() {
-//		return myTurn;
-//	}
-	
-	
-	
+	// public boolean isMyTurn() {
+	// return myTurn;
+	// }
+
 }

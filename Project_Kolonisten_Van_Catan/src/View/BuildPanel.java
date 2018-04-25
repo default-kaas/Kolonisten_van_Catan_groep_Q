@@ -328,6 +328,10 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een straat wilt kopen?",
 					"Straat Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
+				buildPanelController.removeStreetRes();
+				JOptionPane.showMessageDialog(buyRoad, "Selecteer nu een plek om een Straat te bouwen", "Straat Bouwen", JOptionPane.INFORMATION_MESSAGE );
+				System.out.println(buildPanelController.checkRecoursesRoad());
+			} else {
 				System.out.println(buildPanelController.checkRecoursesRoad());
 			}
 		}
@@ -336,6 +340,8 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een dorp wilt kopen?",
 					"dorp Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
+				buildPanelController.removeHouseRes();
+				JOptionPane.showMessageDialog(buyHouse, "Selecteer nu een plek om een Dorp te bouwen", "Dorp Bouwen", JOptionPane.INFORMATION_MESSAGE );
 				System.out.println(buildPanelController.checkResourcesHouse());
 			}
 
@@ -345,14 +351,19 @@ public class BuildPanel extends JPanel implements ActionListener {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een stad wilt kopen?",
 					"Stad Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
+				buildPanelController.removeCityRes();
+				JOptionPane.showMessageDialog(buyCity, "Selecteer nu een plek om een Stad te bouwen", "Stad Bouwen", JOptionPane.INFORMATION_MESSAGE );
 				System.out.println(buildPanelController.checkResourcesCity());
 			}
+			
+			System.out.println(buildPanelController.checkResourcesCity());
 		}
 
 		if (e.getSource().equals(buyDevelopmentCard)) {
 			int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een ontwikkelingskaart wilt kopen?",
 					"Ontwikkelingskaart Kopen?", JOptionPane.YES_OPTION);
 			if (YesOrNo == JOptionPane.YES_OPTION) {
+				buildPanelController.removeDevRes();
 				System.out.println(buildPanelController.checkResourcesDevCard());
 			}
 

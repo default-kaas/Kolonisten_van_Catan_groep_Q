@@ -24,32 +24,22 @@ import Controller.BuildPanelController;
 
 @SuppressWarnings("serial")
 public class BuildPanel extends JPanel implements ActionListener {
-	private JLabel backgroundImage;
-	Image backGround;
+
+	private Image backGround;
 	private JButton buyRoad;
 	private JButton buyHouse;
 	private JButton buyCity;
 	private JButton buyDevelopmentCard;
 	private TitledBorder title;
 	private BuildPanelController bouwPanelController;
-	GridBagConstraints c;
+	private GridBagConstraints c;
 
 	public BuildPanel(BuildPanelController bouwPanelController) {
 		this.bouwPanelController = bouwPanelController;
 		this.setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
-		
-	
 
-		
-
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
-		int height = (int) (screenSize.getHeight() * 0.4);
-		this.setPreferredSize(new Dimension(width, height));
-		this.setBorder(title);
-		
-		
+		setScreenSize();
 		setTitles();
 		setRoad();
 		setHouse();
@@ -62,17 +52,26 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 	}
 
+	private void setScreenSize() {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
+		int height = (int) (screenSize.getHeight() * 0.4);
+		this.setPreferredSize(new Dimension(width, height));
+		this.setBorder(title);
+	}
+
 	public void setTitles() {
+		Font myFont = new Font("Arial", Font.BOLD, 20);
 		// Sets Panel title
 		title = new TitledBorder("Kopen & Bouwen");
 		title.setTitleJustification(TitledBorder.CENTER);
 		title.setTitlePosition(TitledBorder.TOP);
-		title.setTitleFont(new Font("Arial", Font.BOLD, 20));
+		title.setTitleFont(myFont);
 		title.setTitleColor(Color.BLACK);
 
 		// Sets images titles
 		JLabel type = new JLabel("Soort");
-		type.setFont(new Font("Arial", Font.BOLD, 20));
+		type.setFont(myFont);
 		type.setForeground(Color.BLACK);
 		c.insets = new Insets(0, 0, 0, 0);
 		c.anchor = GridBagConstraints.WEST;
@@ -81,7 +80,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.add(type, c);
 
 		JLabel price = new JLabel("Kosten");
-		price.setFont(new Font("Arial", Font.BOLD, 20));
+		price.setFont(myFont);
 		price.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 0, 0);
@@ -90,7 +89,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.add(price, c);
 
 		JLabel buy = new JLabel("Kopen");
-		buy.setFont(new Font("Arial", Font.BOLD, 20));
+		buy.setFont(myFont);
 		buy.setForeground(Color.BLACK);
 		c.anchor = GridBagConstraints.EAST;
 		c.insets = new Insets(0, 0, 0, 0);
@@ -223,7 +222,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridx = 4;
 		c.gridy = 4;
 		this.add(cityOre3, c);
-
+		// dubbele images verwijderen. Boven 1 aanmaken.
 		ImageIcon wheat1 = new ImageIcon("images/Resources/wheat1.png");
 		JLabel cityWheat1 = new JLabel(wheat1);
 		c.anchor = GridBagConstraints.CENTER;
@@ -252,6 +251,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 	}
 
 	public void setDevelopmentCard() {
+		// dubbele images verwijderen. 1 boven in aanmaken.
 		ImageIcon development = new ImageIcon("images/Buy/development.png");
 		development.setDescription("Development");
 		JLabel developmentLabel = new JLabel(development);
@@ -336,22 +336,20 @@ public class BuildPanel extends JPanel implements ActionListener {
 		}
 
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
+		// int waardes bovenin aanmaken om dubbele methods te voorkomen.
 		super.paintComponent(g);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
-		
 
-		ImageIcon icon = new ImageIcon("images/Background/buildBg.jpg"); 
+		ImageIcon icon = new ImageIcon("images/Background/buildBg.jpg");
 		JLabel thumb = new JLabel(icon);
 		thumb.setSize(width, height);
 		this.add(thumb);
-		
-	}
 
+	}
 
 }

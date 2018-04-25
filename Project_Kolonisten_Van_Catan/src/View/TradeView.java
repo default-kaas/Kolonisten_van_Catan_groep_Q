@@ -82,6 +82,7 @@ public class TradeView extends JFrame {
 	}
 	
 	public void showFrame() {
+
 		System.out.println("should work now");
 		
 		trade = new JPanel();
@@ -204,8 +205,6 @@ public class TradeView extends JFrame {
 
 		this.add(trade);
 
-		setupFrame();
-
 		propose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -213,6 +212,9 @@ public class TradeView extends JFrame {
 		});
 		
 		trade.setVisible(true);
+		
+		setupFrame();
+		
 	}
 
 	private void setupFrame() {

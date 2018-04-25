@@ -93,9 +93,17 @@ public class Game {
 		getMe().addResource(StoneStack.get(0), 'B');
 		StoneStack.remove(StoneStack.get(0));
 
-		getMe().addResource(WoodStack.get(0), 'W');
+		getMe().addResource(WoodStack.get(0), 'H');
 		WoodStack.remove(WoodStack.get(0));
+		
 
+		getMe().addResource(WoolStack.get(0), 'W');
+		WoolStack.remove(WoolStack.get(0));
+		
+
+		getMe().addResource(WheatStack.get(0), 'G');
+		StoneStack.remove(StoneStack.get(0));
+		
 		System.out.println(getMe().getStoneAmount());
 		System.out.println(StoneStack.size());
 

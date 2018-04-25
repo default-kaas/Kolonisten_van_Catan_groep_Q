@@ -40,7 +40,10 @@ public class InvitePanel extends JPanel implements ActionListener {
 	private DefaultTableModel ToInvite;
 	private final String[] TOINVITECOLUMNS = new String[] { "Naam", "Speelstatus" };
 
-	public InvitePanel(InviteController inviteController) {
+	private boolean creator;
+	
+	public InvitePanel(InviteController inviteController, boolean creator) {
+		this.creator = creator;
 		this.inviteController = inviteController;
 		// setPreferredSize(new Dimension(350, 300));
 		setBackground(new Color(244, 167, 66));
@@ -60,12 +63,13 @@ public class InvitePanel extends JPanel implements ActionListener {
 		lobbyButtons();
 
 		// set Right Title, Table & Buttons
+		if (creator) {
+			inviteTitle();
 
-		inviteTitle();
+			inviteTable();
 
-		inviteTable();
-
-		inviteButton();
+			inviteButton();
+		}
 
 	}
 
@@ -207,7 +211,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 	public void refreshPanel() {
 
-		if (playerFinding.getSelectedRow() != -1) {
+		if (playerFinding.getSelectedRow() != -1 && creator) {
 			ToInvite.removeRow(playerFinding.getSelectedRow());
 		}
 

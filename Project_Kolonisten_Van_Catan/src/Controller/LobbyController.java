@@ -29,8 +29,8 @@ public class LobbyController {
 		return lobbyPanel;
 	}
 
-	public void makeInvitePanel(int gameid) {
-		inviteController = new InviteController(db, username, gameid);
+	public void makeInvitePanel(int gameid, boolean creator) {
+		inviteController = new InviteController(db, username, gameid, creator);
 //		invitePanel = new InvitePanel(inviteController);
 	}
 

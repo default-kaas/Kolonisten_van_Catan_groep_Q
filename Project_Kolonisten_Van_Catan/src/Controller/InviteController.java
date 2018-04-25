@@ -12,11 +12,11 @@ public class InviteController {
 	private String username;
 	private int idspel;	
 	
-	public InviteController(Connection db_conn, String username, int idspel) {
+	public InviteController(Connection db_conn, String username, int idspel, boolean creator) {
 		this.idspel = idspel;
 		this.username = username;
 		InviteDAO = new InviteDAO(db_conn);
-		invitePanel  = new InvitePanel(this);
+		invitePanel  = new InvitePanel(this, creator);
 	}
 	
 	public Object[][] showUsers(){

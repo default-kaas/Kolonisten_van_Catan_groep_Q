@@ -29,8 +29,8 @@ public class LobbyController {
 		return lobbyPanel;
 	}
 
-	public void makeInvitePanel() {
-		inviteController = new InviteController(db, username);
+	public void makeInvitePanel(int gameid) {
+		inviteController = new InviteController(db, username, gameid);
 //		invitePanel = new InvitePanel(inviteController);
 	}
 
@@ -55,8 +55,8 @@ public class LobbyController {
 
 	}
 
-	public void createNewGame(boolean RandomBoard) {
-		lobbyDAO.makeGame(username, RandomBoard);
+	public int createNewGame(boolean RandomBoard) {
+		return lobbyDAO.makeGame(username, RandomBoard);
 	}
 
 	public void UpdateInviteAndGame() {

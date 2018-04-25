@@ -303,14 +303,15 @@ public class LobbyPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent a) {
 
 		if (a.getSource() == normalMode) {
-			lobbyController.makeInvitePanel();
-			lobbyController.createNewGame(false);
+		
+			int gameid = lobbyController.createNewGame(false);
+			lobbyController.makeInvitePanel(gameid);
 			lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 		}
 
 		if (a.getSource() == advancedMode) {
-			lobbyController.makeInvitePanel();
-			lobbyController.createNewGame(true);
+			int gameid = lobbyController.createNewGame(true);
+			lobbyController.makeInvitePanel(gameid);
 			lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 		}
 

@@ -20,7 +20,7 @@ public class LobbyDAO {
 
 	}
 
-	public void makeGame(String username, boolean RandomBoard) {
+	public int makeGame(String username, boolean RandomBoard) {
 		try {
 
 			final String querySpelID = "select max(idspel+1) as id from spel";
@@ -49,10 +49,11 @@ public class LobbyDAO {
 					+ newSpelerID + ", " + newGameID + ", '" + username + "', \"rood\", \"uitdager\", 0, 1);";
 			Statement statement3 = m_Conn.createStatement();
 			statement3.executeUpdate(QUERY3);
-
+			return newGameID;
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
+		return -1;
 	}
 
 	public Object[][] getInvitedGames(String username) {

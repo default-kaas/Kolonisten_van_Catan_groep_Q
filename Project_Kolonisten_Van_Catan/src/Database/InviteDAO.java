@@ -25,23 +25,20 @@ public class InviteDAO {
 
 	// select max(idspeler+1) from speler;
 
-	public Object[][] getUserList(String username) {
+	public Object[][] getUserList(String username, int idspel) {
 
 		Object[][] data = null;
 
 		try {
 
 			Statement statement = m_Conn.createStatement();
-			final String QUERY = "SELECT idspel FROM speler WHERE username = '" + username
-					+ "' and (speelstatus = 'geaccepteerd' or speelstatus = 'uitdager')";
+			final String QUERY = "SELECT * FROM speler WHERE not speelstatus = 'uitdager' and idspel = "+idspel;
 			ResultSet rs = statement.executeQuery(QUERY);
 
 			if (rs.next()) {
-				int spel = rs.getInt("idspel");
-				final String QUERY2 = "select * from speler where idspel = " + spel + " and speelstatus = 'uitdager'";
-				ResultSet rx = statement.executeQuery(QUERY2);
-				int rowCount = getRowCount(rx); // Row Count
-				int columnCount = getColumnCount(rx); // Column Countt
+
+				int rowCount = getRowCount(rs); // Row Count
+				int columnCount = getColumnCount(rs); // Column Countt
 
 				data = new Object[rowCount][columnCount];
 
@@ -54,22 +51,22 @@ public class InviteDAO {
 
 					int j = 0;
 
-					data[i][j++] = rx.getInt("idspel");
+					data[i][j++] = rs.getInt("username");
 
-					data[i][j++] = rx.getString("username");
+					data[i][j++] = rs.getString("speelstatus");
 
 					i++;
 				}
 
 				status = true;
 
-//				statement.close();
+				// statement.close();
 
 			} else {
 				// Nep data xD
 				data = new Object[1][2];
-				data[0][0] = " Geen";
-				data[0][1] = " game";
+				data[0][0] = " Niemand";
+				data[0][1] = " uitgenodigt!";
 			}
 
 		} catch (Exception e) {
@@ -79,23 +76,25 @@ public class InviteDAO {
 		return data;
 
 	}
+	
+	public void invitePlayer(String username, int idspel) {
+		
+	}
 
 	public Object[] getInviteUserList(String username) {
 
 		Object[] data = null;
-
 		try {
-
 			final String QUERY = "select * from account where username != '" + username + "'";
 			Statement statement = m_Conn.createStatement();
 			ResultSet rs = statement.executeQuery(QUERY);
-			int columnCount = getColumnCount(rs); // Column Count
-			System.out.println(columnCount);
+			int getRowCount = getRowCount(rs); // Column Count
+			System.out.println(getRowCount);
 
-			data = new Object[10];
+			data = new Object[getRowCount];
 
 			// Starting from First Row for Iteration
-			// rs.beforeFirst();
+			 rs.beforeFirst();
 
 			int i = 0;
 
@@ -105,7 +104,7 @@ public class InviteDAO {
 				System.out.println(data[i]);
 				i++;
 			}
-//			statement.close();
+			// statement.close();
 		}
 
 		catch (Exception e) {
@@ -133,7 +132,7 @@ public class InviteDAO {
 			if (rs != null) {
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int columnsNumber = rsmd.getColumnCount();
-//				System.out.println(columnsNumber);
+				// System.out.println(columnsNumber);
 				return columnsNumber;
 			}
 		} catch (SQLException e) {

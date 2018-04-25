@@ -104,7 +104,13 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		System.exit(0);
+		if(arg0.getSource()== trade) {
+			//JOptionPane.showMessageDialog(trade, "Under Construction!", "Error", JOptionPane.ERROR_MESSAGE);
+			getTradePanel();
+		}else if(arg0.getSource() == close) {
+			System.exit(0);
+		}
+
 	}
 
 	public void ShowResources() {
@@ -116,12 +122,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		trade = new JButton("Handelspaneel");
 		this.add(Box.createRigidArea(new Dimension(5, 10)));
 		this.add(trade);
-		
-		trade.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(trade, "Under Construction!", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-		});
+	}
+	
+	public void getTradePanel() {
+		controller.getTradePanel();
 	}
 
 	public void UpdatePlayerTurn() {

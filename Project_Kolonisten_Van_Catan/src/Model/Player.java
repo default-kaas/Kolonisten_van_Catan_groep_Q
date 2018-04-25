@@ -170,7 +170,7 @@ public class Player {
 		
 		for (int i = 0; i < OreStack.size(); i++) {
 			if (i == 0) {
-				WoolStack.remove(i);
+				OreStack.remove(i);
 				break;
 			}
 		}

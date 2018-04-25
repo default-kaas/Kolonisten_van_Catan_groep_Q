@@ -402,7 +402,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 				}
 
 			} else {
-				JOptionPane.showMessageDialog(buyHouse, "Niet genoeg grondstoffen meer!", "Straat Bouwen",
+				JOptionPane.showMessageDialog(buyHouse, "Niet genoeg grondstoffen meer!", "Dorp Bouwen",
 						JOptionPane.INFORMATION_MESSAGE);
 				buyHouse.setBackground(new Color(163, 0, 0));
 				buyHouse.setForeground(Color.BLACK);
@@ -425,12 +425,12 @@ public class BuildPanel extends JPanel implements ActionListener {
 								"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
 					}
 				} else {
-					System.out.println(buildPanelController.checkResourcesDevCard());
+					System.out.println(buildPanelController.checkResourcesCity());
 				}
 
 				System.out.println(buildPanelController.checkResourcesCity());
 			} else {
-				JOptionPane.showMessageDialog(buyCity, "Niet genoeg grondstoffen meer!", "Straat Bouwen",
+				JOptionPane.showMessageDialog(buyCity, "Niet genoeg grondstoffen meer!", "Stad Bouwen",
 						JOptionPane.INFORMATION_MESSAGE);
 				buyCity.setBackground(new Color(163, 0, 0));
 				buyCity.setForeground(Color.BLACK);
@@ -440,12 +440,13 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 		if (e.getSource().equals(buyDevelopmentCard)) {
 			if (devCheck()) {
-				int YesOrNo = JOptionPane.showConfirmDialog(null,
-						"Weet je zeker dat je een ontwikkelingskaart wilt kopen?", "Ontwikkelingskaart Kopen?",
-						JOptionPane.YES_OPTION);
+				int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een Development kaart wilt kopen?",
+						"Stad Kopen?", JOptionPane.YES_OPTION);
 				if (YesOrNo == JOptionPane.YES_OPTION) {
 					if (buildPanelController.checkResourcesDevCard()) {
 						buildPanelController.removeDevRes();
+						JOptionPane.showMessageDialog(buyDevelopmentCard, "Dev kaart is aangeschaft!", "Dev Kopen",
+								JOptionPane.INFORMATION_MESSAGE);
 						System.out.println(buildPanelController.checkResourcesDevCard());
 					} else {
 						JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Dev Kopen",
@@ -455,8 +456,9 @@ public class BuildPanel extends JPanel implements ActionListener {
 					System.out.println(buildPanelController.checkResourcesDevCard());
 				}
 
+				System.out.println(buildPanelController.checkResourcesDevCard());
 			} else {
-				JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Straat Bouwen",
+				JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Dev Kopen",
 						JOptionPane.INFORMATION_MESSAGE);
 				buyDevelopmentCard.setBackground(new Color(163, 0, 0));
 				buyDevelopmentCard.setForeground(Color.BLACK);

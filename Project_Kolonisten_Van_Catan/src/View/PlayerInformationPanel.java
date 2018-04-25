@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import Controller.PlayerInfoController;
-import Controller.TradePanelController;
+import Controller.TradeController;
 import Model.Player;
 
 public class PlayerInformationPanel extends JPanel implements ActionListener {

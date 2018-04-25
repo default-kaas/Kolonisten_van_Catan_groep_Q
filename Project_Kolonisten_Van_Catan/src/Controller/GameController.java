@@ -15,7 +15,7 @@ public class GameController implements Runnable{
 	private DiceController diceController;
 	private BuildPanelController bouwPanelController;
 	private ChatPanelController chatPanelController;
-	private TradePanelController tradePanelController;
+	private TradeController tradePanelController;
 
 	public GameController(int IdGame, String userName, Connection db_conn, boolean newGame) {
 		Game = new Game(IdGame, userName, db_conn);
@@ -28,7 +28,7 @@ public class GameController implements Runnable{
 		bouwPanelController = new BuildPanelController(Game, db_conn);
 		playerInfoController = new PlayerInfoController(Game, db_conn);
 		chatPanelController = new ChatPanelController(Game, db_conn);
-		tradePanelController = new TradePanelController(Game, db_conn);
+		tradePanelController = new TradeController(Game, db_conn);
 		
 		Thread t1 = new Thread(chatPanelController);
 //		Thread t2 = new Thread(this);

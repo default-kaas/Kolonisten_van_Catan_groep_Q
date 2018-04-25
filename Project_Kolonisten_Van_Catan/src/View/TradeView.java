@@ -25,13 +25,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.PlainDocument;
 
-import Controller.TradePanelController;
+import Controller.TradeController;
 import Model.TradeInputLimit;
 import Model.TradeNoLetters;
 
 public class TradeView extends JFrame {
 
-	private TradePanelController tc;
+	private TradeController tc;
 
 	private JMenuBar menuBar;
 	private JMenu menu;
@@ -75,7 +75,7 @@ public class TradeView extends JFrame {
 	
 	JPanel trade;
 
-	public TradeView(TradePanelController tradePanelController) {
+	public TradeView(TradeController tradePanelController) {
 		
 		tc = tradePanelController;
 

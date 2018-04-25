@@ -1,14 +1,14 @@
 package Model;
 
-import Controller.TradePanelController;
+import Controller.TradeController;
 
 public class Trade {
 	
-	private TradePanelController tc;
+	private TradeController tc;
 	
 	boolean accepted = false;
 	
-	public Trade(TradePanelController tradePanelController) {
+	public Trade(TradeController tradePanelController) {
 		tc = tradePanelController;
 	}
 

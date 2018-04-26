@@ -90,12 +90,24 @@ public class Game {
 			WoolStack.add(new ResourceCards('H', ("H" + x)));
 		}
 
-		getMe().addResource(StoneStack.get(0), 'B');
-		StoneStack.remove(StoneStack.get(0));
+		for (int i = 0; i < 5; i++) {
+		getMe().addResource(StoneStack.get(i), 'B');
+		StoneStack.remove(StoneStack.get(i));
 
-		getMe().addResource(WoodStack.get(0), 'W');
-		WoodStack.remove(WoodStack.get(0));
+		getMe().addResource(WoodStack.get(i), 'H');
+		WoodStack.remove(WoodStack.get(i));
+		
 
+		getMe().addResource(WoolStack.get(i), 'W');
+		WoolStack.remove(WoolStack.get(i));
+		
+		getMe().addResource(OreStack.get(i), 'E');
+		StoneStack.remove(OreStack.get(i));
+		
+		getMe().addResource(WheatStack.get(i), 'G');
+		StoneStack.remove(WheatStack.get(i));
+		}
+		
 		System.out.println(getMe().getStoneAmount());
 		System.out.println(StoneStack.size());
 
@@ -103,6 +115,22 @@ public class Game {
 		// WoodStack.remove(WoodStack.get(0));
 		// getMe().addResource(WoodStack.get(0), 'E');
 		// WoodStack.remove(WoodStack.get(0));
+	}
+
+	public void removeStreet() {
+		getMe().removeRoadResources();
+	}
+	
+	public void removeHouse() {
+		getMe().removeHouseResources();
+	}
+	
+	public void removeCity() {
+		getMe().removeCityResources();
+	}
+	
+	public void removeDev() {
+		getMe().removeDevResources();
 	}
 
 	public ArrayList<Player> GetPlayers() {

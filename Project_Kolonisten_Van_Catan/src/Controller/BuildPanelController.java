@@ -10,11 +10,13 @@ public class BuildPanelController {
 
 	private Game game;
 	private BuildPanel bouwPanel;
+
 	public BuildPanelController(Game game, Connection db_conn) {
 		this.game = game;
+
 		bouwPanel = new BuildPanel(this);
 	}
-	
+
 	public BuildPanel getBouwPanel() {
 		return bouwPanel;
 	}
@@ -25,7 +27,7 @@ public class BuildPanelController {
 		int stone = game.getMe().getStoneAmount();
 
 		if (wood >= 1 && stone >= 1) {
-			
+
 			System.out.println(stone);
 			return true;
 		} else {
@@ -33,6 +35,31 @@ public class BuildPanelController {
 
 		}
 
+	}
+	
+	public void testinstuff() {
+		System.out.println("Ston " + game.getMe().getStoneAmount());
+		System.out.println("Wool " + game.getMe().getWoolAmount());
+		System.out.println("Ore " + game.getMe().getOreAmount());
+		System.out.println("Wheat " + game.getMe().getWheatAmount());
+		System.out.println("Wood " + game.getMe().getWoodAmount());
+		
+	}
+
+	public void removeStreetRes() {
+		game.removeStreet();
+	}
+
+	public void removeHouseRes() {
+		game.removeHouse();
+	}
+
+	public void removeCityRes() {
+		game.removeCity();
+	}
+
+	public void removeDevRes() {
+		game.removeDev();
 	}
 
 	public boolean checkResourcesHouse() {

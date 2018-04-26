@@ -42,7 +42,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 	private final String[] TOINVITECOLUMNS = new String[] { "Naam", "Speelstatus" };
 
 	private boolean creator;
-	
+
 	public InvitePanel(InviteController inviteController, boolean creator) {
 		this.creator = creator;
 		this.inviteController = inviteController;
@@ -101,7 +101,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 	public void lobbyTable() {
 		// Reply table
-		
+
 		data = inviteController.showUsers();
 		Invited = new DefaultTableModel(data, INVITEDCOLUMNS);
 		playerList = new JTable(Invited);
@@ -122,10 +122,9 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
-		
+
 		add(playerList, gbc_table);
 		playerList.setDefaultEditor(Object.class, null);
-		
 
 	}
 
@@ -138,11 +137,10 @@ public class InvitePanel extends JPanel implements ActionListener {
 		playerFinding.setRowHeight(30);
 
 		TableColumnModel columnModel1 = playerFinding.getColumnModel();
-//		playerFinding.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		
-		
-		playerFinding.getColumnModel().getColumn(0).setPreferredWidth(300);
+		// playerFinding.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
+		// playerFinding.getColumnModel().getColumn(0).setPreferredWidth(300);
+		//
 		playerFinding.getColumnModel().getColumn(1).setPreferredWidth(0);
 
 		GridBagConstraints gbc_table_1 = new GridBagConstraints();
@@ -151,8 +149,9 @@ public class InvitePanel extends JPanel implements ActionListener {
 		gbc_table_1.anchor = GridBagConstraints.EAST;
 		gbc_table_1.gridx = 1;
 		gbc_table_1.gridy = 1;
-		JScrollPane x = new JScrollPane(playerFinding, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
+		JScrollPane x = new JScrollPane(playerFinding, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		x.setPreferredSize(new Dimension(600, 200));
 		add(x, gbc_table_1);
 		playerFinding.setDefaultEditor(Object.class, null);
 	}
@@ -216,17 +215,19 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 	}
 
-	public void refreshPanel() {
-
-		if (playerFinding.getSelectedRow() != -1 && creator) {
-			ToInvite.removeRow(playerFinding.getSelectedRow());
+	public void refreshPanel(boolean InvitedIntoGame) {
+		if (creator && InvitedIntoGame) {
+			if (playerFinding.getSelectedRow() != -1) {
+				ToInvite.removeRow(playerFinding.getSelectedRow());
+			}
 		}
 
-		int invited = Invited.getRowCount();
-		for (int i = 0; i < invited; i++) {
-			Invited.removeRow(0);
-		}
+			int invited = Invited.getRowCount();
+			for (int i = 0; i < invited; i++) {
+				Invited.removeRow(0);
+			}
 
+		
 		Object[][] newInvited = inviteController.showUsers();
 		for (Object[] y : newInvited) {
 			Invited.addRow(y);
@@ -238,18 +239,15 @@ public class InvitePanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == refreshBtn) {
-			refreshPanel();
+			refreshPanel(false);
 		}
-
 		if (e.getSource() == inviteBtn) {
-			System.out.println("Invited: " + Invited.getRowCount());
-			if (Invited.getRowCount() < 3) {
+			if (inviteController.getNumberInvited() < 3 && playerFinding.getSelectedRow() != -1) {
 				int x = playerFinding.getSelectedRow();
 				inviteController.invitePlayer((String) playerFinding.getValueAt(x, 0));
 				playerList.clearSelection();
-				refreshPanel();
+				refreshPanel(true);
 			}
-
 		}
 
 	}

@@ -73,9 +73,8 @@ public class GameController implements Runnable{
 		// TODO Auto-generated method stub
 		return playerInfoController.getPlayerInfoPanel();
 	}
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	public void getTradeFrame() {
-		System.out.println("je zit nu in de game controller, op naar de tpc!");
 		tradePanelController.getTradeFrame();
 	}
 

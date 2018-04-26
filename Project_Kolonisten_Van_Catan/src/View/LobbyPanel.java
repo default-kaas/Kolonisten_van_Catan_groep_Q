@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -123,16 +124,27 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		Uitnodiging.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		// loop to set the width of the table.
-		for (int i = 0; i < columnModel.getColumnCount(); i++) {
-			Uitnodiging.getColumnModel().getColumn(i).setPreferredWidth(100);
-		}
+		// for (int i = 0; i < columnModel.getColumnCount(); i++) {
+		Uitnodiging.getColumnModel().getColumn(0).setPreferredWidth(150);
+		Uitnodiging.getColumnModel().getColumn(1).setPreferredWidth(150);
+		// }
 
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.WEST;
 		gbc_table.insets = new Insets(50, 0, 0, 177);
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
-		add(Uitnodiging, gbc_table);
+		
+		if(Reply.getRowCount() > 7) {
+			JScrollPane x = new JScrollPane(Uitnodiging, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
+			x.setPreferredSize(new Dimension(300, 200));
+			add(x, gbc_table);
+		}else {
+			add(Uitnodiging, gbc_table);
+		}
+		
 		Uitnodiging.setDefaultEditor(Object.class, null);
 
 	}
@@ -188,9 +200,10 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		invitedList.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		// loop to set the width of the table.
-		for (int i = 0; i < columnModel.getColumnCount(); i++) {
-			invitedList.getColumnModel().getColumn(i).setPreferredWidth(100);
-		}
+		// for (int i = 0; i < columnModel.getColumnCount(); i++) {
+		invitedList.getColumnModel().getColumn(0).setPreferredWidth(150);
+		invitedList.getColumnModel().getColumn(1).setPreferredWidth(150);
+		// }
 
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.anchor = GridBagConstraints.CENTER;
@@ -199,7 +212,17 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		gbc_table.gridwidth = 1;
 		gbc_table.gridx = 1;
 		gbc_table.gridy = 1;
-		add(invitedList, gbc_table);
+		
+		if(invitedList.getRowCount() > 7) {
+			JScrollPane x = new JScrollPane(invitedList, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+			x.setPreferredSize(new Dimension(300, 200));
+			add(x, gbc_table);
+		}else {
+			add(invitedList, gbc_table);
+		}
+		
+		
 		invitedList.setDefaultEditor(Object.class, null);
 	}
 
@@ -293,9 +316,9 @@ public class LobbyPanel extends JPanel implements ActionListener {
 		}
 		int games = Games.getRowCount();
 		for (int i = 0; i < games; i++) {
-			Games.removeRow(0);	
+			Games.removeRow(0);
 		}
-		
+
 		Object[][] newReply = lobbyController.showInvites();
 		for (Object[] y : newReply) {
 			Reply.addRow(y);
@@ -335,8 +358,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 				Uitnodiging.clearSelection();
 			} else {
 				lobbyController.respondToInvite((int) Uitnodiging.getValueAt(x, 0), false);
-				lobbyController.makeInvitePanel((int) Uitnodiging.getValueAt(x, 0), false);
-				lobbyFrame.setContentPane(lobbyController.getInvitePanel());
 				refresh();
 			}
 
@@ -364,6 +385,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		if (a.getSource() == rejoin) {
 			int x = invitedList.getSelectedRow();
+			System.out.println((int) invitedList.getValueAt(x, 0));
 			if (x == -1) {
 				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd",
 						JOptionPane.ERROR_MESSAGE);

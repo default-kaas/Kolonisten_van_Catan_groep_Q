@@ -108,27 +108,33 @@ public class LobbyDAO {
 		Object[][] data = null;
 		try {
 			Statement statement = m_Conn.createStatement();
-			final String QUERY = "select * from speler where speelstatus = 'uitdager' and idspel in (SELECT idspel FROM speler WHERE username = '"+ username + "' and (speelstatus = 'geaccepteerd' or speelstatus = 'uitdager'))";
+			final String QUERY = "select count(speelstatus) as count, idspel, username from speler where (speelstatus = 'geaccepteerd' or speelstatus = 'uitdager') and idspel in (select idspel from speler where username = '"
+					+ username
+					+ "' and (speelstatus = 'geaccepteerd' or speelstatus = 'uitdager')) group by idspel having count = 4;";
 			ResultSet rs = statement.executeQuery(QUERY);
-			
-			int rowCount = getRowCount(rs); // Row Count
-			
-			rs.beforeFirst();
 
-			data = new Object[rowCount][2];
-			for (int i = 0; i < rowCount; i++) {
-				rs.next();
-				data[i][0] = rs.getInt("idspel");
-				data[i][1] = rs.getString("username");
+			int rowCount = getRowCount(rs); // Row Count
+			System.out.println(rowCount);
+			if (rowCount > 0) {
+
+				rs.beforeFirst();
+
+				data = new Object[rowCount][2];
+				for (int i = 0; i < rowCount; i++) {
+					rs.next();
+					data[i][0] = rs.getInt("idspel");
+					data[i][1] = rs.getString("username");
+
+				}
+			} else {
+				data = new Object[1][2];
+				data[0][0] = " Geen";
+				data[0][1] = " game";
 			}
 		}
 
-		catch (
+		catch (SQLException e) {
 
-		SQLException e) {
-			data = new Object[1][2];
-			data[0][0] = " Geen";
-			data[0][1] = " game";
 			System.out.println(e);
 		}
 

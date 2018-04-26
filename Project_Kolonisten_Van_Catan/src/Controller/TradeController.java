@@ -32,34 +32,28 @@ public class TradeController {
 		
 		if (Card == 1) {
 			card = game.getMe().getWoolAmount();
-			card = 0; //dit doe ik zodat het werkt
 			return card;
 		}
 		if (Card == 2) {
 			card = game.getMe().getWheatAmount();
-			card = 0; //dit doe ik zodat het werkt
 			return card;
 		}
 		if (Card == 3) {
 			card = game.getMe().getWoodAmount();
-			card = 0; //dit doe ik zodat het werkt
 			return card;
 		}
 		if (Card == 4) {
 			card = game.getMe().getStoneAmount();
-			card = 0; //dit doe ik zodat het werkt
 			return card;
 		}
 		if (Card == 5) {
 			card = game.getMe().getOreAmount();
-			card = 0; //dit doe ik zodat het werkt
 			return card;
 		}
 		else return Card;
 	}
 	
 	public void getTradeFrame() {
-		System.out.println("nog een stap, op naar de view demzelve");
 		tradeview.showFrame();
 	}
 	

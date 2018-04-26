@@ -27,13 +27,23 @@ public class LogInPanel extends JPanel implements ActionListener {
 
 	public LogInPanel(LoginController loginController) {
 		this.loginController = loginController;
+		standardLayoutSettings();
+		initializeObjects();
+		addActionListeners();
+		setGridBagConstrains();		
+	}
+	
+	
+	private void standardLayoutSettings() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int sizeHeightPanel = (int)(screenSize.getHeight()*0.3);
         int sizeWidthPanel = (int)(screenSize.getWidth()*0.3);
         this.setPreferredSize(new Dimension(sizeWidthPanel, sizeHeightPanel));
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.DARK_GRAY);
-		
+	}
+	
+	private void initializeObjects() {
 		title = new JLabel("Login scherm");
 		username = new JLabel("Gebruikersnaam: ");
 		password = new JLabel("Wachtwoord: ");
@@ -41,15 +51,16 @@ public class LogInPanel extends JPanel implements ActionListener {
 		passwordField = new JTextField(8);
 		loginButton = new JButton("Login");
 		createNewAccountButton = new JButton("Creëer account");
-
+	}
+	
+	private void addActionListeners() {
 		passwordField.addActionListener(this);
 		loginButton.addActionListener(this);
 		createNewAccountButton.addActionListener(this);
-
+	}
+	
+	private void setGridBagConstrains() {
 		GridBagConstraints c = new GridBagConstraints();
-		
-		int sizeHeight = (int)(screenSize.getHeight());
-		int sizeWidth = (int)(screenSize.getWidth());
 		
 		title.setFont(new Font("Arial Black",1,30));
 		title.setForeground(Color.WHITE);

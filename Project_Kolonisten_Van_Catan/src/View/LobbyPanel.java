@@ -201,7 +201,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		// loop to set the width of the table.
 		// for (int i = 0; i < columnModel.getColumnCount(); i++) {
-		invitedList.getColumnModel().getColumn(0).setPreferredWidth(70);
+		invitedList.getColumnModel().getColumn(0).setPreferredWidth(150);
 		invitedList.getColumnModel().getColumn(1).setPreferredWidth(150);
 		// }
 

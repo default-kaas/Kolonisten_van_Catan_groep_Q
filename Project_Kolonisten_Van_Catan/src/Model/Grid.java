@@ -18,53 +18,38 @@ public class Grid {
 			int x = (int) tileCenter.getX();
 			int y = (int) tileCenter.getY();
 			for (int points = 0; points < 6; points++) {
-				// left first x2 y4
-				RealPoint realPoint = new RealPoint();
-				
-				
+				// left first 
 				Point point = new Point();
 				int xpoint = x - 1;
 				int ypoint = y - 1;
 				point.setLocation(xpoint, ypoint);
-				if (pointAndAdjacentPoints.containsKey( point) != true) {
-
-				}
+				
 				// left second
 				xpoint = x - 1;
 				ypoint = y;
 				point.setLocation(xpoint, ypoint);
-				if (pointAndAdjacentPoints.containsKey(point) != true) {
-
-				}
+				
 				// center first
 				xpoint = x;
 				ypoint = y + 1;
 				point.setLocation(xpoint, ypoint);
-				if (pointAndAdjacentPoints.containsKey(point) != true) {
-
-				}
+				
 				// center second
 				xpoint = x;
 				ypoint = y - 1;
 				point.setLocation(xpoint, ypoint);
-				if (pointAndAdjacentPoints.containsKey(point) != true) {
-
-				}
+				
 
 				// right first
 				xpoint = x;
 				ypoint = y + 1;
 				point.setLocation(xpoint, ypoint);
-				if (pointAndAdjacentPoints.containsKey(point) != true) {
-
-				}
+				
 				// right second
 				xpoint = x;
 				ypoint = y + 1;
 				point.setLocation(xpoint, ypoint);
-				if (pointAndAdjacentPoints.containsKey(point) != true) {
-
-				}
+				
 			}
 		}
 	}

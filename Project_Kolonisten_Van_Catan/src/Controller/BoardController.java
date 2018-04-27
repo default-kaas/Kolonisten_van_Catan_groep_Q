@@ -48,6 +48,48 @@ public class BoardController {
 				// Corner object
 				Corner cornerlf = new Corner();
 				cornerlf.setPoint(point);
+				// This for loop is needed to see which tile centers lay around the corner point
+					int xlf = (int) cornerlf.getPoint().getX();
+					int ylf = (int) cornerlf.getPoint().getY();
+				
+					Point pointlf = new Point();
+					// left first
+					int xpointlf = xlf - 1;
+					int ypointlf = ylf - 1;
+					pointlf.setLocation(xpointlf, ypointlf);
+					for(Point listTileCenter: arrayListTileCenter) {
+						if(listTileCenter.getLocation() == pointlf) {
+							cornerlf.set
+						}
+					}
+					
+					// left second
+					xpointlf = xlf - 1;
+					ypointlf = ylf;
+					pointlf.setLocation(xpointlf, ypointlf);
+				
+					// center first
+					xpointlf = xlf;
+					ypointlf = ylf + 1;
+					pointlf.setLocation(xpointlf, ypointlf);
+				
+					// center second
+					xpointlf = xlf;
+					ypointlf = ylf - 1;
+					pointlf.setLocation(xpointlf, ypointlf);
+				
+
+					// right first
+					xpointlf = xlf;
+					ypointlf = ylf + 1;
+					pointlf.setLocation(xpointlf, ypointlf);
+				
+					// right second
+					xpointlf = xlf;
+					ypointlf = ylf + 1;
+					pointlf.setLocation(xpointlf, ypointlf);
+				
+				
 				
 				// left second
 				xpoint = x - 1;
@@ -88,6 +130,8 @@ public class BoardController {
 				// Corner object
 				Corner cornerrs = new Corner();
 				cornerrs.setPoint(point);
+				
+				
 			}
 	}	
 }

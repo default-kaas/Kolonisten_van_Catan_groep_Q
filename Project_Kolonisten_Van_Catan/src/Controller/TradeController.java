@@ -21,7 +21,6 @@ public class TradeController {
 	int card = 0;
 	
 	public TradeController(Game game, Connection db_conn) {
-		
 		tradeview = new TradeView(this);
 		trademodel = new Trade(this);
 		this.game = game;

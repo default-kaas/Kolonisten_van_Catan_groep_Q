@@ -24,14 +24,11 @@ import Model.Player;
 public class PlayerInformationPanel extends JPanel implements ActionListener {
 	// private Player speler1 = new Player();
 	private JButton close;
-	private JButton trade;
 	private BufferedImage WoolImage;
 	private BufferedImage WheatImage;
 	private BufferedImage WoodImage;
 	private BufferedImage StoneImage;
 	private BufferedImage OreImage;
-	
-	
 
 	// private PlayerInfoController Controller;
 
@@ -44,6 +41,9 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	//
 	private final JLabel your_resources = new JLabel("Jouw grondstoffen:");;
 
+	//Trade button
+	private JButton trade = new JButton("Handelspaneel");
+	
 	private PlayerInfoController controller;
 
 	public PlayerInformationPanel(PlayerInfoController controller) {
@@ -55,7 +55,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		// this.add(close);
 		this.add(Box.createRigidArea(new Dimension(5, 10)));
 
-
+		
+		
 		// Panel size + Background and border
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
@@ -76,51 +77,59 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			OreImage = ImageIO.read(new File("images/Resources/ore1.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-//			e.printStackTrace();
+			// e.printStackTrace();
 		}
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		
+
 		super.paintComponent(g);
-		
+
 		String wood = ": " + controller.getWoodAmount();
 		String wool = ": " + controller.getWoolAmount();
 		String ore = ": " + controller.getOreAmount();
 		String wheat = ": " + controller.getWheatAmount();
 		String stone = ": " + controller.getStoneAmount();
-		
-		int Width =  (int) (WoolImage.getWidth() * 0.8);
+
+		int Width = (int) (WoolImage.getWidth() * 0.8);
 		int Height = (int) (WoolImage.getHeight() * 0.8);
 		g.drawImage(WoolImage, 10, 200, Width, Height, this);
-		g.drawString(wool , 15+Width, 200+(int)(Height*0.6));
-		
-		
+		g.drawString(wool, 15 + Width, 200 + (int) (Height * 0.6));
+
 		g.drawImage(WheatImage, 110, 200, Width, Height, this);
-		g.drawString(wheat, 115+Width,200+(int)(Height*0.6));
-		
-		g.drawImage(WoodImage, 210,200, Width, Height, this);
-		g.drawString(stone, 215+Width,200+(int)(Height*0.6));
-		
+		g.drawString(wheat, 115 + Width, 200 + (int) (Height * 0.6));
+
+		g.drawImage(WoodImage, 210, 200, Width, Height, this);
+		g.drawString(stone, 215 + Width, 200 + (int) (Height * 0.6));
+
 		g.drawImage(StoneImage, 310, 200, Width, Height, this);
-		g.drawString(stone, 315+Width,200+(int)(Height*0.6));
-		
+		g.drawString(stone, 315 + Width, 200 + (int) (Height * 0.6));
+
 		g.drawImage(OreImage, 410, 200, Width, Height, this);
-		g.drawString(ore, 415+Width,200+(int)(Height*0.6));
+		g.drawString(ore, 415 + Width, 200 + (int) (Height * 0.6));
 	}
-	
-	public void ShowTradeButton() {
-		trade = new JButton("Handelspaneel");
+
+	public void TradeButton() {
 		this.add(Box.createRigidArea(new Dimension(5, 10)));
 		this.add(trade);
 		trade.addActionListener(this);
 	}
+	public void ShowTradeButton() {
+		trade.setBackground(new Color(5, 162, 0));
+		trade.setForeground(Color.WHITE);
+	}
+
+	public void DisableTradeButton() {
+		trade.setBackground(new Color(163, 0, 0));
+		trade.setForeground(Color.BLACK);
+		trade.setEnabled(false);
+	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		if(arg0.getSource()== trade) {
+		if (arg0.getSource() == trade) {
 			getTradePanel();
-		}else if(arg0.getSource() == close) {
+		} else if (arg0.getSource() == close) {
 			System.exit(0);
 		}
 
@@ -130,7 +139,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(Box.createRigidArea(new Dimension(5, 20)));
 		this.add(your_resources);
 	}
-	
+
 	public void getTradePanel() {
 		controller.getTradePanel();
 	}
@@ -140,12 +149,13 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 		for (int i = 0; i < 4; i++) {
 			if (controller.myTurn(i)) {
-				this.add(new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - bezig met zijn beurt!"));
+				this.add(new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
+						+ " - bezig met zijn beurt!"));
 			} else {
 				this.add(new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)));
 			}
 			this.add(Box.createRigidArea(new Dimension(5, 10)));
 		}
-		
+
 	}
 }

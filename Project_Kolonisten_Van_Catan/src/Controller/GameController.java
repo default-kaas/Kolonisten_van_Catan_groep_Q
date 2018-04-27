@@ -22,13 +22,13 @@ public class GameController implements Runnable {
 		Game = new Game(IdGame, userName, db_conn);
 
 		makePanelControllers(db_conn);
-		
+
 		startChat();
-		
+
 		runfirstRounds();
-		
+
 		runRounds();
-		
+
 	}
 
 	private void runRounds() {
@@ -36,18 +36,28 @@ public class GameController implements Runnable {
 		if ((Game.getRound() == Game.getMe().getPlayerID())) {
 			showDice();
 		}
+		if (Game.getMe().gethasTrown()) {
+			System.out.println("test");
+			playerInfoController.showTradeButton();
+		}
+		if (false) {
+			
+		}
 
 	}
 
 	private void runfirstRounds() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void startChat() {
 		Thread t1 = new Thread(chatPanelController);
 		t1.start();
-		try {Thread.sleep(10);} catch (InterruptedException e) {}
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e) {
+		}
 	}
 
 	private void makePanelControllers(Connection db_conn) {

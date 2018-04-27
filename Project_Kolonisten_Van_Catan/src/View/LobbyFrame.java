@@ -30,6 +30,7 @@ public class LobbyFrame extends JFrame implements ActionListener {
 	}
 
 	public void showGameScreen(int gameID, String userName, boolean newGame) {
+		this.dispose();
 		superController.showGameScreen(gameID, userName, newGame);
 	}
 

@@ -229,10 +229,9 @@ public class InvitePanel extends JPanel implements ActionListener {
 			Invited.removeRow(0);
 		}
 
-		Object[][] newInvited = inviteController.getInviteUsers();
+		Object[][] newInvited = inviteController.getAvailableUsers();
 		for (Object[] y : newInvited) {
 			Invited.addRow(y);
-
 		}
 
 	}

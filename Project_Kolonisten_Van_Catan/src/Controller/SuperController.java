@@ -32,7 +32,7 @@ public class SuperController {
 
 	public void showGameScreen(int gameID, String userName, boolean newGame) {
 		// TODO Auto-generated method stub
-		gameFrame = new GameFrame(gameID, userName, db_conn, false);
+		gameFrame = new GameFrame(gameID, userName, db_conn, newGame);
 	}
 
 }

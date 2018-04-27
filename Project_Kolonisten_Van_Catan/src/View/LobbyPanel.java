@@ -81,7 +81,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		rejoinButton();
 
-//		refreshButton();
+		refreshButton();
 
 		// row 3
 		newGameTitle();
@@ -396,7 +396,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 						JOptionPane.ERROR_MESSAGE);
 				invitedList.clearSelection();
 			} else {
-				lobbyFrame.dispose();
 				lobbyController.joinGame((int) invitedList.getValueAt(x, 0), false);
 			}
 		}

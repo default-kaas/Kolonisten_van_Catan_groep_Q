@@ -38,6 +38,29 @@ public class GridController {
          	dan heb je de straat
          }
          
+         SCHUINE ZIJDE ???
+         for(int i=0; i<arraysize; i++){
+              private int x1 = x locatie eerste hoekpunt;
+              private int y1 = y locatie eerste hoekpunt;
+              private int x2 = x locatie tweede hoekpunt;
+              private int y2 = y locatie tweede hoekpunt;
+              private double corner = 70;
+              private double tan(corner);
+              private int counter;
+              private int location;
+              
+              if statement checken of x,y er tussen valt
+              if(x>(x1-5) && x<(x2+5) && y>(y1-5) && y<y2+5){
+              	location = i;
+              	counter++;
+              }
+         }
+         
+         if(counter = 1){
+         	dan heb je de straat
+         }
+         
+         
          DIT IS VOOR DORP
         
          for(int i=0; i<arraysize; i++){
@@ -68,7 +91,7 @@ public class GridController {
               private int location;
               
               if statement checken of x,y er tussen valt
-              if((x-x0)^2 + (y-y0)^2 < r^2 || (x-x0)^2 + (y-y0)^2 == r^2){
+              if((x-x1)^2 + (y-y1)^2 < r^2 || (x-x1)^2 + (y-y1)^2 == r^2){
               	location = i;
               	counter++;
               }

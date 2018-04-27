@@ -28,7 +28,7 @@ public class GridController {
               private int location;
               
               if statement checken of x,y er tussen valt
-              if(x>(x1-5) && x<(x2+5) && y>(y1-5) && y<y2+5){
+              if(x>(x1-5) && x<(x2+5) && y>(y1-5) && y<(y2+5)){
               	location = i;
               	counter++;
               }
@@ -71,7 +71,7 @@ public class GridController {
               private int location;
               
               if statement checken of x,y er tussen valt
-              if((x-x0)^2 + (y-y0)^2 < r^2 || (x-x0)^2 + (y-y0)^2 == r^2){
+              if((x-x1)^2 + (y-y1)^2 < r^2 || (x-x1)^2 + (y-y1)^2 == r^2){
               	location = i;
               	counter++;
               }
@@ -99,6 +99,7 @@ public class GridController {
          
          if(counter = 1){
          	dan heb je het hoekpunt stad
+         	controleer of er wel een dorp staat
          }
 		 */
 	}

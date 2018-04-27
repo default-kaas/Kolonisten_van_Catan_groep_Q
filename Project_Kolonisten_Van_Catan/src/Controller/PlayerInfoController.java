@@ -36,6 +36,28 @@ public class PlayerInfoController {
 			return false;
 		}
 	}
+	
+	public int getWoodAmount() {
+		return game.getMe().getWoodAmount();
+	}
+	
+	public int getWoolAmount() {
+		return game.getMe().getWoolAmount();
+	}
+
+	public int getOreAmount() {
+		return game.getMe().getOreAmount();
+	}
+
+	
+	public int getWheatAmount() {
+		return game.getMe().getWheatAmount();
+	}
+	
+	public int getStoneAmount() {
+		return game.getMe().getStoneAmount();
+	}
+
 
 	public PlayerInformationPanel getPlayerInfoPanel() {
 		return spelerInformatiePanel;

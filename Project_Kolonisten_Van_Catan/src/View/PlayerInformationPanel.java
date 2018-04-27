@@ -85,22 +85,29 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		
 		super.paintComponent(g);
 		
+		String wood = ": " + controller.getWoodAmount();
+		String wool = ": " + controller.getWoolAmount();
+		String ore = ": " + controller.getOreAmount();
+		String wheat = ": " + controller.getWheatAmount();
+		String stone = ": " + controller.getStoneAmount();
+		
 		int Width =  (int) (WoolImage.getWidth() * 0.8);
 		int Height = (int) (WoolImage.getHeight() * 0.8);
 		g.drawImage(WoolImage, 10, 200, Width, Height, this);
-		g.drawString(" : 1", 15+Width, 200+(int)(Height*0.6));
+		g.drawString(wool , 15+Width, 200+(int)(Height*0.6));
+		
 		
 		g.drawImage(WheatImage, 110, 200, Width, Height, this);
-		g.drawString(" : 1", 115+Width,200+(int)(Height*0.6));
+		g.drawString(wheat, 115+Width,200+(int)(Height*0.6));
 		
 		g.drawImage(WoodImage, 210,200, Width, Height, this);
-		g.drawString(" : 1", 215+Width,200+(int)(Height*0.6));
+		g.drawString(stone, 215+Width,200+(int)(Height*0.6));
 		
 		g.drawImage(StoneImage, 310, 200, Width, Height, this);
-		g.drawString(" : 1", 315+Width,200+(int)(Height*0.6));
+		g.drawString(stone, 315+Width,200+(int)(Height*0.6));
 		
 		g.drawImage(OreImage, 410, 200, Width, Height, this);
-		g.drawString(" : 1", 415+Width,200+(int)(Height*0.6));
+		g.drawString(ore, 415+Width,200+(int)(Height*0.6));
 	}
 	
 	public void ShowTradeButton() {

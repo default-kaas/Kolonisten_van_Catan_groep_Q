@@ -38,14 +38,7 @@ public class BuildPanelController {
 
 	}
 	
-	public void testinstuff() {
-		System.out.println("Stone " + game.getMe().getStoneAmount());
-		System.out.println("Wool " + game.getMe().getWoolAmount());
-		System.out.println("Ore " + game.getMe().getOreAmount());
-		System.out.println("Wheat " + game.getMe().getWheatAmount());
-		System.out.println("Wood " + game.getMe().getWoodAmount());
-		
-	}
+	
 
 	public void removeStreetRes() {
 		game.removeStreet();
@@ -106,7 +99,7 @@ public class BuildPanelController {
 	}
 	
 	public void buyPrint(String x, String y) {
-		gameController.setBuildMessage(x, y);
+		gameController.setBuildMessage(x, y)	;
 	}
 
 }

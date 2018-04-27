@@ -29,7 +29,6 @@ public class Game {
 		GameDB = new GameDAO(db_conn);
 		PlayersRound = GameDB.getPlayersRound(GameId);
 		PlayerDBInfo = new PlayerDAO(db_conn);
-		System.out.println(userName);
 		Players = new ArrayList<Player>();
 		addPlayers();
 

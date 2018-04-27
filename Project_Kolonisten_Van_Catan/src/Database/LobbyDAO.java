@@ -60,7 +60,6 @@ public class LobbyDAO {
 	public Object[][] getInvitedGames(String username) {
 		Object[][] data = null;
 		try {
-
 			Statement statement = m_Conn.createStatement();
 			final String QUERY = "SELECT * FROM speler WHERE username = '" + username
 					+ "' and speelstatus = 'uitgedaagde'";
@@ -114,7 +113,6 @@ public class LobbyDAO {
 			ResultSet rs = statement.executeQuery(QUERY);
 
 			int rowCount = getRowCount(rs); // Row Count
-			System.out.println(rowCount);
 			if (rowCount > 0) {
 
 				rs.beforeFirst();
@@ -152,7 +150,6 @@ public class LobbyDAO {
 				stmt.executeUpdate("UPDATE speler SET speelstatus = 'geweigerd' WHERE idspel = " + gameId
 						+ " and username = '" + userName + "'");
 			}
-
 			return true;
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -161,34 +158,24 @@ public class LobbyDAO {
 	}
 
 	private int getColumnCount(ResultSet rs) {
-
 		try {
-
 			if (rs != null)
 				return rs.getMetaData().getColumnCount();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return 0;
 	}
 
 	private int getRowCount(ResultSet rs) {
-
 		try {
-
 			if (rs != null) {
-
 				rs.last();
-
 				return rs.getRow();
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return 0;
 	}
 

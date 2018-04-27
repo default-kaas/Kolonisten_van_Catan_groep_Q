@@ -69,7 +69,6 @@ public class GameController implements Runnable {
 
 	public void runGame() {
 		// while(true) {
-		// System.out.println("xD");
 		// try {
 		// Thread.sleep(1000);
 		// } catch (InterruptedException e) {
@@ -92,7 +91,6 @@ public class GameController implements Runnable {
 	}
 
 	public PlayerInformationPanel getSpelerInfoPanel() {
-		// TODO Auto-generated method stub
 		return playerInfoController.getPlayerInfoPanel();
 	}
 
@@ -105,12 +103,10 @@ public class GameController implements Runnable {
 	}
 
 	public ChatPanel getChatPanel() {
-		// TODO Auto-generated method stub
 		return chatPanelController.getChatPanel();
 	}
 
 	public BoardPanel getBordPanel() {
-		// TODO Auto-generated method stub
 		return new BoardPanel();
 	}
 

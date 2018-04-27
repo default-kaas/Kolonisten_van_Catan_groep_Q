@@ -27,18 +27,12 @@ public class BuildPanelController {
 		int stone = game.getMe().getStoneAmount();
 
 		if (wood >= 1 && stone >= 1) {
-
-			System.out.println(stone);
 			return true;
 		} else {
 			return false;
-
 		}
-
 	}
 	
-	
-
 	public void removeStreetRes() {
 		game.removeStreet();
 	}

@@ -250,25 +250,4 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 	}
 
-	// @Override
-	// public void update(Observable arg0, Object arg1) {
-	// // TODO Auto-generated method stub
-	// // if (creator && InvitedIntoGame) {
-	// // if (playerFinding.getSelectedRow() != -1) {
-	// // ToInvite.removeRow(playerFinding.getSelectedRow());
-	// // }
-	// // }
-	// System.out.println("Update!");
-	// int invited = Invited.getRowCount();
-	// for (int i = 0; i < invited; i++) {
-	// Invited.removeRow(0);
-	// }
-	//
-	// Object[][] newInvited = inviteController.getInviteUsers();
-	// for (Object[] y : newInvited) {
-	// Invited.addRow(y);
-	//
-	// }
-	// }
-
 }

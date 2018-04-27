@@ -16,7 +16,6 @@ public class ChatPanelController implements Runnable {
 		this.game = game;
 		chatModel = new Chat(db_conn);
 		chatPanel = new ChatPanel(this);
-
 	}
 
 	public void updateChat() {
@@ -44,7 +43,6 @@ public class ChatPanelController implements Runnable {
 		setUserInput("joined the game!");
 		updateChat();
 		while (true) {
-			// System.out.println("test");
 			updateChat();
 			try {
 				Thread.sleep(1000);

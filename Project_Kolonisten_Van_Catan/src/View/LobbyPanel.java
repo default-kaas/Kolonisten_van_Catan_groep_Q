@@ -384,7 +384,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		if (a.getSource() == rejoin) {
 			int x = invitedList.getSelectedRow();
-			System.out.println((int) invitedList.getValueAt(x, 0));
 			if (x == -1) {
 				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd",
 						JOptionPane.ERROR_MESSAGE);

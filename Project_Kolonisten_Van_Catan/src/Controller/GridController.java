@@ -38,6 +38,45 @@ public class GridController {
          	dan heb je de straat
          }
          
+         DIT IS VOOR DORP
+        
+         for(int i=0; i<arraysize; i++){
+              private int x1 = x locatie hoekpunt;
+              private int y1 = y locatie hoekpunt;
+              private int r = 10;
+              private int counter;
+              private int location;
+              
+              if statement checken of x,y er tussen valt
+              if((x-x0)^2 + (y-y0)^2 < r^2 || (x-x0)^2 + (y-y0)^2 == r^2){
+              	location = i;
+              	counter++;
+              }
+         }
+         
+         if(counter = 1){
+         	dan heb je het hoekpunt dorp
+         }
+         
+          DIT IS VOOR STAD
+        
+         for(int i=0; i<arraysize; i++){
+              private int x1 = x locatie hoekpunt;
+              private int y1 = y locatie hoekpunt;
+              private int r = 10;
+              private int counter;
+              private int location;
+              
+              if statement checken of x,y er tussen valt
+              if((x-x0)^2 + (y-y0)^2 < r^2 || (x-x0)^2 + (y-y0)^2 == r^2){
+              	location = i;
+              	counter++;
+              }
+         }
+         
+         if(counter = 1){
+         	dan heb je het hoekpunt stad
+         }
 		 */
 	}
 	

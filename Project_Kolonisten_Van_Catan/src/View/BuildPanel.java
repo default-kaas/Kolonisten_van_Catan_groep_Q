@@ -43,7 +43,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.buildPanelController = buildPanelController;
 		this.setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
-		buildPanelController.testinstuff();
 		setScreenSize();
 		setTitles();
 		setRoad();
@@ -381,6 +380,8 @@ public class BuildPanel extends JPanel implements ActionListener {
 				buyRoad.setEnabled(false);
 
 			}
+			
+			buildPanelController.testinstuff();
 		}
 
 		if (e.getSource().equals(buyHouse)) {
@@ -408,7 +409,11 @@ public class BuildPanel extends JPanel implements ActionListener {
 				buyHouse.setForeground(Color.BLACK);
 				buyHouse.setEnabled(false);
 			}
+			
+			buildPanelController.testinstuff();
 		}
+		
+		
 
 		if (e.getSource().equals(buyCity)) {
 			if (cityCheck()) { //checks if player has enough resources to buy City
@@ -437,6 +442,8 @@ public class BuildPanel extends JPanel implements ActionListener {
 				buyCity.setForeground(Color.BLACK);
 				buyCity.setEnabled(false);
 			}
+			
+			buildPanelController.testinstuff();
 		}
 
 		if (e.getSource().equals(buyDevelopmentCard)) {
@@ -466,6 +473,8 @@ public class BuildPanel extends JPanel implements ActionListener {
 				buyDevelopmentCard.setForeground(Color.BLACK);
 				buyDevelopmentCard.setEnabled(false);
 			}
+			
+			buildPanelController.testinstuff();
 		}
 
 	}

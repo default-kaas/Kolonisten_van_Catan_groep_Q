@@ -38,7 +38,7 @@ public class BuildPanelController {
 	}
 	
 	public void testinstuff() {
-		System.out.println("Ston " + game.getMe().getStoneAmount());
+		System.out.println("Stone " + game.getMe().getStoneAmount());
 		System.out.println("Wool " + game.getMe().getWoolAmount());
 		System.out.println("Ore " + game.getMe().getOreAmount());
 		System.out.println("Wheat " + game.getMe().getWheatAmount());

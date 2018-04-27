@@ -23,15 +23,11 @@ public class SuperController {
 		loginFrame = new LoginFrame(this, db_conn);
 	}
 
-	public void CreateGUIController() {
-//		GUIController guiController = new GUIController();
-	}
 	public void showLobbyScreen(String userName) {
 		lobbyFrame = new LobbyFrame(this,db_conn, userName);
 	}
 
 	public void showGameScreen(int gameID, String userName, boolean newGame) {
-		// TODO Auto-generated method stub
 		gameFrame = new GameFrame(gameID, userName, db_conn, newGame);
 	}
 

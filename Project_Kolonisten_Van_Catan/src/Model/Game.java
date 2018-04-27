@@ -34,7 +34,6 @@ public class Game {
 		addPlayers();
 
 		addResources();
-		System.out.println(this.getMe().getName());
 	}
 
 	private void addPlayers() {

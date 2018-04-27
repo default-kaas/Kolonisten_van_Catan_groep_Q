@@ -37,7 +37,6 @@ public class GameController implements Runnable {
 			showDice();
 		}
 		if (Game.getMe().gethasTrown()) {
-			System.out.println("test");
 			playerInfoController.showTradeButton();
 		}
 		if (false) {
@@ -117,7 +116,6 @@ public class GameController implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		runGame();
 	}
 

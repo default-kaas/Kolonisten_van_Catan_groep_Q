@@ -147,14 +147,15 @@ public class Player {
 
 	public void removeCityResources() {
 		int i = 0;
+		int x = 0;
 		while (i < 3) {
-			OreStack.remove(i);
+			OreStack.remove(0);
 			i++;
 		}
 
-		while (i < 2) {
-			WheatStack.remove(i);
-			i++;
+		while (x < 2) {
+			WheatStack.remove(0);
+			x++;
 		}
 
 	}

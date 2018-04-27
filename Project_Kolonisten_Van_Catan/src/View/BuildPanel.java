@@ -364,6 +364,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 						buildPanelController.removeStreetRes();
 						JOptionPane.showMessageDialog(buyRoad, "Selecteer nu een plek om een Straat te bouwen",
 								"Straat Bouwen", JOptionPane.INFORMATION_MESSAGE);
+						buildPanelController.buyPrint("Straat", "1 hout en 1 steen");
 						System.out.println("Straat: " + buildPanelController.checkRecoursesRoad());
 					} else {
 						JOptionPane.showMessageDialog(buyRoad, "Niet genoeg grondstoffen meer!", "Straat Bouwen",
@@ -393,6 +394,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 						buildPanelController.removeHouseRes();
 						JOptionPane.showMessageDialog(buyHouse, "Selecteer nu een plek om een Dorp te bouwen",
 								"Dorp Bouwen", JOptionPane.INFORMATION_MESSAGE);
+						buildPanelController.buyPrint("Dorp", "1 hout, 1 steen, 1 graan en 1 wol");
 						System.out.println(buildPanelController.checkResourcesHouse());
 					} else {
 						JOptionPane.showMessageDialog(buyHouse, "Niet genoeg grondstoffen meer!", "Dorp Bouwen",
@@ -424,6 +426,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 						buildPanelController.removeCityRes(); // buy City and remove the resources
 						JOptionPane.showMessageDialog(buyCity, "Selecteer nu een plek om een Stad te bouwen", //Ask player to select a place on the map to build the city.
 								"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
+						buildPanelController.buyPrint("Stad", "3 erts en 2 graan");
 						System.out.println("stad1 " + buildPanelController.checkResourcesCity());
 					} else {
 						JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", //Turn button color to red and disable to prevent user from buying.
@@ -456,6 +459,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 						buildPanelController.removeDevRes();
 						JOptionPane.showMessageDialog(buyDevelopmentCard, "Dev kaart is aangeschaft!", "Dev Kopen",
 								JOptionPane.INFORMATION_MESSAGE);
+						buildPanelController.buyPrint("Ontwikkelingskaart", "1 hout, 1 erts, 1 graan en 1 wol");
 						System.out.println("Dev " + buildPanelController.checkResourcesDevCard());
 					} else {
 						JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Dev Kopen",

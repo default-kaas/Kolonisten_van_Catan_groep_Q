@@ -10,10 +10,11 @@ public class BuildPanelController {
 
 	private Game game;
 	private BuildPanel bouwPanel;
+	private GameController gameController;
 
-	public BuildPanelController(Game game, Connection db_conn) {
+	public BuildPanelController(Game game, Connection db_conn, GameController gameController) {
 		this.game = game;
-
+		this.gameController = gameController;
 		bouwPanel = new BuildPanel(this);
 	}
 
@@ -98,6 +99,14 @@ public class BuildPanelController {
 		} else {
 			return false;
 		}
+	}
+	
+	public void getMe() {
+		game.getMe();
+	}
+	
+	public void buyPrint(String x, String y) {
+		gameController.setBuildMessage(x, y);
 	}
 
 }

@@ -25,7 +25,7 @@ public class GameController implements Runnable{
 			showDice();
 		}
 
-		bouwPanelController = new BuildPanelController(Game, db_conn);
+		bouwPanelController = new BuildPanelController(Game, db_conn, this);
 		playerInfoController = new PlayerInfoController(Game, db_conn, this);
 		chatPanelController = new ChatPanelController(Game, db_conn);
 		tradePanelController = new TradeController(Game, db_conn);
@@ -98,7 +98,7 @@ public class GameController implements Runnable{
 		runGame();
 	}
 	public void setBuildMessage(String x, String y) {
-		chatPanelController.setUserInput("heeft een "+ x + " voor " + y + " gegooid!");
+		chatPanelController.setUserInput("heeft een "+ x + " voor " + y + " gekocht!");
 	}
 	
 	public void setDiceMessage(int value1, int value2) {

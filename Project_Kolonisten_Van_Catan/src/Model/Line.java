@@ -1,9 +1,6 @@
 package Model;
 
-import java.awt.Point;
 import java.util.ArrayList;
-
-import Database.BoardDAO;
 
 public class Line {
 	private ArrayList<Corner> cornerPoints = new ArrayList<Corner>();

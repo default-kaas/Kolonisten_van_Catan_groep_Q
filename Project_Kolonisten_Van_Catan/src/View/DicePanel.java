@@ -1,16 +1,19 @@
 package View;
 
-import java.awt.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.event.AncestorListener;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import Controller.DiceController;
 

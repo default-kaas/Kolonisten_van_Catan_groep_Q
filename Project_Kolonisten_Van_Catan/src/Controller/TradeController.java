@@ -1,12 +1,11 @@
 package Controller;
 
-import View.TradeView;
-
 import java.sql.Connection;
 
 import Model.Game;
 import Model.Player;
 import Model.Trade;
+import View.TradeView;
 
 public class TradeController {
 	

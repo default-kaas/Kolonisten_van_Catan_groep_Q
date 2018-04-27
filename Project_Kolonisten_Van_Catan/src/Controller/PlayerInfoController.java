@@ -1,10 +1,9 @@
 package Controller;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-import View.PlayerInformationPanel;
+
 import Model.Game;
-import Model.Player;
+import View.PlayerInformationPanel;
 
 public class PlayerInfoController {
 	private Game game;

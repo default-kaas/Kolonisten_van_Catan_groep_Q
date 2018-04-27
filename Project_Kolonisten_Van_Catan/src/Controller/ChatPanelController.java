@@ -1,8 +1,6 @@
 package Controller;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import Model.Chat;
 import Model.Game;

@@ -2,8 +2,8 @@ package Model;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+
 import Database.ChatDAO;
-import Controller.ChatPanelController;
 
 public class Chat {
 	private ChatDAO ChatDAO;

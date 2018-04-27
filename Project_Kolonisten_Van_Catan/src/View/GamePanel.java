@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.sql.Connection;
 
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 

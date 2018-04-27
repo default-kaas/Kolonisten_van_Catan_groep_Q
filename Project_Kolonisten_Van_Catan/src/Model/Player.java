@@ -74,8 +74,6 @@ public class Player {
 	}
 
 	public void addResource(ResourceCards Resources, char ResourceType) {
-		System.out.println(ResourceType);
-		System.out.println(Resources.getResourceID());
 		switch (ResourceType) {
 		case 'H':
 			this.WoodStack.add(Resources);

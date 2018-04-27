@@ -6,27 +6,21 @@ import java.util.ArrayList;
 import Database.BoardDAO;
 
 public class Line {
-	private ArrayList<Point> tileCenterPoints = new ArrayList<Point>();
-	private ArrayList<Point> inBetweenPoints = new ArrayList<Point>();
-	private BoardDAO boardDAO = new BoardDAO();
-	
-	public Line(BoardDAO boardDAO){
-		this.boardDAO = boardDAO;
+	private ArrayList<Corner> cornerPoints = new ArrayList<Corner>();
+	private ArrayList<Tile> tilePoints = new ArrayList<Tile>();
+	//
+	public ArrayList<Corner> getCornerPoints() {
+		return cornerPoints;
+	}
+	public void setCornerPoints(ArrayList<Corner> cornerPoints) {
+		this.cornerPoints = cornerPoints;
 	}
 	
-	public ArrayList<Point> getTileCenterPoints() {
-		return tileCenterPoints;
+	public ArrayList<Tile> getTilePoints() {
+		return tilePoints;
+	}
+	public void setTilePoints(ArrayList<Tile> tilePoints) {
+		this.tilePoints = tilePoints;
 	}
 	
-	public void setTileCenterPoints(ArrayList<Point> tileCenterPoints) {
-		this.tileCenterPoints = tileCenterPoints;
-	}
-	
-	public ArrayList<Point> getInBetweenPoints() {
-		return inBetweenPoints;
-	}
-	
-	public void setInBetweenPoints(ArrayList<Point> inBetweenPoints) {
-		this.inBetweenPoints = inBetweenPoints;
-	}
 }

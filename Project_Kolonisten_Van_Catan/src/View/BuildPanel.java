@@ -429,7 +429,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 						buildPanelController.buyPrint("Stad", "3 erts en 2 graan");
 						System.out.println("stad1 " + buildPanelController.checkResourcesCity());
 					} else {
-						JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", //Turn button color to red and disable to prevent user from buying.
+						JOptionPane.showMessageDialog(buyCity, "Niet genoeg grondstoffen meer!", //Turn button color to red and disable to prevent user from buying.
 								"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
 						buyCity.setBackground(new Color(163, 0, 0));
 						buyCity.setForeground(Color.BLACK);

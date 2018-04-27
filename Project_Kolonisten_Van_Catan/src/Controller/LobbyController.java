@@ -32,15 +32,12 @@ public class LobbyController {
 	public void makeInvitePanel(int gameid, boolean creator) {
 		inviteController = new InviteController(db, username, gameid, creator, this);
 		Thread t1 = new Thread(inviteController);
-//		Thread t2 = new Thread(this);
 		t1.start();
 		try {
 			Thread.sleep(10);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// invitePanel = new InvitePanel(inviteController);
 	}
 
 	public Object[][] showUsers() {
@@ -72,5 +69,4 @@ public class LobbyController {
 		lobbyDAO.getInvitedGames(username);
 	}
 
-	
 }

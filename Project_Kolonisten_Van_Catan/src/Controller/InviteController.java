@@ -12,13 +12,10 @@ public class InviteController extends Observable implements Runnable {
 	private Invite invite;
 	private LobbyController lobbyController;
 
-	public InviteController(Connection db_conn, String username, int idspel, boolean creator,
-			LobbyController lobbyController) {
+	public InviteController(Connection db_conn, String username, int idspel, boolean creator, LobbyController lobbyController) {
 		this.lobbyController = lobbyController;
 		invite = new Invite(db_conn, idspel, username);
-		// UpdateGame();
 		invitePanel = new InvitePanel(this, creator);
-		// this.addObserver(invitePanel);
 	}
 
 	public Object[][] getAvailableUsers() {

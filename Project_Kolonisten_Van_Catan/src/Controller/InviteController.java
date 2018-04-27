@@ -12,13 +12,10 @@ public class InviteController extends Observable implements Runnable {
 	private Invite invite;
 	private LobbyController lobbyController;
 
-	public InviteController(Connection db_conn, String username, int idspel, boolean creator,
-			LobbyController lobbyController) {
+	public InviteController(Connection db_conn, String username, int idspel, boolean creator, LobbyController lobbyController) {
 		this.lobbyController = lobbyController;
 		invite = new Invite(db_conn, idspel, username);
-//		UpdateGame();
 		invitePanel = new InvitePanel(this, creator);
-//		this.addObserver(invitePanel);
 	}
 
 	public Object[][] getAvailableUsers() {
@@ -41,34 +38,23 @@ public class InviteController extends Observable implements Runnable {
 		return invite.getNumberInvited();
 	}
 
-//	public void UpdateGame() {
-//		invite.showUsers();
-//		invite.showInviteUsers();
-//		
-//	}
-
 	@Override
 	public void run() {
-		 boolean run = true;
+		boolean run = true;
 		while (run) {
-			if(invite.getAcceptedPlayerAmount() == 3) {
+			if (invite.getAcceptedPlayerAmount() == 3) {
 				run = false;
 			}
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
-		//Update game
-		lobbyController.joinGame(invite.getSpelID(), false);
-		
-	}
 
-	// public int getSelectedRow() {
-	// return invitePanel.getSelectedRow();
-	// }
+		// Update game
+		lobbyController.joinGame(invite.getSpelID(), true);
+
+	}
 
 }

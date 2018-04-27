@@ -18,15 +18,14 @@ public class InviteDAO {
 		try {
 			m_Conn = db_conn;
 		} catch (Exception e) {
-
 		}
-
 	}
 
 	public int getAcceptedPlayerAmount(int idspel) {
 		try {
 			Statement statement = m_Conn.createStatement();
-			final String QUERY = "select count(idspeler) as count from speler where idspel = "+ idspel +" and speelstatus = 'geaccepteerd'";
+			final String QUERY = "select count(idspeler) as count from speler where idspel = " + idspel
+					+ " and speelstatus = 'geaccepteerd'";
 			ResultSet rs = statement.executeQuery(QUERY);
 			rs.next();
 			return rs.getInt("count");
@@ -34,7 +33,7 @@ public class InviteDAO {
 		}
 		return -1;
 	}
-	
+
 	public int getRejectedVolgnr(int idspel) {
 		try {
 			Statement statement = m_Conn.createStatement();
@@ -48,7 +47,7 @@ public class InviteDAO {
 		}
 		return -1;
 	}
-	
+
 	public Object[][] getUserList(String username, int idspel) {
 		Object[][] data = null;
 		try {
@@ -62,23 +61,14 @@ public class InviteDAO {
 				int columnCount = getColumnCount(rs); // Column Countt
 
 				data = new Object[rowCount][columnCount];
-
-				// Starting from First Row for Iteration
 				rs.beforeFirst();
-
 				int i = 0;
-
 				while (rs.next()) {
-
 					data[i][0] = rs.getString("username");
-
 					data[i][1] = rs.getString("speelstatus");
 					i++;
 				}
-
 				status = true;
-
-				// statement.close();
 
 			} else {
 				// Nep data xD
@@ -86,10 +76,8 @@ public class InviteDAO {
 				data[0][0] = " Niemand";
 				data[0][1] = " uitgenodigd!";
 			}
-
 		} catch (Exception e) {
 		}
-
 		return data;
 
 	}
@@ -100,12 +88,10 @@ public class InviteDAO {
 			Statement statement = m_Conn.createStatement();
 			final String QUERY = "select * from account where username != '" + username + "'";
 			ResultSet rs = statement.executeQuery(QUERY);
-
+			
 			int getRowCount = getRowCount(rs); // Row Count
-
 			data = new Object[getRowCount][2];
 
-			// Starting from First Row for Iteration
 			rs.beforeFirst();
 
 			for (int i = 0; i < getRowCount; i++) {
@@ -113,7 +99,6 @@ public class InviteDAO {
 				data[i][0] = rs.getString("username");
 				data[i][1] = " - ";
 			}
-			// statement.close();
 		} catch (SQLException e) {
 		}
 
@@ -154,8 +139,6 @@ public class InviteDAO {
 		return -1;
 	}
 
-
-
 	public int getNumberInvited(int idspel) {
 		try {
 			Statement statement = m_Conn.createStatement();
@@ -167,7 +150,6 @@ public class InviteDAO {
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
-
 		return -1;
 	}
 
@@ -176,32 +158,21 @@ public class InviteDAO {
 			if (rs != null) {
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int columnsNumber = rsmd.getColumnCount();
-				// System.out.println(columnsNumber);
 				return columnsNumber;
 			}
 		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
-			e.printStackTrace();
 		}
 
 		return 0;
 	}
 
 	private int getRowCount(ResultSet rs) {
-
 		try {
-
 			if (rs != null) {
-
 				rs.last();
-
 				return rs.getRow();
 			}
-
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
 		}
 
 		return 0;

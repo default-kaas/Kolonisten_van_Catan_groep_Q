@@ -6,13 +6,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
-import java.awt.color.ColorSpace;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -350,6 +347,42 @@ public class BuildPanel extends JPanel implements ActionListener {
 			return false;
 		}
 	}
+	
+	public void allCheck() {
+		if (buildPanelController.checkRecoursesRoad()) {
+			buyRoad.setBackground(new Color(5, 162, 0));
+		} else if (!buildPanelController.checkRecoursesRoad()) {
+			buyRoad.setBackground(new Color(163, 0, 0));
+			buyRoad.setEnabled(false);
+		}
+		
+		if (buildPanelController.checkResourcesHouse()) {
+			buyHouse.setBackground(new Color(5, 162, 0));
+			buyHouse.setForeground(Color.WHITE);
+		} else if (!buildPanelController.checkResourcesHouse()) {
+			buyHouse.setBackground(new Color(163, 0, 0));
+			buyHouse.setForeground(Color.BLACK);
+			buyHouse.setEnabled(false);
+		}
+		
+		if (buildPanelController.checkResourcesCity()) {
+			buyCity.setBackground(new Color(5, 162, 0));
+			buyCity.setForeground(Color.WHITE);
+		} else if (!buildPanelController.checkResourcesCity()) {
+			buyCity.setBackground(new Color(163, 0, 0));
+			buyCity.setForeground(Color.BLACK);
+			buyCity.setEnabled(false);
+		}
+		
+		if (buildPanelController.checkResourcesDevCard()) {
+			buyDevelopmentCard.setBackground(new Color(5, 162, 0));
+			buyDevelopmentCard.setForeground(Color.WHITE);
+		} else if (!buildPanelController.checkResourcesDevCard()) {
+			buyDevelopmentCard.setBackground(new Color(163, 0, 0));
+			buyDevelopmentCard.setForeground(Color.BLACK);
+			buyDevelopmentCard.setEnabled(false);
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -365,14 +398,12 @@ public class BuildPanel extends JPanel implements ActionListener {
 						JOptionPane.showMessageDialog(buyRoad, "Selecteer nu een plek om een Straat te bouwen",
 								"Straat Bouwen", JOptionPane.INFORMATION_MESSAGE);
 						buildPanelController.buyPrint("Straat", "1 hout en 1 steen");
-						System.out.println("Straat: " + buildPanelController.checkRecoursesRoad());
+						allCheck();
 					} else {
 						JOptionPane.showMessageDialog(buyRoad, "Niet genoeg grondstoffen meer!", "Straat Bouwen",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
-				} else {
-					System.out.println("Straat" + buildPanelController.checkRecoursesRoad());
-				}
+				} 
 			} else {
 				JOptionPane.showMessageDialog(buyRoad, "Niet genoeg grondstoffen meer!", "Straat Bouwen",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -382,7 +413,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 			}
 			
-			buildPanelController.testinstuff();
+			
 		}
 
 		if (e.getSource().equals(buyHouse)) {
@@ -395,13 +426,11 @@ public class BuildPanel extends JPanel implements ActionListener {
 						JOptionPane.showMessageDialog(buyHouse, "Selecteer nu een plek om een Dorp te bouwen",
 								"Dorp Bouwen", JOptionPane.INFORMATION_MESSAGE);
 						buildPanelController.buyPrint("Dorp", "1 hout, 1 steen, 1 graan en 1 wol");
-						System.out.println(buildPanelController.checkResourcesHouse());
+						allCheck();
 					} else {
 						JOptionPane.showMessageDialog(buyHouse, "Niet genoeg grondstoffen meer!", "Dorp Bouwen",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
-				} else {
-					System.out.println("Dorp: " + buildPanelController.checkResourcesDevCard());
 				}
 
 			} else {
@@ -412,8 +441,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 				buyHouse.setEnabled(false);
 			}
 			
-			buildPanelController.testinstuff();
-		}
+					}
 		
 		
 
@@ -427,7 +455,8 @@ public class BuildPanel extends JPanel implements ActionListener {
 						JOptionPane.showMessageDialog(buyCity, "Selecteer nu een plek om een Stad te bouwen", //Ask player to select a place on the map to build the city.
 								"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
 						buildPanelController.buyPrint("Stad", "3 erts en 2 graan");
-						System.out.println("stad1 " + buildPanelController.checkResourcesCity());
+						
+							allCheck();
 					} else {
 						JOptionPane.showMessageDialog(buyCity, "Niet genoeg grondstoffen meer!", //Turn button color to red and disable to prevent user from buying.
 								"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
@@ -435,9 +464,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 						buyCity.setForeground(Color.BLACK);
 						buyCity.setEnabled(false);
 					}
-				} else {
-					System.out.println("stad2 " + buildPanelController.checkResourcesCity());
-				}
+				} 
 			} else {
 				JOptionPane.showMessageDialog(buyCity, "Niet genoeg grondstoffen meer!", "Stad Bouwen", //Turn button color to red and disable to prevent user from buying.
 						JOptionPane.INFORMATION_MESSAGE);
@@ -446,7 +473,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 				buyCity.setEnabled(false);
 			}
 			
-			buildPanelController.testinstuff();
+			
 		}
 
 		if (e.getSource().equals(buyDevelopmentCard)) {
@@ -459,18 +486,14 @@ public class BuildPanel extends JPanel implements ActionListener {
 						buildPanelController.removeDevRes();
 						JOptionPane.showMessageDialog(buyDevelopmentCard, "Dev kaart is aangeschaft!", "Dev Kopen",
 								JOptionPane.INFORMATION_MESSAGE);
-						buildPanelController.buyPrint("Ontwikkelingskaart", "1 hout, 1 erts, 1 graan en 1 wol");
-						System.out.println("Dev " + buildPanelController.checkResourcesDevCard());
+						buildPanelController.buyPrint("Ontwikkelingskaart", "1 erts, 1 graan en 1 wol");
+						allCheck();
 					} else {
 						JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Dev Kopen",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
-				} else {
-					System.out.println("dev" + buildPanelController.checkResourcesDevCard());
 				}
-
-				System.out.println("dev" + buildPanelController.checkResourcesDevCard());
-			} else {
+				 else {
 				JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Dev Kopen",
 						JOptionPane.INFORMATION_MESSAGE);
 				buyDevelopmentCard.setBackground(new Color(163, 0, 0));
@@ -478,9 +501,9 @@ public class BuildPanel extends JPanel implements ActionListener {
 				buyDevelopmentCard.setEnabled(false);
 			}
 			
-			buildPanelController.testinstuff();
+			
+			}
 		}
-
 	}
 
 	@Override

@@ -29,12 +29,10 @@ public class Game {
 		GameDB = new GameDAO(db_conn);
 		PlayersRound = GameDB.getPlayersRound(GameId);
 		PlayerDBInfo = new PlayerDAO(db_conn);
-		System.out.println(userName);
 		Players = new ArrayList<Player>();
 		addPlayers();
 
 		addResources();
-		System.out.println(this.getMe().getName());
 	}
 
 	private void addPlayers() {
@@ -101,14 +99,6 @@ public class Game {
 			getMe().addResource(WheatStack.get(i), 'G');
 			StoneStack.remove(WheatStack.get(i));
 		}
-
-		System.out.println(getMe().getStoneAmount());
-		System.out.println(StoneStack.size());
-
-		// getMe().addResource(WoodStack.get(0), 'G');
-		// WoodStack.remove(WoodStack.get(0));
-		// getMe().addResource(WoodStack.get(0), 'E');
-		// WoodStack.remove(WoodStack.get(0));
 	}
 
 	public void removeStreet() {

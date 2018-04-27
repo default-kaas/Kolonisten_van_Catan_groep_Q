@@ -17,13 +17,11 @@ public class GameDAO {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-
 			rs = stmt.executeQuery("select beurt_idspeler from spel where idspel=" + gameId);
 			rs.next();
 			int beurt = rs.getInt("beurt_idspeler");
 			return beurt;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			return 0;
 		}
 

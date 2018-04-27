@@ -16,8 +16,7 @@ public class DiceController {
 		this.gameController = gameController;
 		this.game = gameController.getGame();
 		dice = new Dice(db_conn);
-		dicePanel = new DicePanel(this);
-		
+		dicePanel = new DicePanel(this);	
 	}
 	
 	public DicePanel getDicePanel() {

@@ -20,14 +20,6 @@ public class Account {
 		return false;
 	}
 
-//	public boolean activeGame(String name) {
-//		// TODO Auto-generated method stub
-//		if(loginDao.activeGame(name)) {
-//			return true;
-//		}
-//		return false;
-//	}
-	
 	public boolean createAccount(String username, String password) {
 		if(loginDao.createAccountDOA(username, password)) {
 			return true; 

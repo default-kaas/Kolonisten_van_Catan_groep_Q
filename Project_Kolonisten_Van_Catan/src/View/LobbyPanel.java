@@ -1,7 +1,6 @@
 package View;
 
 import java.awt.Color;
-import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -81,7 +80,7 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		rejoinButton();
 
-//		refreshButton();
+		refreshButton();
 
 		// row 3
 		newGameTitle();
@@ -385,7 +384,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 
 		if (a.getSource() == rejoin) {
 			int x = invitedList.getSelectedRow();
-			System.out.println((int) invitedList.getValueAt(x, 0));
 			if (x == -1) {
 				JOptionPane.showMessageDialog(this, "Selecteer een cel ", "Geen cel geselecteerd",
 						JOptionPane.ERROR_MESSAGE);
@@ -396,7 +394,6 @@ public class LobbyPanel extends JPanel implements ActionListener {
 						JOptionPane.ERROR_MESSAGE);
 				invitedList.clearSelection();
 			} else {
-				lobbyFrame.dispose();
 				lobbyController.joinGame((int) invitedList.getValueAt(x, 0), false);
 			}
 		}

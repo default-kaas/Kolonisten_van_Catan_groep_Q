@@ -1,10 +1,8 @@
 package Model;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 
 import Database.InviteDAO;
-import View.InvitePanel;
 
 public class Invite {
 	private InviteDAO InviteDAO;
@@ -39,14 +37,12 @@ public class Invite {
 		while (i < 2) {
 
 			if (volgnrs[i] == null) {
-				System.out.println(i + 2);
 				volgnrs[i] = 2;
 				break;
 			}
 			i++;
 		}
 		i += 2;
-		System.out.println(i);
 		InviteDAO.invitePlayers(userName, idspel, i);
 
 	}

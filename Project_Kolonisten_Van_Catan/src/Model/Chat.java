@@ -2,14 +2,13 @@ package Model;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+
 import Database.ChatDAO;
-import Controller.ChatPanelController;
 
 public class Chat {
 	private ChatDAO ChatDAO;
 	private String text;
 	public ArrayList<String> chatArray;
-//	ChatPanelController chatPanelController = new ChatPanelController();
 
 	public Chat(Connection db_conn) {
 		ChatDAO = new ChatDAO(db_conn);
@@ -23,7 +22,6 @@ public class Chat {
 	}
 
 	public void addTextToArray(String Message, Player Player) {
-//		chatArray.add(Player.getName() + "("+Player.getColor()+") " + Message);
 		if(!ChatDAO.setChatMessage(Message, Player.getPlayerID())) {
 			chatArray.add("Error, Couldn't send message!");
 		}
@@ -38,7 +36,6 @@ public class Chat {
 	}
 
 	public boolean updateChat(Game game) {
-		// TODO Auto-generated method stub
 		return ChatDAO.updateChat(game, chatArray);
 	}
 

@@ -1,10 +1,9 @@
 package Controller;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-import View.PlayerInformationPanel;
+
 import Model.Game;
-import Model.Player;
+import View.PlayerInformationPanel;
 
 public class PlayerInfoController {
 	private Game game;
@@ -15,9 +14,11 @@ public class PlayerInfoController {
 		spelerInformatiePanel = new PlayerInformationPanel(this);
 		this.game = game;
 		spelerInformatiePanel.UpdatePlayerTurn();
-		spelerInformatiePanel.ShowTradeButton();
+		
+		spelerInformatiePanel.TradeButton();
 		spelerInformatiePanel.ShowResources();
 		this.gameController = gameController;
+		disableTradeButton();
 		
 	}
 
@@ -36,6 +37,14 @@ public class PlayerInfoController {
 			return false;
 		}
 	}
+	
+	public void showTradeButton() {
+		spelerInformatiePanel.ShowTradeButton();
+	}
+	public void disableTradeButton() {
+		spelerInformatiePanel.DisableTradeButton();
+	}
+	
 	
 	public int getWoodAmount() {
 		return game.getMe().getWoodAmount();

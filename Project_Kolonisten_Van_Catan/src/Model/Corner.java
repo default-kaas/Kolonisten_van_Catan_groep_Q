@@ -3,8 +3,6 @@ package Model;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import Database.BoardDAO;
-
 public class Corner {
 	private Point point = new Point();
 	private ArrayList<Point> tilePoints = new ArrayList<Point>();

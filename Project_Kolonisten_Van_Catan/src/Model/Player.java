@@ -74,8 +74,6 @@ public class Player {
 	}
 
 	public void addResource(ResourceCards Resources, char ResourceType) {
-		System.out.println(ResourceType);
-		System.out.println(Resources.getResourceID());
 		switch (ResourceType) {
 		case 'H':
 			this.WoodStack.add(Resources);
@@ -147,14 +145,15 @@ public class Player {
 
 	public void removeCityResources() {
 		int i = 0;
+		int x = 0;
 		while (i < 3) {
-			OreStack.remove(i);
+			OreStack.remove(0);
 			i++;
 		}
 
-		while (i < 2) {
-			WheatStack.remove(i);
-			i++;
+		while (x < 2) {
+			WheatStack.remove(0);
+			x++;
 		}
 
 	}

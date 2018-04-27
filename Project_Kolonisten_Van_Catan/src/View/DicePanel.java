@@ -1,16 +1,19 @@
 package View;
 
-import java.awt.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.event.AncestorListener;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import Controller.DiceController;
 
@@ -29,7 +32,7 @@ public class DicePanel extends JPanel implements MouseListener {
 		this.setLayout(new GridBagLayout());
 		screenHeight = ScreenHeight();
 		this.setPreferredSize(new Dimension(215, 110));
-		// this.setBackground(new Color(1, 207, 203));
+		this.setBackground(new Color(1, 207, 203));
 	}
 
 	public void showDice() {
@@ -40,7 +43,7 @@ public class DicePanel extends JPanel implements MouseListener {
 			pressed = true;
 			repaint();
 		} else {
-			this.setBackground(Color.WHITE);
+			this.setBackground(Color.white);
 			this.add(text);
 			this.addMouseListener(this);
 			repaint();

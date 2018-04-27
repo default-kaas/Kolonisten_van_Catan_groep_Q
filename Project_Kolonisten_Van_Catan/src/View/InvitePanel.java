@@ -11,8 +11,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -229,10 +227,9 @@ public class InvitePanel extends JPanel implements ActionListener {
 			Invited.removeRow(0);
 		}
 
-		Object[][] newInvited = inviteController.getInviteUsers();
+		Object[][] newInvited = inviteController.getAvailableUsers();
 		for (Object[] y : newInvited) {
 			Invited.addRow(y);
-
 		}
 
 	}
@@ -252,26 +249,5 @@ public class InvitePanel extends JPanel implements ActionListener {
 		}
 
 	}
-
-	// @Override
-	// public void update(Observable arg0, Object arg1) {
-	// // TODO Auto-generated method stub
-	// // if (creator && InvitedIntoGame) {
-	// // if (playerFinding.getSelectedRow() != -1) {
-	// // ToInvite.removeRow(playerFinding.getSelectedRow());
-	// // }
-	// // }
-	// System.out.println("Update!");
-	// int invited = Invited.getRowCount();
-	// for (int i = 0; i < invited; i++) {
-	// Invited.removeRow(0);
-	// }
-	//
-	// Object[][] newInvited = inviteController.getInviteUsers();
-	// for (Object[] y : newInvited) {
-	// Invited.addRow(y);
-	//
-	// }
-	// }
 
 }

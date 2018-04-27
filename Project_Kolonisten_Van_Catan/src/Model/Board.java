@@ -9,7 +9,7 @@ import Database.BoardDAO;
 public class Board {
 	private ArrayList<Tile> tiles = new ArrayList<Tile>();
 	private ArrayList<Corner> corners = new ArrayList<Corner>();
-	private ArrayList<Line> lines = new ArrayList<Line>();
+	
 	private BoardDAO boardDOA;
 	private Game game;
 	
@@ -33,14 +33,11 @@ public class Board {
 		this.corners = corners;
 	}
 
-	public ArrayList<Line> getLines() {
-		return lines;
-	}
-	public void setLines(ArrayList<Line> lines) {
-		this.lines = lines;
+	public ArrayList<Point> getBoardDAOTilePointsFromDataBase(int gameNumber){
+		return boardDOA.getTilePointsFromDataBase(gameNumber);
 	}
 	
-	public ArrayList<Point> getBoardDAOTilePointsFromDataBase(int gameNumber){
+	public ArrayList<Point> getBoardDAOCornerPointsFromDataBase(int gameNumber){
 		return boardDOA.getTilePointsFromDataBase(gameNumber);
 	}
 }

@@ -7,9 +7,8 @@ import Database.BoardDAO;
 
 public class Tile {
 	private Point CenterPoint = new Point();
-	private ArrayList<Corner> corners = new ArrayList<Corner>();
-	private ArrayList<Line> lines = new ArrayList<Line>();
-	
+	private ArrayList<Point> cornerPoints = new ArrayList<Point>();
+	///
 	public Point getCenterPoint() {
 		return CenterPoint;
 	}
@@ -17,19 +16,12 @@ public class Tile {
 		CenterPoint = centerPoint;
 	}
 	
-	public ArrayList<Corner> getCorners() {
-		return corners;
+	public ArrayList<Point> getCornerPoints() {
+		return cornerPoints;
 	}
-	public void setCorners(ArrayList<Corner> corners) {
-		this.corners = corners;
-	}
-	
-	public ArrayList<Line> getLines() {
-		return lines;
+	public void setCornerPoints(ArrayList<Point> cornerPoints) {
+		this.cornerPoints = cornerPoints;
 	}
 	
-	public void setLines(ArrayList<Line> lines) {
-		this.lines = lines;
-	}
 	
 }

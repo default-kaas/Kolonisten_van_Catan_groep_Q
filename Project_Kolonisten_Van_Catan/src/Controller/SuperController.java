@@ -20,6 +20,7 @@ public class SuperController {
 		} catch (Exception e) {
 			System.out.println("Kan geen connectie maken!");
 		}
+	
 		loginFrame = new LoginFrame(this, db_conn);
 	}
 

@@ -38,6 +38,6 @@ public class Board {
 	}
 	
 	public ArrayList<Point> getBoardDAOCornerPointsFromDataBase(int gameNumber){
-		return boardDOA.getTilePointsFromDataBase(gameNumber);
+		return boardDOA.getLocationsFromDataBase(gameNumber);
 	}
 }

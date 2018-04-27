@@ -21,6 +21,7 @@ public class GamePanel extends JPanel {
 		GameController = new GameController(GameID, userName, db_conn, newGame);
 		MakePanels();
 
+		
 		this.setLayout(new GridBagLayout());
 
 		GridBagConstraints c = new GridBagConstraints();

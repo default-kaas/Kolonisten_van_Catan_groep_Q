@@ -21,15 +21,15 @@ public class GameController implements Runnable {
 
 		Game = new Game(IdGame, userName, db_conn);
 
-		BoardController x = new BoardController(Game, db_conn);
+//		BoardController x = new BoardController(Game, db_conn);
 		
-//		makePanelControllers(db_conn);
+		makePanelControllers(db_conn);
 
-//		startChat();
-//
-//		runfirstRounds();
-//
-//		runRounds();
+		startChat();
+
+		runfirstRounds();
+
+		runRounds();
 
 	}
 

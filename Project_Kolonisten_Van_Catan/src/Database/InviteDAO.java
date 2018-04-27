@@ -23,12 +23,34 @@ public class InviteDAO {
 
 	}
 
-	// select max(idspeler+1) from speler;
-
+	public int getAcceptedPlayerAmount(int idspel) {
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "select count(idspeler) as count from speler where idspel = "+ idspel +" and speelstatus = 'geaccepteerd'";
+			ResultSet rs = statement.executeQuery(QUERY);
+			rs.next();
+			return rs.getInt("count");
+		} catch (SQLException e) {
+		}
+		return -1;
+	}
+	
+	public int getRejectedVolgnr(int idspel) {
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "select volgnr from speler where idspel = " + idspel
+					+ " and speelstatus = 'geweigerd' and not volgnr in (select volgnr from speler where idspel = "
+					+ idspel + " and speelstatus = 'uitgedaagde' and speelstatus = 'geaccepteerd')";
+			ResultSet rs = statement.executeQuery(QUERY);
+			rs.next();
+			return rs.getInt("volgnr");
+		} catch (SQLException e) {
+		}
+		return -1;
+	}
+	
 	public Object[][] getUserList(String username, int idspel) {
-
 		Object[][] data = null;
-
 		try {
 
 			Statement statement = m_Conn.createStatement();
@@ -66,7 +88,6 @@ public class InviteDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 		}
 
 		return data;
@@ -93,10 +114,7 @@ public class InviteDAO {
 				data[i][1] = " - ";
 			}
 			// statement.close();
-		}
-
-		catch (SQLException e) {
-			System.out.println(e);
+		} catch (SQLException e) {
 		}
 
 		return data;
@@ -135,21 +153,8 @@ public class InviteDAO {
 		}
 		return -1;
 	}
-	public int getRejectedVolgnr(int idspel) {
 
-		try {
-			Statement statement = m_Conn.createStatement();
-			final String QUERY = "select volgnr from speler where idspel = "+idspel+" and speelstatus = 'geweigerd' and not volgnr in (select volgnr from speler where idspel = "+idspel+" and speelstatus = 'uitgedaagde' and speelstatus = 'geaccepteerd')";
-			ResultSet rs = statement.executeQuery(QUERY);
-			rs.next();
-			return rs.getInt("volgnr");
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
 
-		return -1;
-
-	}
 
 	public int getNumberInvited(int idspel) {
 		try {
@@ -202,5 +207,4 @@ public class InviteDAO {
 		return 0;
 	}
 
-	
 }

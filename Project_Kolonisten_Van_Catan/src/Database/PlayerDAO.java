@@ -14,12 +14,17 @@ public class PlayerDAO {
 		m_Conn = db_conn;
 	}
 
-	public String getName(int volgnr, int GameID) throws SQLException {
+	public String getName(int volgnr, int GameID) {
+		try {
 		Statement stmt = m_Conn.createStatement();
 		ResultSet rs = stmt.executeQuery("select username from speler where idspel=" + GameID + " and volgnr = " + (volgnr + 1));
 		rs.next();
 		String name = rs.getString("username");
 		return name;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return null;
+		}
 	}
 
 	public int getPlayerID(int i, int gameId) {

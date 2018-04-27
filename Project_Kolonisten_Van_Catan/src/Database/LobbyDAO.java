@@ -68,7 +68,7 @@ public class LobbyDAO {
 
 			if (rs.next()) {
 				rs.beforeFirst();
-				ArrayList spel = new ArrayList<>();
+				ArrayList<Object> spel = new ArrayList<>();
 				while (rs.next()) {
 					spel.add(rs.getInt("idspel"));
 				}

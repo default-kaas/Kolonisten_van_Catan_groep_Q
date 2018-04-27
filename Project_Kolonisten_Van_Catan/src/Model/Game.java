@@ -1,7 +1,6 @@
 package Model;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Database.GameDAO;
@@ -30,7 +29,7 @@ public class Game {
 		GameDB = new GameDAO(db_conn);
 		PlayersRound = GameDB.getPlayersRound(GameId);
 		PlayerDBInfo = new PlayerDAO(db_conn);
-
+		System.out.println(userName);
 		Players = new ArrayList<Player>();
 		addPlayers();
 
@@ -40,31 +39,27 @@ public class Game {
 
 	private void addPlayers() {
 		for (int i = 0; i < 4; i++) {
-			try {
-				String Color = "";
-				switch (i) {
-				case 0:
-					Color = "rood";
-					break;
-				case 1:
-					Color = "wit";
-					break;
-				case 2:
-					Color = "blauw";
-					break;
-				case 3:
-					Color = "oranje";
-					break;
-				}
 
-				Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i, GameId), Color));
-				if (Players.get(i).getName().equals(userName)) {
-					Players.get(i).itsMe();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			String Color = "";
+			switch (i) {
+			case 0:
+				Color = "rood";
+				break;
+			case 1:
+				Color = "wit";
+				break;
+			case 2:
+				Color = "blauw";
+				break;
+			case 3:
+				Color = "oranje";
+				break;
 			}
+			Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i, GameId), Color));
+			if (Players.get(i).getName().equals(userName)) {
+				Players.get(i).itsMe();
+			}
+
 		}
 	}
 
@@ -91,23 +86,22 @@ public class Game {
 		}
 
 		for (int i = 0; i < 5; i++) {
-		getMe().addResource(StoneStack.get(i), 'B');
-		StoneStack.remove(StoneStack.get(i));
+			getMe().addResource(StoneStack.get(i), 'B');
+			StoneStack.remove(StoneStack.get(i));
 
-		getMe().addResource(WoodStack.get(i), 'H');
-		WoodStack.remove(WoodStack.get(i));
-		
+			getMe().addResource(WoodStack.get(i), 'H');
+			WoodStack.remove(WoodStack.get(i));
 
-		getMe().addResource(WoolStack.get(i), 'W');
-		WoolStack.remove(WoolStack.get(i));
-		
-		getMe().addResource(OreStack.get(i), 'E');
-		StoneStack.remove(OreStack.get(i));
-		
-		getMe().addResource(WheatStack.get(i), 'G');
-		StoneStack.remove(WheatStack.get(i));
+			getMe().addResource(WoolStack.get(i), 'W');
+			WoolStack.remove(WoolStack.get(i));
+
+			getMe().addResource(OreStack.get(i), 'E');
+			StoneStack.remove(OreStack.get(i));
+
+			getMe().addResource(WheatStack.get(i), 'G');
+			StoneStack.remove(WheatStack.get(i));
 		}
-		
+
 		System.out.println(getMe().getStoneAmount());
 		System.out.println(StoneStack.size());
 
@@ -120,15 +114,15 @@ public class Game {
 	public void removeStreet() {
 		getMe().removeRoadResources();
 	}
-	
+
 	public void removeHouse() {
 		getMe().removeHouseResources();
 	}
-	
+
 	public void removeCity() {
 		getMe().removeCityResources();
 	}
-	
+
 	public void removeDev() {
 		getMe().removeDevResources();
 	}

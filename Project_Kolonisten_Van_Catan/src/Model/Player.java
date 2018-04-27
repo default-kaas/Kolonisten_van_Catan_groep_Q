@@ -77,7 +77,7 @@ public class Player {
 		System.out.println(ResourceType);
 		System.out.println(Resources.getResourceID());
 		switch (ResourceType) {
-		case 'W':
+		case 'H':
 			this.WoodStack.add(Resources);
 			break;
 		case 'G':
@@ -89,7 +89,7 @@ public class Player {
 		case 'E':
 			this.OreStack.add(Resources);
 			break;
-		case 'H':
+		case 'W':
 			this.WoolStack.add(Resources);
 			break;
 		}

@@ -97,9 +97,11 @@ public class GameController implements Runnable{
 		// TODO Auto-generated method stub
 		runGame();
 	}
-
+	public void setBuildMessage(String x, String y) {
+		chatPanelController.setUserInput("heeft een "+ x + " voor " + y + " gegooid!");
+	}
+	
 	public void setDiceMessage(int value1, int value2) {
-		// TODO Auto-generated method stub
 		chatPanelController.setUserInput("heeft "+value1 + " en " + value2 + " gegooid!");
 	}
 }

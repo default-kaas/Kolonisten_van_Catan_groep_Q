@@ -28,7 +28,7 @@ public class GridController {
               private int location;
               
               if statement checken of x,y er tussen valt
-              if(x>(x1-5) && x<(x2+5) && y>(y1-5) && y<y2+5){
+              if(x>(x1-5) && x<(x2+5) && y>(y1-5) && y<(y2+5)){
               	location = i;
               	counter++;
               }

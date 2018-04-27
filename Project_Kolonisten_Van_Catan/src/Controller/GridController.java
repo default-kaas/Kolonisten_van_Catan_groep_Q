@@ -71,7 +71,7 @@ public class GridController {
               private int location;
               
               if statement checken of x,y er tussen valt
-              if((x-x1)^2 + (y-y1)^2 < r^2 || (x-x1)^2 + (y-y1)^2 == r^2){
+              if((x-x1)*(x-x1) + (y-y1)*(x-y1)< r*r || (x-x1)*(x-x1) + (y-y1)*(x-y1) == r*r){
               	location = i;
               	counter++;
               }
@@ -91,7 +91,7 @@ public class GridController {
               private int location;
               
               if statement checken of x,y er tussen valt
-              if((x-x1)^2 + (y-y1)^2 < r^2 || (x-x1)^2 + (y-y1)^2 == r^2){
+              if((x-x1)*(x-x1) + (y-y1)*(x-y1)< r*r || (x-x1)*(x-x1) + (y-y1)*(x-y1) == r*r){
               	location = i;
               	counter++;
               }

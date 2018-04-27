@@ -100,14 +100,6 @@ public class Game {
 			getMe().addResource(WheatStack.get(i), 'G');
 			StoneStack.remove(WheatStack.get(i));
 		}
-
-		System.out.println(getMe().getStoneAmount());
-		System.out.println(StoneStack.size());
-
-		// getMe().addResource(WoodStack.get(0), 'G');
-		// WoodStack.remove(WoodStack.get(0));
-		// getMe().addResource(WoodStack.get(0), 'E');
-		// WoodStack.remove(WoodStack.get(0));
 	}
 
 	public void removeStreet() {

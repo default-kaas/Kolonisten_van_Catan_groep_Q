@@ -41,13 +41,13 @@ public class Grid {
 				
 
 				// right first
-				xpoint = x;
+				xpoint = x + 1;
 				ypoint = y + 1;
 				point.setLocation(xpoint, ypoint);
 				
 				// right second
-				xpoint = x;
-				ypoint = y + 1;
+				xpoint = x + 1;
+				ypoint = y ;
 				point.setLocation(xpoint, ypoint);
 				
 			}

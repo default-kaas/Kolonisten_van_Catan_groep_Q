@@ -41,7 +41,7 @@ public class BoardController {
 				tiles.add(tile);
 			}
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
-		arrayListLocation.addAll(board.getBoardDAOTilePointsFromDataBase(gameNumber));
+		arrayListLocation.addAll(board.getBoardDAOCornerPointsFromDataBase(gameNumber));
 		// this loop will create all corners
 			for(int i =0; i<arrayListLocation.size();i++) {
 				Point cornPoint = new Point();
@@ -54,25 +54,6 @@ public class BoardController {
 			}
 		board.setTiles(tiles);
 		board.setCorners(corners);
-		
-		// temporary
-		for(Tile tile: tiles) {
-			System.out.println("CenterPoint:");
-			System.out.println(tile.getCenterPoint());
-			System.out.println("CornerPoints:");
-			System.out.println(tile.getCornerPoints());
-			System.out.println();
-		}
-		
-		for(Corner corner: corners) {
-			System.out.println("Point:");
-			System.out.println(corner.getPoint());
-			System.out.println("LinePoints:");
-			System.out.println(corner.getLinePoints());
-			System.out.println("TilePoints:");
-			System.out.println(corner.getTilePoints());
-			System.out.println();
-		}
 	}
 	
 	
@@ -179,10 +160,12 @@ public class BoardController {
 	// this is the check if the tile center points exist
 	private boolean tileCenterExists(Point possiblePoint, ArrayList<Tile> tilesCenters) {
 		for(Tile tileCenter: tilesCenters) {
-			if(tileCenter.getCenterPoint() == possiblePoint) {
+			if(tileCenter.getCenterPoint().equals(possiblePoint)) {
+				System.out.println("true");
 				return true;
 			}
 		}
+		System.out.println("false");
 		return false;
 	}
 	
@@ -244,9 +227,10 @@ public class BoardController {
 	// this is to check if the corn point exists
 	private boolean cornExists(Point pointPossibleTile, ArrayList<Tile> tilePoints) {
 		for(Tile tilepoint: tilePoints) {
-			ArrayList<Point> pointList = tilepoint.getCornerPoints();
+			ArrayList<Point> pointList = new ArrayList<Point>();
+            pointList.addAll(tilepoint.getCornerPoints());
 			for(Point point: pointList) {
-				if(point.getLocation() == pointPossibleTile) {
+				if(point.getLocation().equals(pointPossibleTile)) {
 					return true;
 				}
 			}

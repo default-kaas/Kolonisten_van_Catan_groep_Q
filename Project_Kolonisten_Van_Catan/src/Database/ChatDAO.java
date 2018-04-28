@@ -46,8 +46,7 @@ public class ChatDAO {
 				return false;
 			}
 		} catch (SQLException e) {
-			System.out.println("error");
-			System.out.println(e);
+			System.out.println("Database Connection error, restart the game please!");
 			return false;
 		}
 	}

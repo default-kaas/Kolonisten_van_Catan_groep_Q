@@ -383,6 +383,19 @@ public class BuildPanel extends JPanel implements ActionListener {
 			buyDevelopmentCard.setEnabled(false);
 		}
 	}
+	public void disableButtons() {
+		buyRoad.setBackground(new Color(163, 0, 0));
+		buyRoad.setEnabled(false);
+		buyHouse.setBackground(new Color(163, 0, 0));
+		buyHouse.setForeground(Color.BLACK);
+		buyHouse.setEnabled(false);
+		buyCity.setBackground(new Color(163, 0, 0));
+		buyCity.setForeground(Color.BLACK);
+		buyCity.setEnabled(false);
+		buyDevelopmentCard.setBackground(new Color(163, 0, 0));
+		buyDevelopmentCard.setForeground(Color.BLACK);
+		buyDevelopmentCard.setEnabled(false);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -472,8 +485,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 				buyCity.setForeground(Color.BLACK);
 				buyCity.setEnabled(false);
 			}
-			
-			
 		}
 
 		if (e.getSource().equals(buyDevelopmentCard)) {
@@ -519,5 +530,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		this.add(thumb);
 
 	}
+
+	
 
 }

@@ -95,4 +95,14 @@ public class BuildPanelController {
 		gameController.setBuildMessage(x, y)	;
 	}
 
+	public void disableButtons() {
+		// TODO Auto-generated method stub
+		bouwPanel.disableButtons();
+	}
+
+	public void showButtons() {
+		// TODO Auto-generated method stub
+		bouwPanel.allCheck();
+	}
+
 }

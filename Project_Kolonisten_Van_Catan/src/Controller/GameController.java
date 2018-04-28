@@ -35,14 +35,18 @@ public class GameController implements Runnable {
 
 	private void runRounds() {
 		// Als lobby af is moet ik dit stukje nog wat veranderen.
+		bouwPanelController.disableButtons();
+		
 		if ((Game.getRound() == Game.getMe().getPlayerID())) {
 			showDice();
 		}
 		if (Game.getMe().gethasTrown()) {
 			playerInfoController.showTradeButton();
+			bouwPanelController.showButtons();
 		}
+		
 		if (false) {
-			
+			playerInfoController.disableTradeButton();
 		}
 
 	}

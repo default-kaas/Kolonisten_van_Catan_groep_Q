@@ -19,9 +19,9 @@ public class BoardController {
 	public BoardController(Game game, Connection connection ) {
 		this.game = game;
 		this.connection = connection;
-		
 		board = new Board(game, connection);
 		createBoardSaveValues(game.getGameID());
+		System.out.println();
 	}
 	
 	public void createBoardSaveValues(int gameNumber) {
@@ -31,7 +31,6 @@ public class BoardController {
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		ArrayList<Corner> corners = new ArrayList<Corner>();
 		// this loop will create all tiles with their tile points
-	
 			for (int i = 0; i < arrayListTileCenter.size(); i++) {
 				// this to get the tile centerpoint for the calculation for the other points
 				Point tileCenter = new Point();
@@ -42,7 +41,7 @@ public class BoardController {
 				tiles.add(tile);
 			}
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
-		arrayListLocation.addAll(board.getBoardDAOCornerPointsFromDataBase(gameNumber));
+		arrayListLocation.addAll(board.getBoardDAOTilePointsFromDataBase(gameNumber));
 		// this loop will create all corners
 			for(int i =0; i<arrayListLocation.size();i++) {
 				Point cornPoint = new Point();
@@ -55,59 +54,69 @@ public class BoardController {
 			}
 		board.setTiles(tiles);
 		board.setCorners(corners);
+		
+		// temporary
+		for(Tile tile: tiles) {
+			System.out.println("CenterPoint:");
+			System.out.println(tile.getCenterPoint());
+			System.out.println("CornerPoints:");
+			System.out.println(tile.getCornerPoints());
+			System.out.println();
+		}
+		
+		for(Corner corner: corners) {
+			System.out.println("Point:");
+			System.out.println(corner.getPoint());
+			System.out.println("LinePoints:");
+			System.out.println(corner.getLinePoints());
+			System.out.println("TilePoints:");
+			System.out.println(corner.getTilePoints());
+			System.out.println();
+		}
 	}
 	
 	
 	// this to create the tile cornPoints
 	private ArrayList<Point> returnTileCornPoints(Point tilePoint){
 		ArrayList<Point> arrayList = new ArrayList<Point>();
-		Point point = new Point();
 		int x = (int) tilePoint.getX();
 		int y = (int) tilePoint.getY();
 		//left first
 		int xpoint = x - 1;
 		int ypoint = y - 1;
-		point.setLocation(xpoint, ypoint);
-		System.out.println();
-		System.out.println(point);
-		arrayList.add(point);
+		Point pointlf = new Point();
+		pointlf.setLocation(xpoint, ypoint);
+		arrayList.add(pointlf);
 		// left second
 		xpoint = x - 1;
 		ypoint = y;
-		point.setLocation(xpoint, ypoint);
-		System.out.println(point);
-		arrayList.add(point);
+		Point pointls = new Point();
+		pointls.setLocation(xpoint, ypoint);
+		arrayList.add(pointls);
 		// center first
 		xpoint = x;
 		ypoint = y + 1;
-		point.setLocation(xpoint, ypoint);
-		System.out.println(point);
-		arrayList.add(point);
+		Point pointcf = new Point();
+		pointcf.setLocation(xpoint, ypoint);
+		arrayList.add(pointcf);
 		// center second
 		xpoint = x;
 		ypoint = y - 1;
-		
-		point.setLocation(xpoint, ypoint);
-		System.out.println(point);
-		arrayList.add(point);
+		Point pointcs = new Point();
+		pointcs.setLocation(xpoint, ypoint);
+		arrayList.add(pointcs);
 		// right first
 		xpoint = x + 1;
 		ypoint = y + 1;
-		point.setLocation(xpoint, ypoint);
-		System.out.println(point);
-		arrayList.add(point);
+		Point pointrf = new Point();
+		pointrf.setLocation(xpoint, ypoint);
+		arrayList.add(pointrf);
 		// right second
 		xpoint = x + 1;
 		ypoint = y;
-		point.setLocation(xpoint, ypoint);
-		System.out.println(point);
-		System.out.println();
-		System.out.println();
-		arrayList.add(point);
-		for(Point z : arrayList) {
-			System.out.println(z);
-		}
-		System.out.println();
+		Point pointrs = new Point();
+		pointrs.setLocation(xpoint, ypoint);
+		arrayList.add(pointrs);
 		return arrayList;
 	}
 	
@@ -116,48 +125,53 @@ public class BoardController {
 		ArrayList<Point> arrayList = new ArrayList<Point>();
 		int x = (int) cornerPoint.getX();
 		int y = (int) cornerPoint.getY();
-		Point point = new Point();
 		//left first
 		int xpoint = x - 1;
 		int ypoint = y - 1;
-		point.setLocation(xpoint, ypoint);
-		if(tileCenterExists(point,tilesCenters)) {
-			arrayList.add(point);
+		Point pointlf = new Point();
+		pointlf.setLocation(xpoint, ypoint);
+		if(tileCenterExists(pointlf,tilesCenters)) {
+			arrayList.add(pointlf);
 		}
 		// left second
 		xpoint = x - 1;
 		ypoint = y;
-		point.setLocation(xpoint, ypoint);
-		if(tileCenterExists(point,tilesCenters)) {
-			arrayList.add(point);
+		Point pointls = new Point();
+		pointls.setLocation(xpoint, ypoint);
+		if(tileCenterExists(pointls,tilesCenters)) {
+			arrayList.add(pointls);
 		}
 		// center first
 		xpoint = x;
 		ypoint = y + 1;
-		point.setLocation(xpoint, ypoint);
-		if(tileCenterExists(point,tilesCenters)) {
-			arrayList.add(point);
+		Point pointcf = new Point();
+		pointcf.setLocation(xpoint, ypoint);
+		if(tileCenterExists(pointcf,tilesCenters)) {
+			arrayList.add(pointcf);
 		}
 		// center second
 		xpoint = x;
 		ypoint = y - 1;
-		point.setLocation(xpoint, ypoint);
-		if(tileCenterExists(point,tilesCenters)) {
-			arrayList.add(point);
+		Point pointcs = new Point();
+		pointcs.setLocation(xpoint, ypoint);
+		if(tileCenterExists(pointcs,tilesCenters)) {
+			arrayList.add(pointcs);
 		}
 		// right first
-		xpoint = x;
+		xpoint = x + 1;
 		ypoint = y + 1;
-		point.setLocation(xpoint, ypoint);
-		if(tileCenterExists(point,tilesCenters)) {
-			arrayList.add(point);
+		Point pointrf = new Point();
+		pointrf.setLocation(xpoint, ypoint);
+		if(tileCenterExists(pointrf,tilesCenters)) {
+			arrayList.add(pointrf);
 		}
 		// right second
-		xpoint = x;
-		ypoint = y + 1;
-		point.setLocation(xpoint, ypoint);
-		if(tileCenterExists(point,tilesCenters)) {
-			arrayList.add(point);
+		xpoint = x + 1;
+		ypoint = y;
+		Point pointrs = new Point();
+		pointrs.setLocation(xpoint, ypoint);
+		if(tileCenterExists(pointrs,tilesCenters)) {
+			arrayList.add(pointrs);
 		}
 		return arrayList;
 	}
@@ -176,48 +190,53 @@ public class BoardController {
 		ArrayList<Point> arrayList = new ArrayList<Point>();
 		int x = (int) cornerPoint.getX();
 		int y = (int) cornerPoint.getY();
-		Point point = new Point();
 		//left first
 		int xpoint = x - 1;
 		int ypoint = y - 1;
-		point.setLocation(xpoint, ypoint);
-		if(cornExists(point,tilesCenters)) {
-			arrayList.add(point);
+		Point pointlf = new Point();
+		pointlf.setLocation(xpoint, ypoint);
+		if(cornExists(pointlf,tilesCenters)) {
+			arrayList.add(pointlf);
 		}
 		// left second
 		xpoint = x - 1;
 		ypoint = y;
-		point.setLocation(xpoint, ypoint);
-		if(cornExists(point,tilesCenters)) {
-			arrayList.add(point);
+		Point pointls = new Point();
+		pointls.setLocation(xpoint, ypoint);
+		if(cornExists(pointls,tilesCenters)) {
+			arrayList.add(pointls);
 		}
 		// center first
 		xpoint = x;
 		ypoint = y + 1;
-		point.setLocation(xpoint, ypoint);
-		if(cornExists(point,tilesCenters)) {
-			arrayList.add(point);
+		Point pointcf = new Point();
+		pointcf.setLocation(xpoint, ypoint);
+		if(cornExists(pointcf,tilesCenters)) {
+			arrayList.add(pointcf);
 		}
 		// center second
 		xpoint = x;
 		ypoint = y - 1;
-		point.setLocation(xpoint, ypoint);
-		if(cornExists(point,tilesCenters)) {
-			arrayList.add(point);
+		Point pointcs = new Point();
+		pointcs.setLocation(xpoint, ypoint);
+		if(cornExists(pointcs,tilesCenters)) {
+			arrayList.add(pointcs);
 		}
 		// right first
-		xpoint = x;
+		xpoint = x + 1;
 		ypoint = y + 1;
-		point.setLocation(xpoint, ypoint);
-		if(cornExists(point,tilesCenters)) {
-			arrayList.add(point);
+		Point pointrf = new Point();
+		pointrf.setLocation(xpoint, ypoint);
+		if(cornExists(pointrf,tilesCenters)) {
+			arrayList.add(pointrf);
 		}
 		// right second
-		xpoint = x;
-		ypoint = y + 1;
-		point.setLocation(xpoint, ypoint);
-		if(cornExists(point,tilesCenters)) {
-			arrayList.add(point);
+		xpoint = x + 1;
+		ypoint = y;
+		Point pointrs = new Point();
+		pointrs.setLocation(xpoint, ypoint);
+		if(cornExists(pointrs,tilesCenters)) {
+			arrayList.add(pointrs);
 		}
 		return arrayList;
 	}
@@ -225,8 +244,7 @@ public class BoardController {
 	// this is to check if the corn point exists
 	private boolean cornExists(Point pointPossibleTile, ArrayList<Tile> tilePoints) {
 		for(Tile tilepoint: tilePoints) {
-			ArrayList<Point> pointList = new ArrayList<Point>();
-			pointList.addAll(tilepoint.getCornerPoints());
+			ArrayList<Point> pointList = tilepoint.getCornerPoints();
 			for(Point point: pointList) {
 				if(point.getLocation() == pointPossibleTile) {
 					return true;

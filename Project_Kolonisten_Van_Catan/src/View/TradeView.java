@@ -201,13 +201,11 @@ public class TradeView extends JFrame {
 				Object item = cb.getSelectedItem();
 				if(item.toString().equals("Spelers")) {
 					JOptionPane.showMessageDialog(trade, "Wordt aan gewerkt!", "ERROR", JOptionPane.ERROR_MESSAGE);
-					dispose();
 				}
 				if(item.toString().equals("De Bank")) {
 					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4")) 
 						&& (their_woolt.getText().equals("1") || their_wheatt.getText().equals("1") || their_stonet.getText().equals("1") || their_woodt.getText().equals("1") || their_oret.getText().equals("1") )) {
 						JOptionPane.showMessageDialog(trade, "Je hebt successvol gehandeld met de bank!", "Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
-						dispose();
 					}
 					else {
 						JOptionPane.showMessageDialog(trade, "Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.", "Verkeerde input!", JOptionPane.ERROR_MESSAGE);

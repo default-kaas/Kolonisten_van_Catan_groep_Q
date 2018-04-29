@@ -351,6 +351,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 	public void allCheck() {
 		if (buildPanelController.checkRecoursesRoad()) {
 			buyRoad.setBackground(new Color(5, 162, 0));
+			buyRoad.setEnabled(true);
 		} else if (!buildPanelController.checkRecoursesRoad()) {
 			buyRoad.setBackground(new Color(163, 0, 0));
 			buyRoad.setEnabled(false);
@@ -359,6 +360,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		if (buildPanelController.checkResourcesHouse()) {
 			buyHouse.setBackground(new Color(5, 162, 0));
 			buyHouse.setForeground(Color.WHITE);
+			buyHouse.setEnabled(true);
 		} else if (!buildPanelController.checkResourcesHouse()) {
 			buyHouse.setBackground(new Color(163, 0, 0));
 			buyHouse.setForeground(Color.BLACK);
@@ -368,6 +370,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		if (buildPanelController.checkResourcesCity()) {
 			buyCity.setBackground(new Color(5, 162, 0));
 			buyCity.setForeground(Color.WHITE);
+			buyCity.setEnabled(true);
 		} else if (!buildPanelController.checkResourcesCity()) {
 			buyCity.setBackground(new Color(163, 0, 0));
 			buyCity.setForeground(Color.BLACK);
@@ -377,6 +380,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		if (buildPanelController.checkResourcesDevCard()) {
 			buyDevelopmentCard.setBackground(new Color(5, 162, 0));
 			buyDevelopmentCard.setForeground(Color.WHITE);
+			buyDevelopmentCard.setEnabled(true);
 		} else if (!buildPanelController.checkResourcesDevCard()) {
 			buyDevelopmentCard.setBackground(new Color(163, 0, 0));
 			buyDevelopmentCard.setForeground(Color.BLACK);

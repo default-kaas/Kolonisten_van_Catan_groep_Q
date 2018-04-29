@@ -17,12 +17,11 @@ public class GameController implements Runnable {
 	private ChatPanelController chatPanelController;
 	private TradeController tradePanelController;
 	private BoardController boardController;
+
 	public GameController(int IdGame, String userName, Connection db_conn, boolean newGame) {
 
 		Game = new Game(IdGame, userName, db_conn);
 
-		
-		
 		makePanelControllers(db_conn);
 
 		startChat();
@@ -36,19 +35,13 @@ public class GameController implements Runnable {
 	private void runRounds() {
 		// Als lobby af is moet ik dit stukje nog wat veranderen.
 		bouwPanelController.disableButtons();
-		
+
 		if ((Game.getRound() == Game.getMe().getPlayerID())) {
 			showDice();
 		}
-		if (Game.getMe().gethasTrown()) {
-			playerInfoController.showTradeButton();
-			bouwPanelController.showButtons();
-		}
+		playerInfoController.showTradeButton();
+		bouwPanelController.showButtons();
 		
-		if (false) {
-			playerInfoController.disableTradeButton();
-		}
-
 	}
 
 	private void runfirstRounds() {

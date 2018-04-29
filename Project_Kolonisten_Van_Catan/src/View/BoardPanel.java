@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
@@ -24,7 +25,6 @@ public class BoardPanel extends JPanel {
 
 		height = (int) (screenSize.getHeight());
 		this.setPreferredSize(new Dimension(height, height - 23));
-		System.out.println(height);
 	}
 
 	@Override
@@ -39,9 +39,6 @@ public class BoardPanel extends JPanel {
 
 		for (Tile tile : Tiles) {
 			Point centerpoint = tile.getCenterPoint();
-
-			System.out.println(mainCount);
-
 			switch (mainCount) {
 			case 3:
 			case 7:
@@ -55,13 +52,20 @@ public class BoardPanel extends JPanel {
 				defaultx += 200;
 				break;
 			}
-
+			int middleX = defaultx + x * 100;
+			int middleY = defaulty - x * 174;
 			g.setColor(Color.black);
-			g.fillPolygon(getHexagon(defaultx + x * 100, defaulty - x * 174, 116));
+			g.fillPolygon(getHexagon(middleX, middleY, 116));
 			g.setColor(Color.CYAN);
-			g.fillPolygon(getHexagon(defaultx + x * 100, defaulty - x * 174, 112));
-			x++;
+			g.fillPolygon(getHexagon(middleX, middleY, 112));
+		
+			g.setColor(Color.white);
+			g.fillOval(middleX-15, middleY-15, 30, 30);
+			g.setColor(Color.black);
+			g.setFont(new Font("Arial", Font.BOLD, 16));
+			g.drawString("4",middleX-3, middleY+5);
 
+			x++;
 			mainCount++;
 		}
 		
@@ -73,10 +77,8 @@ public class BoardPanel extends JPanel {
 		for (int i = 0; i < 6; i++) {
 			a = Math.PI / 3.0 * i;
 			Point point = new Point((int) (Math.round(x + Math.sin(a) * h)), (int) (Math.round(y + Math.cos(a) * h)));
-			System.out.println("x: " + point.x + " y: " + point.y);
 			hexagon.addPoint(point.x, point.y);
 		}
-		System.out.println();
 		return hexagon;
 	}
 

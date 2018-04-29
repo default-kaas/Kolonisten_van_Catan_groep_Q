@@ -21,7 +21,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.PlainDocument;
@@ -152,27 +151,27 @@ public class TradeView extends JFrame {
 		trade.add(their_oret, c);
 		
 		JLabel playerdd = new JLabel("Hoe wil je ruilen?");
-        JComboBox<String> cb = new JComboBox<String>();
-        cb.addItem("Spelers");
-        cb.addItem("De Bank");
+		String[] players = { "Spelers", "De Bank" };
+		final JComboBox<String> cb = new JComboBox<String>(players);
 
 		c.insets = new Insets(250, 0, 0, 0);
 		trade.add(playerdd, c);
 		c.insets = new Insets(280, 0, 0, 0);
 		trade.add(cb, c);
 		
+		TradeInputLimit til = new TradeInputLimit(2);
 		TradeNoLetters tnl = new TradeNoLetters();
 		
-		your_woolt.setDocument(new TradeInputLimit(2));
-		your_wheatt.setDocument(new TradeInputLimit(2)); 
-		your_woodt.setDocument(new TradeInputLimit(2));
-		your_stonet.setDocument(new TradeInputLimit(2));
-		your_oret.setDocument(new TradeInputLimit(2));
-		their_woolt.setDocument(new TradeInputLimit(2));
-		their_wheatt.setDocument(new TradeInputLimit(2));
-		their_woodt.setDocument(new TradeInputLimit(2));
-		their_stonet.setDocument(new TradeInputLimit(2));
-		their_oret.setDocument(new TradeInputLimit(2));
+		your_woolt.setDocument(til);
+		your_wheatt.setDocument(til); 
+		your_woodt.setDocument(til);
+		your_stonet.setDocument(til);
+		your_oret.setDocument(til);
+		their_woolt.setDocument(til);
+		their_wheatt.setDocument(til);
+		their_woodt.setDocument(til);
+		their_stonet.setDocument(til);
+		their_oret.setDocument(til);
 		PlainDocument doc = (PlainDocument) your_woolt.getDocument();
 	    doc.setDocumentFilter(tnl);
 		PlainDocument doc2 = (PlainDocument) your_wheatt.getDocument();
@@ -198,21 +197,7 @@ public class TradeView extends JFrame {
 
 		propose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Object item = cb.getSelectedItem();
-				if(item.toString().equals("Spelers")) {
-					JOptionPane.showMessageDialog(trade, "Wordt aan gewerkt!", "ERROR", JOptionPane.ERROR_MESSAGE);
-					dispose();
-				}
-				if(item.toString().equals("De Bank")) {
-					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4")) 
-						&& (their_woolt.getText().equals("1") || their_wheatt.getText().equals("1") || their_stonet.getText().equals("1") || their_woodt.getText().equals("1") || their_oret.getText().equals("1") )) {
-						JOptionPane.showMessageDialog(trade, "Je hebt successvol gehandeld met de bank!", "Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
-						dispose();
-					}
-					else {
-						JOptionPane.showMessageDialog(trade, "Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.", "Verkeerde input!", JOptionPane.ERROR_MESSAGE);
-					}
-				}
+				dispose();
 			}
 		});
 		

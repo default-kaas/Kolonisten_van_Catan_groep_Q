@@ -122,7 +122,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	public void DisableTradeButton() {
 		trade.setBackground(new Color(163, 0, 0));
 		trade.setForeground(Color.BLACK);
-//		trade.setEnabled(false);
+		trade.setEnabled(false);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

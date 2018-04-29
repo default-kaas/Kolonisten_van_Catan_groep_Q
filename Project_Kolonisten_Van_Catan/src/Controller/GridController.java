@@ -7,10 +7,10 @@ public class GridController {
 	private int x;
 	private int y;
 	private int kind;
-	//private int x1 = x locatie eerste hoekpunt;
-    //private int y1 = y locatie eerste hoekpunt;
-    //private int x2 = x locatie tweede hoekpunt;
-    //private int y2 = y locatie tweede hoekpunt;
+	//private int x1; x locatie eerste hoekpunt
+    //private int y1; y locatie eerste hoekpunt
+    //private int x2; x locatie tweede hoekpunt
+    //private int y2; y locatie tweede hoekpunt
 	
 	
 	
@@ -23,16 +23,33 @@ public class GridController {
 	/*
 	public void checkCoordinates() {
 		
-		 * DIT IS ALLEEN VOOR RECHTE ZIJDE
 		 * forloop door lijst coördinaten
 		 *  get value met index i
 		       
          ALLE ZIJDE
          for(int i=0; i<arraysize; i++){
+         	  x1 = x locatie eerste hoekpunt
+         	  y1 = y locatie eerste hoekpunt
+         	  x2 = x locatie tweede hoekpunt
+         	  y2 = y locatie tweede hoekpunt
               private int counter;
               private int location;
               
               if statement checken of x,y er tussen valt
+              
+              whichKind(x1, y1, x2, y2);
+              	if(kind == 1){
+              	
+              	}
+              	else if(kind == 2){
+              	
+              	}
+              	else if(kind == 3){
+              	
+              	}
+              
+              
+              
               
               rechte lijn
 	              	if(x>(x1-5) && x<(x2+5) && y>(y1-5) && y<y2+5){
@@ -92,26 +109,30 @@ public class GridController {
 	}
 	
 	welke schuine lijn
-	public void whichKind(){
+	public void whichKind(int xh1, int yh1, int xh2, int yh2){
 	
-	
-		if(x1 = x2){
+		if(xh1 = xh2){
+			recht
 			kind == 1;
 		}
-              if(y1<y2){
-              	if(x1>x2){
+              if(y1<yh2){
+              	if(xh1>xh2){
               		ZWNO
+              		kind == 2;
               	}
               	else{
           			NWZO
+          			kind == 3;
               	}
               }
               else{
-              	if(x2>x1){
+              	if(xh2>xh1){
               		ZWNO
+              		kind == 2;
               	}
               	else{
           			NWZO
+          			kind == 3;
               	}
               }
 	}

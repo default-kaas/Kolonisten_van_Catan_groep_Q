@@ -16,20 +16,20 @@ public class GameController implements Runnable {
 	private BuildPanelController bouwPanelController;
 	private ChatPanelController chatPanelController;
 	private TradeController tradePanelController;
-
+	private BoardController boardController;
 	public GameController(int IdGame, String userName, Connection db_conn, boolean newGame) {
 
 		Game = new Game(IdGame, userName, db_conn);
 
-		BoardController x = new BoardController(Game, db_conn);
 		
-//		makePanelControllers(db_conn);
-//
-//		startChat();
-//
-//		runfirstRounds();
-//
-//		runRounds();
+		
+		makePanelControllers(db_conn);
+
+		startChat();
+
+		runfirstRounds();
+
+		runRounds();
 
 	}
 
@@ -71,6 +71,7 @@ public class GameController implements Runnable {
 		playerInfoController = new PlayerInfoController(Game, db_conn, this);
 		chatPanelController = new ChatPanelController(Game, db_conn);
 		tradePanelController = new TradeController(Game, db_conn);
+		boardController = new BoardController(Game, db_conn);
 	}
 
 	public void runGame() {
@@ -112,8 +113,8 @@ public class GameController implements Runnable {
 		return chatPanelController.getChatPanel();
 	}
 
-	public BoardPanel getBordPanel() {
-		return new BoardPanel();
+	public BoardPanel getBoardPanel() {
+		return boardController.getBoardPanel();
 	}
 
 	@Override

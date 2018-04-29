@@ -1,6 +1,9 @@
 package Controller;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -10,18 +13,21 @@ import Model.Board;
 import Model.Corner;
 import Model.Game;
 import Model.Tile;
+import View.BoardPanel;
 
 public class BoardController {
 	private Game game;
 	private Connection connection;
 	private Board board;
+	private BoardPanel boardPanel;
 	
 	public BoardController(Game game, Connection connection ) {
 		this.game = game;
 		this.connection = connection;
 		board = new Board(game, connection);
 		createBoardSaveValues(game.getGameID());
-		System.out.println();
+		boardPanel = new BoardPanel(board);
+	
 	}
 	
 	public void createBoardSaveValues(int gameNumber) {
@@ -161,11 +167,9 @@ public class BoardController {
 	private boolean tileCenterExists(Point possiblePoint, ArrayList<Tile> tilesCenters) {
 		for(Tile tileCenter: tilesCenters) {
 			if(tileCenter.getCenterPoint().equals(possiblePoint)) {
-				System.out.println("true");
 				return true;
 			}
 		}
-		System.out.println("false");
 		return false;
 	}
 	
@@ -236,5 +240,9 @@ public class BoardController {
 			}
 		}
 		return false;
+	}
+
+	public BoardPanel getBoardPanel() {
+		return boardPanel;
 	}
 }

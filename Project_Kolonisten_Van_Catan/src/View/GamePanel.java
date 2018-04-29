@@ -51,8 +51,6 @@ public class GamePanel extends JPanel {
 		c.fill = GridBagConstraints.VERTICAL;
 		c.gridheight = 5;
 		c.gridwidth = 5;
-		JLabel label2 = new JLabel("Spel Bord");
-		add(label2, c);
 		add(SpelBord, c);
 
 	}
@@ -60,7 +58,7 @@ public class GamePanel extends JPanel {
 	private void MakePanels() {
 		// TODO Auto-generated method stub
 		SpelChat = GameController.getChatPanel();
-		SpelBord = GameController.getBordPanel();
+		SpelBord = GameController.getBoardPanel();
 		SpelerInfo = GameController.getSpelerInfoPanel();
 		Bouwen = GameController.getBouwPanel();
 		Dobbelsteen = GameController.getDicePanel();

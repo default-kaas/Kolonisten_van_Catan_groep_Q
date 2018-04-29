@@ -46,19 +46,20 @@ public class Main extends JPanel {
 		g.fillPolygon(getHexagon(300, 574, 58));
 		g.setColor(Color.cyan);
 		g.fillPolygon(getHexagon(300, 574, 56));
+		g.setColor(Color.ORANGE);
+		g.drawLine(350, 200, 350, 258);
 
 	}
 
 	Polygon getHexagon(int x, int y, int h) {
 		Polygon hexagon = new Polygon();
-
+		
 		double a;
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 6; i++) {
 			a = Math.PI / 3.0 * i;
-			Point point = new Point((int) (Math.round(x + Math.sin(a) * h)), (int) (Math.round(y + Math.cos(a) * h))) ;
+			Point point = new Point((int) (Math.round(x + Math.sin(a) * h)), (int) (Math.round(y + Math.cos(a) * h)));
 			System.out.println("x: "+ point.x+ " y: "+  point.y);
 			hexagon.addPoint(point.x, point.y);
-
 		}
 		System.out.println();
 		return hexagon;

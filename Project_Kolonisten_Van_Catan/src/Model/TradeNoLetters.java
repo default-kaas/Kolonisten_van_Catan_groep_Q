@@ -48,19 +48,4 @@ public class TradeNoLetters extends DocumentFilter {
 
 	   }
 
-	   @Override
-	   public void remove(FilterBypass fb, int offset, int length)
-	         throws BadLocationException {
-	      Document doc = fb.getDocument();
-	      StringBuilder sb = new StringBuilder();
-	      sb.append(doc.getText(0, doc.getLength()));
-	      sb.delete(offset, offset + length);
-
-	      if (test(sb.toString())) {
-	         super.remove(fb, offset, length);
-	      } else {
-	         // warn the user and don't allow the insert
-	      }
-
-	   }
 }

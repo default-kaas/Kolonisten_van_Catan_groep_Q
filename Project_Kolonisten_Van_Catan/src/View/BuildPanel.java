@@ -351,6 +351,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 	public void allCheck() {
 		if (buildPanelController.checkRecoursesRoad()) {
 			buyRoad.setBackground(new Color(5, 162, 0));
+			buyRoad.setEnabled(true);
 		} else if (!buildPanelController.checkRecoursesRoad()) {
 			buyRoad.setBackground(new Color(163, 0, 0));
 			buyRoad.setEnabled(false);
@@ -359,6 +360,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		if (buildPanelController.checkResourcesHouse()) {
 			buyHouse.setBackground(new Color(5, 162, 0));
 			buyHouse.setForeground(Color.WHITE);
+			buyHouse.setEnabled(true);
 		} else if (!buildPanelController.checkResourcesHouse()) {
 			buyHouse.setBackground(new Color(163, 0, 0));
 			buyHouse.setForeground(Color.BLACK);
@@ -368,6 +370,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		if (buildPanelController.checkResourcesCity()) {
 			buyCity.setBackground(new Color(5, 162, 0));
 			buyCity.setForeground(Color.WHITE);
+			buyCity.setEnabled(true);
 		} else if (!buildPanelController.checkResourcesCity()) {
 			buyCity.setBackground(new Color(163, 0, 0));
 			buyCity.setForeground(Color.BLACK);
@@ -377,6 +380,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		if (buildPanelController.checkResourcesDevCard()) {
 			buyDevelopmentCard.setBackground(new Color(5, 162, 0));
 			buyDevelopmentCard.setForeground(Color.WHITE);
+			buyDevelopmentCard.setEnabled(true);
 		} else if (!buildPanelController.checkResourcesDevCard()) {
 			buyDevelopmentCard.setBackground(new Color(163, 0, 0));
 			buyDevelopmentCard.setForeground(Color.BLACK);
@@ -401,118 +405,67 @@ public class BuildPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		if (e.getSource().equals(buyRoad)) {
-			if (roadCheck()) {
-				int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een straat wilt kopen?",
-						"Straat Kopen?", JOptionPane.YES_OPTION);
-				if (YesOrNo == JOptionPane.YES_OPTION) {
-					if (buildPanelController.checkRecoursesRoad()) {
-						buildPanelController.removeStreetRes();
-						JOptionPane.showMessageDialog(buyRoad, "Selecteer nu een plek om een Straat te bouwen",
-								"Straat Bouwen", JOptionPane.INFORMATION_MESSAGE);
-						buildPanelController.buyPrint("Straat", "1 hout en 1 steen");
-						allCheck();
-					} else {
-						JOptionPane.showMessageDialog(buyRoad, "Niet genoeg grondstoffen meer!", "Straat Bouwen",
-								JOptionPane.INFORMATION_MESSAGE);
-					}
-				} 
-			} else {
-				JOptionPane.showMessageDialog(buyRoad, "Niet genoeg grondstoffen meer!", "Straat Bouwen",
-						JOptionPane.INFORMATION_MESSAGE);
-				buyRoad.setBackground(new Color(163, 0, 0));
-				buyRoad.setForeground(Color.BLACK);
-				buyRoad.setEnabled(false);
-
-			}
+		if (e.getSource().equals(buyRoad)) { 
 			
+			if (roadCheck()) {
+				int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een straat wilt kopen?", //Asks user to confirm the purchase.
+						"Straat Kopen?", JOptionPane.YES_OPTION);
+				if (YesOrNo == JOptionPane.YES_OPTION) { //if user confirms...
+					buildPanelController.removeStreetRes(); // Buys the Street and removes the necessary resources from the player resources Array
+					JOptionPane.showMessageDialog(buyRoad, "Selecteer nu een plek om een Straat te bouwen", //Asks player to select a place on the map to build the Street.
+							"Straat Bouwen", JOptionPane.INFORMATION_MESSAGE); 
+					buildPanelController.buyPrint("Straat", "1 hout en 1 steen"); //notifies all users of the purchase
+					allCheck(); //Checks recourses after buying, disables all buttons which the player doesn't have enough recourses for.
+				} 
+			}
 			
 		}
 
 		if (e.getSource().equals(buyHouse)) {
-			if (houseCheck()) {
-				int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een dorp wilt kopen?",
-						"dorp Kopen?", JOptionPane.YES_OPTION);
-				if (YesOrNo == JOptionPane.YES_OPTION) {
-					if (buildPanelController.checkResourcesHouse()) {
-						buildPanelController.removeHouseRes();
-						JOptionPane.showMessageDialog(buyHouse, "Selecteer nu een plek om een Dorp te bouwen",
-								"Dorp Bouwen", JOptionPane.INFORMATION_MESSAGE);
-						buildPanelController.buyPrint("Dorp", "1 hout, 1 steen, 1 graan en 1 wol");
-						allCheck();
-					} else {
-						JOptionPane.showMessageDialog(buyHouse, "Niet genoeg grondstoffen meer!", "Dorp Bouwen",
-								JOptionPane.INFORMATION_MESSAGE);
-					}
-				}
-
-			} else {
-				JOptionPane.showMessageDialog(buyHouse, "Niet genoeg grondstoffen meer!", "Dorp Bouwen",
-						JOptionPane.INFORMATION_MESSAGE);
-				buyHouse.setBackground(new Color(163, 0, 0));
-				buyHouse.setForeground(Color.BLACK);
-				buyHouse.setEnabled(false);
-			}
 			
-					}
-		
+			if (houseCheck()) {
+				int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een Dorp wilt kopen?", //Asks user to confirm the purchase.
+						"Stad Kopen?", JOptionPane.YES_OPTION);
+				if (YesOrNo == JOptionPane.YES_OPTION) {
+					buildPanelController.removeHouseRes(); // Buys the House and removes the necessary resources from the player resources Array
+					JOptionPane.showMessageDialog(buyHouse, "Selecteer nu een plek om een Dorp te bouwen", //Asks player to select a place on the map to build the House.
+							"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
+					buildPanelController.buyPrint("Dorp", "1 hout, 1 steen, 1 graan en 1 wol"); //notifies all users of the purchase
+					allCheck(); //Checks recourses after buying, disables all buttons which the player doesn't have enough recourses for.
+				}
+ 			}
+			
+		}
+	
 		
 
 		if (e.getSource().equals(buyCity)) {
-			if (cityCheck()) { //checks if player has enough resources to buy City
-				int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een stad wilt kopen?", //confirm buy
+			
+			if (cityCheck()) {
+				int YesOrNo = JOptionPane.showConfirmDialog(null, "Weet je zeker dat je een Stad wilt kopen?", //Asks user to confirm the purchase.
 						"Stad Kopen?", JOptionPane.YES_OPTION);
-				if (YesOrNo == JOptionPane.YES_OPTION) { //if user confirms, double checks resources in case player tries to buy again
-					if (buildPanelController.checkResourcesCity()) { // if enough resources
-						buildPanelController.removeCityRes(); // buy City and remove the resources
-						JOptionPane.showMessageDialog(buyCity, "Selecteer nu een plek om een Stad te bouwen", //Ask player to select a place on the map to build the city.
-								"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
-						buildPanelController.buyPrint("Stad", "3 erts en 2 graan");
-						
-							allCheck();
-					} else {
-						JOptionPane.showMessageDialog(buyCity, "Niet genoeg grondstoffen meer!", //Turn button color to red and disable to prevent user from buying.
-								"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
-						buyCity.setBackground(new Color(163, 0, 0));
-						buyCity.setForeground(Color.BLACK);
-						buyCity.setEnabled(false);
-					}
+				if (YesOrNo == JOptionPane.YES_OPTION) { //if user confirms..
+					buildPanelController.removeCityRes(); // Buys the City and removes the necessary resources from the player resources Array
+					JOptionPane.showMessageDialog(buyCity, "Selecteer nu een plek om een Stad te bouwen", //Ask player to select a place on the map to build the city.
+							"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
+					buildPanelController.buyPrint("Stad", "3 erts en 2 graan"); //notifies all users of the purchase
+					allCheck(); //Checks recourses after buying, disables all buttons which the player doesn't have enough recourses for.
 				} 
-			} else {
-				JOptionPane.showMessageDialog(buyCity, "Niet genoeg grondstoffen meer!", "Stad Bouwen", //Turn button color to red and disable to prevent user from buying.
-						JOptionPane.INFORMATION_MESSAGE);
-				buyCity.setBackground(new Color(163, 0, 0));
-				buyCity.setForeground(Color.BLACK);
-				buyCity.setEnabled(false);
-			}
+			} 
 		}
+		
 
 		if (e.getSource().equals(buyDevelopmentCard)) {
+			
 			if (devCheck()) {
-				int YesOrNo = JOptionPane.showConfirmDialog(null,
-						"Weet je zeker dat je een Development kaart wilt kopen?", "Stad Kopen?",
-						JOptionPane.YES_OPTION);
-				if (YesOrNo == JOptionPane.YES_OPTION) {
-					if (buildPanelController.checkResourcesDevCard()) {
-						buildPanelController.removeDevRes();
-						JOptionPane.showMessageDialog(buyDevelopmentCard, "Dev kaart is aangeschaft!", "Dev Kopen",
-								JOptionPane.INFORMATION_MESSAGE);
-						buildPanelController.buyPrint("Ontwikkelingskaart", "1 erts, 1 graan en 1 wol");
-						allCheck();
-					} else {
-						JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Dev Kopen",
-								JOptionPane.INFORMATION_MESSAGE);
-					}
+				int YesOrNo = JOptionPane.showConfirmDialog(null,"Weet je zeker dat je een Ont. kaart wilt kopen?",  //Asks user to confirm the purchase.
+						"Stad Kopen?",JOptionPane.YES_OPTION);
+				if (YesOrNo == JOptionPane.YES_OPTION) { //if user confirms..
+					buildPanelController.removeDevRes(); // Buys the Development Card and removes the necessary resources from the player resources Array
+					buildPanelController.buyPrint("Ontwikkelingskaart", "1 erts, 1 graan en 1 wol"); //notifies all users of the purchase
+					allCheck(); //Checks recourses after buying, disables all buttons which the player doesn't have enough recourses for.
+					
 				}
-				 else {
-				JOptionPane.showMessageDialog(buyDevelopmentCard, "Niet genoeg grondstoffen meer!", "Dev Kopen",
-						JOptionPane.INFORMATION_MESSAGE);
-				buyDevelopmentCard.setBackground(new Color(163, 0, 0));
-				buyDevelopmentCard.setForeground(Color.BLACK);
-				buyDevelopmentCard.setEnabled(false);
-			}
-			
-			
 			}
 		}
 	}

@@ -14,12 +14,12 @@ public class PlayerInfoController {
 		spelerInformatiePanel = new PlayerInformationPanel(this);
 		this.game = game;
 		spelerInformatiePanel.UpdatePlayerTurn();
-		
 		spelerInformatiePanel.TradeButton();
 		spelerInformatiePanel.ShowResources();
+		spelerInformatiePanel.endButton();
 		this.gameController = gameController;
 		disableTradeButton();
-		
+
 	}
 
 	public String getPlayerName(int volgnr) {
@@ -29,7 +29,7 @@ public class PlayerInfoController {
 	public String getPlayerColor(int volgnr) {
 		return game.GetPlayers().get(volgnr).getColor();
 	}
-	
+
 	public int getPlayerResources(int volgnr) {
 		return game.getPlayerResources();
 	}
@@ -41,19 +41,19 @@ public class PlayerInfoController {
 			return false;
 		}
 	}
-	
+
 	public void showTradeButton() {
 		spelerInformatiePanel.ShowTradeButton();
 	}
+
 	public void disableTradeButton() {
 		spelerInformatiePanel.DisableTradeButton();
 	}
-	
-	
+
 	public int getWoodAmount() {
 		return game.getMe().getWoodAmount();
 	}
-	
+
 	public int getWoolAmount() {
 		return game.getMe().getWoolAmount();
 	}
@@ -62,23 +62,22 @@ public class PlayerInfoController {
 		return game.getMe().getOreAmount();
 	}
 
-	
 	public int getWheatAmount() {
 		return game.getMe().getWheatAmount();
 	}
-	
+
 	public int getStoneAmount() {
 		return game.getMe().getStoneAmount();
 	}
 
-
 	public PlayerInformationPanel getPlayerInfoPanel() {
 		return spelerInformatiePanel;
 	}
+
 	public void UpdateResourcePanel() {
 		spelerInformatiePanel.ShowResources();
 	}
-	
+
 	public void getTradePanel() {
 		gameController.getTradeFrame();
 	}

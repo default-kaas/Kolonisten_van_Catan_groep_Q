@@ -43,6 +43,9 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	//Trade button
 	private JButton trade = new JButton("Handelspaneel");
 	
+	//end round button
+	private JButton end = new JButton("Beurt beindigen");
+	
 	private PlayerInfoController controller;
 
 	public PlayerInformationPanel(PlayerInfoController controller) {
@@ -114,16 +117,53 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(trade);
 		trade.addActionListener(this);
 	}
+	
+	public void endButton() {
+		this.add(Box.createRigidArea(new Dimension(5, 40)));
+		this.add(end);
+		trade.addActionListener(this);
+		
+		for (int i = 0; i < 4; i++) {
+			if (controller.myTurn(i)) {
+				enableEndButton();
+			} else {
+				disableEndButton();
+			}
+		}
+	
+		
+	}
+	
+	public void enableEndButton() {
+		end.setBackground(new Color(5, 162, 0));
+		end.setForeground(Color.WHITE);
+		end.setEnabled(true);
+	}
+	
+	public void disableEndButton() {
+		end.setBackground(new Color(163, 0, 0));
+		end.setForeground(Color.BLACK);
+		end.setEnabled(false);
+	}
+	
 	public void ShowTradeButton() {
 		trade.setBackground(new Color(5, 162, 0));
 		trade.setForeground(Color.WHITE);
 		trade.setEnabled(true);
+		
+		end.setBackground(new Color(5, 162, 0));
+		end.setForeground(Color.WHITE);
+		end.setEnabled(true);
 	}
 
 	public void DisableTradeButton() {
 		trade.setBackground(new Color(163, 0, 0));
 		trade.setForeground(Color.BLACK);
 		trade.setEnabled(false);
+		
+		end.setBackground(new Color(163, 0, 0));
+		end.setForeground(Color.BLACK);
+		end.setEnabled(false);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

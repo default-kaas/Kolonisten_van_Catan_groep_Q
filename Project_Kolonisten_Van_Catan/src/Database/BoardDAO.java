@@ -122,6 +122,7 @@ public class BoardDAO {
 			return arrayList;
 		}catch(SQLException e) {
 			System.out.println(e);
+			System.out.println("123");
 			return null;
 		}
 	}
@@ -133,7 +134,7 @@ public class BoardDAO {
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery("SELECT struikrover_idtegel FROM spel WHERE idspel ="+game +" ");
-			int idTile = rs.getInt("x");
+			int idTile = rs.getInt("struikrover_idtegel");
 			return idTile;
 		}catch(SQLException e) {
 			System.out.println(e);

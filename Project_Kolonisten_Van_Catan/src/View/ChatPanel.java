@@ -36,7 +36,7 @@ public class ChatPanel extends JPanel implements ActionListener {
 		// Make chatPanel void
 		inputField = new JTextField();
 		inputField.setPreferredSize(new Dimension(width - 20, (int) (height * 0.1)));
-		inputField.setBackground(new Color(211, 226, 237));
+		inputField.setBackground(new Color(211, 226, 237));	
 		textField = new JTextArea();
 
 		textField.setEditable(false);

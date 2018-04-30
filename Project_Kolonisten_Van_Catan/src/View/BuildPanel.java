@@ -73,7 +73,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		JLabel type = new JLabel("Soort");
 		type.setFont(myFont);
 		type.setForeground(Color.BLACK);
-		c.insets = new Insets(0, 0, 0, 0);
+		c.insets = new Insets(0, 10, 0, 0);
 		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -91,8 +91,8 @@ public class BuildPanel extends JPanel implements ActionListener {
 		JLabel buy = new JLabel("Kopen");
 		buy.setFont(myFont);
 		buy.setForeground(Color.BLACK);
-		c.anchor = GridBagConstraints.EAST;
-		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 40, 0, 0);
 		c.gridx = 7;
 		c.gridy = 1;
 		this.add(buy, c);
@@ -126,7 +126,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		buyRoad.setBackground(new Color(59, 89, 182));
 		buyRoad.setForeground(Color.WHITE);
 		buyRoad.setPreferredSize(new Dimension(120, 30));
-		c.anchor = GridBagConstraints.EAST;
+		c.anchor = GridBagConstraints.WEST;
 		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
 		c.gridy = 2;
@@ -205,21 +205,21 @@ public class BuildPanel extends JPanel implements ActionListener {
 		city.setDescription("City");
 		JLabel cityLabel = new JLabel(city);
 		c.anchor = GridBagConstraints.WEST;
-		c.insets = new Insets(0, 0, 30, 100);
+		c.insets = new Insets(0, 0, 30, 50);
 		c.gridx = 0;
 		c.gridy = 4;
 		this.add(cityLabel, c);
 
 		JLabel cityOre1 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 0, 30, 0);
+		c.insets = new Insets(0, 30, 30, 0);
 		c.gridx = 2;
 		c.gridy = 4;
 		this.add(cityOre1, c);
 
 		JLabel cityOre2 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 0, 30, 0);
+		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 3;
 		c.gridy = 4;
 		this.add(cityOre2, c);

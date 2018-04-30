@@ -74,42 +74,42 @@ public class BoardController {
 		ArrayList<Point> arrayList = new ArrayList<Point>();
 		int x = (int) tilePoint.getX();
 		int y = (int) tilePoint.getY();
-		//left first
-		int xpoint = x - 1;
+		// center bottom
+		int xpoint = x;
 		int ypoint = y - 1;
-		Point pointlf = new Point();
-		pointlf.setLocation(xpoint, ypoint);
-		arrayList.add(pointlf);
-		// left second
-		xpoint = x - 1;
-		ypoint = y;
-		Point pointls = new Point();
-		pointls.setLocation(xpoint, ypoint);
-		arrayList.add(pointls);
-		// center first
-		xpoint = x;
-		ypoint = y + 1;
-		Point pointcf = new Point();
-		pointcf.setLocation(xpoint, ypoint);
-		arrayList.add(pointcf);
-		// center second
-		xpoint = x;
-		ypoint = y - 1;
 		Point pointcs = new Point();
 		pointcs.setLocation(xpoint, ypoint);
 		arrayList.add(pointcs);
-		// right first
+		// right bottom
+		xpoint = x + 1;
+		ypoint = y;
+		Point pointrs = new Point();
+		pointrs.setLocation(xpoint, ypoint);
+		arrayList.add(pointrs);		
+		// right top
 		xpoint = x + 1;
 		ypoint = y + 1;
 		Point pointrf = new Point();
 		pointrf.setLocation(xpoint, ypoint);
 		arrayList.add(pointrf);
-		// right second
-		xpoint = x + 1;
+		// center top
+		xpoint = x;
+		ypoint = y + 1;
+		Point pointcf = new Point();
+		pointcf.setLocation(xpoint, ypoint);
+		arrayList.add(pointcf);
+		// left top
+		xpoint = x - 1;
 		ypoint = y;
-		Point pointrs = new Point();
-		pointrs.setLocation(xpoint, ypoint);
-		arrayList.add(pointrs);
+		Point pointls = new Point();
+		pointls.setLocation(xpoint, ypoint);
+		arrayList.add(pointls);	
+		//left bottom
+		xpoint = x - 1;
+		ypoint = y - 1;
+		Point pointlf = new Point();
+		pointlf.setLocation(xpoint, ypoint);
+		arrayList.add(pointlf);
 		return arrayList;
 	}
 	
@@ -118,53 +118,53 @@ public class BoardController {
 		ArrayList<Point> arrayList = new ArrayList<Point>();
 		int x = (int) cornerPoint.getX();
 		int y = (int) cornerPoint.getY();
-		//left first
-		int xpoint = x - 1;
+		// center bottom
+		int xpoint = x;
 		int ypoint = y - 1;
-		Point pointlf = new Point();
-		pointlf.setLocation(xpoint, ypoint);
-		if(tileCenterExists(pointlf,tilesCenters)) {
-			arrayList.add(pointlf);
-		}
-		// left second
-		xpoint = x - 1;
-		ypoint = y;
-		Point pointls = new Point();
-		pointls.setLocation(xpoint, ypoint);
-		if(tileCenterExists(pointls,tilesCenters)) {
-			arrayList.add(pointls);
-		}
-		// center first
-		xpoint = x;
-		ypoint = y + 1;
-		Point pointcf = new Point();
-		pointcf.setLocation(xpoint, ypoint);
-		if(tileCenterExists(pointcf,tilesCenters)) {
-			arrayList.add(pointcf);
-		}
-		// center second
-		xpoint = x;
-		ypoint = y - 1;
 		Point pointcs = new Point();
 		pointcs.setLocation(xpoint, ypoint);
 		if(tileCenterExists(pointcs,tilesCenters)) {
-			arrayList.add(pointcs);
+		arrayList.add(pointcs);
 		}
-		// right first
-		xpoint = x + 1;
-		ypoint = y + 1;
-		Point pointrf = new Point();
-		pointrf.setLocation(xpoint, ypoint);
-		if(tileCenterExists(pointrf,tilesCenters)) {
-			arrayList.add(pointrf);
-		}
-		// right second
+		// right bottom
 		xpoint = x + 1;
 		ypoint = y;
 		Point pointrs = new Point();
 		pointrs.setLocation(xpoint, ypoint);
 		if(tileCenterExists(pointrs,tilesCenters)) {
-			arrayList.add(pointrs);
+		arrayList.add(pointrs);
+		}
+		// right top
+		xpoint = x + 1;
+		ypoint = y + 1;
+		Point pointrf = new Point();
+		pointrf.setLocation(xpoint, ypoint);
+		if(tileCenterExists(pointrf,tilesCenters)) {
+		arrayList.add(pointrf);
+		}
+		// center top
+		xpoint = x;
+		ypoint = y + 1;
+		Point pointcf = new Point();
+		pointcf.setLocation(xpoint, ypoint);
+		if(tileCenterExists(pointcf,tilesCenters)) {
+		arrayList.add(pointcf);
+		}
+		// left top
+		xpoint = x - 1;
+		ypoint = y;
+		Point pointls = new Point();
+		pointls.setLocation(xpoint, ypoint);
+		if(tileCenterExists(pointls,tilesCenters)) {
+		arrayList.add(pointls);
+		}
+		//left bottom
+		xpoint = x - 1;
+		ypoint = y - 1;
+		Point pointlf = new Point();
+		pointlf.setLocation(xpoint, ypoint);
+		if(tileCenterExists(pointlf,tilesCenters)) {
+			arrayList.add(pointlf);
 		}
 		return arrayList;
 	}
@@ -183,53 +183,53 @@ public class BoardController {
 		ArrayList<Point> arrayList = new ArrayList<Point>();
 		int x = (int) cornerPoint.getX();
 		int y = (int) cornerPoint.getY();
-		//left first
-		int xpoint = x - 1;
+		// center bottom
+		int	xpoint = x;
 		int ypoint = y - 1;
+		Point pointcs = new Point();
+		pointcs.setLocation(xpoint, ypoint);
+		if(cornExists(pointcs,tilesCenters)) {
+		arrayList.add(pointcs);
+		}
+		// right bottom
+		xpoint = x + 1;
+		ypoint = y;
+		Point pointrs = new Point();
+		pointrs.setLocation(xpoint, ypoint);
+		if(cornExists(pointrs,tilesCenters)) {
+		arrayList.add(pointrs);
+		}
+		// right top
+		xpoint = x + 1;
+		ypoint = y + 1;
+		Point pointrf = new Point();
+		pointrf.setLocation(xpoint, ypoint);
+		if(cornExists(pointrf,tilesCenters)) {
+		arrayList.add(pointrf);
+		}
+		// center top
+		xpoint = x;
+		ypoint = y + 1;
+		Point pointcf = new Point();
+		pointcf.setLocation(xpoint, ypoint);
+		if(cornExists(pointcf,tilesCenters)) {
+		arrayList.add(pointcf);
+		}
+		//left top
+		xpoint = x - 1;
+		ypoint = y - 1;
 		Point pointlf = new Point();
 		pointlf.setLocation(xpoint, ypoint);
 		if(cornExists(pointlf,tilesCenters)) {
 			arrayList.add(pointlf);
 		}
-		// left second
+		// left bottom
 		xpoint = x - 1;
 		ypoint = y;
 		Point pointls = new Point();
 		pointls.setLocation(xpoint, ypoint);
 		if(cornExists(pointls,tilesCenters)) {
 			arrayList.add(pointls);
-		}
-		// center first
-		xpoint = x;
-		ypoint = y + 1;
-		Point pointcf = new Point();
-		pointcf.setLocation(xpoint, ypoint);
-		if(cornExists(pointcf,tilesCenters)) {
-			arrayList.add(pointcf);
-		}
-		// center second
-		xpoint = x;
-		ypoint = y - 1;
-		Point pointcs = new Point();
-		pointcs.setLocation(xpoint, ypoint);
-		if(cornExists(pointcs,tilesCenters)) {
-			arrayList.add(pointcs);
-		}
-		// right first
-		xpoint = x + 1;
-		ypoint = y + 1;
-		Point pointrf = new Point();
-		pointrf.setLocation(xpoint, ypoint);
-		if(cornExists(pointrf,tilesCenters)) {
-			arrayList.add(pointrf);
-		}
-		// right second
-		xpoint = x + 1;
-		ypoint = y;
-		Point pointrs = new Point();
-		pointrs.setLocation(xpoint, ypoint);
-		if(cornExists(pointrs,tilesCenters)) {
-			arrayList.add(pointrs);
 		}
 		return arrayList;
 	}

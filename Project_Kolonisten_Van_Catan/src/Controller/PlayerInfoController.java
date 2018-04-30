@@ -29,6 +29,10 @@ public class PlayerInfoController {
 	public String getPlayerColor(int volgnr) {
 		return game.GetPlayers().get(volgnr).getColor();
 	}
+	
+	public int getPlayerResources(int volgnr) {
+		return game.getPlayerResources();
+	}
 
 	public boolean myTurn(int volgnr) {
 		if (game.getRound() == game.GetPlayers().get(volgnr).getPlayerID()) {

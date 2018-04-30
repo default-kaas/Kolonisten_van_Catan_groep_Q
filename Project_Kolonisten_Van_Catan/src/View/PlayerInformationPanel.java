@@ -149,13 +149,14 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 		for (int i = 0; i < 4; i++) {
 			if (controller.myTurn(i)) {
-				this.add(new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
-						+ " - bezig met zijn beurt!"));
+				this.add(new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "  
+						 + "Aantal grondstoffen: " + controller.getPlayerResources(i) +  " - bezig met zijn beurt!"));
 			} else {
-				this.add(new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)));
+				this.add(new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "  + "Aantal grondstoffen: " + controller.getPlayerResources(i)));
 			}
 			this.add(Box.createRigidArea(new Dimension(5, 10)));
 		}
+
 
 	}
 }

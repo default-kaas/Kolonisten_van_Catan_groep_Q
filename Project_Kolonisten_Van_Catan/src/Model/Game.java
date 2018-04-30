@@ -120,6 +120,16 @@ public class Game {
 	public ArrayList<Player> GetPlayers() {
 		return Players;
 	}
+	
+	public int getPlayerResources() {
+		 int stone = getMe().getStoneAmount();
+		 int wood = getMe().getWoodAmount();
+		 int wheat =  getMe().getWheatAmount();
+		 int whool =  getMe().getWoolAmount();
+		 int ore = getMe().getOreAmount();
+		 int sum = stone + wood + wheat + whool + ore;
+		 return sum;
+	}
 
 	public int getRound() {
 		return PlayersRound;

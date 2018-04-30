@@ -8,7 +8,7 @@ public class Tile {
 	private Point CenterPoint = new Point();
 	private ArrayList<Point> cornerPoints = new ArrayList<Point>();
 	private char idResourceType;
-	private int idGetalFiche;
+	private int idNumberChip;
 	///In game information///
 	private Point inGameCenterPoint = new Point();
 	private ArrayList<Point> inGameCornerPoints = new ArrayList<Point>();
@@ -35,12 +35,12 @@ public class Tile {
 	public void setIdResourceType(char idResourceType) {
 		this.idResourceType = idResourceType;
 	}
-	//IDGetalFiche
-	public int getIdGetalFiche() {
-		return idGetalFiche;
+	//IDGetalFiche 
+	public int getIdNumberChip() {
+		return idNumberChip; 
 	}
-	public void setIdGetalFiche(int idGetalFiche) {
-		this.idGetalFiche = idGetalFiche;
+	public void setIdNumberChip(int idNumberChip) {
+		this.idNumberChip = idNumberChip;
 	}
 	///In game information///
 	//InGameCenterPoint

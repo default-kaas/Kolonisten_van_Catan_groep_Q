@@ -33,6 +33,10 @@ public class BoardController {
 	public void createBoardSaveValues(int gameNumber) {
 		ArrayList<Point> arrayListTileCenter = new ArrayList<Point>();
 		arrayListTileCenter.addAll(board.getBoardDAOTilePointsFromDataBase(gameNumber));
+		ArrayList<Character> arrayListIdResoucreType = new ArrayList<Character>();
+		arrayListIdResoucreType.addAll(board.getBoardDOAIdResoucreType(gameNumber));
+		ArrayList<Integer> arrayListIdNumberChip = new ArrayList<Integer>();
+		arrayListIdNumberChip.addAll(board.getBoardDOAIdNumberChip(gameNumber));
 		// this is to create the values that are going to get returend to the board
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		ArrayList<Corner> corners = new ArrayList<Corner>();
@@ -43,6 +47,8 @@ public class BoardController {
 				tileCenter.setLocation(arrayListTileCenter.get(i));
 				Tile tile = new Tile();
 				tile.setCenterPoint(tileCenter);
+				tile.setIdResourceType(arrayListIdResoucreType.get(i));
+				tile.setIdNumberChip(arrayListIdNumberChip.get(i));
 				tile.setCornerPoints(returnTileCornPoints(tile.getCenterPoint()));
 				tiles.add(tile);
 			}

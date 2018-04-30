@@ -20,7 +20,7 @@ public class BoardDAO {
 			ArrayList<Point> arrayList = new ArrayList<Point>();
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("SELECT x,y,idgetalfiche FROM tegel WHERE idspel ="+ game +" ");
+			rs = stmt.executeQuery("SELECT x,y,idgetalfiche FROM tegel WHERE idspel ="+ game +" ORDER BY idtegel ");
 			for(int i=0; i<19;i++) {
 				rs.next();
 				int x =rs.getInt("x");
@@ -40,7 +40,7 @@ public class BoardDAO {
 			ArrayList<Character> arrayList = new ArrayList<Character>();
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("SELECT idgrondstofsoort FROM tegel WHERE idspel ="+ game +" ");
+			rs = stmt.executeQuery("SELECT idgrondstofsoort FROM tegel WHERE idspel ="+ game +" ORDER BY idtegel ");
 			for(int i=0; i<19;i++) {
 				rs.next();
 				String idRS = rs.getString("idgrondstofsoort");
@@ -59,7 +59,7 @@ public class BoardDAO {
 			ArrayList<Integer> arrayList = new ArrayList<Integer>();
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("SELECT idgetalfiche FROM tegel WHERE idspel ="+ game +" ");
+			rs = stmt.executeQuery("SELECT idgetalfiche FROM tegel WHERE idspel ="+ game +" ORDER BY idtegel ");
 			for(int i=0; i<19;i++) {
 				rs.next();
 				int idGetalfiche =rs.getInt("idgetalfiche");

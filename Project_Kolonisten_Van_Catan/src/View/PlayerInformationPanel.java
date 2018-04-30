@@ -2,7 +2,11 @@ package View;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,9 +18,11 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import Controller.PlayerInfoController;
 
@@ -28,37 +34,28 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private BufferedImage WoodImage;
 	private BufferedImage StoneImage;
 	private BufferedImage OreImage;
-
-	// private PlayerInfoController Controller;
-
-	// Player names
-	private JLabel Player1;
-	private JLabel Player2;
-	private JLabel Player3;
-	private JLabel Player4;
+	private GridBagLayout gridBagLayout;
+	private GridBagConstraints c;
 
 	//
-	private final JLabel your_resources = new JLabel("Jouw grondstoffen:");;
+/*	private final JLabel your_resources = new JLabel("Jouw grondstoffen:");;*/
 
-	//Trade button
+	// Trade button
 	private JButton trade = new JButton("Handelspaneel");
-	
-	//end round button
+
+	// end round button
 	private JButton end = new JButton("Beurt beindigen");
-	
+
 	private PlayerInfoController controller;
 
 	public PlayerInformationPanel(PlayerInfoController controller) {
 		this.controller = controller;
 
 		SetVariables();
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		// this.add(Box.createRigidArea(new Dimension(5, 10)));
-		// this.add(close);
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
+		c = new GridBagConstraints();
+		gridBagLayout = new GridBagLayout();
+		this.setLayout(gridBagLayout);
 
-		
-		
 		// Panel size + Background and border
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
@@ -83,12 +80,199 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		}
 	}
 
+	public void playerInfo() {
+		JLabel playerTitle = new JLabel("Speler Info");
+		playerTitle.setFont(new Font("Arial", Font.BOLD, 30));
+
+		c.insets = new Insets(0, 0, 100, 100);
+		c.anchor = GridBagConstraints.NORTHWEST;
+		c.gridx = 0;
+		c.gridy = 0;
+		add(playerTitle, c);
+	}
+
+	public void allInfo() {
+		JLabel enemyTitle = new JLabel("Tegenstanders Info");
+		enemyTitle.setFont(new Font("Arial", Font.BOLD, 30));
+
+		c.insets = new Insets(0, 0, 100, 0);
+		c.anchor = GridBagConstraints.NORTHEAST;
+		c.gridx = 1;
+		c.gridy = 0;
+		add(enemyTitle, c);
+
+		for (int i = 0; i < 4; i++) { //had to make this big ass if/else because for each player the gridY changes....
+			if (i == 0) {
+			if (controller.myTurn(i)) {
+				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+				c.insets = new Insets(0, 0, 0, 0);
+				c.anchor = GridBagConstraints.NORTHEAST;
+				c.gridx = 1;
+				c.gridy = 1;
+				this.add(turn, c);
+			} else {
+				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
+				c.insets = new Insets(0, 0, 0, 0);
+				c.anchor = GridBagConstraints.NORTHEAST;
+				c.gridx = 1;
+				c.gridy = 1;
+				this.add(notTurn, c);
+			}
+			
+		}else if (i == 1) {
+			if (controller.myTurn(i)) {
+				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+				c.insets = new Insets(0, 0, 0, 0);
+				c.anchor = GridBagConstraints.NORTHEAST;
+				c.gridx = 1;
+				c.gridy = 2;
+				this.add(turn, c);
+			} else {
+				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
+				c.insets = new Insets(0, 0, 0, 0);
+				c.anchor = GridBagConstraints.NORTHEAST;
+				c.gridx = 1;
+				c.gridy = 2;
+				this.add(notTurn, c);
+			}
+		} else if( i == 2 ) {
+			if (controller.myTurn(i)) {
+				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+				c.insets = new Insets(0, 0, 0, 0);
+				c.anchor = GridBagConstraints.NORTHEAST;
+				c.gridx = 1;
+				c.gridy = 3;
+				this.add(turn, c);
+			} else {
+				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
+				c.insets = new Insets(0, 0, 0, 0);
+				c.anchor = GridBagConstraints.NORTHEAST;
+				c.gridx = 1;
+				c.gridy = 3;		
+				this.add(notTurn, c);
+			}
+		}else if (i == 3 ) {
+			if (controller.myTurn(i)) {
+				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+				c.insets = new Insets(0, 0, 0, 0);
+				c.anchor = GridBagConstraints.NORTHEAST;
+				c.gridx = 1;
+				c.gridy = 4;
+				this.add(turn, c);
+			} else {
+				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
+				c.insets = new Insets(0, 0, 0, 0);
+				c.anchor = GridBagConstraints.NORTHEAST;
+				c.gridx = 1;
+				c.gridy = 4;
+				this.add(notTurn, c);
+				
+				
+			}
+		}
+
+		}
+	}
+
+	public void TradeButton() {
+		c.insets = new Insets(0, 0, 0, 100);
+		c.anchor = GridBagConstraints.WEST;
+		c.gridx = 0;
+		c.gridy = 4;
+		this.add(trade, c);
+		trade.addActionListener(this);
+	}
+
+	public void endButton() {
+		c.insets = new Insets(30, 0, 0, 100);
+		c.anchor = GridBagConstraints.WEST;
+		c.gridx = 0;
+		c.gridy = 5;
+		this.add(end,c);
+		trade.addActionListener(this);
+
+		for (int i = 0; i < 4; i++) {
+			if (controller.myTurn(i)) {
+				enableEndButton();
+			} else {
+				disableEndButton();
+			}
+		}
+
+	}
+
+	public void enableEndButton() {
+		end.setBackground(new Color(5, 162, 0));
+		end.setForeground(Color.WHITE);
+		end.setEnabled(true);
+	}
+
+	public void disableEndButton() {
+		end.setBackground(new Color(163, 0, 0));
+		end.setForeground(Color.BLACK);
+		end.setEnabled(false);
+	}
+
+	public void ShowTradeButton() {
+		trade.setBackground(new Color(5, 162, 0));
+		trade.setForeground(Color.WHITE);
+		trade.setEnabled(true);
+
+		end.setBackground(new Color(5, 162, 0));
+		end.setForeground(Color.WHITE);
+		end.setEnabled(true);
+	}
+
+	public void DisableTradeButton() {
+		trade.setBackground(new Color(163, 0, 0));
+		trade.setForeground(Color.BLACK);
+		trade.setEnabled(false);
+
+		end.setBackground(new Color(163, 0, 0));
+		end.setForeground(Color.BLACK);
+		end.setEnabled(false);
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == trade) {
+			getTradePanel();
+		} else if (arg0.getSource() == close) {
+			System.exit(0);
+		}
+
+	}
+
+	/*public void ShowResources() {
+		this.add(your_resources);
+	}*/
+
+	public void getTradePanel() {
+		controller.getTradePanel();
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
+		int height = (int) (screenSize.getHeight() * 0.4);
 
-		String wood = ": " + controller.getWoodAmount();
+		ImageIcon icon = new ImageIcon("images/Background/playerBg.jpg");
+		JLabel thumb = new JLabel(icon);
+		thumb.setSize(width, height);
+		this.add(thumb);
+
+	/*	String wood = ": " + controller.getWoodAmount();
 		String wool = ": " + controller.getWoolAmount();
 		String ore = ": " + controller.getOreAmount();
 		String wheat = ": " + controller.getWheatAmount();
@@ -109,94 +293,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		g.drawString(stone, 315 + Width, 200 + (int) (Height * 0.6));
 
 		g.drawImage(OreImage, 410, 200, Width, Height, this);
-		g.drawString(ore, 415 + Width, 200 + (int) (Height * 0.6));
+		g.drawString(ore, 415 + Width, 200 + (int) (Height * 0.6));*/
 	}
 
-	public void TradeButton() {
-		this.add(Box.createRigidArea(new Dimension(5, 10)));
-		this.add(trade);
-		trade.addActionListener(this);
-	}
-	
-	public void endButton() {
-		this.add(Box.createRigidArea(new Dimension(5, 40)));
-		this.add(end);
-		trade.addActionListener(this);
-		
-		for (int i = 0; i < 4; i++) {
-			if (controller.myTurn(i)) {
-				enableEndButton();
-			} else {
-				disableEndButton();
-			}
-		}
-	
-		
-	}
-	
-	public void enableEndButton() {
-		end.setBackground(new Color(5, 162, 0));
-		end.setForeground(Color.WHITE);
-		end.setEnabled(true);
-	}
-	
-	public void disableEndButton() {
-		end.setBackground(new Color(163, 0, 0));
-		end.setForeground(Color.BLACK);
-		end.setEnabled(false);
-	}
-	
-	public void ShowTradeButton() {
-		trade.setBackground(new Color(5, 162, 0));
-		trade.setForeground(Color.WHITE);
-		trade.setEnabled(true);
-		
-		end.setBackground(new Color(5, 162, 0));
-		end.setForeground(Color.WHITE);
-		end.setEnabled(true);
-	}
-
-	public void DisableTradeButton() {
-		trade.setBackground(new Color(163, 0, 0));
-		trade.setForeground(Color.BLACK);
-		trade.setEnabled(false);
-		
-		end.setBackground(new Color(163, 0, 0));
-		end.setForeground(Color.BLACK);
-		end.setEnabled(false);
-	}
-
-	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getSource() == trade) {
-			getTradePanel();
-		} else if (arg0.getSource() == close) {
-			System.exit(0);
-		}
-
-	}
-
-	public void ShowResources() {
-		this.add(Box.createRigidArea(new Dimension(5, 20)));
-		this.add(your_resources);
-	}
-
-	public void getTradePanel() {
-		controller.getTradePanel();
-	}
-
-	public void UpdatePlayerTurn() {
-		// Names of Players in game
-
-		for (int i = 0; i < 4; i++) {
-			if (controller.myTurn(i)) {
-				this.add(new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "  
-						 + "Aantal grondstoffen: " + controller.getPlayerResources(i) +  " - bezig met zijn beurt!"));
-			} else {
-				this.add(new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "  + "Aantal grondstoffen: " + controller.getPlayerResources(i)));
-			}
-			this.add(Box.createRigidArea(new Dimension(5, 10)));
-		}
-
-
-	}
 }

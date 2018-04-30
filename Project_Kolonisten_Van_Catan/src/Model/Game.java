@@ -69,7 +69,6 @@ public class Game {
 		for(int i = 0; i < 5; i++) {
 			Object[][] PlayerResources = GameDB.getResourceAmount(GameId, userName, i);
 			for(Object[] x : PlayerResources) {
-				System.out.println(x[1]);
 				this.getMe().addResource(new ResourceCards((char)x[1],(String)x[0]), (char)x[1]);
 			}
 		}

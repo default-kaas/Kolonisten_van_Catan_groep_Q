@@ -109,35 +109,40 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			c.anchor = GridBagConstraints.CENTER;
 			c.gridx = 0;
 			c.gridy = 1;
-			JLabel stone = new JLabel("Stone: " + stoneAmount);
+			JLabel stone = new JLabel( stoneAmount);
+			stone.setIcon(stoneImage);
 			this.add(stone, c);
 			
 			c.insets = new Insets(0, 0, 20, 0);
 			c.anchor = GridBagConstraints.CENTER;
 			c.gridx = 0;
 			c.gridy = 2;
-			JLabel wood = new JLabel("Wood: " + woodAmount);
+			JLabel wood = new JLabel( woodAmount);
+			wood.setIcon(woodImage);
 			this.add(wood, c);
 			
 			c.insets = new Insets(0, 0, 20, 0);
 			c.anchor = GridBagConstraints.CENTER;
 			c.gridx = 0;
 			c.gridy = 3;
-			JLabel wool = new JLabel("Wool: " + woolAmount);
+			JLabel wool = new JLabel(woolAmount);
+			wool.setIcon(woolImage);
 			this.add(wool, c);
 			
 			c.insets = new Insets(0, 0, 20, 0);
 			c.anchor = GridBagConstraints.CENTER;
 			c.gridx = 0;
 			c.gridy = 4;
-			JLabel ore = new JLabel("Ore: " + oreAmount);
+			JLabel ore = new JLabel(oreAmount);
+			ore.setIcon(oreImage);
 			this.add(ore, c);
 			
 			c.insets = new Insets(0, 0, 0, 0);
 			c.anchor = GridBagConstraints.CENTER;
 			c.gridx = 0;
 			c.gridy = 5;
-			JLabel wheat = new JLabel("Wheat: " + wheatAmount);
+			JLabel wheat = new JLabel(wheatAmount);
+			wheat.setIcon(wheatImage);
 			this.add(wheat, c);
 			
 			
@@ -249,7 +254,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(30, 0, 0, 100);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
-		c.gridy = 8;
+		c.gridy = 9;
 		this.add(end,c);
 		trade.addActionListener(this);
 

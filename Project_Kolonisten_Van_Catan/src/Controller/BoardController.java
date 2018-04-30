@@ -39,6 +39,7 @@ public class BoardController {
 		arrayListIdResoucreType.addAll(board.getBoardDOAIdResoucreType(gameNumber));
 		ArrayList<Integer> arrayListIdNumberChip = new ArrayList<Integer>();
 		arrayListIdNumberChip.addAll(board.getBoardDOAIdNumberChip(gameNumber));
+		int roberTileId = board.getBoardDOARobberTile(game.getGameID());
 		// this is to create the values that are going to get returend to the board
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		ArrayList<Corner> corners = new ArrayList<Corner>();
@@ -53,7 +54,7 @@ public class BoardController {
 				tile.setIdResourceType(arrayListIdResoucreType.get(i));
 				tile.setIdNumberChip(arrayListIdNumberChip.get(i));
 				tile.setCornerPoints(returnTileCornPoints(tile.getCenterPoint()));
-				tile.setRobber(hasRobber(tile.getTileID()));
+				tile.setRobber(hasRobber(tile.getTileID(),roberTileId));
 				tiles.add(tile);
 			}
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
@@ -252,8 +253,8 @@ public class BoardController {
 		return false;
 	}
 	
-	private boolean hasRobber(int tileID) {
-		if(tileID == board.getBoardDOARobberTile(game.getGameID())) {
+	private boolean hasRobber(int tileID, int robberTileID) {
+		if(tileID == robberTileID) {
 			return true;
 		}else {
 			return false;

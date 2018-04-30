@@ -65,8 +65,8 @@ public class LogInPanel extends JPanel implements ActionListener {
 		title.setForeground(Color.WHITE);
 		username.setForeground(Color.WHITE);
 		password.setForeground(Color.WHITE);
-		
-		
+		loginButton.setBackground(Color.WHITE);
+		createNewAccountButton.setBackground(Color.WHITE);
 		//This is the title of the login panel
 		c.insets = new Insets(0,0,30,0);  
 		c.gridwidth = 2;

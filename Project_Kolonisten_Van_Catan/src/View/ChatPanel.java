@@ -79,6 +79,7 @@ public class ChatPanel extends JPanel implements ActionListener {
 	
 	@Override
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);

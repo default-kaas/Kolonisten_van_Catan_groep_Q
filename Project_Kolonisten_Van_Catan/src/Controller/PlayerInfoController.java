@@ -13,9 +13,10 @@ public class PlayerInfoController {
 	public PlayerInfoController(Game game, Connection db_conn, GameController gameController) {
 		spelerInformatiePanel = new PlayerInformationPanel(this);
 		this.game = game;
-		spelerInformatiePanel.UpdatePlayerTurn();
+		spelerInformatiePanel.playerInfo();
+		spelerInformatiePanel.allInfo();
 		spelerInformatiePanel.TradeButton();
-		spelerInformatiePanel.ShowResources();
+		/*spelerInformatiePanel.ShowResources();*/
 		spelerInformatiePanel.endButton();
 		this.gameController = gameController;
 		disableTradeButton();

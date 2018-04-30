@@ -31,6 +31,8 @@ public class BoardController {
 	}
 	
 	public void createBoardSaveValues(int gameNumber) {
+		ArrayList<Integer> arrayListIdTile = new ArrayList<Integer>();
+		arrayListIdTile.addAll(board.getBoardDAOIDTile(gameNumber));
 		ArrayList<Point> arrayListTileCenter = new ArrayList<Point>();
 		arrayListTileCenter.addAll(board.getBoardDAOTilePointsFromDataBase(gameNumber));
 		ArrayList<Character> arrayListIdResoucreType = new ArrayList<Character>();
@@ -46,10 +48,12 @@ public class BoardController {
 				Point tileCenter = new Point();
 				tileCenter.setLocation(arrayListTileCenter.get(i));
 				Tile tile = new Tile();
+				tile.setTileID(arrayListIdTile.get(i));
 				tile.setCenterPoint(tileCenter);
 				tile.setIdResourceType(arrayListIdResoucreType.get(i));
 				tile.setIdNumberChip(arrayListIdNumberChip.get(i));
 				tile.setCornerPoints(returnTileCornPoints(tile.getCenterPoint()));
+				tile.setRobber(hasRobber(tile.getTileID()));
 				tiles.add(tile);
 			}
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
@@ -246,6 +250,14 @@ public class BoardController {
 			}
 		}
 		return false;
+	}
+	
+	private boolean hasRobber(int tileID) {
+		if(tileID == board.getBoardDOARobberTile(game.getGameID())) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	public BoardPanel getBoardPanel() {

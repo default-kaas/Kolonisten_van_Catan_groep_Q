@@ -15,6 +15,24 @@ public class BoardDAO {
 		this.connection = connection;
 	}
 	
+	public ArrayList<Integer> getIDTile(int game){
+		try {
+			ArrayList<Integer> arrayList = new ArrayList<Integer>();
+			Statement stmt = connection.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("SELECT idtegel FROM tegel WHERE idspel ="+ game +" ORDER BY idtegel ");
+			for(int i=0; i<19;i++) {
+				rs.next();
+				int idGetalfiche =rs.getInt("idtegel");
+				arrayList.add(switchForIdNumberChip(idGetalfiche));
+			}
+			return arrayList;
+		}catch(SQLException e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	
 	public ArrayList<Point> getTilePointsFromDataBase(int game) {
 		try {
 			ArrayList<Point> arrayList = new ArrayList<Point>();
@@ -106,5 +124,21 @@ public class BoardDAO {
 			System.out.println(e);
 			return null;
 		}
+	}
+	
+	public int getRobberTile(int game) {
+		try {
+			//The cheese way of solving a problem.
+			game = game -1;
+			Statement stmt = connection.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("SELECT struikrover_idtegel FROM spel WHERE idspel ="+game +" ");
+			int idTile = rs.getInt("x");
+			return idTile;
+		}catch(SQLException e) {
+			System.out.println(e);
+			return 20;
+		}
+		
 	}
 }

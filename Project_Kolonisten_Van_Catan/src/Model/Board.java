@@ -33,6 +33,10 @@ public class Board {
 		this.corners = corners;
 	}
 
+	public ArrayList<Integer> getBoardDAOIDTile(int gameNumber){
+		return boardDOA.getIDTile(gameNumber);
+	}
+	
 	public ArrayList<Point> getBoardDAOTilePointsFromDataBase(int gameNumber){
 		return boardDOA.getTilePointsFromDataBase(gameNumber);
 	}
@@ -47,5 +51,9 @@ public class Board {
 	
 	public ArrayList<Integer> getBoardDOAIdNumberChip(int gameNumber){
 		return boardDOA.getIdNumberChip(gameNumber);
+	}
+	
+	public int getBoardDOARobberTile(int gameNumber) {
+		return boardDOA.getRobberTile(gameNumber);
 	}
 }

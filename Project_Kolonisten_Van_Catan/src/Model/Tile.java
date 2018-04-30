@@ -5,15 +5,24 @@ import java.util.ArrayList;
 
 public class Tile {
 	///Database information///
+	private int tileID;
 	private Point CenterPoint = new Point();
 	private ArrayList<Point> cornerPoints = new ArrayList<Point>();
 	private char idResourceType;
 	private int idNumberChip;
+	private boolean robber = false;
 	///In game information///
 	private Point inGameCenterPoint = new Point();
 	private ArrayList<Point> inGameCornerPoints = new ArrayList<Point>();
 	
 	/// Database information///
+	//TileID
+	public int getTileID() {
+		return tileID;
+	}
+	public void setTileID(int tileID) {
+		this.tileID = tileID;
+	}
 	//CenterPoint
 	public Point getCenterPoint() {
 		return CenterPoint;
@@ -35,12 +44,19 @@ public class Tile {
 	public void setIdResourceType(char idResourceType) {
 		this.idResourceType = idResourceType;
 	}
-	//IDGetalFiche 
+	//IDNumberChip
 	public int getIdNumberChip() {
 		return idNumberChip; 
 	}
 	public void setIdNumberChip(int idNumberChip) {
 		this.idNumberChip = idNumberChip;
+	}
+	//Robber
+	public boolean isRobber() {
+		return robber;
+	}
+	public void setRobber(boolean robber) {
+		this.robber = robber;
 	}
 	///In game information///
 	//InGameCenterPoint

@@ -31,7 +31,11 @@ public class Game {
 		PlayerDBInfo = new PlayerDAO(db_conn);
 		Players = new ArrayList<Player>();
 		addPlayers();
-
+		WoodStack = new ArrayList<ResourceCards>();
+		WheatStack = new ArrayList<ResourceCards>();
+		StoneStack = new ArrayList<ResourceCards>();
+		OreStack = new ArrayList<ResourceCards>();
+		WoolStack = new ArrayList<ResourceCards>();
 		addResources();
 	}
 
@@ -61,43 +65,13 @@ public class Game {
 		}
 	}
 
-	public void addResources() {
-		WoodStack = new ArrayList<ResourceCards>();
-		WheatStack = new ArrayList<ResourceCards>();
-		StoneStack = new ArrayList<ResourceCards>();
-		OreStack = new ArrayList<ResourceCards>();
-		WoolStack = new ArrayList<ResourceCards>();
-		for (int x = 1; x <= 19; x++) {
-			WoodStack.add(new ResourceCards('W', ("w" + x)));
-		}
-		for (int x = 1; x <= 19; x++) {
-			WheatStack.add(new ResourceCards('G', ("G" + x)));
-		}
-		for (int x = 1; x <= 19; x++) {
-			StoneStack.add(new ResourceCards('B', ("B" + x)));
-		}
-		for (int x = 1; x <= 19; x++) {
-			OreStack.add(new ResourceCards('E', ("E" + x)));
-		}
-		for (int x = 1; x <= 19; x++) {
-			WoolStack.add(new ResourceCards('H', ("H" + x)));
-		}
-
-		for (int i = 0; i < 5; i++) {
-			getMe().addResource(StoneStack.get(i), 'B');
-			StoneStack.remove(StoneStack.get(i));
-
-			getMe().addResource(WoodStack.get(i), 'H');
-			WoodStack.remove(WoodStack.get(i));
-
-			getMe().addResource(WoolStack.get(i), 'W');
-			WoolStack.remove(WoolStack.get(i));
-
-			getMe().addResource(OreStack.get(i), 'E');
-			StoneStack.remove(OreStack.get(i));
-
-			getMe().addResource(WheatStack.get(i), 'G');
-			StoneStack.remove(WheatStack.get(i));
+	public void addResources() {		
+		for(int i = 0; i < 5; i++) {
+			Object[][] PlayerResources = GameDB.getResourceAmount(GameId, userName, i);
+			for(Object[] x : PlayerResources) {
+				System.out.println(x[1]);
+				this.getMe().addResource(new ResourceCards((char)x[1],(String)x[0]), (char)x[1]);
+			}
 		}
 	}
 

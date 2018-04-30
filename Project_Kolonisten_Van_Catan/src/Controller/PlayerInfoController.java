@@ -15,6 +15,7 @@ public class PlayerInfoController {
 		this.game = game;
 		spelerInformatiePanel.playerInfo();
 		spelerInformatiePanel.allInfo();
+		spelerInformatiePanel.playerResources();
 		spelerInformatiePanel.TradeButton();
 		/*spelerInformatiePanel.ShowResources();*/
 		spelerInformatiePanel.endButton();

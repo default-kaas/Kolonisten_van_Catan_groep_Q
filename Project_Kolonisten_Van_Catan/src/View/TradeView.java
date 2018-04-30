@@ -223,7 +223,7 @@ public class TradeView extends JFrame {
 	private void setupFrame() {
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setUndecorated(true);
+		/*this.setUndecorated(true);*/
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

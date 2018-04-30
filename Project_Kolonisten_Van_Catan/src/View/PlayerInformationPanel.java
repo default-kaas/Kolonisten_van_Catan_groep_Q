@@ -36,6 +36,12 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private BufferedImage OreImage;
 	private GridBagLayout gridBagLayout;
 	private GridBagConstraints c;
+	private ImageIcon stoneImage = new ImageIcon("images/Resources/stone1.png");
+	private ImageIcon woodImage = new ImageIcon("images/Resources/wood1.png");
+	private ImageIcon oreImage = new ImageIcon("images/Resources/ore1.png");
+	private ImageIcon woolImage = new ImageIcon("images/Resources/sheep1.png");
+	private ImageIcon wheatImage = new ImageIcon("images/Resources/wheat1.png");
+
 
 	//
 /*	private final JLabel your_resources = new JLabel("Jouw grondstoffen:");;*/
@@ -84,11 +90,59 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		JLabel playerTitle = new JLabel("Speler Info");
 		playerTitle.setFont(new Font("Arial", Font.BOLD, 30));
 
-		c.insets = new Insets(0, 0, 100, 100);
+		c.insets = new Insets(0, 0, 0, 100);
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.gridx = 0;
 		c.gridy = 0;
 		add(playerTitle, c);
+	}
+	
+	public void playerResources() {
+	
+		 	String woodAmount = ": " + controller.getWoodAmount();
+			String woolAmount = ": " + controller.getWoolAmount();
+			String oreAmount = ": " + controller.getOreAmount();
+			String wheatAmount = ": " + controller.getWheatAmount();
+			String stoneAmount = ": " + controller.getStoneAmount();
+			
+			c.insets = new Insets(0, 0, 20, 0);
+			c.anchor = GridBagConstraints.CENTER;
+			c.gridx = 0;
+			c.gridy = 1;
+			JLabel stone = new JLabel("Stone: " + stoneAmount);
+			this.add(stone, c);
+			
+			c.insets = new Insets(0, 0, 20, 0);
+			c.anchor = GridBagConstraints.CENTER;
+			c.gridx = 0;
+			c.gridy = 2;
+			JLabel wood = new JLabel("Wood: " + woodAmount);
+			this.add(wood, c);
+			
+			c.insets = new Insets(0, 0, 20, 0);
+			c.anchor = GridBagConstraints.CENTER;
+			c.gridx = 0;
+			c.gridy = 3;
+			JLabel wool = new JLabel("Wool: " + woolAmount);
+			this.add(wool, c);
+			
+			c.insets = new Insets(0, 0, 20, 0);
+			c.anchor = GridBagConstraints.CENTER;
+			c.gridx = 0;
+			c.gridy = 4;
+			JLabel ore = new JLabel("Ore: " + oreAmount);
+			this.add(ore, c);
+			
+			c.insets = new Insets(0, 0, 0, 0);
+			c.anchor = GridBagConstraints.CENTER;
+			c.gridx = 0;
+			c.gridy = 5;
+			JLabel wheat = new JLabel("Wheat: " + wheatAmount);
+			this.add(wheat, c);
+			
+			
+			
+			
 	}
 
 	public void allInfo() {
@@ -101,7 +155,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.gridy = 0;
 		add(enemyTitle, c);
 
-		for (int i = 0; i < 4; i++) { //had to make this big ass if/else because for each player the gridY changes....
+		for (int i = 0; i < 4; i++) { //had to make this big ass if/else because for each player the gridY changes...
 			if (i == 0) {
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
@@ -184,18 +238,18 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	public void TradeButton() {
 		c.insets = new Insets(0, 0, 0, 100);
-		c.anchor = GridBagConstraints.WEST;
+		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
-		c.gridy = 4;
+		c.gridy = 7;
 		this.add(trade, c);
 		trade.addActionListener(this);
 	}
 
 	public void endButton() {
 		c.insets = new Insets(30, 0, 0, 100);
-		c.anchor = GridBagConstraints.WEST;
+		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
-		c.gridy = 5;
+		c.gridy = 8;
 		this.add(end,c);
 		trade.addActionListener(this);
 

@@ -121,8 +121,7 @@ public class BoardDAO {
 			}
 			return arrayList;
 		}catch(SQLException e) {
-			System.out.println(e);
-			System.out.println("123");
+			System.out.println(e);;
 			return null;
 		}
 	}
@@ -130,10 +129,10 @@ public class BoardDAO {
 	public int getRobberTile(int game) {
 		try {
 			//The cheese way of solving a problem.
-			game = game -1;
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("SELECT struikrover_idtegel FROM spel WHERE idspel ="+game +" ");
+			rs = stmt.executeQuery("SELECT struikrover_idtegel FROM spel WHERE idspel ="+game);
+			rs.next();
 			int idTile = rs.getInt("struikrover_idtegel");
 			return idTile;
 		}catch(SQLException e) {

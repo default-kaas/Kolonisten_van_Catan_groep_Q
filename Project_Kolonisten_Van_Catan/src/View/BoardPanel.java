@@ -3,10 +3,12 @@ package View;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Toolkit;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -30,7 +32,7 @@ public class BoardPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		g.setColor(new Color(1, 207, 203));
-		g.fillRect(0, 0, height,height );
+		g.fillRect(0, 0, height, height);
 		ArrayList<Tile> Tiles = board.getTiles();
 		int mainCount = 0;
 		int x = 0;
@@ -56,19 +58,70 @@ public class BoardPanel extends JPanel {
 			int middleY = defaulty - x * 174;
 			g.setColor(Color.black);
 			g.fillPolygon(getHexagon(middleX, middleY, 116));
-			g.setColor(Color.CYAN);
+
+			Color Wheat = Color.YELLOW;
+			Color Wood = new Color(0x99, 0x66, 0x33);
+			Color Wool = Color.GREEN;
+			Color Ore = Color.LIGHT_GRAY;
+			Color Brick = new Color(0xAD, 0x33, 0x33);
+			Color Dessert = new Color(0xFF, 0xFF, 0xA9);
+			switch (tile.getIdResourceType()) {
+			case 'B':
+				g.setColor(Brick);
+				break;
+			case 'E':
+				g.setColor(Ore);
+				break;
+			case 'G':
+				g.setColor(Wheat);
+				break;
+			case 'H':
+				g.setColor(Wood);
+				break;
+			case 'W':
+				g.setColor(Wool);
+				break;
+			case 'X':
+				g.setColor(Dessert);
+				break;
+
+			}
 			g.fillPolygon(getHexagon(middleX, middleY, 112));
-		
-			g.setColor(Color.white);
-			g.fillOval(middleX-15, middleY-15, 30, 30);
+
+			
 			g.setColor(Color.black);
+			g.fillOval(middleX - 20, middleY - 20, 40, 40);
+			g.setColor(Color.white);
+			g.fillOval(middleX - 19, middleY - 19, 38, 38);
+
+			int TileNumber = tile.getIdNumberChip();
+
+			String number = null;
+			switch (TileNumber) {
+			case 6:
+				g.setColor(Color.red);
+				number = TileNumber + ".";
+				break;
+			case 8:
+				g.setColor(Color.red);
+				number = "" + TileNumber;
+				break;
+			case 9:
+				g.setColor(Color.black);
+				number = TileNumber + ".";
+				break;
+			default:
+				g.setColor(Color.black);
+				number = "" + TileNumber;
+				break;
+			}
 			g.setFont(new Font("Arial", Font.BOLD, 16));
-			g.drawString("4",middleX-3, middleY+5);
+			g.drawString(number, middleX-4, middleY+5);
 
 			x++;
 			mainCount++;
 		}
-		
+
 	}
 
 	Polygon getHexagon(int x, int y, int h) {

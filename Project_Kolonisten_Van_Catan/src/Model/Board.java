@@ -40,4 +40,12 @@ public class Board {
 	public ArrayList<Point> getBoardDAOCornerPointsFromDataBase(int gameNumber){
 		return boardDOA.getLocationsFromDataBase(gameNumber);
 	}
+	
+	public ArrayList<Character> getBoardDOAIdResoucreType(int gameNumber){
+		return boardDOA.getIdResoucreType(gameNumber);
+	}
+	
+	public ArrayList<Integer> getBoardDOAIdNumberChip(int gameNumber){
+		return boardDOA.getIdNumberChip(gameNumber);
+	}
 }

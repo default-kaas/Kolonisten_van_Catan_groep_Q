@@ -113,6 +113,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			JLabel stone = new JLabel( stoneAmount);
 			stone.setIcon(stoneImage);
 			stone.setForeground(Color.BLACK);
+			stone.setFont(new Font("Arial", Font.BOLD, 20));
 			this.add(stone, c);
 			
 			c.insets = new Insets(0, 0, 20, 0);
@@ -122,6 +123,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			JLabel wood = new JLabel( woodAmount);
 			wood.setIcon(woodImage);
 			wood.setForeground(Color.BLACK);
+			wood.setFont(new Font("Arial", Font.BOLD, 20));
 			this.add(wood, c);
 			
 			c.insets = new Insets(0, 0, 20, 0);
@@ -131,6 +133,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			JLabel wool = new JLabel(woolAmount);
 			wool.setIcon(woolImage);
 			wool.setForeground(Color.BLACK);
+			wool.setFont(new Font("Arial", Font.BOLD, 20));
 			this.add(wool, c);
 			
 			c.insets = new Insets(0, 0, 20, 0);
@@ -140,6 +143,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			JLabel ore = new JLabel(oreAmount);
 			ore.setIcon(oreImage);
 			ore.setForeground(Color.BLACK);
+			ore.setFont(new Font("Arial", Font.BOLD, 20));
 			this.add(ore, c);
 			
 			c.insets = new Insets(0, 0, 0, 0);
@@ -149,6 +153,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			JLabel wheat = new JLabel(wheatAmount);
 			wheat.setIcon(wheatImage);
 			wheat.setForeground(Color.BLACK);
+			wheat.setFont(new Font("Arial", Font.BOLD, 20));
 			this.add(wheat, c);
 			
 			
@@ -173,6 +178,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
 				turn.setForeground(Color.BLACK);
+				turn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -182,6 +188,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
 				notTurn.setForeground(Color.BLACK);
+				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -194,6 +201,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
 				turn.setForeground(Color.BLACK);
+				turn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -203,6 +211,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
 				notTurn.setForeground(Color.BLACK);
+				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -214,6 +223,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
 				turn.setForeground(Color.BLACK);
+				turn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -223,6 +233,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
 				notTurn.setForeground(Color.BLACK);
+				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -234,6 +245,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met huidige beurt!");
 				turn.setForeground(Color.BLACK);
+				turn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -243,6 +255,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
 				notTurn.setForeground(Color.BLACK);
+				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;

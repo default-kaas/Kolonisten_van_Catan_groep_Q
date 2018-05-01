@@ -127,9 +127,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.gridy = 0;
 		add(enemyTitle, c);
 
-		for (int i = 0; i < 4; i++) { // this loop changes the gridY for each player so they don't appear next to each other. 
-									 // For every loop it also checks who's turn it is...
-			if (i == 0) {
+		for (int i = 0; i < 4; i++) { // I'm retarded...- Danish Afzal
+			
 				if (controller.myTurn(i)) {
 					JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 							+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
@@ -138,7 +137,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 					c.insets = new Insets(0, 0, 0, 0);
 					c.anchor = GridBagConstraints.NORTHEAST;
 					c.gridx = 1;
-					c.gridy = 1;
+					c.gridy = i+1;
 					this.add(turn, c);
 				} else {
 					JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
@@ -148,81 +147,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 					c.insets = new Insets(0, 0, 0, 0);
 					c.anchor = GridBagConstraints.NORTHEAST;
 					c.gridx = 1;
-					c.gridy = 1;
+					c.gridy = i+1;
 					this.add(notTurn, c);
-				}
-
-			} else if (i == 1) {
-				if (controller.myTurn(i)) {
-					JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-							+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
-					turn.setForeground(Color.BLACK);
-					turn.setFont(new Font("Arial", Font.BOLD, 15));
-					c.insets = new Insets(0, 0, 0, 0);
-					c.anchor = GridBagConstraints.NORTHEAST;
-					c.gridx = 1;
-					c.gridy = 2;
-					this.add(turn, c);
-				} else {
-					JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
-							+ " - " + "Aantal grondstoffen: " + controller.getPlayerResources(i));
-					notTurn.setForeground(Color.BLACK);
-					notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-					c.insets = new Insets(0, 0, 0, 0);
-					c.anchor = GridBagConstraints.NORTHEAST;
-					c.gridx = 1;
-					c.gridy = 2;
-					this.add(notTurn, c);
-				}
-			} else if (i == 2) {
-				if (controller.myTurn(i)) {
-					JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-							+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
-					turn.setForeground(Color.BLACK);
-					turn.setFont(new Font("Arial", Font.BOLD, 15));
-					c.insets = new Insets(0, 0, 0, 0);
-					c.anchor = GridBagConstraints.NORTHEAST;
-					c.gridx = 1;
-					c.gridy = 3;
-					this.add(turn, c);
-				} else {
-					JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
-							+ " - " + "Aantal grondstoffen: " + controller.getPlayerResources(i));
-					notTurn.setForeground(Color.BLACK);
-					notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-					c.insets = new Insets(0, 0, 0, 0);
-					c.anchor = GridBagConstraints.NORTHEAST;
-					c.gridx = 1;
-					c.gridy = 3;
-					this.add(notTurn, c);
-				}
-			} else if (i == 3) {
-				if (controller.myTurn(i)) {
-					JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-							+ "Aantal grondstoffen: " + controller.getPlayerResources(i)
-							+ " - bezig met huidige beurt!");
-					turn.setForeground(Color.BLACK);
-					turn.setFont(new Font("Arial", Font.BOLD, 15));
-					c.insets = new Insets(0, 0, 0, 0);
-					c.anchor = GridBagConstraints.NORTHEAST;
-					c.gridx = 1;
-					c.gridy = 4;
-					this.add(turn, c);
-				} else {
-					JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
-							+ " - " + "Aantal grondstoffen: " + controller.getPlayerResources(i));
-					notTurn.setForeground(Color.BLACK);
-					notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-					c.insets = new Insets(0, 0, 0, 0);
-					c.anchor = GridBagConstraints.NORTHEAST;
-					c.gridx = 1;
-					c.gridy = 4;
-					this.add(notTurn, c);
-
 				}
 			}
-
-		}
 	}
 
 	public void TradeButton() {

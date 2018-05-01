@@ -40,8 +40,12 @@ public class PlayerInfoController {
 		return game.getPlayerResources();
 	}
 	
-	public int getLongestArmy(int gameId) {
+	public int getLargestArmy(int gameId) {
 		return playerDAO.getLargestArmyID(gameId);
+	}
+	
+	public int getLongestRoad(int gameId) {
+		return playerDAO.getLongestRoadID(gameId);
 	}
 	
 

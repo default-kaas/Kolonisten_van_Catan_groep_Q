@@ -46,13 +46,33 @@ public class PlayerDAO {
 			ResultSet rs;
 			rs = stmt.executeQuery("select grootste_rm_idspeler from spel where idspel = " + gameId);
 			rs.next();
-			int LongestArmy = rs.getInt("grootste_rm_idspeler");
-			return LongestArmy;
+			int LargestArmy = rs.getInt("grootste_rm_idspeler");
+			return LargestArmy;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			return 0;
 		}
 
 	}
+	
+	public int getLongestRoadID(int gameId) {
+
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select langste_hr_idspeler from spel where idspel = " + gameId);
+			rs.next();
+			int LongestRoad = rs.getInt("langste_hr_idspeler");
+			return LongestRoad;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return 0;
+		}
+
+	}
+	
+	
+	
+	
 
 }

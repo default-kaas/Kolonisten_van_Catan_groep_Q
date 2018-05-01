@@ -154,7 +154,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		JLabel houseStone = new JLabel(stone);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 100, 30, 20);
-		c.gridx = 2;
+		c.gridx = 3;
 		c.gridy = 3;
 		this.add(houseStone, c);
 
@@ -162,21 +162,21 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
 		;
-		c.gridx = 3;
+		c.gridx = 4;
 		c.gridy = 3;
 		this.add(houseWood, c);
 
 		JLabel houseWheat = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 0, 30, 20);
-		c.gridx = 4;
+		c.insets = new Insets(0, 0, 30, 0);
+		c.gridx = 5;
 		c.gridy = 3;
 		this.add(houseWheat, c);
 
 		JLabel houseWool = new JLabel(wool);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 50);
-		c.gridx = 5;
+		c.gridx = 6;
 		c.gridy = 3;
 		this.add(houseWool, c);
 
@@ -213,35 +213,35 @@ public class BuildPanel extends JPanel implements ActionListener {
 		JLabel cityOre1 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 30, 30, 0);
-		c.gridx = 1;
+		c.gridx = 2;
 		c.gridy = 4;
 		this.add(cityOre1, c);
 
 		JLabel cityOre2 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 50, 30, 0);
-		c.gridx = 2;
+		c.gridx = 3;
 		c.gridy = 4;
 		this.add(cityOre2, c);
 
 		JLabel cityOre3 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
-		c.gridx = 3;
+		c.gridx = 4;
 		c.gridy = 4;
 		this.add(cityOre3, c);
 
 		JLabel cityWheat1 = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 0, 30, 20);
-		c.gridx = 4;
+		c.insets = new Insets(0, 0, 30, 0);
+		c.gridx = 5;
 		c.gridy = 4;
 		this.add(cityWheat1, c);
 
 		JLabel cityWheat2 = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
-		c.gridx = 5;
+		c.gridx = 6;
 		c.gridy = 4;
 		this.add(cityWheat2, c);
 

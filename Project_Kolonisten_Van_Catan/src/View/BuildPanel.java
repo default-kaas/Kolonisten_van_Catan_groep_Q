@@ -111,14 +111,14 @@ public class BuildPanel extends JPanel implements ActionListener {
 		JLabel roadStone = new JLabel(stone);
 		c.insets = new Insets(0, 100, 30, 20);
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 3;
+		c.gridx = 2;
 		c.gridy = 2;
 		this.add(roadStone, c);
 
 		JLabel roadWood = new JLabel(wood);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
-		c.gridx = 4;
+		c.gridx = 3;
 		c.gridy = 2;
 		this.add(roadWood, c);
 
@@ -154,28 +154,28 @@ public class BuildPanel extends JPanel implements ActionListener {
 		JLabel houseStone = new JLabel(stone);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 100, 30, 20);
-		c.gridx = 3;
+		c.gridx = 2;
 		c.gridy = 3;
 		this.add(houseStone, c);
 
 		JLabel houseWood = new JLabel(wood);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
-		c.gridx = 4;
+		c.gridx = 3;
 		c.gridy = 3;
 		this.add(houseWood, c);
 
 		JLabel houseWheat = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
-		c.gridx = 5;
+		c.gridx = 4;
 		c.gridy = 3;
 		this.add(houseWheat, c);
 
 		JLabel houseWool = new JLabel(wool);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
-		c.gridx = 6;
+		c.gridx = 5;
 		c.gridy = 3;
 		this.add(houseWool, c);
 
@@ -211,14 +211,14 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 		JLabel cityOre1 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 30, 30, 0);
+		c.insets = new Insets(0, 100, 30, 20);
 		c.gridx = 2;
 		c.gridy = 4;
 		this.add(cityOre1, c);
 
 		JLabel cityOre2 = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 50, 30, 0);
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 3;
 		c.gridy = 4;
 		this.add(cityOre2, c);
@@ -277,21 +277,24 @@ public class BuildPanel extends JPanel implements ActionListener {
 		ore.setDescription("Ore");
 		JLabel cityOre = new JLabel(ore);
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 3;
+		c.insets = new Insets(0, 100, 30, 20);
+		c.gridx = 2;
 		c.gridy = 5;
 		this.add(cityOre, c);
 
 		wheat.setDescription("Wheat");
 		JLabel cityWheat = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 4;
+		c.insets = new Insets(0, 0, 30, 0);
+		c.gridx = 3;
 		c.gridy = 5;
 		this.add(cityWheat, c);
 
 		wool.setDescription("Wool");
 		JLabel cityWool = new JLabel(wool);
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 5;
+		c.insets = new Insets(0, 0, 30, 0);
+		c.gridx = 4;
 		c.gridy = 5;
 		this.add(cityWool, c);
 

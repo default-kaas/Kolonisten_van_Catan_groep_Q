@@ -67,7 +67,6 @@ public class LobbyDAO {
 				System.out.println("RandomBoard");
 			} else {
 				for (int i = 0; i < 19; i++) {
-					System.out.println(i);
 					int randomInt = random.nextInt(5);
 					char ResourceType = 0;
 					Boolean nextResource = false;
@@ -101,7 +100,6 @@ public class LobbyDAO {
 								randomInt = random.nextInt(4);
 							}
 						}
-						System.out.println(ResourceType);
 						int[] Position = new int[2];
 						int numberChips = -1;
 						switch (i) {

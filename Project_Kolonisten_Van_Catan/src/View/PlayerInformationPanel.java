@@ -1,39 +1,15 @@
 package View;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-
+import javax.swing.*;
 import Controller.PlayerInfoController;
 
+@SuppressWarnings("serial")
 public class PlayerInformationPanel extends JPanel implements ActionListener {
-	// private Player speler1 = new Player();
+
 	private JButton close;
-	private BufferedImage WoolImage;
-	private BufferedImage WheatImage;
-	private BufferedImage WoodImage;
-	private BufferedImage StoneImage;
-	private BufferedImage OreImage;
 	private GridBagLayout gridBagLayout;
 	private GridBagConstraints c;
 	private ImageIcon stoneImage = new ImageIcon("images/Resources/stone1.png");
@@ -42,9 +18,6 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon woolImage = new ImageIcon("images/Resources/sheep1.png");
 	private ImageIcon wheatImage = new ImageIcon("images/Resources/wheat1.png");
 
-
-	//
-/*	private final JLabel your_resources = new JLabel("Jouw grondstoffen:");;*/
 
 	// Trade button
 	private JButton trade = new JButton("Handelspaneel");
@@ -57,7 +30,6 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	public PlayerInformationPanel(PlayerInfoController controller) {
 		this.controller = controller;
 
-		SetVariables();
 		c = new GridBagConstraints();
 		gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
@@ -72,20 +44,6 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	}
 
-	private void SetVariables() {
-		// Add all images to Variables
-		try {
-			WoolImage = ImageIO.read(new File("images/Resources/sheep1.png"));
-			WheatImage = ImageIO.read(new File("images/Resources/wheat1.png"));
-			WoodImage = ImageIO.read(new File("images/Resources/wood1.png"));
-			StoneImage = ImageIO.read(new File("images/Resources/stone1.png"));
-			OreImage = ImageIO.read(new File("images/Resources/ore1.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
-		}
-	}
-
 	public void playerInfo() {
 		JLabel playerTitle = new JLabel("Speler Info");
 		playerTitle.setFont(new Font("Arial", Font.BOLD, 30));
@@ -97,68 +55,65 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.gridy = 0;
 		add(playerTitle, c);
 	}
-	
+
 	public void playerResources() {
-	
-		 	String woodAmount = ": " + controller.getWoodAmount();
-			String woolAmount = ": " + controller.getWoolAmount();
-			String oreAmount = ": " + controller.getOreAmount();
-			String wheatAmount = ": " + controller.getWheatAmount();
-			String stoneAmount = ": " + controller.getStoneAmount();
-			
-			c.insets = new Insets(0, 0, 20, 0);
-			c.anchor = GridBagConstraints.CENTER;
-			c.gridx = 0;
-			c.gridy = 1;
-			JLabel stone = new JLabel( stoneAmount);
-			stone.setIcon(stoneImage);
-			stone.setForeground(Color.BLACK);
-			stone.setFont(new Font("Arial", Font.BOLD, 20));
-			this.add(stone, c);
-			
-			c.insets = new Insets(0, 0, 20, 0);
-			c.anchor = GridBagConstraints.CENTER;
-			c.gridx = 0;
-			c.gridy = 2;
-			JLabel wood = new JLabel( woodAmount);
-			wood.setIcon(woodImage);
-			wood.setForeground(Color.BLACK);
-			wood.setFont(new Font("Arial", Font.BOLD, 20));
-			this.add(wood, c);
-			
-			c.insets = new Insets(0, 0, 20, 0);
-			c.anchor = GridBagConstraints.CENTER;
-			c.gridx = 0;
-			c.gridy = 3;
-			JLabel wool = new JLabel(woolAmount);
-			wool.setIcon(woolImage);
-			wool.setForeground(Color.BLACK);
-			wool.setFont(new Font("Arial", Font.BOLD, 20));
-			this.add(wool, c);
-			
-			c.insets = new Insets(0, 0, 20, 0);
-			c.anchor = GridBagConstraints.CENTER;
-			c.gridx = 0;
-			c.gridy = 4;
-			JLabel ore = new JLabel(oreAmount);
-			ore.setIcon(oreImage);
-			ore.setForeground(Color.BLACK);
-			ore.setFont(new Font("Arial", Font.BOLD, 20));
-			this.add(ore, c);
-			
-			c.insets = new Insets(0, 0, 0, 0);
-			c.anchor = GridBagConstraints.CENTER;
-			c.gridx = 0;
-			c.gridy = 5;
-			JLabel wheat = new JLabel(wheatAmount);
-			wheat.setIcon(wheatImage);
-			wheat.setForeground(Color.BLACK);
-			wheat.setFont(new Font("Arial", Font.BOLD, 20));
-			this.add(wheat, c);
-			
-			
-			
-			
+
+		String woodAmount = ": " + controller.getWoodAmount();
+		String woolAmount = ": " + controller.getWoolAmount();
+		String oreAmount = ": " + controller.getOreAmount();
+		String wheatAmount = ": " + controller.getWheatAmount();
+		String stoneAmount = ": " + controller.getStoneAmount();
+
+		c.insets = new Insets(0, 0, 20, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 0;
+		c.gridy = 1;
+		JLabel stone = new JLabel(stoneAmount);
+		stone.setIcon(stoneImage);
+		stone.setForeground(Color.BLACK);
+		stone.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(stone, c);
+
+		c.insets = new Insets(0, 0, 20, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 0;
+		c.gridy = 2;
+		JLabel wood = new JLabel(woodAmount);
+		wood.setIcon(woodImage);
+		wood.setForeground(Color.BLACK);
+		wood.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(wood, c);
+
+		c.insets = new Insets(0, 0, 20, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 0;
+		c.gridy = 3;
+		JLabel wool = new JLabel(woolAmount);
+		wool.setIcon(woolImage);
+		wool.setForeground(Color.BLACK);
+		wool.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(wool, c);
+
+		c.insets = new Insets(0, 0, 20, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 0;
+		c.gridy = 4;
+		JLabel ore = new JLabel(oreAmount);
+		ore.setIcon(oreImage);
+		ore.setForeground(Color.BLACK);
+		ore.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(ore, c);
+
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 0;
+		c.gridy = 5;
+		JLabel wheat = new JLabel(wheatAmount);
+		wheat.setIcon(wheatImage);
+		wheat.setForeground(Color.BLACK);
+		wheat.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(wheat, c);
+
 	}
 
 	public void allInfo() {
@@ -172,99 +127,100 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.gridy = 0;
 		add(enemyTitle, c);
 
-		for (int i = 0; i < 4; i++) { 	
+		for (int i = 0; i < 4; i++) { // this loop changes the gridY for each player so they don't appear next to each other. 
+									 // For every loop it also checks who's turn it is...
 			if (i == 0) {
-			if (controller.myTurn(i)) {
-				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
-				turn.setForeground(Color.BLACK);
-				turn.setFont(new Font("Arial", Font.BOLD, 15));
-				c.insets = new Insets(0, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTHEAST;
-				c.gridx = 1;
-				c.gridy = 1;
-				this.add(turn, c);
-			} else {
-				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
-				notTurn.setForeground(Color.BLACK);
-				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-				c.insets = new Insets(0, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTHEAST;
-				c.gridx = 1;
-				c.gridy = 1;
-				this.add(notTurn, c);
+				if (controller.myTurn(i)) {
+					JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+							+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+					turn.setForeground(Color.BLACK);
+					turn.setFont(new Font("Arial", Font.BOLD, 15));
+					c.insets = new Insets(0, 0, 0, 0);
+					c.anchor = GridBagConstraints.NORTHEAST;
+					c.gridx = 1;
+					c.gridy = 1;
+					this.add(turn, c);
+				} else {
+					JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
+							+ " - " + "Aantal grondstoffen: " + controller.getPlayerResources(i));
+					notTurn.setForeground(Color.BLACK);
+					notTurn.setFont(new Font("Arial", Font.BOLD, 15));
+					c.insets = new Insets(0, 0, 0, 0);
+					c.anchor = GridBagConstraints.NORTHEAST;
+					c.gridx = 1;
+					c.gridy = 1;
+					this.add(notTurn, c);
+				}
+
+			} else if (i == 1) {
+				if (controller.myTurn(i)) {
+					JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+							+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+					turn.setForeground(Color.BLACK);
+					turn.setFont(new Font("Arial", Font.BOLD, 15));
+					c.insets = new Insets(0, 0, 0, 0);
+					c.anchor = GridBagConstraints.NORTHEAST;
+					c.gridx = 1;
+					c.gridy = 2;
+					this.add(turn, c);
+				} else {
+					JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
+							+ " - " + "Aantal grondstoffen: " + controller.getPlayerResources(i));
+					notTurn.setForeground(Color.BLACK);
+					notTurn.setFont(new Font("Arial", Font.BOLD, 15));
+					c.insets = new Insets(0, 0, 0, 0);
+					c.anchor = GridBagConstraints.NORTHEAST;
+					c.gridx = 1;
+					c.gridy = 2;
+					this.add(notTurn, c);
+				}
+			} else if (i == 2) {
+				if (controller.myTurn(i)) {
+					JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+							+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+					turn.setForeground(Color.BLACK);
+					turn.setFont(new Font("Arial", Font.BOLD, 15));
+					c.insets = new Insets(0, 0, 0, 0);
+					c.anchor = GridBagConstraints.NORTHEAST;
+					c.gridx = 1;
+					c.gridy = 3;
+					this.add(turn, c);
+				} else {
+					JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
+							+ " - " + "Aantal grondstoffen: " + controller.getPlayerResources(i));
+					notTurn.setForeground(Color.BLACK);
+					notTurn.setFont(new Font("Arial", Font.BOLD, 15));
+					c.insets = new Insets(0, 0, 0, 0);
+					c.anchor = GridBagConstraints.NORTHEAST;
+					c.gridx = 1;
+					c.gridy = 3;
+					this.add(notTurn, c);
+				}
+			} else if (i == 3) {
+				if (controller.myTurn(i)) {
+					JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+							+ "Aantal grondstoffen: " + controller.getPlayerResources(i)
+							+ " - bezig met huidige beurt!");
+					turn.setForeground(Color.BLACK);
+					turn.setFont(new Font("Arial", Font.BOLD, 15));
+					c.insets = new Insets(0, 0, 0, 0);
+					c.anchor = GridBagConstraints.NORTHEAST;
+					c.gridx = 1;
+					c.gridy = 4;
+					this.add(turn, c);
+				} else {
+					JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
+							+ " - " + "Aantal grondstoffen: " + controller.getPlayerResources(i));
+					notTurn.setForeground(Color.BLACK);
+					notTurn.setFont(new Font("Arial", Font.BOLD, 15));
+					c.insets = new Insets(0, 0, 0, 0);
+					c.anchor = GridBagConstraints.NORTHEAST;
+					c.gridx = 1;
+					c.gridy = 4;
+					this.add(notTurn, c);
+
+				}
 			}
-			
-		}else if (i == 1) {
-			if (controller.myTurn(i)) {
-				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
-				turn.setForeground(Color.BLACK);
-				turn.setFont(new Font("Arial", Font.BOLD, 15));
-				c.insets = new Insets(0, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTHEAST;
-				c.gridx = 1;
-				c.gridy = 2;
-				this.add(turn, c);
-			} else {
-				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
-				notTurn.setForeground(Color.BLACK);
-				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-				c.insets = new Insets(0, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTHEAST;
-				c.gridx = 1;
-				c.gridy = 2;
-				this.add(notTurn, c);
-			}
-		} else if( i == 2 ) {
-			if (controller.myTurn(i)) {
-				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
-				turn.setForeground(Color.BLACK);
-				turn.setFont(new Font("Arial", Font.BOLD, 15));
-				c.insets = new Insets(0, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTHEAST;
-				c.gridx = 1;
-				c.gridy = 3;
-				this.add(turn, c);
-			} else {
-				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
-				notTurn.setForeground(Color.BLACK);
-				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-				c.insets = new Insets(0, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTHEAST;
-				c.gridx = 1;
-				c.gridy = 3;		
-				this.add(notTurn, c);
-			}
-		}else if (i == 3 ) {
-			if (controller.myTurn(i)) {
-				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met huidige beurt!");
-				turn.setForeground(Color.BLACK);
-				turn.setFont(new Font("Arial", Font.BOLD, 15));
-				c.insets = new Insets(0, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTHEAST;
-				c.gridx = 1;
-				c.gridy = 4;
-				this.add(turn, c);
-			} else {
-				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
-				notTurn.setForeground(Color.BLACK);
-				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-				c.insets = new Insets(0, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTHEAST;
-				c.gridx = 1;
-				c.gridy = 4;
-				this.add(notTurn, c);
-				
-				
-			}
-		}
 
 		}
 	}
@@ -283,7 +239,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
 		c.gridy = 7;
-		this.add(end,c);
+		this.add(end, c);
 		trade.addActionListener(this);
 
 		for (int i = 0; i < 4; i++) {
@@ -337,24 +293,21 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	}
 
-	/*public void ShowResources() {
-		this.add(your_resources);
-	}*/
 
 	public void getTradePanel() {
 		controller.getTradePanel();
 	}
 
 	@Override
-	protected void paintComponent(Graphics g) {
+	protected void paintComponent(Graphics g) { 
 
 		super.paintComponent(g);
-		
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
 
-		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg");
+		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg"); //sets Panel Background.
 		JLabel thumb = new JLabel(icon);
 		thumb.setSize(width, height);
 		this.add(thumb);

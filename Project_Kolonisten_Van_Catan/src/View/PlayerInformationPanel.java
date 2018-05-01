@@ -89,6 +89,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	public void playerInfo() {
 		JLabel playerTitle = new JLabel("Speler Info");
 		playerTitle.setFont(new Font("Arial", Font.BOLD, 30));
+		playerTitle.setForeground(Color.BLACK);
 
 		c.insets = new Insets(0, 0, 0, 100);
 		c.anchor = GridBagConstraints.NORTHWEST;
@@ -111,6 +112,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			c.gridy = 1;
 			JLabel stone = new JLabel( stoneAmount);
 			stone.setIcon(stoneImage);
+			stone.setForeground(Color.BLACK);
 			this.add(stone, c);
 			
 			c.insets = new Insets(0, 0, 20, 0);
@@ -119,6 +121,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			c.gridy = 2;
 			JLabel wood = new JLabel( woodAmount);
 			wood.setIcon(woodImage);
+			wood.setForeground(Color.BLACK);
 			this.add(wood, c);
 			
 			c.insets = new Insets(0, 0, 20, 0);
@@ -127,6 +130,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			c.gridy = 3;
 			JLabel wool = new JLabel(woolAmount);
 			wool.setIcon(woolImage);
+			wool.setForeground(Color.BLACK);
 			this.add(wool, c);
 			
 			c.insets = new Insets(0, 0, 20, 0);
@@ -135,6 +139,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			c.gridy = 4;
 			JLabel ore = new JLabel(oreAmount);
 			ore.setIcon(oreImage);
+			ore.setForeground(Color.BLACK);
 			this.add(ore, c);
 			
 			c.insets = new Insets(0, 0, 0, 0);
@@ -143,6 +148,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			c.gridy = 5;
 			JLabel wheat = new JLabel(wheatAmount);
 			wheat.setIcon(wheatImage);
+			wheat.setForeground(Color.BLACK);
 			this.add(wheat, c);
 			
 			
@@ -153,6 +159,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	public void allInfo() {
 		JLabel enemyTitle = new JLabel("Tegenstanders Info");
 		enemyTitle.setFont(new Font("Arial", Font.BOLD, 30));
+		enemyTitle.setForeground(Color.BLACK);
 
 		c.insets = new Insets(0, 0, 100, 0);
 		c.anchor = GridBagConstraints.NORTHEAST;
@@ -160,11 +167,12 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.gridy = 0;
 		add(enemyTitle, c);
 
-		for (int i = 0; i < 4; i++) { //had to make this big ass if/else because for each player the gridY changes...
+		for (int i = 0; i < 4; i++) { 	
 			if (i == 0) {
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+				turn.setForeground(Color.BLACK);
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -173,6 +181,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			} else {
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
+				notTurn.setForeground(Color.BLACK);
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -184,6 +193,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+				turn.setForeground(Color.BLACK);
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -192,6 +202,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			} else {
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
+				notTurn.setForeground(Color.BLACK);
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -202,6 +213,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+				turn.setForeground(Color.BLACK);
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -210,6 +222,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			} else {
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
+				notTurn.setForeground(Color.BLACK);
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -219,7 +232,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		}else if (i == 3 ) {
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met huidige beurt!");
+				turn.setForeground(Color.BLACK);
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;
@@ -228,6 +242,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			} else {
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));	
+				notTurn.setForeground(Color.BLACK);
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTHEAST;
 				c.gridx = 1;

@@ -1,7 +1,9 @@
 package Controller;
 
+import java.awt.dnd.DnDConstants;
 import java.sql.Connection;
 
+import Database.PlayerDAO;
 import Model.Game;
 import View.PlayerInformationPanel;
 
@@ -9,10 +11,12 @@ public class PlayerInfoController {
 	private Game game;
 	private PlayerInformationPanel spelerInformatiePanel;
 	private GameController gameController;
+	private PlayerDAO playerDAO;
 
 	public PlayerInfoController(Game game, Connection db_conn, GameController gameController) {
 		spelerInformatiePanel = new PlayerInformationPanel(this);
 		this.game = game;
+		playerDAO = new PlayerDAO(db_conn);
 		spelerInformatiePanel.playerInfo();
 		spelerInformatiePanel.allInfo();
 		spelerInformatiePanel.playerResources();
@@ -35,6 +39,11 @@ public class PlayerInfoController {
 	public int getPlayerResources(int volgnr) {
 		return game.getPlayerResources();
 	}
+	
+	public int getLongestArmy(int gameId) {
+		return playerDAO.getLargestArmyID(gameId);
+	}
+	
 
 	public boolean myTurn(int volgnr) {
 		if (game.getRound() == game.GetPlayers().get(volgnr).getPlayerID()) {

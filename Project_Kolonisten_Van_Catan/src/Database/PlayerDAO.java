@@ -14,11 +14,12 @@ public class PlayerDAO {
 
 	public String getName(int volgnr, int GameID) {
 		try {
-		Statement stmt = m_Conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select username from speler where idspel=" + GameID + " and volgnr = " + (volgnr + 1));
-		rs.next();
-		String name = rs.getString("username");
-		return name;
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"select username from speler where idspel=" + GameID + " and volgnr = " + (volgnr + 1));
+			rs.next();
+			String name = rs.getString("username");
+			return name;
 		} catch (SQLException e) {
 			System.out.println(e);
 			return null;
@@ -37,4 +38,21 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
+
+	public int getLargestArmyID(int gameId) {
+
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select grootste_rm_idspeler from spel where idspel = " + gameId);
+			rs.next();
+			int LongestArmy = rs.getInt("grootste_rm_idspeler");
+			return LongestArmy;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return 0;
+		}
+
+	}
+
 }

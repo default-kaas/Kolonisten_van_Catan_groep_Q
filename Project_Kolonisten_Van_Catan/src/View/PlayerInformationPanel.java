@@ -251,10 +251,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	}
 
 	public void endButton() {
-		c.insets = new Insets(30, 0, 0, 100);
+		c.insets = new Insets(0, 0, 0, 100);
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 0;
-		c.gridy = 9;
+		c.gridx = 1;
+		c.gridy = 7;
 		this.add(end,c);
 		trade.addActionListener(this);
 

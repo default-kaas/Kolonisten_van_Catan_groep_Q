@@ -117,7 +117,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 		JLabel roadWood = new JLabel(wood);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 0, 30, 50);
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 4;
 		c.gridy = 2;
 		this.add(roadWood, c);
@@ -161,7 +161,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		JLabel houseWood = new JLabel(wood);
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0, 0, 30, 0);
-		;
 		c.gridx = 4;
 		c.gridy = 3;
 		this.add(houseWood, c);
@@ -175,7 +174,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 		JLabel houseWool = new JLabel(wool);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 0, 30, 50);
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 6;
 		c.gridy = 3;
 		this.add(houseWool, c);

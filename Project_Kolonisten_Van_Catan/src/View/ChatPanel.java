@@ -84,7 +84,7 @@ public class ChatPanel extends JPanel implements ActionListener {
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
 
-		ImageIcon icon = new ImageIcon("images/Background/chatBg.jpg");
+		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg");
 		JLabel thumb = new JLabel(icon);
 		thumb.setSize(width, height);
 		this.add(thumb);

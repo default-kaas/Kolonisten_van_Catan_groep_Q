@@ -341,33 +341,9 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
 
-		ImageIcon icon = new ImageIcon("images/Background/playerBg.jpg");
+		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg");
 		JLabel thumb = new JLabel(icon);
 		thumb.setSize(width, height);
 		this.add(thumb);
-
-	/*	String wood = ": " + controller.getWoodAmount();
-		String wool = ": " + controller.getWoolAmount();
-		String ore = ": " + controller.getOreAmount();
-		String wheat = ": " + controller.getWheatAmount();
-		String stone = ": " + controller.getStoneAmount();
-
-		int Width = (int) (WoolImage.getWidth() * 0.8);
-		int Height = (int) (WoolImage.getHeight() * 0.8);
-		g.drawImage(WoolImage, 10, 200, Width, Height, this);
-		g.drawString(wool, 15 + Width, 200 + (int) (Height * 0.6));
-
-		g.drawImage(WheatImage, 110, 200, Width, Height, this);
-		g.drawString(wheat, 115 + Width, 200 + (int) (Height * 0.6));
-
-		g.drawImage(WoodImage, 210, 200, Width, Height, this);
-		g.drawString(stone, 215 + Width, 200 + (int) (Height * 0.6));
-
-		g.drawImage(StoneImage, 310, 200, Width, Height, this);
-		g.drawString(stone, 315 + Width, 200 + (int) (Height * 0.6));
-
-		g.drawImage(OreImage, 410, 200, Width, Height, this);
-		g.drawString(ore, 415 + Width, 200 + (int) (Height * 0.6));*/
 	}
-
 }

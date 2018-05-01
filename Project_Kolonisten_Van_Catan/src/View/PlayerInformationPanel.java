@@ -50,7 +50,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private JButton trade = new JButton("Handelspaneel");
 
 	// end round button
-	private JButton end = new JButton("Beurt beindigen");
+	private JButton end = new JButton("Beurt beëindigen");
 
 	private PlayerInfoController controller;
 

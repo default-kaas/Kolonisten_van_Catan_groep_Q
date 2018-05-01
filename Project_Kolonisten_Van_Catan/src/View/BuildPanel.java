@@ -239,7 +239,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 
 		JLabel cityWheat2 = new JLabel(wheat);
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 0, 30, 0);
+		c.insets = new Insets(0, 15, 30, 50);
 		c.gridx = 6;
 		c.gridy = 4;
 		this.add(cityWheat2, c);

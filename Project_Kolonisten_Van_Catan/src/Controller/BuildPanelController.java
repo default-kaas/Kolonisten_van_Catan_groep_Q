@@ -17,6 +17,30 @@ public class BuildPanelController {
 		bouwPanel = new BuildPanel(this);
 	}
 
+	public String remainingWood() {
+		String x = "" +  game.getMe().getWoodAmount();
+		return x;
+	}
+	
+	public String remainingStone() {
+		String x = "" +  game.getMe().getStoneAmount();
+		return x;
+	}
+	
+	public String remainingOre() {
+		String x = "" +  game.getMe().getOreAmount();
+		return x;
+	}
+	
+	public String remainingWool() {
+		String x = "" +  game.getMe().getWoolAmount();
+		return x;
+	}
+	
+	public String remainingWheat() {
+		String x = "" +  game.getMe().getWheatAmount();
+		return x;
+	}
 	public BuildPanel getBouwPanel() {
 		return bouwPanel;
 	}

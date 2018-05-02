@@ -221,7 +221,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 	public void cancelButton() {
 		cancelBtn = new JButton();
 		try {
-			myImage = ImageIO.read(new File("images/Buttons/invitePlayers.jpg"));
+			myImage = ImageIO.read(new File("images/Buttons/cancel.jpg"));
 			cancelBtn.setPreferredSize(new Dimension(myImage.getWidth(), myImage.getHeight()));
 			cancelBtn.setIcon(new ImageIcon(myImage));
 		} catch (IOException e) {
@@ -234,8 +234,8 @@ public class InvitePanel extends JPanel implements ActionListener {
 		cancelBtn.setFont(new Font("Calibri", Font.BOLD, 30));
 		cancelBtn.addActionListener(this);
 		GridBagConstraints gbc_cancelBtn1 = new GridBagConstraints();
-		gbc_cancelBtn1.insets = new Insets(0, 150, 80, 0);
-		gbc_cancelBtn1.anchor = GridBagConstraints.EAST;
+		gbc_cancelBtn1.insets = new Insets(0, 170, 80, 0);
+		gbc_cancelBtn1.anchor = GridBagConstraints.CENTER;
 		gbc_cancelBtn1.gridx = 1;
 		gbc_cancelBtn1.gridy = 3;
 		add(cancelBtn, gbc_cancelBtn1);

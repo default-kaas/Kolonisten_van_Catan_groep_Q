@@ -62,9 +62,154 @@ public class LobbyDAO {
 			int G = 0;
 			int H = 0;
 			int W = 0;
-
+			int X = 0;
+			ArrayList<Integer> numbersUsed = new ArrayList<>();
 			if (RandomBoard) {
-				System.out.println("RandomBoard");
+				for (int i = 0; i < 19; i++) {
+					int randomInt = random.nextInt(6);
+					char ResourceType = 0;
+					Boolean nextResource = false;
+					while (!nextResource) {
+						if (randomInt == 0 && B < 3) {
+							B++;
+							ResourceType = 'B';
+							nextResource = true;
+						} else if (randomInt == 1 && E < 3) {
+							E++;
+							ResourceType = 'E';
+							nextResource = true;
+						} else if (randomInt == 2 && G < 4) {
+							G++;
+							ResourceType = 'G';
+							nextResource = true;
+						} else if (randomInt == 3 && H < 4) {
+							H++;
+							ResourceType = 'H';
+							nextResource = true;
+						} else if (randomInt == 4 && W < 4) {
+							W++;
+							ResourceType = 'W';
+							nextResource = true;
+						} else if (randomInt == 5 && X < 1) {
+							X++;
+							ResourceType = 'X';
+							nextResource = true;
+						} else {
+							randomInt = random.nextInt(6);
+						}
+					}
+					int[] Position = new int[2];
+					switch (i) {
+					case 0:
+						Position[0] = 2;
+						Position[1] = 4;
+						break;
+					case 1:
+						Position[0] = 3;
+						Position[1] = 6;
+						break;
+					case 2:
+						Position[0] = 4;
+						Position[1] = 8;
+						break;
+					case 3:
+						Position[0] = 3;
+						Position[1] = 3;
+						break;
+					case 4:
+						Position[0] = 4;
+						Position[1] = 5;
+						break;
+					case 5:
+						Position[0] = 5;
+						Position[1] = 7;
+						break;
+					case 6:
+						Position[0] = 6;
+						Position[1] = 9;
+						break;
+					case 7:
+						Position[0] = 4;
+						Position[1] = 2;
+						break;
+					case 8:
+						Position[0] = 5;
+						Position[1] = 4;
+						break;
+					case 9:
+						Position[0] = 6;
+						Position[1] = 6;
+						break;
+					case 10:
+						Position[0] = 7;
+						Position[1] = 8;
+						break;
+					case 11:
+						Position[0] = 8;
+						Position[1] = 10;
+						break;
+					case 12:
+						Position[0] = 6;
+						Position[1] = 3;
+						break;
+					case 13:
+						Position[0] = 7;
+						Position[1] = 5;
+						break;
+					case 14:
+						Position[0] = 8;
+						Position[1] = 7;
+						break;
+					case 15:
+						Position[0] = 9;
+						Position[1] = 9;
+						break;
+					case 16:
+						Position[0] = 8;
+						Position[1] = 4;
+						break;
+					case 17:
+						Position[0] = 9;
+						Position[1] = 6;
+						break;
+					case 18:
+						Position[0] = 10;
+						Position[1] = 8;
+						break;
+					}
+					int numberChips;
+
+					if (ResourceType == 'X') {
+						final String QUERY5 = "INSERT INTO tegel (idspel, idtegel, x , y , idgrondstofsoort, idgetalfiche) VALUES ("
+								+ newGameID + ", " + (i + 1) + ", " + Position[0] + "," + Position[1] + ",'"
+								+ ResourceType + "',null);";
+						statement.executeUpdate(QUERY5);
+					} else {
+						numberChips = random.nextInt(18) + 1;
+						boolean Chips = false;
+
+						while (!Chips) {
+							int x = 0;
+							for (int y = 0; y < numbersUsed.size(); y++) {
+								if (numbersUsed.get(y) != numberChips) {
+									x++;
+								}
+							}
+							if (x == numbersUsed.size()) {
+								numbersUsed.add(numberChips);
+								Chips = true;
+							} else {
+								numberChips = random.nextInt(18) + 1;
+							}
+
+						}
+						final String QUERY5 = "INSERT INTO tegel (idspel, idtegel, x , y , idgrondstofsoort, idgetalfiche) VALUES ("
+								+ newGameID + ", " + (i + 1) + ", " + Position[0] + "," + Position[1] + ",'"
+								+ ResourceType + "'," + numberChips + ");";
+						statement.executeUpdate(QUERY5);
+					}
+
+				}
 			} else {
 				for (int i = 0; i < 19; i++) {
 					int randomInt = random.nextInt(5);
@@ -97,7 +242,7 @@ public class LobbyDAO {
 								ResourceType = 'W';
 								nextResource = true;
 							} else {
-								randomInt = random.nextInt(4);
+								randomInt = random.nextInt(5);
 							}
 						}
 						int[] Position = new int[2];

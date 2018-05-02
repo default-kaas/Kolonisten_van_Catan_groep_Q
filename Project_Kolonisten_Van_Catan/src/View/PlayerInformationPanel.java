@@ -17,6 +17,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon oreImage = new ImageIcon("images/Resources/ore1.png");
 	private ImageIcon woolImage = new ImageIcon("images/Resources/sheep1.png");
 	private ImageIcon wheatImage = new ImageIcon("images/Resources/wheat1.png");
+	private ImageIcon knightImage = new ImageIcon("images/Other/chess.png");
 
 
 	// Trade button

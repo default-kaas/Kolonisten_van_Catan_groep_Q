@@ -32,7 +32,7 @@ public class LobbyFrame extends JFrame implements ActionListener {
 		superController.showGameScreen(gameID, userName, newGame);
 	}
 
-	private void setContent() {
+	public void setContent() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setContentPane(lobbyController.getLobbyPanel());
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);

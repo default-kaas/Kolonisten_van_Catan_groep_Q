@@ -88,7 +88,7 @@ public class InviteDAO {
 			Statement statement = m_Conn.createStatement();
 			final String QUERY = "select * from account where username != '" + username + "'";
 			ResultSet rs = statement.executeQuery(QUERY);
-			
+
 			int getRowCount = getRowCount(rs); // Row Count
 			data = new Object[getRowCount][2];
 
@@ -151,6 +151,15 @@ public class InviteDAO {
 			System.out.println(e);
 		}
 		return -1;
+	}
+
+	public void cancelGame(int idspel) {
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "UPDATE speler SET speelstatus = 'afgebroken' WHERE idspel = "+idspel;
+			statement.executeUpdate(QUERY);
+		} catch (SQLException e) {
+		}
 	}
 
 	private int getColumnCount(ResultSet rs) {

@@ -43,7 +43,8 @@ public class LoginFrame extends JFrame implements ActionListener {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
-
+	
+	
 	private void addMenuBar() {
 		menuBar = new JMenuBar();
 		menu = new JMenu("Menu");

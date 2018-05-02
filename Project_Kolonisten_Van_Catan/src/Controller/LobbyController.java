@@ -68,5 +68,8 @@ public class LobbyController {
 	public void UpdateInviteAndGame() {
 		lobbyDAO.getInvitedGames(username);
 	}
+	public void cancelInvite() {
+		lobbyFrame.setContentPane(lobbyPanel);
+	}
 
 }

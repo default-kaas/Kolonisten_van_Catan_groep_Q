@@ -33,6 +33,7 @@ public class InvitePanel extends JPanel implements ActionListener {
 	private BufferedImage myImage;
 	private JButton refreshBtn;
 	private JButton inviteBtn;
+	private JButton cancelBtn;
 	private Object[][] data;
 	private Object[][] data2;
 
@@ -70,6 +71,8 @@ public class InvitePanel extends JPanel implements ActionListener {
 			inviteTable();
 
 			inviteButton();
+			
+			cancelButton();
 		}
 
 	}
@@ -214,6 +217,31 @@ public class InvitePanel extends JPanel implements ActionListener {
 		add(inviteBtn, gbc_inviteBtn1);
 
 	}
+	
+	public void cancelButton() {
+		cancelBtn = new JButton();
+		try {
+			myImage = ImageIO.read(new File("images/Buttons/invitePlayers.jpg"));
+			cancelBtn.setPreferredSize(new Dimension(myImage.getWidth(), myImage.getHeight()));
+			cancelBtn.setIcon(new ImageIcon(myImage));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		cancelBtn.setBackground(new Color(13, 150, 45));
+		cancelBtn.setForeground(Color.BLACK);
+		cancelBtn.setFont(new Font("Calibri", Font.BOLD, 30));
+		cancelBtn.addActionListener(this);
+		GridBagConstraints gbc_cancelBtn1 = new GridBagConstraints();
+		gbc_cancelBtn1.insets = new Insets(0, 150, 80, 0);
+		gbc_cancelBtn1.anchor = GridBagConstraints.EAST;
+		gbc_cancelBtn1.gridx = 1;
+		gbc_cancelBtn1.gridy = 3;
+		add(cancelBtn, gbc_cancelBtn1);
+
+	}
+	
 
 	public void refreshPanel(boolean InvitedIntoGame) {
 		if (creator && InvitedIntoGame) {
@@ -236,6 +264,9 @@ public class InvitePanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(cancelBtn)) {
+		inviteController.cancelInvite();
+		}
 		if (e.getSource() == refreshBtn) {
 			refreshPanel(false);
 		}

@@ -54,10 +54,13 @@ public class Invite {
 
 
 	public int getAcceptedPlayerAmount() {
-		// TODO Auto-generated method stub
 		return InviteDAO.getAcceptedPlayerAmount(idspel);
 	}
 	public int getSpelID() {
 		return idspel;
+	}
+
+	public void cancelGame() {
+		InviteDAO.cancelGame(idspel);
 	}
 }

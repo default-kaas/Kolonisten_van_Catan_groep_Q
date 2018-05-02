@@ -37,7 +37,11 @@ public class InviteController extends Observable implements Runnable {
 	public int getNumberInvited() {
 		return invite.getNumberInvited();
 	}
-
+	public void cancelInvite() {
+		invite.cancelGame();
+		lobbyController.cancelInvite();
+	}
+	
 	@Override
 	public void run() {
 		boolean run = true;

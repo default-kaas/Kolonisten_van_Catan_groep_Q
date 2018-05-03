@@ -1,9 +1,11 @@
 package Controller;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -20,8 +22,12 @@ public class BoardController {
 	private Connection connection;
 	private Board board;
 	private BoardPanel boardPanel;
+	private int height;
 	
 	public BoardController(Game game, Connection connection ) {
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		height = (int) (screenSize.getHeight());
 		this.game = game;
 		this.connection = connection;
 		board = new Board(game, connection);
@@ -275,7 +281,8 @@ public class BoardController {
 		Point point = new Point();
 		int x = 0;
 		int defaultx = 140;
-		int defaulty = 517; /*Temporary solution */
+	
+		int defaulty = (height / 2) - 23; /*Temporary solution */
 		for(int i=0;i<tileNumber;i++) {
 			switch (i) {
 			case 3:

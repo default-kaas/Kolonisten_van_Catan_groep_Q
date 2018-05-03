@@ -121,25 +121,24 @@ public class PlayerDAO {
 	}
 	
 	public void addResources (Game game, Player playerid, int card, int amount) {
-		for (int i = 0; i < amount; i++) {
 			try {
 				// b=baksteen, w=wol, h=hout, e=erts, g=graan
 				// 1=w, 2=g, 3=h, 4=b, 5=e
 				Statement statement = m_Conn.createStatement();
 				if (card == 1) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'w%' LIMIT 1";
+					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'w%' LIMIT "+amount;
 					statement.executeUpdate(QUERY);
 				}
 				if (card == 2) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'g%' LIMIT 1";
+					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'g%' LIMIT "+amount;
 					statement.executeUpdate(QUERY);
 				}
 				if (card == 3) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'h%' LIMIT 1";
+					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'h%' LIMIT "+amount;
 					statement.executeUpdate(QUERY);
 				}
 				if (card == 4) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'b%' LIMIT 1";
+					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'b%' LIMIT "+amount;
 					statement.executeUpdate(QUERY);
 				}
 				if (card == 5) {
@@ -148,7 +147,6 @@ public class PlayerDAO {
 				}
 			} catch (SQLException e) {
 			}
-		}
 	}
 
 }

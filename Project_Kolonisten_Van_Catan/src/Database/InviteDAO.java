@@ -37,12 +37,13 @@ public class InviteDAO {
 	public int getRejectedVolgnr(int idspel) {
 		try {
 			Statement statement = m_Conn.createStatement();
-			final String QUERY = "select volgnr from speler where idspel = " + idspel
-					+ " and speelstatus = 'geweigerd' and not volgnr in (select volgnr from speler where idspel = "
-					+ idspel + " and speelstatus = 'uitgedaagde' and speelstatus = 'geaccepteerd')";
+			final String QUERY = "select volgnr from speler where idspel = "+idspel+" and speelstatus = 'geweigerd' and not volgnr in (select volgnr from speler where idspel = "+idspel+" and (speelstatus = 'uitgedaagde' or speelstatus = 'geaccepteerd'));\r\n"
+					+ "";
 			ResultSet rs = statement.executeQuery(QUERY);
 			rs.next();
-			return rs.getInt("volgnr");
+			int x = rs.getInt("volgnr");
+			System.out.println(x);
+			return x;
 		} catch (SQLException e) {
 		}
 		return -1;
@@ -156,7 +157,7 @@ public class InviteDAO {
 	public void cancelGame(int idspel) {
 		try {
 			Statement statement = m_Conn.createStatement();
-			final String QUERY = "UPDATE speler SET speelstatus = 'afgebroken' WHERE idspel = "+idspel;
+			final String QUERY = "UPDATE speler SET speelstatus = 'afgebroken' WHERE idspel = " + idspel;
 			statement.executeUpdate(QUERY);
 		} catch (SQLException e) {
 		}

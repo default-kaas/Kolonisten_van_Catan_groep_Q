@@ -23,8 +23,8 @@ public class BoardDAO {
 			rs = stmt.executeQuery("SELECT idtegel FROM tegel WHERE idspel ="+ game +" ORDER BY idtegel ");
 			for(int i=0; i<19;i++) {
 				rs.next();
-				int idGetalfiche =rs.getInt("idtegel");
-				arrayList.add(switchForIdNumberChip(idGetalfiche));
+				int idTile =rs.getInt("idtegel");
+				arrayList.add(idTile);
 			}
 			return arrayList;
 		}catch(SQLException e) {

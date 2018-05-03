@@ -40,6 +40,7 @@ public class BoardController {
 		ArrayList<Integer> arrayListIdNumberChip = new ArrayList<Integer>();
 		arrayListIdNumberChip.addAll(board.getBoardDOAIdNumberChip(gameNumber));
 		int roberTileId = board.getBoardDOARobberTile(game.getGameID());
+		int heightOfTile = 114;
 		// this is to create the values that are going to get returend to the board
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		ArrayList<Corner> corners = new ArrayList<Corner>();
@@ -55,6 +56,8 @@ public class BoardController {
 				tile.setIdNumberChip(arrayListIdNumberChip.get(i));
 				tile.setCornerPoints(returnTileCornPoints(tile.getCenterPoint()));
 				tile.setRobber(hasRobber(tile.getTileID(),roberTileId));
+				tile.setInGameCenterPoint(returnInGameCenterPointTileInGame(tile.getTileID()));
+				tile.setInGameCornerPoints(returnInGameCornerPointsOfTile(tile.getInGameCenterPoint(),heightOfTile));
 				tiles.add(tile);
 			}
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
@@ -263,5 +266,46 @@ public class BoardController {
 
 	public BoardPanel getBoardPanel() {
 		return boardPanel;
+	}
+	
+	private Point returnInGameCenterPointTileInGame(int tileNumber) {
+		Point point = new Point();
+		int x = 0;
+		int defaultx = 140;
+		int defaulty = 517; /*Temporary solution */
+		for(int i=0;i<tileNumber;i++) {
+			switch (i) {
+			case 3:
+			case 7:
+				x = 0;
+				defaultx += 100;
+				defaulty += 174;
+				break;
+			case 12:
+			case 16:
+				x = 0;
+				defaultx += 200;
+				break;
+			}
+			switch(i) {
+			case 0:case 3:case 7:case 12:case 16: break;
+			default: x++;
+			}
+		}
+		int middleX = defaultx + x * 100;
+		int middleY = defaulty - x * 174;
+		point.setLocation(middleX, middleY);
+		return point;
+	}
+	
+	private ArrayList<Point> returnInGameCornerPointsOfTile(Point centerPoint, int h) {
+		ArrayList<Point> arrayListInGamePoints = new ArrayList<Point>();
+		double a;
+		for (int i = 0; i < 6; i++) {
+			a = Math.PI / 3.0 * i;
+			Point point = new Point((int) (Math.round((int)centerPoint.getX() + Math.sin(a) * h)), (int) (Math.round((int)centerPoint.getY() + Math.cos(a) * h)));
+			arrayListInGamePoints.add(point);
+		}
+		return arrayListInGamePoints;
 	}
 }

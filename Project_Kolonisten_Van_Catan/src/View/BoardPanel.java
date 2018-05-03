@@ -38,9 +38,8 @@ public class BoardPanel extends JPanel {
 		int x = 0;
 		int defaultx = 140;
 		int defaulty = (height / 2) - 23;
-
 		for (Tile tile : Tiles) {
-			Point centerpoint = tile.getCenterPoint();
+			Point centerpoint = tile.getCenterPoint(); /*Why does this exist?*/
 			switch (mainCount) {
 			case 3:
 			case 7:

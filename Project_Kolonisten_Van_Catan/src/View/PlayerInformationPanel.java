@@ -157,6 +157,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	public void testRidder() {
 	System.out.println(controller.checkArmy());
 }
+	
+	public void testRoad() {
+		System.out.println(controller.checkLongestRoad());
+	}
 
 	public void TradeButton() {
 		c.insets = new Insets(0, 0, 0, 100);

@@ -60,7 +60,7 @@ public class PlayerDAO {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select username from spel join speler on spel.grootste_hr_idspeler = speler.idspeler  where spel.idspel = " + gameId);
+			rs = stmt.executeQuery("select username from spel join speler on spel.langste_hr_idspeler = speler.idspeler  where spel.idspel = " + gameId);
 			rs.next();
 			String LargestRoute = rs.getString("username");
 			return LargestRoute;

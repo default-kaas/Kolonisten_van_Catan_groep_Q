@@ -22,28 +22,26 @@ public class Invite {
 	}
 
 	public Object[][] showInviteUsers() {
-		int i = InviteDAO.getRejectedVolgnr(idspel);
-		if (i == -1) {
-		} else {
-			volgnrs[i - 2] = null;
-		}
 		return InviteDAO.getInviteUserList(username);
 	}
 
 
 	public void invitePlayer(String userName) {
-
-		int i = 0;
-		while (i < 2) {
-
-			if (volgnrs[i] == null) {
-				volgnrs[i] = 2;
+		int i = InviteDAO.getRejectedVolgnr(idspel);
+		if (i == -1) {
+		} else {
+			volgnrs[i - 2] = null;
+		}
+		int x = 0;
+		while (x < 2) {
+			if (volgnrs[x] == null) {
+				volgnrs[x] = 2;
 				break;
 			}
-			i++;
+			x++;
 		}
-		i += 2;
-		InviteDAO.invitePlayers(userName, idspel, i);
+		x += 2;
+		InviteDAO.invitePlayers(userName, idspel, x);
 
 	}
 

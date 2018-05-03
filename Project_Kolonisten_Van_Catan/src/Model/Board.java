@@ -9,6 +9,7 @@ import Database.BoardDAO;
 public class Board {
 	private ArrayList<Tile> tiles = new ArrayList<Tile>();
 	private ArrayList<Corner> corners = new ArrayList<Corner>();
+	private ArrayList<Line> lines = new ArrayList<Line>();
 	
 	private BoardDAO boardDOA;
 	private Game game;
@@ -56,4 +57,6 @@ public class Board {
 	public int getBoardDOARobberTile(int gameNumber) {
 		return boardDOA.getRobberTile(gameNumber);
 	}
+	
+	
 }

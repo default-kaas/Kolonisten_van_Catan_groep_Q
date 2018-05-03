@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Line {
 	private ArrayList<Corner> cornerPoints = new ArrayList<Corner>();
 	private ArrayList<Tile> tilePoints = new ArrayList<Tile>();
-	//
+	
 	public ArrayList<Corner> getCornerPoints() {
 		return cornerPoints;
 	}

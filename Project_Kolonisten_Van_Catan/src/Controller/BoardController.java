@@ -48,6 +48,7 @@ public class BoardController {
 			for (int i = 0; i < arrayListTileCenter.size(); i++) {
 				// this to get the tile centerpoint for the calculation for the other points
 				Point tileCenter = new Point();
+		//		System.out.println(i);/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				tileCenter.setLocation(arrayListTileCenter.get(i));
 				Tile tile = new Tile();
 				tile.setTileID(arrayListIdTile.get(i));
@@ -57,13 +58,16 @@ public class BoardController {
 				tile.setCornerPoints(returnTileCornPoints(tile.getCenterPoint()));
 				tile.setRobber(hasRobber(tile.getTileID(),roberTileId));
 				tile.setInGameCenterPoint(returnInGameCenterPointTileInGame(tile.getTileID()));
+		//		System.out.println(tile.getInGameCenterPoint());/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				tile.setInGameCornerPoints(returnInGameCornerPointsOfTile(tile.getInGameCenterPoint(),heightOfTile));
+		//		System.out.println(tile.getInGameCornerPoints());/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				tiles.add(tile);
 			}
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
 		arrayListLocation.addAll(board.getBoardDAOCornerPointsFromDataBase(gameNumber));
 		// this loop will create all corners
 			for(int i =0; i<arrayListLocation.size();i++) {
+		//		System.out.println(i);/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				Point cornPoint = new Point();
 				cornPoint.setLocation(arrayListLocation.get(i));
 				Corner corner = new Corner();
@@ -72,7 +76,7 @@ public class BoardController {
 				corner.setLinePoints(returnCorners(corner.getPoint(),tiles));
 				corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
 				corner.setInGameTilePoints(returnInGameTilePoints(corner.getPoint(),tiles));
-				//corner.setInGameLinePoints();
+				corner.setInGameLinePoints(returnInGameLinePoints(corner.getPoint(),tiles,heightOfTile));
 				corners.add(corner);
 			}
 		board.setTiles(tiles);
@@ -357,7 +361,6 @@ public class BoardController {
 				}
 			}
 		}
-		
 		if(matchTiles.size()!=0) {
 			ArrayList<Point> inGameTilePoints = new ArrayList<Point>();
 			for(Tile tile: matchTiles) {
@@ -369,4 +372,26 @@ public class BoardController {
 		}
 	}
 	// this returns the inGameLinePoints
+	private ArrayList<Point> returnInGameLinePoints(Point inGamePoint,ArrayList<Tile> tiles,int h){
+		ArrayList<Point> arrayListInGamePoints = new ArrayList<Point>();
+		double a;
+		for (int i = 0; i < 6; i++) {
+			a = Math.PI / 3.0 * i;
+			Point point = new Point((int) (Math.round((int)inGamePoint.getX() + Math.sin(a) * h)), (int) (Math.round((int)inGamePoint.getY() + Math.cos(a) * h)));
+			for(Tile tile: tiles){
+				ArrayList<Point> tileCornerPoints = new ArrayList<Point>();
+				tileCornerPoints.addAll(tile.getInGameCornerPoints());
+				for(Point cornerPoint: tileCornerPoints) {
+					if(cornerPoint.getX()==point.getX()&&cornerPoint.getY()==point.getY()) {
+						arrayListInGamePoints.add(point);
+					}
+				}
+			}
+		}
+		if(arrayListInGamePoints.size()!=0) {
+			return arrayListInGamePoints;
+		}else {
+			return null;
+		}
+	}
 }

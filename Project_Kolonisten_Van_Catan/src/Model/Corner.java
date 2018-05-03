@@ -12,6 +12,7 @@ public class Corner {
 	private char idResourceType;
 	private boolean town = false;
 	private boolean city = false;
+	private int playerId;
 	///In game information///
 	private Point inGamePoint = new Point();
 	private ArrayList<Point> inGameTilePoints = new ArrayList<Point>();
@@ -67,6 +68,13 @@ public class Corner {
 	}
 	public void setCity(boolean city) {
 		this.city = city;
+	}
+	//PlayerID
+	public int getPlayerId() {
+		return playerId;
+	}
+	public void setPlayerId(int playerId) {
+		this.playerId = playerId;
 	}
 	///In game information///
 	//InGamePoint

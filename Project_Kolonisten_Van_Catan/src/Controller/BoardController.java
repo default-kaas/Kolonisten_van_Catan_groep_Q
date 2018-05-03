@@ -71,7 +71,7 @@ public class BoardController {
 				corner.setTilePoints(returnTilesCenters(corner.getPoint(),tiles));
 				corner.setLinePoints(returnCorners(corner.getPoint(),tiles));
 				corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
-				//corner.setInGameTilePoints();
+				corner.setInGameTilePoints(returnInGameTilePoints(corner.getPoint(),tiles));
 				//corner.setInGameLinePoints();
 				corners.add(corner);
 			}
@@ -337,7 +337,6 @@ public class BoardController {
 				break;
 			}
 		}
-		
 		if(matchIsFound) {
 			Point inGamePoint = new Point();
 			inGamePoint = inGameCornPoints.get(iteration);
@@ -346,4 +345,28 @@ public class BoardController {
 			return null;
 		}
 	}
+	// this returns the inGameTilePoints 
+	private ArrayList<Point> returnInGameTilePoints(Point databasePoint,ArrayList<Tile> tiles){
+		ArrayList<Tile> matchTiles = new ArrayList<Tile>();
+		for(Tile tile: tiles){
+			ArrayList<Point> tileCornerPoints = new ArrayList<Point>();
+			tileCornerPoints.addAll(tile.getCornerPoints());
+			for(Point point: tileCornerPoints) {
+				if(point.getX()==databasePoint.getX()&&point.getY()==databasePoint.getY()) {
+					matchTiles.add(tile);
+				}
+			}
+		}
+		
+		if(matchTiles.size()!=0) {
+			ArrayList<Point> inGameTilePoints = new ArrayList<Point>();
+			for(Tile tile: matchTiles) {
+				inGameTilePoints.add(tile.getInGameCenterPoint());
+			}
+			return inGameTilePoints;
+		}else {
+			return null;
+		}
+	}
+	// this returns the inGameLinePoints
 }

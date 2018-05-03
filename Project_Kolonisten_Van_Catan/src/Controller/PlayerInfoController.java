@@ -22,6 +22,7 @@ public class PlayerInfoController {
 		spelerInformatiePanel.playerResources();
 		spelerInformatiePanel.TradeButton();
 		spelerInformatiePanel.testRidder();
+		spelerInformatiePanel.testRoad();
 		/*spelerInformatiePanel.ShowResources();*/
 		spelerInformatiePanel.endButton();
 		this.gameController = gameController;
@@ -61,6 +62,18 @@ public class PlayerInfoController {
 		}
 		return null;
 		
+	}
+	
+	public String checkLongestRoad() {
+		String x = "";
+		for (int i = 0; i < game.GetPlayers().size(); i++) {
+			if (game.GetPlayers().get(i).getName().equals(getLongestRoad(game.getGameID()))) {
+				x += game.GetPlayers().get(i).getName();
+				return x;
+			}
+			
+		}
+		return null;
 	}
 	
 

@@ -70,7 +70,7 @@ public class BoardController {
 				corner.setPoint(cornPoint);
 				corner.setTilePoints(returnTilesCenters(corner.getPoint(),tiles));
 				corner.setLinePoints(returnCorners(corner.getPoint(),tiles));
-				corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
+				//corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
 				//corner.setInGameTilePoints();
 				//corner.setInGameLinePoints();
 				corners.add(corner);
@@ -312,8 +312,7 @@ public class BoardController {
 		return arrayListInGamePoints;
 	}
 	// this returns the inGamePoint of corner 
-	/*
-	private Point returnInGamePoint(Point databasePoint,ArrayList<Tile> tiles) {
+	/*private Point returnInGamePoint(Point databasePoint,ArrayList<Tile> tiles) {
 		ArrayList<Point> inGameCornPoints = new ArrayList<Point>();
 		int iteration = 0;
 		for(Tile tile: tiles) {

@@ -312,9 +312,10 @@ public class BoardController {
 		return arrayListInGamePoints;
 	}
 	// this returns the inGamePoint of corner 
+	/*
 	private Point returnInGamePoint(Point databasePoint,ArrayList<Tile> tiles) {
 		ArrayList<Point> inGameCornPoints = new ArrayList<Point>();
-		int iteration = -1;
+		int iteration = 0;
 		for(Tile tile: tiles) {
 			ArrayList<Point> tileCornerPoints = new ArrayList<Point>();
 			tileCornerPoints.addAll(tile.getCornerPoints());
@@ -322,7 +323,7 @@ public class BoardController {
 			int matchI = -1;
 			for(Point point: tileCornerPoints) {
 				int i =0;
-				if(point.getLocation()==databasePoint.getLocation()) {
+				if(point.getX()==databasePoint.getX()&&point.getY()==databasePoint.getY()) {
 					matchIsFound = true;
 					matchI = i;
 					break;
@@ -332,6 +333,7 @@ public class BoardController {
 			}
 			if(matchIsFound){
 				inGameCornPoints.addAll(tile.getInGameCornerPoints());
+				System.out.println(inGameCornPoints);
 				iteration = matchI;
 				break;
 			}
@@ -339,5 +341,5 @@ public class BoardController {
 		Point inGamePoint = new Point();
 		inGamePoint = inGameCornPoints.get(iteration);
 		return inGamePoint;
-	}
+	}*/
 }

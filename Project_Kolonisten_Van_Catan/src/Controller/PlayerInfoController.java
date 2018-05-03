@@ -21,6 +21,7 @@ public class PlayerInfoController {
 		spelerInformatiePanel.allInfo();
 		spelerInformatiePanel.playerResources();
 		spelerInformatiePanel.TradeButton();
+		spelerInformatiePanel.testRidder();
 		/*spelerInformatiePanel.ShowResources();*/
 		spelerInformatiePanel.endButton();
 		this.gameController = gameController;
@@ -40,12 +41,26 @@ public class PlayerInfoController {
 		return game.getPlayerResources();
 	}
 	
-	public int getLargestArmy(int gameId) {
+	public String getLargestArmy(int gameId) {
 		return playerDAO.getLargestArmyID(gameId);
 	}
 	
-	public int getLongestRoad(int gameId) {
+	
+	public String getLongestRoad(int gameId) {
 		return playerDAO.getLongestRoadID(gameId);
+	}
+	
+	public String checkArmy() {
+		String x = "";
+		for (int i = 0; i < game.GetPlayers().size(); i++) {
+			if (game.GetPlayers().get(i).getName().equals(getLargestArmy(game.getGameID()))) {
+				x += game.GetPlayers().get(i).getName();
+				return x;
+			}
+			
+		}
+		return null;
+		
 	}
 	
 

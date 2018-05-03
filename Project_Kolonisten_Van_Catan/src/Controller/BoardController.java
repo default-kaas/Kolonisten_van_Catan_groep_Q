@@ -70,6 +70,9 @@ public class BoardController {
 				corner.setPoint(cornPoint);
 				corner.setTilePoints(returnTilesCenters(corner.getPoint(),tiles));
 				corner.setLinePoints(returnCorners(corner.getPoint(),tiles));
+				corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
+				//corner.setInGameTilePoints();
+				//corner.setInGameLinePoints();
 				corners.add(corner);
 			}
 		board.setTiles(tiles);
@@ -255,7 +258,7 @@ public class BoardController {
 		}
 		return false;
 	}
-	
+	// this checks of the robber is on this tile
 	private boolean hasRobber(int tileID, int robberTileID) {
 		if(tileID == robberTileID) {
 			return true;
@@ -263,11 +266,11 @@ public class BoardController {
 			return false;
 		}
 	}
-
+	// this returns the boardPanel
 	public BoardPanel getBoardPanel() {
 		return boardPanel;
 	}
-	
+	// this returns the in game centerPoint of a tile
 	private Point returnInGameCenterPointTileInGame(int tileNumber) {
 		Point point = new Point();
 		int x = 0;
@@ -297,7 +300,7 @@ public class BoardController {
 		point.setLocation(middleX, middleY);
 		return point;
 	}
-	
+	// this return the in game game cornerPoints
 	private ArrayList<Point> returnInGameCornerPointsOfTile(Point centerPoint, int h) {
 		ArrayList<Point> arrayListInGamePoints = new ArrayList<Point>();
 		double a;
@@ -307,5 +310,34 @@ public class BoardController {
 			arrayListInGamePoints.add(point);
 		}
 		return arrayListInGamePoints;
+	}
+	// this returns the inGamePoint of corner 
+	private Point returnInGamePoint(Point databasePoint,ArrayList<Tile> tiles) {
+		ArrayList<Point> inGameCornPoints = new ArrayList<Point>();
+		int iteration = -1;
+		for(Tile tile: tiles) {
+			ArrayList<Point> tileCornerPoints = new ArrayList<Point>();
+			tileCornerPoints.addAll(tile.getCornerPoints());
+			boolean matchIsFound = false;
+			int matchI = -1;
+			for(Point point: tileCornerPoints) {
+				int i =0;
+				if(point.getLocation()==databasePoint.getLocation()) {
+					matchIsFound = true;
+					matchI = i;
+					break;
+				}else {
+					i++;
+				}
+			}
+			if(matchIsFound){
+				inGameCornPoints.addAll(tile.getInGameCornerPoints());
+				iteration = matchI;
+				break;
+			}
+		}
+		Point inGamePoint = new Point();
+		inGamePoint = inGameCornPoints.get(iteration);
+		return inGamePoint;
 	}
 }

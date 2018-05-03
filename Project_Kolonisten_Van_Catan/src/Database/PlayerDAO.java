@@ -73,10 +73,10 @@ public class PlayerDAO {
 
 	}
 	
-	public void setPlayerResources(ResourceCards Card,int gameId, String idPlayer) {
+	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
 		try {
 			Statement statement = m_Conn.createStatement();
-			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = "+idPlayer+" WHERE idspel = " + gameId + " and idgrondstofkaart = 'b01'";
+			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idspel = " + gameId + " and idgrondstofkaart = '"+resourceID+"'";
 			statement.executeUpdate(QUERY);
 		} catch (SQLException e) {
 		}

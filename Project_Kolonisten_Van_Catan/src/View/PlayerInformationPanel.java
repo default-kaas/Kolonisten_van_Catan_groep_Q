@@ -260,4 +260,12 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		thumb.setSize(width, height);
 		this.add(thumb);
 	}
+
+	public void ShowResources() {
+		String woodAmount = ": " + controller.getWoodAmount();
+		String woolAmount = ": " + controller.getWoolAmount();
+		String oreAmount = ": " + controller.getOreAmount();
+		String wheatAmount = ": " + controller.getWheatAmount();
+		String stoneAmount = ": " + controller.getStoneAmount();
+	}
 }

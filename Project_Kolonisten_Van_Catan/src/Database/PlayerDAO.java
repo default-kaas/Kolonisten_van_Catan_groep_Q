@@ -126,23 +126,23 @@ public class PlayerDAO {
 				// 1=w, 2=g, 3=h, 4=b, 5=e
 				Statement statement = m_Conn.createStatement();
 				if (card == 1) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'w%' LIMIT "+amount;
+					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler IS NULL AND 'w%' LIMIT "+amount;
 					statement.executeUpdate(QUERY);
 				}
 				if (card == 2) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'g%' LIMIT "+amount;
+					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler IS NULL AND 'g%' LIMIT "+amount;
 					statement.executeUpdate(QUERY);
 				}
 				if (card == 3) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'h%' LIMIT "+amount;
+					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler IS NULL AND 'h%' LIMIT "+amount;
 					statement.executeUpdate(QUERY);
 				}
 				if (card == 4) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'b%' LIMIT "+amount;
+					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler IS NULL AND 'b%' LIMIT "+amount;
 					statement.executeUpdate(QUERY);
 				}
 				if (card == 5) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler = null AND 'e%' LIMIT 1";
+					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler IS NULL AND 'e%' LIMIT 1";
 					statement.executeUpdate(QUERY);
 				}
 			} catch (SQLException e) {

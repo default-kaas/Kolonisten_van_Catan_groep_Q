@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Model.ResourceCards;
+
 public class PlayerDAO {
 	Connection m_Conn;
 
@@ -71,8 +73,13 @@ public class PlayerDAO {
 
 	}
 	
-	
-	
-	
+	public void setPlayerResources(ResourceCards Card,int gameId, String idPlayer) {
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = "+idPlayer+" WHERE idspel = " + gameId + " and idgrondstofkaart = 'b01'";
+			statement.executeUpdate(QUERY);
+		} catch (SQLException e) {
+		}
+	}
 
 }

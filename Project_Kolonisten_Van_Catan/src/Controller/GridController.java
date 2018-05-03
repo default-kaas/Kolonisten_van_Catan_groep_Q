@@ -39,22 +39,25 @@ public class GridController {
 		 * 	counter++;
 		 * }
 		VOOR Schijne Zijde
-//		Xa en Xb zijn de x'en van de hoekpunten
-//		Ya en Yb zijn de y'en van de hoekpunten
 //		W is de breedte
 //		
-//		Dx= Xb - Xa
-//		Dy= Yb - Ya
+ * 		private int Dx;
+ * 		private int Dy;
+ * 		private int D;
+ * 		private int W; 
+ * 
+//		Dx= x2 - x1
+//		Dy= y2 - y1
 //		D= sqrt(Dx * Dx + Dy * Dy)
 //		Dx= (0.5 * W * Dx) / D
 //		Dy= (0.5 * W * Dy) / D
 //
 //		dit zijn de hoekpunten
-//		a = Xa - Dy, Ya + Dx
-//		b = Xa + Dy, Ya - Dx
-//		c = Xb - Dy, Yb + Dx
-//		d = Xb + Dy, Yb - Dx
-//		p = geklikt punt
+//		a = x1 - Dy, y1 + Dx
+//		b = x1 + Dy, y1 - Dx
+//		c = x2 - Dy, y2 + Dx
+//		d = x2 + Dy, y2 - Dx
+//		p = x,y; geklikt punt
 //		
 //		if opp abcd = (opp abp + opp bcp + opp cdp + opp dap) || een van de opp is nul
 //		dan ligt hij binnen het gebied 

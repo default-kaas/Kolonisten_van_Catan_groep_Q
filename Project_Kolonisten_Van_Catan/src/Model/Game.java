@@ -57,7 +57,7 @@ public class Game {
 				Color = "oranje";
 				break;
 			}
-			Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i, GameId), Color));
+			Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i, GameId), Color, PlayerDBInfo));
 			if (Players.get(i).getName().equals(userName)) {
 				Players.get(i).itsMe();
 			}
@@ -75,19 +75,19 @@ public class Game {
 	}
 
 	public void removeStreet() {
-		getMe().removeRoadResources();
+		getMe().removeRoadResources(GameId);
 	}
 
 	public void removeHouse() {
-		getMe().removeHouseResources();
+		getMe().removeHouseResources(GameId);
 	}
 
 	public void removeCity() {
-		getMe().removeCityResources();
+		getMe().removeCityResources(GameId);
 	}
 
 	public void removeDev() {
-		getMe().removeDevResources();
+		getMe().removeDevResources(GameId);
 	}
 
 	public ArrayList<Player> GetPlayers() {

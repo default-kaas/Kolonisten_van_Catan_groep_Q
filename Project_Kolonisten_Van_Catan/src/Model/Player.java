@@ -2,6 +2,8 @@ package Model;
 
 import java.util.ArrayList;
 
+import Database.PlayerDAO;
+
 public class Player {
 	private String Name;
 	private String Color;
@@ -12,16 +14,19 @@ public class Player {
 	private ArrayList<ResourceCards> Resources;
 	private int GameNumber;
 	private boolean hasThrown;
-	// private Database.PlayerDAO PlayerDAO;
 
+	// private Database.PlayerDAO PlayerDAO;
 	private ArrayList<ResourceCards> WoodStack;
 	private ArrayList<ResourceCards> WheatStack;
 	private ArrayList<ResourceCards> StoneStack;
 	private ArrayList<ResourceCards> OreStack;
 	private ArrayList<ResourceCards> WoolStack;
 
-	public Player(String Name, int PlayerID, String Color) {
+	private PlayerDAO playerDBInfo;
+
+	public Player(String Name, int PlayerID, String Color, PlayerDAO playerDBInfo) {
 		setArray();
+		this.playerDBInfo = playerDBInfo;
 		this.Name = setName(Name);
 		this.PlayerId = PlayerID;
 		this.Color = Color;
@@ -94,9 +99,10 @@ public class Player {
 
 	}
 
-	public void removeRoadResources() {
+	public void removeRoadResources(int gameId) {
 		for (int i = 0; i < WoodStack.size(); i++) {
 			if (i == 0) {
+				playerDBInfo.setPlayerResources(gameId, PlayerId, WoodStack.get(i).getResourceID());
 				WoodStack.remove(i);
 				break;
 			}
@@ -104,17 +110,18 @@ public class Player {
 
 		for (int i = 0; i < StoneStack.size(); i++) {
 			if (i == 0) {
+				playerDBInfo.setPlayerResources(gameId, PlayerId, StoneStack.get(i).getResourceID());
 				StoneStack.remove(i);
 				break;
 			}
 		}
-
 	}
 
-	public void removeHouseResources() {
+	public void removeHouseResources(int gameId) {
 
 		for (int i = 0; i < WoodStack.size(); i++) {
 			if (i == 0) {
+				playerDBInfo.setPlayerResources(gameId, PlayerId, WoodStack.get(i).getResourceID());
 				WoodStack.remove(i);
 				break;
 			}
@@ -122,6 +129,7 @@ public class Player {
 
 		for (int i = 0; i < StoneStack.size(); i++) {
 			if (i == 0) {
+				playerDBInfo.setPlayerResources(gameId, PlayerId, StoneStack.get(i).getResourceID());
 				StoneStack.remove(i);
 				break;
 			}
@@ -129,6 +137,7 @@ public class Player {
 
 		for (int i = 0; i < WoolStack.size(); i++) {
 			if (i == 0) {
+				playerDBInfo.setPlayerResources(gameId, PlayerId, WoolStack.get(i).getResourceID());
 				WoolStack.remove(i);
 				break;
 			}
@@ -136,6 +145,7 @@ public class Player {
 
 		for (int i = 0; i < WheatStack.size(); i++) {
 			if (i == 0) {
+				playerDBInfo.setPlayerResources(gameId, PlayerId, WheatStack.get(i).getResourceID());
 				WheatStack.remove(i);
 				break;
 			}
@@ -143,39 +153,44 @@ public class Player {
 
 	}
 
-	public void removeCityResources() {
+	public void removeCityResources(int gameId) {
 		int i = 0;
 		int x = 0;
 		while (i < 3) {
+			playerDBInfo.setPlayerResources(gameId, PlayerId, OreStack.get(0).getResourceID());
 			OreStack.remove(0);
 			i++;
 		}
 
 		while (x < 2) {
+			playerDBInfo.setPlayerResources(gameId, PlayerId, WheatStack.get(0).getResourceID());
 			WheatStack.remove(0);
 			x++;
 		}
 
 	}
 
-	public void removeDevResources() {
-		
+	public void removeDevResources(int gameId) {
+
 		for (int i = 0; i < WoolStack.size(); i++) {
 			if (i == 0) {
+				playerDBInfo.setPlayerResources(gameId, PlayerId, WoolStack.get(0).getResourceID());
 				WoolStack.remove(i);
 				break;
 			}
 		}
-		
+
 		for (int i = 0; i < OreStack.size(); i++) {
 			if (i == 0) {
+				playerDBInfo.setPlayerResources(gameId, PlayerId, OreStack.get(0).getResourceID());
 				OreStack.remove(i);
 				break;
 			}
 		}
-		
+
 		for (int i = 0; i < WoolStack.size(); i++) {
 			if (i == 0) {
+				playerDBInfo.setPlayerResources(gameId, PlayerId, WheatStack.get(0).getResourceID());
 				WheatStack.remove(i);
 				break;
 			}

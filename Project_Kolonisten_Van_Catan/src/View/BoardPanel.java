@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import Model.Board;
+import Model.Corner;
 import Model.Tile;
 
 public class BoardPanel extends JPanel {
@@ -34,29 +35,8 @@ public class BoardPanel extends JPanel {
 		g.setColor(new Color(1, 207, 203));
 		g.fillRect(0, 0, height, height);
 		ArrayList<Tile> Tiles = board.getTiles();
-		int mainCount = 0;
-		int x = 0;
-		int defaultx = 140;
-		int defaulty = (height / 2) - 23;
 		for (Tile tile : Tiles) {
-			Point centerpoint = tile.getCenterPoint(); /*Why does this exist?*/
-			switch (mainCount) {
-			case 3:
-			case 7:
-				x = 0;
-				defaultx += 100;
-				defaulty += 174;
-				break;
-			case 12:
-			case 16:
-				x = 0;
-				defaultx += 200;
-				break;
-			}
-			int middleX = defaultx + x * 100;
-			int middleY = defaulty - x * 174;
-			g.setColor(Color.black);
-			g.fillPolygon(getHexagon(middleX, middleY, 116));
+			ArrayList<Point> CornerPoints = tile.getInGameCornerPoints();
 
 			Color Wheat = Color.YELLOW;
 			Color Wood = new Color(0x99, 0x66, 0x33);
@@ -64,6 +44,7 @@ public class BoardPanel extends JPanel {
 			Color Ore = Color.LIGHT_GRAY;
 			Color Brick = new Color(0xAD, 0x33, 0x33);
 			Color Dessert = new Color(0xFF, 0xFF, 0xA9);
+			
 			switch (tile.getIdResourceType()) {
 			case 'B':
 				g.setColor(Brick);
@@ -83,15 +64,19 @@ public class BoardPanel extends JPanel {
 			case 'X':
 				g.setColor(Dessert);
 				break;
-
 			}
-			g.fillPolygon(getHexagon(middleX, middleY, 112));
-
 			
+			Polygon hexagon = new Polygon();
+			for (Point Corner : CornerPoints) {
+				hexagon.addPoint(Corner.x, Corner.y);
+			}
+
+			g.fillPolygon(hexagon);
+
 			g.setColor(Color.black);
-			g.fillOval(middleX - 20, middleY - 20, 40, 40);
+			g.fillOval(tile.getInGameCenterPoint().x - 20, tile.getInGameCenterPoint().y - 20, 40, 40);
 			g.setColor(Color.white);
-			g.fillOval(middleX - 19, middleY - 19, 38, 38);
+			g.fillOval(tile.getInGameCenterPoint().x - 19, tile.getInGameCenterPoint().y - 19, 38, 38);
 
 			int TileNumber = tile.getIdNumberChip();
 
@@ -114,11 +99,10 @@ public class BoardPanel extends JPanel {
 				number = "" + TileNumber;
 				break;
 			}
-			g.setFont(new Font("Arial", Font.BOLD, 16));
-			g.drawString(number, middleX-4, middleY+5);
 
-			x++;
-			mainCount++;
+			g.setFont(new Font("Arial", Font.BOLD, 16));
+			g.drawString(number, tile.getInGameCenterPoint().x - 4, tile.getInGameCenterPoint().y + 5);
+
 		}
 
 	}

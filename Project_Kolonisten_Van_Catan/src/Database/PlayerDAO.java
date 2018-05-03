@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Model.ResourceCards;
+
 public class PlayerDAO {
 	Connection m_Conn;
 
@@ -60,7 +62,7 @@ public class PlayerDAO {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select username from spel join speler on spel.grootste_hr_idspeler = speler.idspeler  where spel.idspel = " + gameId);
+			rs = stmt.executeQuery("select username from spel join speler on spel.langste_hr_idspeler = speler.idspeler  where spel.idspel = " + gameId);
 			rs.next();
 			String LargestRoute = rs.getString("username");
 			return LargestRoute;
@@ -71,8 +73,13 @@ public class PlayerDAO {
 
 	}
 	
-	
-	
-	
+	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idspel = " + gameId + " and idgrondstofkaart = '"+resourceID+"'";
+			statement.executeUpdate(QUERY);
+		} catch (SQLException e) {
+		}
+	}
 
 }

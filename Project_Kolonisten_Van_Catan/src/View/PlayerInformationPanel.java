@@ -18,6 +18,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon woolImage = new ImageIcon("images/Resources/sheep1.png");
 	private ImageIcon wheatImage = new ImageIcon("images/Resources/wheat1.png");
 	private ImageIcon knightImage = new ImageIcon("images/Other/chess.png");
+	private ImageIcon longestRoadImage = new ImageIcon("images/Other/road.png");
+	private ImageIcon knightAndRoad = new ImageIcon("images/Other/chessandroad.png");
 
 
 	// Trade button
@@ -129,34 +131,56 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		add(enemyTitle, c);
 
 		for (int i = 0; i < 4; i++) { // I'm retarded...- Danish Afzal
-			
-				if (controller.myTurn(i)) {
-					JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-							+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
-					turn.setForeground(Color.BLACK);
-					turn.setFont(new Font("Arial", Font.BOLD, 15));
-					c.insets = new Insets(0, 0, 0, 0);
-					c.anchor = GridBagConstraints.NORTHEAST;
-					c.gridx = 1;
-					c.gridy = i+1;
-					this.add(turn, c);
-				} else {
-					JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i)
-							+ " - " + "Aantal grondstoffen: " + controller.getPlayerResources(i));
-					notTurn.setForeground(Color.BLACK);
-					notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-					c.insets = new Insets(0, 0, 0, 0);
-					c.anchor = GridBagConstraints.NORTHEAST;
-					c.gridx = 1;
-					c.gridy = i+1;
-					this.add(notTurn, c);
+
+			if (controller.myTurn(i)) {
+				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+				if (controller.getPlayerName(i).equals(controller.checkArmy()) && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+					turn.setIcon(knightAndRoad);
+				
+				}else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+					turn.setIcon(longestRoadImage);
+				} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
+					turn.setIcon(knightImage);
 				}
+				turn.setForeground(Color.BLACK);
+				turn.setFont(new Font("Arial", Font.BOLD, 15));
+				c.insets = new Insets(0, 0, 0, 0);
+				c.anchor = GridBagConstraints.NORTHEAST;
+				c.gridx = 1;
+				c.gridy = i + 1;
+				this.add(turn, c);
+			} else {
+
+				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));
+				if (controller.getPlayerName(i).equals(controller.checkArmy()) && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+					notTurn.setIcon(knightAndRoad);
+				
+				}else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+					notTurn.setIcon(longestRoadImage);
+				} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
+					notTurn.setIcon(knightImage);
+				}
+				notTurn.setForeground(Color.BLACK);
+				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
+				c.insets = new Insets(0, 0, 0, 0);
+				c.anchor = GridBagConstraints.NORTHEAST;
+				c.gridx = 1;
+				c.gridy = i + 1;
+				this.add(notTurn, c);
 			}
+		}
+
 	}
-	
+
 	public void testRidder() {
-	System.out.println(controller.checkArmy());
-}
+		System.out.println(controller.checkArmy());
+	}
+
+	public void testRoad() {
+		System.out.println(controller.checkLongestRoad());
+	}
 
 	public void TradeButton() {
 		c.insets = new Insets(0, 0, 0, 100);
@@ -226,13 +250,12 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	}
 
-
 	public void getTradePanel() {
 		controller.getTradePanel();
 	}
 
 	@Override
-	protected void paintComponent(Graphics g) { 
+	protected void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
 
@@ -240,9 +263,17 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
 
-		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg"); //sets Panel Background.
+		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg"); // sets Panel Background.
 		JLabel thumb = new JLabel(icon);
 		thumb.setSize(width, height);
 		this.add(thumb);
+	}
+
+	public void ShowResources() {
+		String woodAmount = ": " + controller.getWoodAmount();
+		String woolAmount = ": " + controller.getWoolAmount();
+		String oreAmount = ": " + controller.getOreAmount();
+		String wheatAmount = ": " + controller.getWheatAmount();
+		String stoneAmount = ": " + controller.getStoneAmount();
 	}
 }

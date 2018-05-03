@@ -46,9 +46,11 @@ public class InviteController extends Observable implements Runnable {
 	public void run() {
 		boolean run = true;
 		while (run) {
+//			invitePanel.refreshPanel(false);
 			if (invite.getAcceptedPlayerAmount() == 3) {
 				run = false;
 			}
+			
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

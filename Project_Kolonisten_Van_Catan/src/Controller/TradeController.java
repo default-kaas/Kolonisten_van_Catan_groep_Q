@@ -55,6 +55,10 @@ public class TradeController {
 		tradeview.showFrame();
 	}
 	
+	public void setPlayerCards(int Card, int Amount) {
+		game.getPlayerDAO().addResources(game, game.getMe(), Card, Amount);
+	}
+	
 	
 }
 

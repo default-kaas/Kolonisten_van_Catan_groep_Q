@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Model.Game;
+import Model.Player;
 import Model.ResourceCards;
 
 public class PlayerDAO {
@@ -116,6 +118,10 @@ public class PlayerDAO {
 			statement.executeUpdate(QUERY);
 		} catch (SQLException e) {
 		}
+	}
+	
+	public void addResources (Game game, Player player, int card, int amount) {
+		
 	}
 
 }

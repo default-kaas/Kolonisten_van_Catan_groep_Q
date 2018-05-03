@@ -205,7 +205,62 @@ public class TradeView extends JFrame {
 				if(item.toString().equals("De Bank")) {
 					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4")) 
 						&& (their_woolt.getText().equals("1") || their_wheatt.getText().equals("1") || their_stonet.getText().equals("1") || their_woodt.getText().equals("1") || their_oret.getText().equals("1") )) {
-						JOptionPane.showMessageDialog(trade, "Je hebt successvol gehandeld met de bank!", "Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+						if ( (!your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty() && your_stonet.getText().isEmpty() && 
+							your_woodt.getText().isEmpty() && your_oret.getText().isEmpty() ) ||
+							( your_woolt.getText().isEmpty() && !your_wheatt.getText().isEmpty() && your_stonet.getText().isEmpty() && 
+							your_woodt.getText().isEmpty() && your_oret.getText().isEmpty() ) ||
+							( your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty() && !your_stonet.getText().isEmpty() && 
+							your_woodt.getText().isEmpty() && your_oret.getText().isEmpty() ) ||
+							( your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty() && your_stonet.getText().isEmpty() && 
+							!your_woodt.getText().isEmpty() && your_oret.getText().isEmpty() ) ||
+							( your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty() && your_stonet.getText().isEmpty() && 
+							your_woodt.getText().isEmpty() && !your_oret.getText().isEmpty() ) 
+							&&
+							( !their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty() && their_stonet.getText().isEmpty() && 
+							their_woodt.getText().isEmpty() && their_oret.getText().isEmpty() ) ||
+							( their_woolt.getText().isEmpty() && !their_wheatt.getText().isEmpty() && their_stonet.getText().isEmpty() && 
+							their_woodt.getText().isEmpty() && their_oret.getText().isEmpty() ) ||
+							( their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty() && !their_stonet.getText().isEmpty() && 
+							their_woodt.getText().isEmpty() && their_oret.getText().isEmpty() ) ||
+							( their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty() && their_stonet.getText().isEmpty() && 
+							!their_woodt.getText().isEmpty() && their_oret.getText().isEmpty() ) ||
+							( their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty() && their_stonet.getText().isEmpty() && 
+							their_woodt.getText().isEmpty() && !their_oret.getText().isEmpty() ) ) {
+								if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+									tc.setPlayerCards(1, -4);
+								}
+								if (your_wheatt.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
+									tc.setPlayerCards(2, -4);
+								}
+								if (your_stonet.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
+									tc.setPlayerCards(4, -4);
+								}
+								if (your_woodt.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
+									tc.setPlayerCards(3, -4);
+								}
+								if (your_oret.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
+									tc.setPlayerCards(5, -4);
+								}
+								if (their_woolt.getText().equals("1")) {
+									tc.setPlayerCards(1, 1);
+								}
+								if (their_wheatt.getText().equals("1")) {
+									tc.setPlayerCards(2, 1);
+								}
+								if (their_stonet.getText().equals("1")) {
+									tc.setPlayerCards(4, 1);
+								}
+								if (their_woodt.getText().equals("1")) {
+									tc.setPlayerCards(3, 1);
+								}
+								if (their_oret.getText().equals("1")) {
+									tc.setPlayerCards(5, 1);
+								}
+								JOptionPane.showMessageDialog(trade, "Je hebt successvol gehandeld met de bank!", "Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else {
+							JOptionPane.showMessageDialog(trade, "Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.", "Verkeerde input!", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 					else {
 						JOptionPane.showMessageDialog(trade, "Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.", "Verkeerde input!", JOptionPane.ERROR_MESSAGE);
@@ -222,8 +277,8 @@ public class TradeView extends JFrame {
 
 	private void setupFrame() {
 
+		//this.setUndecorated(true); raar dat het errors geeft, later even checken
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		/*this.setUndecorated(true);*/
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

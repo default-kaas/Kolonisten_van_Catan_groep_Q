@@ -2,6 +2,7 @@ package Controller;
 
 import java.sql.Connection;
 
+import Database.PlayerDAO;
 import Model.Game;
 import View.BoardPanel;
 import View.BuildPanel;
@@ -42,6 +43,10 @@ public class GameController implements Runnable {
 		playerInfoController.showTradeButton();
 		bouwPanelController.showButtons();
 		
+	}
+	
+	private PlayerDAO getPlayerDAO() {
+		return Game.getPlayerDAO();
 	}
 
 	private void runfirstRounds() {

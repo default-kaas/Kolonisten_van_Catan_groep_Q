@@ -76,6 +76,10 @@ public class PlayerInfoController {
 		return null;
 	}
 	
+	public int getBuildingPoints(int playerId) {
+		return playerDAO.playerPoints(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID());
+	}
+	
 
 	public boolean myTurn(int volgnr) {
 		if (game.getRound() == game.GetPlayers().get(volgnr).getPlayerID()) {

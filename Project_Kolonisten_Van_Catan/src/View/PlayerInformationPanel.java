@@ -118,6 +118,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(wheat, c);
 
 	}
+	
 
 	public void allInfo() {
 		JLabel enemyTitle = new JLabel("Tegenstanders Info");
@@ -134,7 +135,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " Overwinningspunten excl. Geb. Punten: " + controller.getBuildingPoints(i) + " - bezig met beurt!");
 				if (controller.getPlayerName(i).equals(controller.checkArmy()) && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					turn.setIcon(knightAndRoad);
 				
@@ -153,7 +154,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			} else {
 
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));
+						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " Overwinningspunten excl. Geb. Punten: " + controller.getBuildingPoints(i));
 				if (controller.getPlayerName(i).equals(controller.checkArmy()) && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					notTurn.setIcon(knightAndRoad);
 				
@@ -181,6 +182,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	public void testRoad() {
 		System.out.println(controller.checkLongestRoad());
 	}
+
 
 	public void TradeButton() {
 		c.insets = new Insets(0, 0, 0, 100);

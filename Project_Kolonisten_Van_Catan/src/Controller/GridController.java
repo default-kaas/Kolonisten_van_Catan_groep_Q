@@ -33,27 +33,33 @@ public class GridController {
 	   private int location;
 	 * 
 	 * if statement checken of x,y er tussen valt
-	 * 
-	 * whichKind(x1, y1, x2, y2);
-	 * if(kind == 1){ 
+	 * if(x1 == x2){ 
 		 * if(x>(x1-5) && x<(x2+5) && y>(y1-5) && y<y2+5){
 		 * 	location = i;
 		 * 	counter++;
 		 * }
-	 * } else if(kind == 2){
-	 * 		ZWNO niet goed
-	 * 			if(x>(x1-5) && x<(x2+5) && y>(y1-5) && y<y2+5){
-	 * 				location = i;
-	 * 				counter++;
-	 * 			}
-	 * 	} else if(kind == 3){
-	 * 		NWZO niet goed
-	 * 			if(x>(x1-5) && x<(x2+5) && y>(y1-5) && y<y2+5){
-	 * 				location = i;
-	 * 				counter++;
-	 * 			}
-	 * 		}
+		VOOR Schijne Zijde
+//		Xa en Xb zijn de x'en van de hoekpunten
+//		Ya en Yb zijn de y'en van de hoekpunten
+//		W is de breedte
+//		
+//		Dx= Xb - Xa
+//		Dy= Yb - Ya
+//		D= sqrt(Dx * Dx + Dy * Dy)
+//		Dx= (0.5 * W * Dx) / D
+//		Dy= (0.5 * W * Dy) / D
+//
+//		dit zijn de hoekpunten
+//		a = Xa - Dy, Ya + Dx
+//		b = Xa + Dy, Ya - Dx
+//		c = Xb - Dy, Yb + Dx
+//		d = Xb + Dy, Yb - Dx
+//		p = geklikt punt
+//		
+//		if opp abcd = (opp abp + opp bcp + opp cdp + opp dap) || een van de opp is nul
+//		dan ligt hij binnen het gebied 
 	 * }
+	 * 
 	 * 
 	 * if(counter = 1){
 	 * 		dan heb je de straat
@@ -78,32 +84,6 @@ public class GridController {
 	 * 		}
 	 * }
 	 */
-
-	// which kind of line
-	public void whichKind(int xh1, int yh1, int xh2, int yh2) {
-
-		if (xh1 == xh2) {
-			// recht
-			kind = 1;
-		}
-		if (yh1 < yh2) {
-			if (xh1 > xh2) {
-				// ZWNO
-				kind = 2;
-			} else {
-				// NWZO
-				kind = 3;
-			}
-		} else {
-			if (xh2 > xh1) {
-				// ZWNO
-				kind = 2;
-			} else {
-				// NWZO
-				kind = 3;
-			}
-		}
-	}
 
 	public void showStreets() {
 //	pak alle mogelijke straten

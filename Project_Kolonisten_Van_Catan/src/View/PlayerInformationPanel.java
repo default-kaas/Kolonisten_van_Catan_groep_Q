@@ -19,6 +19,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon wheatImage = new ImageIcon("images/Resources/wheat1.png");
 	private ImageIcon knightImage = new ImageIcon("images/Other/chess.png");
 	private ImageIcon longestRoadImage = new ImageIcon("images/Other/road.png");
+	private ImageIcon knightAndRoad = new ImageIcon("images/Other/chessandroad.png");
+
 
 	// Trade button
 	private JButton trade = new JButton("Handelspaneel");
@@ -133,10 +135,13 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
-				if (controller.getPlayerName(i).equals(controller.checkArmy())) {
-					turn.setIcon(knightImage);
+				if (controller.getPlayerName(i).equals(controller.checkArmy()) && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+					turn.setIcon(knightAndRoad);
+				
 				}else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					turn.setIcon(longestRoadImage);
+				} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
+					turn.setIcon(knightImage);
 				}
 				turn.setForeground(Color.BLACK);
 				turn.setFont(new Font("Arial", Font.BOLD, 15));
@@ -149,10 +154,13 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
 						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));
-				if (controller.getPlayerName(i).equals(controller.checkArmy())) {
-					notTurn.setIcon(knightImage);
+				if (controller.getPlayerName(i).equals(controller.checkArmy()) && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+					notTurn.setIcon(knightAndRoad);
+				
 				}else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					notTurn.setIcon(longestRoadImage);
+				} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
+					notTurn.setIcon(knightImage);
 				}
 				notTurn.setForeground(Color.BLACK);
 				notTurn.setFont(new Font("Arial", Font.BOLD, 15));

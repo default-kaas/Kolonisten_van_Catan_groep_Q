@@ -70,7 +70,7 @@ public class BoardController {
 				corner.setPoint(cornPoint);
 				corner.setTilePoints(returnTilesCenters(corner.getPoint(),tiles));
 				corner.setLinePoints(returnCorners(corner.getPoint(),tiles));
-				//corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
+				corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
 				//corner.setInGameTilePoints();
 				//corner.setInGameLinePoints();
 				corners.add(corner);
@@ -312,13 +312,14 @@ public class BoardController {
 		return arrayListInGamePoints;
 	}
 	// this returns the inGamePoint of corner 
-	/*private Point returnInGamePoint(Point databasePoint,ArrayList<Tile> tiles) {
+	private Point returnInGamePoint(Point databasePoint,ArrayList<Tile> tiles) {
 		ArrayList<Point> inGameCornPoints = new ArrayList<Point>();
 		int iteration = 0;
+		boolean matchIsFound = false;
 		for(Tile tile: tiles) {
 			ArrayList<Point> tileCornerPoints = new ArrayList<Point>();
 			tileCornerPoints.addAll(tile.getCornerPoints());
-			boolean matchIsFound = false;
+			
 			int matchI = -1;
 			for(Point point: tileCornerPoints) {
 				int i =0;
@@ -332,13 +333,17 @@ public class BoardController {
 			}
 			if(matchIsFound){
 				inGameCornPoints.addAll(tile.getInGameCornerPoints());
-				System.out.println(inGameCornPoints);
 				iteration = matchI;
 				break;
 			}
 		}
-		Point inGamePoint = new Point();
-		inGamePoint = inGameCornPoints.get(iteration);
-		return inGamePoint;
-	}*/
+		
+		if(matchIsFound) {
+			Point inGamePoint = new Point();
+			inGamePoint = inGameCornPoints.get(iteration);
+			return inGamePoint;
+		}else {
+			return null;
+		}
+	}
 }

@@ -5,9 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import Model.Game;
 import Model.Player;
-import Model.ResourceCards;
 
 public class PlayerDAO {
 	Connection m_Conn;
@@ -119,34 +117,15 @@ public class PlayerDAO {
 		} catch (SQLException e) {
 		}
 	}
-	
-	public void addResources (Game game, Player playerid, int card, int amount) {
-			try {
-				// b=baksteen, w=wol, h=hout, e=erts, g=graan
-				// 1=w, 2=g, 3=h, 4=b, 5=e
-				Statement statement = m_Conn.createStatement();
-				if (card == 1) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler IS NULL AND 'w%' LIMIT "+amount;
-					statement.executeUpdate(QUERY);
-				}
-				if (card == 2) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler IS NULL AND 'g%' LIMIT "+amount;
-					statement.executeUpdate(QUERY);
-				}
-				if (card == 3) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler IS NULL AND 'h%' LIMIT "+amount;
-					statement.executeUpdate(QUERY);
-				}
-				if (card == 4) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler IS NULL AND 'b%' LIMIT "+amount;
-					statement.executeUpdate(QUERY);
-				}
-				if (card == 5) {
-					final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idspeler IS NULL AND 'e%' LIMIT 1";
-					statement.executeUpdate(QUERY);
-				}
-			} catch (SQLException e) {
-			}
+
+	public void addResources(Player playerid, String card, int amount) {
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid
+					+ " WHERE idspeler IS NULL AND '" + card + "%' LIMIT " + amount;
+			statement.executeUpdate(QUERY);
+		} catch (SQLException e) {
+		}
 	}
 
 }

@@ -232,35 +232,37 @@ public class TradeView extends JFrame {
 								( their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty() && their_stonet.getText().isEmpty() && 
 								their_woodt.getText().isEmpty() && !their_oret.getText().isEmpty() ) ) {
 									//onderstaande if statements: hier wordt actie ondernomen en de handel met de bank (4x1) afgerond.
+								// b=baksteen, w=wol, h=hout, e=erts, g=graan
+								// 1=w, 2=g, 3=h, 4=b, 5=e
 									if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
-										tc.setPlayerCards(1, -4);
+										tc.setPlayerCards("w", -4);
 									}
 									if (your_wheatt.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
-										tc.setPlayerCards(2, -4);
+										tc.setPlayerCards("g", -4);
 									}
 									if (your_stonet.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
-										tc.setPlayerCards(4, -4);
+										tc.setPlayerCards("h", -4);
 									}
 									if (your_woodt.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
-										tc.setPlayerCards(3, -4);
+										tc.setPlayerCards("b", -4);
 									}
 									if (your_oret.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
-										tc.setPlayerCards(5, -4);
+										tc.setPlayerCards("e", -4);
 									}
 									if (their_woolt.getText().equals("1")) {
-										tc.setPlayerCards(1, 1);
+										tc.setPlayerCards("w", 1);
 									}
 									if (their_wheatt.getText().equals("1")) {
-										tc.setPlayerCards(2, 1);
+										tc.setPlayerCards("g", 1);
 									}
 									if (their_stonet.getText().equals("1")) {
-										tc.setPlayerCards(4, 1);
+										tc.setPlayerCards("h", 1);
 									}
 									if (their_woodt.getText().equals("1")) {
-										tc.setPlayerCards(3, 1);
+										tc.setPlayerCards("b", 1);
 									}
 									if (their_oret.getText().equals("1")) {
-										tc.setPlayerCards(5, 1);
+										tc.setPlayerCards("e", 1);
 									}
 									JOptionPane.showMessageDialog(trade, "Je hebt successvol gehandeld met de bank!", "Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
 							}

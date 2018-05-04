@@ -1,10 +1,9 @@
 /*Bugs waar ik van op de hoogte ben (to-do listje):
 - De TradeInputLimit werkt niet.
-- Er wordt gecheckt of dat de bank de gevraagde resources heeft, maar er wordt nog niks mee gedaan.
-- Er zijn nog wat kleine bugs die gefixt moeten worden m.b.t. traden met de bank.
 - this.setUndecorated; geeft een error, uitzoeken waarom.
 - Insets moet worden veranderd indien mogelijk. 
-- Ruilen met een speler kan nog niet, maar ik heb een idee hoe dit niet al te moeilijk kan worden gemaakt. */
+- Ruilen met een speler kan nog niet, maar ik heb een idee hoe dit niet al te moeilijk kan worden gemaakt. 
+- Verder zijn er nog wat kleine bugs die gefixt moeten worden m.b.t. traden met de bank. Testen we later. */
 
 package View;
 
@@ -259,23 +258,33 @@ public class TradeView extends JFrame {
 									}
 									if (their_woolt.getText().equals("1")) {
 										tc.doesBankHave("w");
-										tc.setPlayerCards("w", 1);
+										if (bank_has_card_available == true) {
+											tc.setPlayerCards("w", 1);
+										}
 									}
 									if (their_wheatt.getText().equals("1")) {
 										tc.doesBankHave("g");
-										tc.setPlayerCards("g", 1);
+										if (bank_has_card_available == true) {
+											tc.setPlayerCards("g", 1);
+										}
 									}
 									if (their_stonet.getText().equals("1")) {
 										tc.doesBankHave("h");
-										tc.setPlayerCards("h", 1);
+										if (bank_has_card_available == true) {
+											tc.setPlayerCards("h", 1);
+										}
 									}
 									if (their_woodt.getText().equals("1")) {
 										tc.doesBankHave("b");
-										tc.setPlayerCards("b", 1);
+										if (bank_has_card_available == true) {
+											tc.setPlayerCards("b", 1);
+										}
 									}
 									if (their_oret.getText().equals("1")) {
 										tc.doesBankHave("e");
-										tc.setPlayerCards("e", 1);
+										if (bank_has_card_available == true) {
+											tc.setPlayerCards("e", 1);
+										}
 									}
 									JOptionPane.showMessageDialog(trade, "Je hebt successvol gehandeld met de bank!", "Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
 							}
@@ -297,6 +306,17 @@ public class TradeView extends JFrame {
 		
 		setupFrame();
 		
+	}
+	
+	boolean bank_has_card_available = false;
+	
+	public void setAvailability(boolean availability) {
+		if (availability == true) {
+			this.bank_has_card_available = true;
+		}
+		if (availability == false) {
+			this.bank_has_card_available = false;			
+		}
 	}
 
 	private void setupFrame() {

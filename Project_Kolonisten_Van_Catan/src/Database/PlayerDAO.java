@@ -129,6 +129,12 @@ public class PlayerDAO {
 		}
 	}
 	
+	boolean yes = false;
+	
+	public boolean getyes() {
+		return yes;
+	}
+	
 	public boolean checkBank(int gameID, String card) {
 		try {
 			Statement stmt = m_Conn.createStatement();
@@ -136,9 +142,11 @@ public class PlayerDAO {
 			rs = stmt.executeQuery(
 					"SELECT idspeler FROM spelergrondstofkaart WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel IS "+gameID+" LIMIT 1");
 			rs.next();
+			yes = true;
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			yes = false;
 			return false;
 		}
 	}

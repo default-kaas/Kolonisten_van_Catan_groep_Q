@@ -119,13 +119,27 @@ public class PlayerDAO {
 		}
 	}
 
-	public void addResources(Game gameid, Player playerid, String card, int amount) {
+	public void addResources(int gameid, Player playerid, String card, int amount) {
 		try {
 			Statement statement = m_Conn.createStatement();
 			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid
-					+ " WHERE idspeler IS NULL AND '" + card + "%' AND idspel IS "+ gameid +" LIMIT " + amount;
+					+ " WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel IS "+ gameid +" LIMIT " + amount;
 			statement.executeUpdate(QUERY);
 		} catch (SQLException e) {
+		}
+	}
+	
+	public boolean checkBank(int gameID, String card) {
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"SELECT idspeler FROM spelergrondstofkaart WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel IS "+gameID+" LIMIT 1");
+			rs.next();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return false;
 		}
 	}
 

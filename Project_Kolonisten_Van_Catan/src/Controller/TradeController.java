@@ -56,7 +56,11 @@ public class TradeController {
 	}
 	
 	public void setPlayerCards(String Card, int Amount) {
-		game.getPlayerDAO().addResources(game, game.getMe(), Card, Amount);
+		game.getPlayerDAO().addResources(game.getGameID(), game.getMe(), Card, Amount);
+	}
+	
+	public void doesBankHave(String Card) {
+		game.getPlayerDAO().checkBank(game.getGameID(), Card);
 	}
 	
 	

@@ -1,3 +1,11 @@
+/*Bugs waar ik van op de hoogte ben (to-do listje):
+- De TradeInputLimit werkt niet.
+- Er wordt gecheckt of dat de bank de gevraagde resources heeft, maar er wordt nog niks mee gedaan.
+- Er zijn nog wat kleine bugs die gefixt moeten worden m.b.t. traden met de bank.
+- this.setUndecorated; geeft een error, uitzoeken waarom.
+- Insets moet worden veranderd indien mogelijk. 
+- Ruilen met een speler kan nog niet, maar ik heb een idee hoe dit niet al te moeilijk kan worden gemaakt. */
+
 package View;
 
 import java.awt.Color;
@@ -161,8 +169,6 @@ public class TradeView extends JFrame {
 		c.insets = new Insets(280, 0, 0, 0);
 		trade.add(cb, c);
 		
-		TradeNoLetters tnl = new TradeNoLetters();
-		
 		your_woolt.setDocument(new TradeInputLimit(2));
 		your_wheatt.setDocument(new TradeInputLimit(2)); 
 		your_woodt.setDocument(new TradeInputLimit(2));
@@ -173,6 +179,8 @@ public class TradeView extends JFrame {
 		their_woodt.setDocument(new TradeInputLimit(2));
 		their_stonet.setDocument(new TradeInputLimit(2));
 		their_oret.setDocument(new TradeInputLimit(2));
+		
+		TradeNoLetters tnl = new TradeNoLetters();
 		PlainDocument doc = (PlainDocument) your_woolt.getDocument();
 	    doc.setDocumentFilter(tnl);
 		PlainDocument doc2 = (PlainDocument) your_wheatt.getDocument();
@@ -206,10 +214,10 @@ public class TradeView extends JFrame {
 					//het volgende spreekt voor zich.
 					boolean er_bestaan_nog_geen_havens_dus_is_het_voor_nu_alleen_nog_maar_4x1 = true;
 					if (er_bestaan_nog_geen_havens_dus_is_het_voor_nu_alleen_nog_maar_4x1 == true) {
-						//if statement hieronder: Kijken of er aan beide kanten iets is ingevuld.
+						//if statement hieronder: Kijken of er links een 4 en rechts een 1 is ingevuld.
 						if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4")) 
 							&& (their_woolt.getText().equals("1") || their_wheatt.getText().equals("1") || their_stonet.getText().equals("1") || their_woodt.getText().equals("1") || their_oret.getText().equals("1") )) {
-							//if statement hieronder: Dit is een lange. Ik weet het. Maar hier wordt strikt gecontrolleerd of dat er aan BEIDE kanten precies één JTextField is ingevuld.
+							//if statement hieronder: Hier wordt strikt gecontrolleerd of dat er aan BEIDE kanten precies één JTextField is ingevuld.
 							if ( (!your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty() && your_stonet.getText().isEmpty() && 
 								your_woodt.getText().isEmpty() && your_oret.getText().isEmpty() ) ||
 								( your_woolt.getText().isEmpty() && !your_wheatt.getText().isEmpty() && your_stonet.getText().isEmpty() && 
@@ -237,31 +245,36 @@ public class TradeView extends JFrame {
 									if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
 										tc.setPlayerCards("w", -4);
 									}
-									if (your_wheatt.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
+									if (your_wheatt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
 										tc.setPlayerCards("g", -4);
 									}
-									if (your_stonet.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
+									if (your_stonet.getText().equals("4") && tc.getPlayerCards(1) > 4) {
 										tc.setPlayerCards("h", -4);
 									}
-									if (your_woodt.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
+									if (your_woodt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
 										tc.setPlayerCards("b", -4);
 									}
-									if (your_oret.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
+									if (your_oret.getText().equals("4") && tc.getPlayerCards(1) > 4) {
 										tc.setPlayerCards("e", -4);
 									}
 									if (their_woolt.getText().equals("1")) {
+										tc.doesBankHave("w");
 										tc.setPlayerCards("w", 1);
 									}
 									if (their_wheatt.getText().equals("1")) {
+										tc.doesBankHave("g");
 										tc.setPlayerCards("g", 1);
 									}
 									if (their_stonet.getText().equals("1")) {
+										tc.doesBankHave("h");
 										tc.setPlayerCards("h", 1);
 									}
 									if (their_woodt.getText().equals("1")) {
+										tc.doesBankHave("b");
 										tc.setPlayerCards("b", 1);
 									}
 									if (their_oret.getText().equals("1")) {
+										tc.doesBankHave("e");
 										tc.setPlayerCards("e", 1);
 									}
 									JOptionPane.showMessageDialog(trade, "Je hebt successvol gehandeld met de bank!", "Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
@@ -269,6 +282,8 @@ public class TradeView extends JFrame {
 							else {
 								JOptionPane.showMessageDialog(trade, "Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.", "Verkeerde input!", JOptionPane.ERROR_MESSAGE);
 							}
+						} else {
+							JOptionPane.showMessageDialog(trade, "Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.", "Verkeerde input!", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					else {
@@ -286,7 +301,7 @@ public class TradeView extends JFrame {
 
 	private void setupFrame() {
 
-		//this.setUndecorated(true); raar dat het errors geeft, later even checken
+		this.setUndecorated(true); //raar dat het errors geeft, checken waarom.
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
 		this.setLocationRelativeTo(null);

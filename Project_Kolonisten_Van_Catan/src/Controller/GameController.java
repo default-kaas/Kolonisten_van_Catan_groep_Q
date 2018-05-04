@@ -44,10 +44,6 @@ public class GameController implements Runnable {
 		bouwPanelController.showButtons();
 		
 	}
-	
-	private PlayerDAO getPlayerDAO() {
-		return Game.getPlayerDAO();
-	}
 
 	private void runfirstRounds() {
 		// TODO Auto-generated method stub

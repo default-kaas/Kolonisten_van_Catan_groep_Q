@@ -56,7 +56,7 @@ public class TradeController {
 	}
 	
 	public void setPlayerCards(String Card, int Amount) {
-		game.getPlayerDAO().addResources(game.getMe(), Card, Amount);
+		game.getPlayerDAO().addResources(game, game.getMe(), Card, Amount);
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Model.Game;
 import Model.Player;
 
 public class PlayerDAO {
@@ -118,11 +119,11 @@ public class PlayerDAO {
 		}
 	}
 
-	public void addResources(Player playerid, String card, int amount) {
+	public void addResources(Game gameid, Player playerid, String card, int amount) {
 		try {
 			Statement statement = m_Conn.createStatement();
 			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid
-					+ " WHERE idspeler IS NULL AND '" + card + "%' LIMIT " + amount;
+					+ " WHERE idspeler IS NULL AND '" + card + "%' AND idspel IS "+ gameid +" LIMIT " + amount;
 			statement.executeUpdate(QUERY);
 		} catch (SQLException e) {
 		}

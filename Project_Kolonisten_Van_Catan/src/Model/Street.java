@@ -2,7 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Line {
+public class Street {
 	private ArrayList<Corner> cornerPoints = new ArrayList<Corner>();
 	
 	public ArrayList<Corner> getCornerPoints() {

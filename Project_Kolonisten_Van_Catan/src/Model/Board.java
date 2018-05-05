@@ -9,7 +9,7 @@ import Database.BoardDAO;
 public class Board {
 	private ArrayList<Tile> tiles = new ArrayList<Tile>();
 	private ArrayList<Corner> corners = new ArrayList<Corner>();
-	private ArrayList<Line> lines = new ArrayList<Line>();
+	private ArrayList<Street> lines = new ArrayList<Street>();
 	
 	private BoardDAO boardDOA;
 	private Game game;

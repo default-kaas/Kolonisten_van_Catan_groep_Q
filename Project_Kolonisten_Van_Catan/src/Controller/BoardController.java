@@ -9,13 +9,11 @@ import java.awt.Toolkit;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import javax.sound.sampled.Line;
-
 import Model.Board;
 import Model.Corner;
 import Model.Game;
 import Model.Tile;
-import Model.Line;
+import Model.Street;
 import View.BoardPanel;
 
 public class BoardController {
@@ -51,7 +49,7 @@ public class BoardController {
 		// this is to create the values that are going to get returend to the board
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		ArrayList<Corner> corners = new ArrayList<Corner>();
-		ArrayList<Line> lines = new ArrayList<Line>();
+		ArrayList<Street> Streets = new ArrayList<Street>();
 		// this loop will create all tiles with their tile points
 			for (int i = 0; i < arrayListTileCenter.size(); i++) {
 				// this to get the tile centerpoint for the calculation for the other points
@@ -82,19 +80,19 @@ public class BoardController {
 				corner.setLinePoints(returnCorners(corner.getPoint(),tiles));
 				corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
 				corner.setInGameTilePoints(returnInGameTilePoints(corner.getPoint(),tiles));
-				corner.setInGameLinePoints(returnInGameLinePoints(corner.getInGamePoint(),tiles,heightOfTile));
+				corner.setInGameLinePoints(returnInGameStreetPoints(corner.getInGamePoint(),tiles,heightOfTile));
 				corners.add(corner);
 			}
-		// this loop wil create the lines
+		// this loop wil create the Streets
 			for(Corner corner: corners) {
 				
 			//	System.out.println(corner.getPoint());////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			//	System.out.println(corner.getInGameTilePoints());//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			//	System.out.println(corner.getInGamePoint());//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//	System.out.println(corner.getInGameLinePoints());/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//	System.out.println(corner.getInGameStreetPoints());/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				// get point
-				// get line points
-				// set corner object in line object
+				// get Street points
+				// set corner object in Street object
 			}
 		board.setTiles(tiles);
 		board.setCorners(corners);
@@ -389,8 +387,8 @@ public class BoardController {
 			return null;
 		}
 	}
-	// this returns the inGameLinePoints
-	private ArrayList<Point> returnInGameLinePoints(Point inGamePoint,ArrayList<Tile> tiles,int h){
+	// this returns the inGameStreetPoints
+	private ArrayList<Point> returnInGameStreetPoints(Point inGamePoint,ArrayList<Tile> tiles,int h){
 		ArrayList<Point> arrayListInGamePoints = new ArrayList<Point>();
 		double a;
 		for (int i = 0; i < 6; i++) {
@@ -416,12 +414,12 @@ public class BoardController {
 			return null;
 		}
 	}
-	private ArrayList<Line> createLine(ArrayList<Corner> corners,ArrayList<Line> lines, Corner corner) {
-		ArrayList<Line> newLines = new ArrayList<Line>();
-		ArrayList<Point> cornerLinePoints = new ArrayList<Point>();
-		cornerLinePoints.addAll(corner.getLinePoints());
+	private ArrayList<Street> createStreet(ArrayList<Corner> corners,ArrayList<Street> Streets, Corner corner) {
+		ArrayList<Street> newStreets = new ArrayList<Street>();
+		ArrayList<Point> cornerStreetPoints = new ArrayList<Point>();
+		cornerStreetPoints.addAll(corner.getLinePoints());
 		for(Corner otherCorner: corners) {
-			Line line = new Line();
+			Street Street = new Street();
 			
 		}
 		return null;

@@ -21,7 +21,6 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon longestRoadImage = new ImageIcon("images/Other/road.png");
 	private ImageIcon knightAndRoad = new ImageIcon("images/Other/chessandroad.png");
 
-
 	// Trade button
 	private JButton trade = new JButton("Handelspaneel");
 
@@ -130,11 +129,11 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.gridy = 0;
 		add(enemyTitle, c);
 
-		for (int i = 0; i < 4; i++) { // I'm retarded...- Danish Afzal
+		for (int i = 0; i < 4; i++) { //Prints all user info (Color, Name, Resource Amount and Points
 
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i) + " - bezig met zijn beurt!");
+						+ "Grondstoffen: " + controller.getPlayerResources(i) + " - "+  System.lineSeparator() + " Overwinningspunten: " + controller.getBuildingPoints(i) +   " - bezig met beurt!");
 				if (controller.getPlayerName(i).equals(controller.checkArmy()) && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					turn.setIcon(knightAndRoad);
 				
@@ -153,7 +152,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			} else {
 
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Aantal grondstoffen: " + controller.getPlayerResources(i));
+						+ "Grondstoffen: " + controller.getPlayerResources(i)  + " - "+ " Overwinningspunten: " + controller.getBuildingPoints(i));
 				if (controller.getPlayerName(i).equals(controller.checkArmy()) && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					notTurn.setIcon(knightAndRoad);
 				

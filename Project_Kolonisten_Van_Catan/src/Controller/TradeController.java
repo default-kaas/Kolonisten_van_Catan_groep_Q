@@ -55,6 +55,24 @@ public class TradeController {
 		tradeview.showFrame();
 	}
 	
+	public void setPlayerCards(String Card, int Amount) {
+		game.getPlayerDAO().addResources(game.getGameID(), game.getMe(), Card, Amount);
+	}
+	
+	public void doesBankHave(String Card) {
+		game.getPlayerDAO().checkBank(game.getGameID(), Card);
+		getBoolean();
+	}
+	
+	public void getBoolean() {
+		if (game.getPlayerDAO().getyes() == true) {
+			tradeview.setAvailability(true);
+		}
+		if (game.getPlayerDAO().getyes() == false) {
+			tradeview.setAvailability(false);			
+		}
+	}
+	
 	
 }
 

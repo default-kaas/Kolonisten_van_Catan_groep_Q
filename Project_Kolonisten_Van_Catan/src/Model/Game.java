@@ -103,6 +103,10 @@ public class Game {
 		 int sum = stone + wood + wheat + whool + ore;
 		 return sum;
 	}
+	
+	public PlayerDAO getPlayerDAO() {
+		return PlayerDBInfo;
+	}
 
 	public int getRound() {
 		return PlayersRound;

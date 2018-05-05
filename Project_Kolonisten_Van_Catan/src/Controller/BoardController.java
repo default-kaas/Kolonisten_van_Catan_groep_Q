@@ -15,6 +15,7 @@ import Model.Board;
 import Model.Corner;
 import Model.Game;
 import Model.Tile;
+import Model.Line;
 import View.BoardPanel;
 
 public class BoardController {
@@ -50,11 +51,11 @@ public class BoardController {
 		// this is to create the values that are going to get returend to the board
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		ArrayList<Corner> corners = new ArrayList<Corner>();
+		ArrayList<Line> lines = new ArrayList<Line>();
 		// this loop will create all tiles with their tile points
 			for (int i = 0; i < arrayListTileCenter.size(); i++) {
 				// this to get the tile centerpoint for the calculation for the other points
 				Point tileCenter = new Point();
-		//		System.out.println(i);/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				tileCenter.setLocation(arrayListTileCenter.get(i));
 				Tile tile = new Tile();
 				tile.setTileID(arrayListIdTile.get(i));
@@ -64,16 +65,15 @@ public class BoardController {
 				tile.setCornerPoints(returnTileCornPoints(tile.getCenterPoint()));
 				tile.setRobber(hasRobber(tile.getTileID(),roberTileId));
 				tile.setInGameCenterPoint(returnInGameCenterPointTileInGame(tile.getTileID()));
-		//		System.out.println(tile.getInGameCenterPoint());/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				tile.setInGameCornerPoints(returnInGameCornerPointsOfTile(tile.getInGameCenterPoint(),heightOfTile));
-		//		System.out.println(tile.getInGameCornerPoints());/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				tiles.add(tile);
 			}
+		// this part is about creating the all the points also known as the corners of the board
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
 		arrayListLocation.addAll(board.getBoardDAOCornerPointsFromDataBase(gameNumber));
 		// this loop will create all corners
 			for(int i =0; i<arrayListLocation.size();i++) {
-		//		System.out.println(i);/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				System.out.println(i);
 				Point cornPoint = new Point();
 				cornPoint.setLocation(arrayListLocation.get(i));
 				Corner corner = new Corner();
@@ -82,8 +82,19 @@ public class BoardController {
 				corner.setLinePoints(returnCorners(corner.getPoint(),tiles));
 				corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
 				corner.setInGameTilePoints(returnInGameTilePoints(corner.getPoint(),tiles));
-				corner.setInGameLinePoints(returnInGameLinePoints(corner.getPoint(),tiles,heightOfTile));
+				corner.setInGameLinePoints(returnInGameLinePoints(corner.getInGamePoint(),tiles,heightOfTile));
 				corners.add(corner);
+			}
+		// this loop wil create the lines
+			for(Corner corner: corners) {
+				
+			//	System.out.println(corner.getPoint());////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//	System.out.println(corner.getInGameTilePoints());//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//	System.out.println(corner.getInGamePoint());//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//	System.out.println(corner.getInGameLinePoints());/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				// get point
+				// get line points
+				// set corner object in line object
 			}
 		board.setTiles(tiles);
 		board.setCorners(corners);
@@ -389,8 +400,12 @@ public class BoardController {
 				ArrayList<Point> tileCornerPoints = new ArrayList<Point>();
 				tileCornerPoints.addAll(tile.getInGameCornerPoints());
 				for(Point cornerPoint: tileCornerPoints) {
+				//	System.out.println("Gets in this for loop");////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				//	System.out.println("CornerPoint: "+cornerPoint.getLocation());
+				//	System.out.println("point: "+ point.getLocation());
 					if(cornerPoint.getX()==point.getX()&&cornerPoint.getY()==point.getY()) {
 						arrayListInGamePoints.add(point);
+				//		System.out.println("Gets in this if");////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					}
 				}
 			}
@@ -400,5 +415,15 @@ public class BoardController {
 		}else {
 			return null;
 		}
+	}
+	private ArrayList<Line> createLine(ArrayList<Corner> corners,ArrayList<Line> lines, Corner corner) {
+		ArrayList<Line> newLines = new ArrayList<Line>();
+		ArrayList<Point> cornerLinePoints = new ArrayList<Point>();
+		cornerLinePoints.addAll(corner.getLinePoints());
+		for(Corner otherCorner: corners) {
+			Line line = new Line();
+			
+		}
+		return null;
 	}
 }

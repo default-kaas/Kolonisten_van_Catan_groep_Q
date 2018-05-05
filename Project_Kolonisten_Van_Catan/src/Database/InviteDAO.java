@@ -42,7 +42,6 @@ public class InviteDAO {
 			ResultSet rs = statement.executeQuery(QUERY);
 			rs.next();
 			int x = rs.getInt("volgnr");
-			System.out.println(x);
 			return x;
 		} catch (SQLException e) {
 		}

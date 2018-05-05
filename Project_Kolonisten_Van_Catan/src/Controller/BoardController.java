@@ -80,7 +80,7 @@ public class BoardController {
 				corner.setLinePoints(returnCorners(corner.getPoint(),tiles));
 				corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
 				corner.setInGameTilePoints(returnInGameTilePoints(corner.getPoint(),tiles));
-				corner.setInGameLinePoints(returnInGameStreetPoints(corner.getInGamePoint(),tiles,heightOfTile));
+//				corner.setInGameLinePoints(returnInGameStreetPoints(corner.getInGamePoint(),tiles,heightOfTile));
 				corners.add(corner);
 			}
 		// this loop wil create the Streets
@@ -388,32 +388,32 @@ public class BoardController {
 		}
 	}
 	// this returns the inGameStreetPoints
-	private ArrayList<Point> returnInGameStreetPoints(Point inGamePoint,ArrayList<Tile> tiles,int h){
-		ArrayList<Point> arrayListInGamePoints = new ArrayList<Point>();
-		double a;
-		for (int i = 0; i < 6; i++) {
-			a = Math.PI / 3.0 * i;
-			Point point = new Point((int) (Math.round((int)inGamePoint.getX() + Math.sin(a) * h)), (int) (Math.round((int)inGamePoint.getY() + Math.cos(a) * h)));
-			for(Tile tile: tiles){
-				ArrayList<Point> tileCornerPoints = new ArrayList<Point>();
-				tileCornerPoints.addAll(tile.getInGameCornerPoints());
-				for(Point cornerPoint: tileCornerPoints) {
-				//	System.out.println("Gets in this for loop");////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				//	System.out.println("CornerPoint: "+cornerPoint.getLocation());
-				//	System.out.println("point: "+ point.getLocation());
-					if(cornerPoint.getX()==point.getX()&&cornerPoint.getY()==point.getY()) {
-						arrayListInGamePoints.add(point);
-				//		System.out.println("Gets in this if");////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					}
-				}
-			}
-		}
-		if(arrayListInGamePoints.size()!=0) {
-			return arrayListInGamePoints;
-		}else {
-			return null;
-		}
-	}
+//	private ArrayList<Point> returnInGameStreetPoints(Point inGamePoint,ArrayList<Tile> tiles,int h){
+//		ArrayList<Point> arrayListInGamePoints = new ArrayList<Point>();
+//		double a;
+//		for (int i = 0; i < 6; i++) {
+//			a = Math.PI / 3.0 * i;
+//			Point point = new Point((int) (Math.round((int)inGamePoint.getX() + Math.sin(a) * h)), (int) (Math.round((int)inGamePoint.getY() + Math.cos(a) * h)));
+//			for(Tile tile: tiles){
+//				ArrayList<Point> tileCornerPoints = new ArrayList<Point>();
+//				tileCornerPoints.addAll(tile.getInGameCornerPoints());
+//				for(Point cornerPoint: tileCornerPoints) {
+//				//	System.out.println("Gets in this for loop");////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//				//	System.out.println("CornerPoint: "+cornerPoint.getLocation());
+//				//	System.out.println("point: "+ point.getLocation());
+//					if(cornerPoint.getX()==point.getX()&&cornerPoint.getY()==point.getY()) {
+//						arrayListInGamePoints.add(point);
+//				//		System.out.println("Gets in this if");////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//					}
+//				}
+//			}
+//		}
+//		if(arrayListInGamePoints.size()!=0) {
+//			return arrayListInGamePoints;
+//		}else {
+//			return null;
+//		}
+//	}
 	private ArrayList<Street> createStreet(ArrayList<Corner> corners,ArrayList<Street> Streets, Corner corner) {
 		ArrayList<Street> newStreets = new ArrayList<Street>();
 		ArrayList<Point> cornerStreetPoints = new ArrayList<Point>();

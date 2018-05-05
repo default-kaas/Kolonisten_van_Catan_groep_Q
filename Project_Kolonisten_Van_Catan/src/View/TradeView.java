@@ -50,7 +50,7 @@ public class TradeView extends JFrame {
 	private BufferedImage hout;
 	private BufferedImage steen;
 	private BufferedImage erts;
- 
+
 	private JLabel panel;
 	private JLabel yourCards;
 	private JButton propose;
@@ -75,20 +75,20 @@ public class TradeView extends JFrame {
 	private JTextField their_woodt;
 	private JTextField their_stonet;
 	private JTextField their_oret;
-	
+
 	JPanel trade;
 
 	public TradeView(TradeController tradePanelController) {
-		
+
 		tc = tradePanelController;
 
 	}
-	
+
 	public void showFrame() {
-		
+
 		trade = new JPanel();
 
-		this.setAlwaysOnTop (true);
+		this.setAlwaysOnTop(true);
 		trade.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.NORTH;
@@ -98,7 +98,7 @@ public class TradeView extends JFrame {
 		c.gridy = 0;
 
 		trade.setBackground(Color.white);
-		trade.setVisible(false);
+		// trade.setVisible(false);
 		trade.setPreferredSize(new Dimension(1000, 600));
 		trade.setBackground(new Color(245, 245, 220));
 
@@ -157,19 +157,19 @@ public class TradeView extends JFrame {
 		trade.add(their_stonet, c);
 		c.insets = new Insets(440, 630, 0, 0);
 		trade.add(their_oret, c);
-		
+
 		JLabel playerdd = new JLabel("Hoe wil je ruilen?");
-        JComboBox<String> cb = new JComboBox<String>();
-        cb.addItem("Spelers");
-        cb.addItem("De Bank");
+		JComboBox<String> cb = new JComboBox<String>();
+		cb.addItem("Spelers");
+		cb.addItem("De Bank");
 
 		c.insets = new Insets(250, 0, 0, 0);
 		trade.add(playerdd, c);
 		c.insets = new Insets(280, 0, 0, 0);
 		trade.add(cb, c);
-		
+
 		your_woolt.setDocument(new TradeInputLimit(2));
-		your_wheatt.setDocument(new TradeInputLimit(2)); 
+		your_wheatt.setDocument(new TradeInputLimit(2));
 		your_woodt.setDocument(new TradeInputLimit(2));
 		your_stonet.setDocument(new TradeInputLimit(2));
 		your_oret.setDocument(new TradeInputLimit(2));
@@ -178,159 +178,177 @@ public class TradeView extends JFrame {
 		their_woodt.setDocument(new TradeInputLimit(2));
 		their_stonet.setDocument(new TradeInputLimit(2));
 		their_oret.setDocument(new TradeInputLimit(2));
-		
+
 		TradeNoLetters tnl = new TradeNoLetters();
 		PlainDocument doc = (PlainDocument) your_woolt.getDocument();
-	    doc.setDocumentFilter(tnl);
+		doc.setDocumentFilter(tnl);
 		PlainDocument doc2 = (PlainDocument) your_wheatt.getDocument();
-	    doc2.setDocumentFilter(tnl);
+		doc2.setDocumentFilter(tnl);
 		PlainDocument doc3 = (PlainDocument) your_woodt.getDocument();
-	    doc3.setDocumentFilter(tnl);
+		doc3.setDocumentFilter(tnl);
 		PlainDocument doc4 = (PlainDocument) your_stonet.getDocument();
-	    doc4.setDocumentFilter(tnl);
+		doc4.setDocumentFilter(tnl);
 		PlainDocument doc5 = (PlainDocument) your_oret.getDocument();
-	    doc5.setDocumentFilter(tnl);
+		doc5.setDocumentFilter(tnl);
 		PlainDocument doc6 = (PlainDocument) their_woolt.getDocument();
-	    doc6.setDocumentFilter(tnl);
+		doc6.setDocumentFilter(tnl);
 		PlainDocument doc7 = (PlainDocument) their_wheatt.getDocument();
-	    doc7.setDocumentFilter(tnl);
+		doc7.setDocumentFilter(tnl);
 		PlainDocument doc8 = (PlainDocument) their_woodt.getDocument();
-	    doc8.setDocumentFilter(tnl);
+		doc8.setDocumentFilter(tnl);
 		PlainDocument doc9 = (PlainDocument) their_stonet.getDocument();
-	    doc9.setDocumentFilter(tnl);
+		doc9.setDocumentFilter(tnl);
 		PlainDocument doc10 = (PlainDocument) their_oret.getDocument();
-	    doc10.setDocumentFilter(tnl);
-
-		this.add(trade);
+		doc10.setDocumentFilter(tnl);
 
 		propose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Object item = cb.getSelectedItem();
-				if(item.toString().equals("Spelers")) {
+				if (item.toString().equals("Spelers")) {
 					JOptionPane.showMessageDialog(trade, "Wordt aan gewerkt!", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}
-				if(item.toString().equals("De Bank")) {
-					//het volgende spreekt voor zich.
+				if (item.toString().equals("De Bank")) {
+					// het volgende spreekt voor zich.
 					boolean er_bestaan_nog_geen_havens_dus_is_het_voor_nu_alleen_nog_maar_4x1 = true;
 					if (er_bestaan_nog_geen_havens_dus_is_het_voor_nu_alleen_nog_maar_4x1 == true) {
-						//if statement hieronder: Kijken of er links een 4 en rechts een 1 is ingevuld.
-						if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4")) 
-							&& (their_woolt.getText().equals("1") || their_wheatt.getText().equals("1") || their_stonet.getText().equals("1") || their_woodt.getText().equals("1") || their_oret.getText().equals("1") )) {
-							//if statement hieronder: Hier wordt strikt gecontrolleerd of dat er aan BEIDE kanten precies één JTextField is ingevuld.
-							if ( (!your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty() && your_stonet.getText().isEmpty() && 
-								your_woodt.getText().isEmpty() && your_oret.getText().isEmpty() ) ||
-								( your_woolt.getText().isEmpty() && !your_wheatt.getText().isEmpty() && your_stonet.getText().isEmpty() && 
-								your_woodt.getText().isEmpty() && your_oret.getText().isEmpty() ) ||
-								( your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty() && !your_stonet.getText().isEmpty() && 
-								your_woodt.getText().isEmpty() && your_oret.getText().isEmpty() ) ||
-								( your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty() && your_stonet.getText().isEmpty() && 
-								!your_woodt.getText().isEmpty() && your_oret.getText().isEmpty() ) ||
-								( your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty() && your_stonet.getText().isEmpty() && 
-								your_woodt.getText().isEmpty() && !your_oret.getText().isEmpty() ) 
-								&&
-								( !their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty() && their_stonet.getText().isEmpty() && 
-								their_woodt.getText().isEmpty() && their_oret.getText().isEmpty() ) ||
-								( their_woolt.getText().isEmpty() && !their_wheatt.getText().isEmpty() && their_stonet.getText().isEmpty() && 
-								their_woodt.getText().isEmpty() && their_oret.getText().isEmpty() ) ||
-								( their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty() && !their_stonet.getText().isEmpty() && 
-								their_woodt.getText().isEmpty() && their_oret.getText().isEmpty() ) ||
-								( their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty() && their_stonet.getText().isEmpty() && 
-								!their_woodt.getText().isEmpty() && their_oret.getText().isEmpty() ) ||
-								( their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty() && their_stonet.getText().isEmpty() && 
-								their_woodt.getText().isEmpty() && !their_oret.getText().isEmpty() ) ) {
-									//onderstaande if statements: hier wordt actie ondernomen en de handel met de bank (4x1) afgerond.
+						// if statement hieronder: Kijken of er links een 4 en rechts een 1 is ingevuld.
+						if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4")
+								|| your_stonet.getText().equals("4") || your_woodt.getText().equals("4")
+								|| your_oret.getText().equals("4"))
+								&& (their_woolt.getText().equals("1") || their_wheatt.getText().equals("1")
+										|| their_stonet.getText().equals("1") || their_woodt.getText().equals("1")
+										|| their_oret.getText().equals("1"))) {
+							// if statement hieronder: Hier wordt strikt gecontrolleerd of dat er aan BEIDE
+							// kanten precies één JTextField is ingevuld.
+							if ((!your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty()
+									&& your_stonet.getText().isEmpty() && your_woodt.getText().isEmpty()
+									&& your_oret.getText().isEmpty())
+									|| (your_woolt.getText().isEmpty() && !your_wheatt.getText().isEmpty()
+											&& your_stonet.getText().isEmpty() && your_woodt.getText().isEmpty()
+											&& your_oret.getText().isEmpty())
+									|| (your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty()
+											&& !your_stonet.getText().isEmpty() && your_woodt.getText().isEmpty()
+											&& your_oret.getText().isEmpty())
+									|| (your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty()
+											&& your_stonet.getText().isEmpty() && !your_woodt.getText().isEmpty()
+											&& your_oret.getText().isEmpty())
+									|| (your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty()
+											&& your_stonet.getText().isEmpty() && your_woodt.getText().isEmpty()
+											&& !your_oret.getText().isEmpty())
+											&& (!their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty()
+													&& their_stonet.getText().isEmpty()
+													&& their_woodt.getText().isEmpty()
+													&& their_oret.getText().isEmpty())
+									|| (their_woolt.getText().isEmpty() && !their_wheatt.getText().isEmpty()
+											&& their_stonet.getText().isEmpty() && their_woodt.getText().isEmpty()
+											&& their_oret.getText().isEmpty())
+									|| (their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty()
+											&& !their_stonet.getText().isEmpty() && their_woodt.getText().isEmpty()
+											&& their_oret.getText().isEmpty())
+									|| (their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty()
+											&& their_stonet.getText().isEmpty() && !their_woodt.getText().isEmpty()
+											&& their_oret.getText().isEmpty())
+									|| (their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty()
+											&& their_stonet.getText().isEmpty() && their_woodt.getText().isEmpty()
+											&& !their_oret.getText().isEmpty())) {
+								// onderstaande if statements: hier wordt actie ondernomen en de handel met de
+								// bank (4x1) afgerond.
 								// b=baksteen, w=wol, h=hout, e=erts, g=graan
 								// 1=w, 2=g, 3=h, 4=b, 5=e
-									if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
-										tc.setPlayerCards("w", -4);
+								if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+									tc.setPlayerCards("w", -4);
+								}
+								if (your_wheatt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+									tc.setPlayerCards("g", -4);
+								}
+								if (your_stonet.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+									tc.setPlayerCards("h", -4);
+								}
+								if (your_woodt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+									tc.setPlayerCards("b", -4);
+								}
+								if (your_oret.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+									tc.setPlayerCards("e", -4);
+								}
+								if (their_woolt.getText().equals("1")) {
+									tc.doesBankHave("w");
+									if (bank_has_card_available == true) {
+										tc.setPlayerCards("w", 1);
 									}
-									if (your_wheatt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
-										tc.setPlayerCards("g", -4);
+								}
+								if (their_wheatt.getText().equals("1")) {
+									tc.doesBankHave("g");
+									if (bank_has_card_available == true) {
+										tc.setPlayerCards("g", 1);
 									}
-									if (your_stonet.getText().equals("4") && tc.getPlayerCards(1) > 4) {
-										tc.setPlayerCards("h", -4);
+								}
+								if (their_stonet.getText().equals("1")) {
+									tc.doesBankHave("h");
+									if (bank_has_card_available == true) {
+										tc.setPlayerCards("h", 1);
 									}
-									if (your_woodt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
-										tc.setPlayerCards("b", -4);
+								}
+								if (their_woodt.getText().equals("1")) {
+									tc.doesBankHave("b");
+									if (bank_has_card_available == true) {
+										tc.setPlayerCards("b", 1);
 									}
-									if (your_oret.getText().equals("4") && tc.getPlayerCards(1) > 4) {
-										tc.setPlayerCards("e", -4);
+								}
+								if (their_oret.getText().equals("1")) {
+									tc.doesBankHave("e");
+									if (bank_has_card_available == true) {
+										tc.setPlayerCards("e", 1);
 									}
-									if (their_woolt.getText().equals("1")) {
-										tc.doesBankHave("w");
-										if (bank_has_card_available == true) {
-											tc.setPlayerCards("w", 1);
-										}
-									}
-									if (their_wheatt.getText().equals("1")) {
-										tc.doesBankHave("g");
-										if (bank_has_card_available == true) {
-											tc.setPlayerCards("g", 1);
-										}
-									}
-									if (their_stonet.getText().equals("1")) {
-										tc.doesBankHave("h");
-										if (bank_has_card_available == true) {
-											tc.setPlayerCards("h", 1);
-										}
-									}
-									if (their_woodt.getText().equals("1")) {
-										tc.doesBankHave("b");
-										if (bank_has_card_available == true) {
-											tc.setPlayerCards("b", 1);
-										}
-									}
-									if (their_oret.getText().equals("1")) {
-										tc.doesBankHave("e");
-										if (bank_has_card_available == true) {
-											tc.setPlayerCards("e", 1);
-										}
-									}
-									JOptionPane.showMessageDialog(trade, "Je hebt successvol gehandeld met de bank!", "Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
-							}
-							else {
-								JOptionPane.showMessageDialog(trade, "Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.", "Verkeerde input!", JOptionPane.ERROR_MESSAGE);
+								}
+								JOptionPane.showMessageDialog(trade, "Je hebt successvol gehandeld met de bank!",
+										"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+							} else {
+								JOptionPane.showMessageDialog(trade,
+										"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
+										"Verkeerde input!", JOptionPane.ERROR_MESSAGE);
 							}
 						} else {
-							JOptionPane.showMessageDialog(trade, "Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.", "Verkeerde input!", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(trade,
+									"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
+									"Verkeerde input!", JOptionPane.ERROR_MESSAGE);
 						}
-					}
-					else {
-						JOptionPane.showMessageDialog(trade, "Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.", "Verkeerde input!", JOptionPane.ERROR_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(trade,
+								"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
+								"Verkeerde input!", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
 		});
-		
-		trade.setVisible(true);
-		
 		setupFrame();
-		
+
 	}
-	
+
 	boolean bank_has_card_available = false;
-	
+
 	public void setAvailability(boolean availability) {
 		if (availability == true) {
 			this.bank_has_card_available = true;
 		}
 		if (availability == false) {
-			this.bank_has_card_available = false;			
+			this.bank_has_card_available = false;
 		}
 	}
 
 	private void setupFrame() {
 
-		this.setUndecorated(true); //raar dat het errors geeft, checken waarom.
+		//raar dat het errors geeft, checken waarom.
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setContentPane(trade);
+		this.setUndecorated(true);
+		this.setVisible(true);
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setVisible(true);
 
 	}
-	
+
 	private void createStuff() {
-		
+
 		panel = new JLabel("Handelspaneel");
 		yourCards = new JLabel("Aanbod:");
 		propose = new JButton("Stel handel voor");
@@ -352,7 +370,7 @@ public class TradeView extends JFrame {
 		their_woodt = new JTextField(2);
 		their_stonet = new JTextField(2);
 		their_oret = new JTextField(2);
-		
+
 	}
 
 	private void addMenuBar() {

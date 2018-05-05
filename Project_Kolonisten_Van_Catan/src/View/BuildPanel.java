@@ -414,9 +414,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 						"Straat Kopen?", JOptionPane.YES_OPTION);
 				if (YesOrNo == JOptionPane.YES_OPTION) { //if user confirms...
 					buildPanelController.removeStreetRes(); // Buys the Street and removes the necessary resources from the player resources Array
-					JOptionPane.showMessageDialog(buyRoad, "Steen: "  + buildPanelController.remainingStone() + "\n" + "Hout: " + buildPanelController.remainingWood() + "\n" + //informs user of the remaining resources left.
-							"Graan: " + buildPanelController.remainingWheat() + "\n" + "Ore: " + buildPanelController.remainingOre() + 
-							"\n" + "Wool: " + buildPanelController.remainingWool(), "Aantal resources over", JOptionPane.INFORMATION_MESSAGE);
 					JOptionPane.showMessageDialog(buyRoad, "Selecteer nu een plek om een Straat te bouwen", //Asks player to select a place on the map to build the Street.
 							"Straat Bouwen", JOptionPane.INFORMATION_MESSAGE); 
 					buildPanelController.buyPrint("Straat", "1 hout en 1 steen"); //notifies all users of the purchase
@@ -433,9 +430,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 						"Stad Kopen?", JOptionPane.YES_OPTION);
 				if (YesOrNo == JOptionPane.YES_OPTION) {
 					buildPanelController.removeHouseRes(); // Buys the House and removes the necessary resources from the player resources Array
-					JOptionPane.showMessageDialog(buyRoad, "Steen: "  + buildPanelController.remainingStone() + "\n" + "Hout: " + buildPanelController.remainingWood() + "\n" + //informs user of the remaining resources left.
-							"Graan: " + buildPanelController.remainingWheat() + "\n" + "Ore: " + buildPanelController.remainingOre() + 
-							"\n" + "Wool: " + buildPanelController.remainingWool(), "Aantal resources over", JOptionPane.INFORMATION_MESSAGE);
 					JOptionPane.showMessageDialog(buyHouse, "Selecteer nu een plek om een Dorp te bouwen", //Asks player to select a place on the map to build the House.
 							"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
 					buildPanelController.buyPrint("Dorp", "1 hout, 1 steen, 1 graan en 1 wol"); //notifies all users of the purchase
@@ -454,7 +448,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 						"Stad Kopen?", JOptionPane.YES_OPTION);
 				if (YesOrNo == JOptionPane.YES_OPTION) { //if user confirms..
 					buildPanelController.removeCityRes(); // Buys the City and removes the necessary resources from the player resources Array
-					JOptionPane.showMessageDialog(buyCity, "Selecteer nu een plek om een Stad te bouwen", //Ask player to select a place on the map to build the city.
+					JOptionPane.showMessageDialog(buyCity, "Selecteer nu een plek om een Stad te bouwen", //Asks player to select a place on the map to build the House.
 							"Stad Bouwen", JOptionPane.INFORMATION_MESSAGE);
 					buildPanelController.buyPrint("Stad", "3 erts en 2 graan"); //notifies all users of the purchase
 					allCheck(); //Checks recourses after buying, disables all buttons which the player doesn't have enough recourses for.
@@ -470,9 +464,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 						"Stad Kopen?",JOptionPane.YES_OPTION);
 				if (YesOrNo == JOptionPane.YES_OPTION) { //if user confirms..
 					buildPanelController.removeDevRes(); // Buys the Development Card and removes the necessary resources from the player resources Array
-					JOptionPane.showMessageDialog(buyRoad, "Steen: "  + buildPanelController.remainingStone() + "\n" + "Hout: " + buildPanelController.remainingWood() + "\n" + //informs user of the remaining resources left.
-							"Graan: " + buildPanelController.remainingWheat() + "\n" + "Ore: " + buildPanelController.remainingOre() + 
-							"\n" + "Wool: " + buildPanelController.remainingWool(), "Aantal resources over", JOptionPane.INFORMATION_MESSAGE);
 					buildPanelController.buyPrint("Ontwikkelingskaart", "1 erts, 1 graan en 1 wol"); //notifies all users of the purchase
 					allCheck(); //Checks recourses after buying, disables all buttons which the player doesn't have enough recourses for.
 					

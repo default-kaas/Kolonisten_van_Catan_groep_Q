@@ -71,7 +71,6 @@ public class BoardController {
 		arrayListLocation.addAll(board.getBoardDAOCornerPointsFromDataBase(gameNumber));
 		// this loop will create all corners
 			for(int i =0; i<arrayListLocation.size();i++) {
-				System.out.println(i);
 				Point cornPoint = new Point();
 				cornPoint.setLocation(arrayListLocation.get(i));
 				Corner corner = new Corner();

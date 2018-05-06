@@ -1,11 +1,13 @@
 package Controller;
 
 import java.sql.Connection;
+import java.util.Observable;
+import java.util.Observer;
 
 import Model.Game;
 import View.BuildPanel;
 
-public class BuildPanelController {
+public class BuildPanelController extends Observable{
 
 	private Game game;
 	private BuildPanel bouwPanel;
@@ -117,16 +119,16 @@ public class BuildPanelController {
 	
 	public void buyPrint(String x, String y) {
 		gameController.setBuildMessage(x, y)	;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void disableButtons() {
-		// TODO Auto-generated method stub
 		bouwPanel.disableButtons();
 	}
 
 	public void showButtons() {
-		// TODO Auto-generated method stub
 		bouwPanel.allCheck();
-	}
+	}	
 
 }

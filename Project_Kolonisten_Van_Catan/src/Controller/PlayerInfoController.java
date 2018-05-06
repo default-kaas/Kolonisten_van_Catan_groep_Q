@@ -2,12 +2,14 @@ package Controller;
 
 import java.awt.dnd.DnDConstants;
 import java.sql.Connection;
+import java.util.Observable;
+import java.util.Observer;
 
 import Database.PlayerDAO;
 import Model.Game;
 import View.PlayerInformationPanel;
 
-public class PlayerInfoController {
+public class PlayerInfoController implements Observer {
 	private Game game;
 	private PlayerInformationPanel spelerInformatiePanel;
 	private GameController gameController;
@@ -125,5 +127,10 @@ public class PlayerInfoController {
 
 	public void getTradePanel() {
 		gameController.getTradeFrame();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		spelerInformatiePanel.UpdateResources();
 	}
 }

@@ -45,6 +45,13 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 
 	}
+	public void UpdateResources() {
+		System.out.println("test");
+		allInfo();
+		playerResources();
+		this.repaint();
+	}
+	
 
 	public void playerInfo() {
 		JLabel playerTitle = new JLabel("Speler Info");

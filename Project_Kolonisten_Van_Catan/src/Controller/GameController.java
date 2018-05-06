@@ -1,8 +1,9 @@
 package Controller;
 
 import java.sql.Connection;
+import java.util.Observable;
+import java.util.Observer;
 
-import Database.PlayerDAO;
 import Model.Game;
 import View.BoardPanel;
 import View.BuildPanel;
@@ -10,7 +11,7 @@ import View.ChatPanel;
 import View.DicePanel;
 import View.PlayerInformationPanel;
 
-public class GameController implements Runnable {
+public class GameController extends Observable implements Runnable {
 	private Game Game;
 	private PlayerInfoController playerInfoController;
 	private DiceController diceController;
@@ -42,7 +43,7 @@ public class GameController implements Runnable {
 		}
 		playerInfoController.showTradeButton();
 		bouwPanelController.showButtons();
-		
+
 	}
 
 	private void runfirstRounds() {
@@ -66,6 +67,10 @@ public class GameController implements Runnable {
 		chatPanelController = new ChatPanelController(Game, db_conn);
 		tradePanelController = new TradeController(Game, db_conn);
 		boardController = new BoardController(Game, db_conn);
+		
+		bouwPanelController.addObserver(playerInfoController);
+		diceController.addObserver(playerInfoController);
+		
 	}
 
 	public void runGame() {
@@ -123,4 +128,22 @@ public class GameController implements Runnable {
 	public void setDiceMessage(int value1, int value2) {
 		chatPanelController.setUserInput("heeft " + value1 + " en " + value2 + " gegooid!");
 	}
+	
+
+	// @Override
+	// public void update(Observable o, Object arg) {
+	// try {
+	// Method update = getClass().getMethod(o.getClass(), Object.class);
+	// update.invoke(this, o, arg);
+	// } catch (Exception e) {
+	// // log exception
+	// }
+	//
+	// }
+	// public void update(A a, Object arg) {
+	// }
+	// public void update(B b, Object arg) {
+	// }
+	// public void update(C c, Object arg) {
+	// }
 }

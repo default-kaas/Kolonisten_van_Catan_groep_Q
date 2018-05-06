@@ -45,13 +45,10 @@ public class Dice {
 	}
 
 	public void getOldValue1(int GameID) {
-		// TODO Auto-generated method stub
-		
 		value1 = diceDAO.getOldValue1(GameID); 
 	}
 
 	public void getOldValue2(int GameID) {
-		// TODO Auto-generated method stub
 		value2 = diceDAO.getOldValue2(GameID); 
 	}
 

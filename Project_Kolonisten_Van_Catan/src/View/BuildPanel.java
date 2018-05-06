@@ -59,6 +59,10 @@ public class BuildPanel extends JPanel implements ActionListener {
 		int height = (int) (screenSize.getHeight() * 0.4);
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBorder(title);
+//		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg");
+//		JLabel thumb = new JLabel(icon);
+//		thumb.setSize(width, height);
+//		this.add(thumb);
 	}
 
 	public void setTitles() { // This void sets all the initializes Titles.
@@ -472,19 +476,19 @@ public class BuildPanel extends JPanel implements ActionListener {
 		}
 	}
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
-		int height = (int) (screenSize.getHeight() * 0.4);
-
-		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg");
-		JLabel thumb = new JLabel(icon);
-		thumb.setSize(width, height);
-		this.add(thumb);
-
-	}
+//	@Override
+//	protected void paintComponent(Graphics g) {
+//		super.paintComponent(g);
+//		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
+//		int height = (int) (screenSize.getHeight() * 0.4);
+//
+//	ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg");
+//	JLabel thumb = new JLabel(icon);
+//	thumb.setSize(width, height);
+//	this.add(thumb);
+//
+//	}
 
 	
 

@@ -28,6 +28,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private JButton end = new JButton("Beurt beëindigen");
 
 	private PlayerInfoController controller;
+	
+	private JLabel stone, wood;
 
 	public PlayerInformationPanel(PlayerInfoController controller) {
 		this.controller = controller;
@@ -46,8 +48,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	}
 	public void UpdateResources() {
-		allInfo();
-		playerResources();
+		String stoneAmount = ": " + controller.getStoneAmount();
+		String woodAmount = ": " + controller.getWoodAmount();
+		stone.setText(stoneAmount);
+		wood.setText(woodAmount);
 		this.repaint();
 	}
 	
@@ -76,7 +80,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 1;
-		JLabel stone = new JLabel(stoneAmount);
+		stone = new JLabel(stoneAmount);
 		stone.setIcon(stoneImage);
 		stone.setForeground(Color.BLACK);
 		stone.setFont(new Font("Arial", Font.BOLD, 20));
@@ -86,7 +90,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 2;
-		JLabel wood = new JLabel(woodAmount);
+		wood = new JLabel(woodAmount);
 		wood.setIcon(woodImage);
 		wood.setForeground(Color.BLACK);
 		wood.setFont(new Font("Arial", Font.BOLD, 20));
@@ -262,10 +266,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
 
-		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg"); // sets Panel Background.
-		JLabel thumb = new JLabel(icon);
-		thumb.setSize(width, height);
-		this.add(thumb);
+//		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg"); // sets Panel Background.
+//		JLabel thumb = new JLabel(icon);
+//		thumb.setSize(width, height);
+//		this.add(thumb);
 	}
 
 	public void ShowResources() {

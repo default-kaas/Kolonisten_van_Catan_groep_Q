@@ -427,7 +427,7 @@ public class BoardController {
 					// this will search in all streets if this combination of corners already exists 
 					for(Street street: streets) {
 						// if this compare is true it means that the combination of these two corners already exists in the street ArrayList
-						if(street.compareIfCornersIsInLine(corner, otherCorner)!=true) {
+						if(street.compareIfCornersIsInLine(corner, otherCorner)==true) {
 							System.out.println("CreateStreet corner: "+corner.getPoint());/////////////////////////////////////////////////////////////////////////////////
 							match = true;
 						}

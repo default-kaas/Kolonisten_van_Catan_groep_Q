@@ -41,7 +41,6 @@ public class GameController extends Observable implements Runnable {
 		if ((Game.getRound() == Game.getMe().getPlayerID())) {
 			showDice();
 		}
-		playerInfoController.showTradeButton();
 		bouwPanelController.showButtons();
 
 	}

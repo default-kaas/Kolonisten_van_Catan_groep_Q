@@ -44,6 +44,7 @@ public class DicePanel extends JPanel implements MouseListener {
 			this.setBackground(new Color(1, 207, 203));
 			pressed = true;
 			repaint();
+			diceController.updateOtherPanels();
 		} else {
 			this.setBackground(Color.white);
 			this.add(text);
@@ -84,7 +85,6 @@ public class DicePanel extends JPanel implements MouseListener {
 		if (!pressed) {
 			diceController.setDiceImages();
 			showDice();
-			diceController.updateOtherPanels();
 		}
 	}
 

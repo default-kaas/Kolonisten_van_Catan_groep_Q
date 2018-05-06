@@ -46,7 +46,6 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	}
 	public void UpdateResources() {
-		System.out.println("test");
 		allInfo();
 		playerResources();
 		this.repaint();

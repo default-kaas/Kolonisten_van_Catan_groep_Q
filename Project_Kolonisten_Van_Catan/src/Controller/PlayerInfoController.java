@@ -132,5 +132,8 @@ public class PlayerInfoController implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		spelerInformatiePanel.UpdateResources();
+		if(o.getClass().getName().equals("Controller.DiceController")) {
+			showTradeButton();
+		}
 	}
 }

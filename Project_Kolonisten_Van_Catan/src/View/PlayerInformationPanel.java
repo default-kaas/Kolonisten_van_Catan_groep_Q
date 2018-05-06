@@ -52,7 +52,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		playerTitle.setForeground(Color.BLACK);
 
 		c.insets = new Insets(0, 0, 0, 100);
-		c.anchor = GridBagConstraints.NORTHWEST;
+		c.anchor = GridBagConstraints.NORTH;
 		c.gridx = 0;
 		c.gridy = 0;
 		add(playerTitle, c);
@@ -66,7 +66,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		String wheatAmount = ": " + controller.getWheatAmount();
 		String stoneAmount = ": " + controller.getStoneAmount();
 
-		c.insets = new Insets(0, 0, 20, 0);
+		c.insets = new Insets(0, 0, 15, 100);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -76,7 +76,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		stone.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(stone, c);
 
-		c.insets = new Insets(0, 0, 20, 0);
+		c.insets = new Insets(0, 0, 15, 100);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 2;
@@ -86,7 +86,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		wood.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(wood, c);
 
-		c.insets = new Insets(0, 0, 20, 0);
+		c.insets = new Insets(0, 0, 15, 100);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 3;
@@ -96,7 +96,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		wool.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(wool, c);
 
-		c.insets = new Insets(0, 0, 20, 0);
+		c.insets = new Insets(0, 0, 15, 100);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 4;
@@ -106,7 +106,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		ore.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(ore, c);
 
-		c.insets = new Insets(0, 0, 0, 0);
+		c.insets = new Insets(0, 0, 15, 100);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 5;
@@ -123,21 +123,22 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		enemyTitle.setFont(new Font("Arial", Font.BOLD, 30));
 		enemyTitle.setForeground(Color.BLACK);
 
-		c.insets = new Insets(0, 0, 100, 0);
-		c.anchor = GridBagConstraints.NORTHEAST;
+		c.insets = new Insets(0, 0, 50, 0);
+		c.anchor = GridBagConstraints.NORTH;
 		c.gridx = 1;
 		c.gridy = 0;
 		add(enemyTitle, c);
 
-		for (int i = 0; i < 4; i++) { //Prints all user info (Color, Name, Resource Amount and Points
+		for (int i = 0; i < 4; i++) { // Prints all user info (Color, Name, Resource Amount and Points
 
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Grondstoffen: " + controller.getPlayerResources(i) + " - "+  System.lineSeparator() + " Overwinningspunten: " + controller.getBuildingPoints(i) +   " - bezig met beurt!");
-				if (controller.getPlayerName(i).equals(controller.checkArmy()) && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-					turn.setIcon(knightAndRoad);
+						+ "Grondstoffen: " + controller.getPlayerResources(i) + " - Overwinningspunten: " + controller.getBuildingPoints(i) + " - bezig met beurt!");
 				
-				}else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+				if (controller.getPlayerName(i).equals(controller.checkArmy())
+						&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+					turn.setIcon(knightAndRoad);
+				} else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					turn.setIcon(longestRoadImage);
 				} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
 					turn.setIcon(knightImage);
@@ -145,18 +146,19 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				turn.setForeground(Color.BLACK);
 				turn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTHEAST;
+				c.anchor = GridBagConstraints.NORTH;
 				c.gridx = 1;
 				c.gridy = i + 1;
 				this.add(turn, c);
 			} else {
-
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Grondstoffen: " + controller.getPlayerResources(i)  + " - "+ " Overwinningspunten: " + controller.getBuildingPoints(i));
-				if (controller.getPlayerName(i).equals(controller.checkArmy()) && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+						+ "Grondstoffen: " + controller.getPlayerResources(i) + " - " + " Overwinningspunten: "
+						+ controller.getBuildingPoints(i));
+				if (controller.getPlayerName(i).equals(controller.checkArmy())
+						&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					notTurn.setIcon(knightAndRoad);
-				
-				}else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+
+				} else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					notTurn.setIcon(longestRoadImage);
 				} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
 					notTurn.setIcon(knightImage);
@@ -164,21 +166,13 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				notTurn.setForeground(Color.BLACK);
 				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTHEAST;
+				c.anchor = GridBagConstraints.NORTH;
 				c.gridx = 1;
 				c.gridy = i + 1;
 				this.add(notTurn, c);
 			}
 		}
 
-	}
-
-	public void testRidder() {
-		System.out.println(controller.checkArmy());
-	}
-
-	public void testRoad() {
-		System.out.println(controller.checkLongestRoad());
 	}
 
 	public void TradeButton() {
@@ -191,7 +185,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	}
 
 	public void endButton() {
-		c.insets = new Insets(0, 0, 0, 100);
+		c.insets = new Insets(0, 0, 0, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
 		c.gridy = 7;

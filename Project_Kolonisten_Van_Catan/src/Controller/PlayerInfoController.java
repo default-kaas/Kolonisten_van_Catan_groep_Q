@@ -21,8 +21,6 @@ public class PlayerInfoController {
 		spelerInformatiePanel.allInfo();
 		spelerInformatiePanel.playerResources();
 		spelerInformatiePanel.TradeButton();
-		spelerInformatiePanel.testRidder();
-		spelerInformatiePanel.testRoad();
 		/*spelerInformatiePanel.ShowResources();*/
 		spelerInformatiePanel.endButton();
 		this.gameController = gameController;

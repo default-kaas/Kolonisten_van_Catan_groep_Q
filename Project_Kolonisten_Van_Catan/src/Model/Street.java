@@ -8,20 +8,32 @@ public class Street {
 	public ArrayList<Corner> getCornerPoints() {
 		return cornerPoints;
 	}
-	public void setCornerPoint(Corner corner) {
+	public void setCorner(Corner corner) {
 		cornerPoints.add(corner);
 	}
-	public void setCornerPoints(ArrayList<Corner> cornerPoints) {
+	public void setCorners(ArrayList<Corner> cornerPoints) {
 		this.cornerPoints = cornerPoints;
 	}
-	public boolean compareIfCornerIsInLine(Corner corner) {
+	public boolean compareIfCornersIsInLine(Corner corner1,Corner corner2) {
+		// this is to count the amount of matches of corners with this line
+		int match =0;
 		for(Corner cornerOfLine: cornerPoints) {
-			if(cornerOfLine.getInGamePoint().getX()==corner.getInGamePoint().getX()
-			&&cornerOfLine.getInGamePoint().getY()==corner.getInGamePoint().getY()) {
-			return true;
+			//this will check if there is a match with the first corner
+			if(cornerOfLine.getPoint().getX()==corner1.getPoint().getX()
+			&&cornerOfLine.getPoint().getY()==corner1.getPoint().getY()) {
+				match++;
+			//this will check if there is a match with the second corner
+			}else if(cornerOfLine.getPoint().getX()==corner2.getPoint().getX()
+					&&cornerOfLine.getPoint().getY()==corner2.getPoint().getY()) {
+				match++;
 			}
 		}
-		return false;
+		// if the match is two that means that street object exists that has both corner objects already
+		if(match==2) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	

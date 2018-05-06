@@ -49,7 +49,7 @@ public class BoardController {
 		// this is to create the values that are going to get returend to the board
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		ArrayList<Corner> corners = new ArrayList<Corner>();
-		ArrayList<Street> Streets = new ArrayList<Street>();
+		ArrayList<Street> streets = new ArrayList<Street>();
 		// this loop will create all tiles with their tile points
 			for (int i = 0; i < arrayListTileCenter.size(); i++) {
 				// this to get the tile centerpoint for the calculation for the other points
@@ -84,15 +84,13 @@ public class BoardController {
 			}
 		// this loop wil create the Streets
 			for(Corner corner: corners) {
-				
-			//	System.out.println(corner.getPoint());////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//	System.out.println(corner.getInGameTilePoints());//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//	System.out.println(corner.getInGamePoint());//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//	System.out.println(corner.getInGameStreetPoints());/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				// get point
-				// get Street points
-				// set corner object in Street object
+				ArrayList<Street> newStreets = createStreet(corners, streets, corner);
+				System.out.println("Enhanced for loop corner: "+corner.getPoint());/////////////////////////////////////////////////////////////////////////////////
+				if(newStreets!=null) {
+					streets.addAll(newStreets);
+				}
 			}
+			System.out.println();
 		board.setTiles(tiles);
 		board.setCorners(corners);
 	}
@@ -413,14 +411,41 @@ public class BoardController {
 //			return null;
 //		}
 //	}
-	private ArrayList<Street> createStreet(ArrayList<Corner> corners,ArrayList<Street> Streets, Corner corner) {
+	private ArrayList<Street> createStreet(ArrayList<Corner> corners,ArrayList<Street> streets, Corner corner) {
 		ArrayList<Street> newStreets = new ArrayList<Street>();
 		ArrayList<Point> cornerStreetPoints = new ArrayList<Point>();
+		System.out.println("CreateStreet corner: "+corner.getPoint());/////////////////////////////////////////////////////////////////////////////////
+		// this will add all linePoints of the corner
 		cornerStreetPoints.addAll(corner.getLinePoints());
+		// this will look at all corners in the board
 		for(Corner otherCorner: corners) {
-			Street Street = new Street();
-			
+			// this will match corner with the cornerStreet point of corner
+			for(Point cornerStreetPoint: cornerStreetPoints) {
+				// this will look if there is a match between the point and the street point
+				if(otherCorner.getPoint().getX()==cornerStreetPoint.getX()&&otherCorner.getPoint().getY()==cornerStreetPoint.getY()) {
+					boolean match = false;
+					// this will search in all streets if this combination of corners already exists 
+					for(Street street: streets) {
+						// if this compare is true it means that the combination of these two corners already exists in the street ArrayList
+						if(street.compareIfCornersIsInLine(corner, otherCorner)!=true) {
+							System.out.println("CreateStreet corner: "+corner.getPoint());/////////////////////////////////////////////////////////////////////////////////
+							match = true;
+						}
+					}
+					if(match != true) {
+						Street newStreet = new Street();
+						newStreet.setCorner(corner);
+						System.out.println("CreateStreet corner: "+corner.getPoint());/////////////////////////////////////////////////////////////////////////////////
+						newStreet.setCorner(otherCorner);
+						newStreets.add(newStreet);
+					}
+				}
+			}
 		}
-		return null;
+		if(newStreets.size()==0) {
+			return null;
+		}else {
+			return newStreets;
+		}
 	}
 }

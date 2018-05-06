@@ -43,6 +43,10 @@ public class DiceController extends Observable {
 		return dice.getValue2();
 	}
 
+	public int getTotal() {
+		return getValue1() + getValue2();
+	}
+
 	public void showDice() {
 		// TODO Auto-generated method stub
 		dicePanel.showDice();

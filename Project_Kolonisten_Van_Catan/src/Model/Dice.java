@@ -45,11 +45,11 @@ public class Dice {
 	}
 
 	public void getOldValue1(int GameID) {
-		value1 = diceDAO.getOldValue1(GameID); 
+		value1 = diceDAO.getOldValue1(GameID);
 	}
 
 	public void getOldValue2(int GameID) {
-		value2 = diceDAO.getOldValue2(GameID); 
+		value2 = diceDAO.getOldValue2(GameID);
 	}
 
 }

@@ -1,9 +1,18 @@
 package Model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 public class Street {
+	private int player;
 	private ArrayList<Corner> cornerPoints = new ArrayList<Corner>();
+	
+	public int getPlayer() {
+		return player;
+	}
+	public void setPlayer(int player) {
+		this.player = player;
+	}
 	
 	public ArrayList<Corner> getCornerPoints() {
 		return cornerPoints;
@@ -35,7 +44,4 @@ public class Street {
 			return false;
 		}
 	}
-	
-	
-	
 }

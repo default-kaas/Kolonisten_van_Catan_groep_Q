@@ -112,8 +112,7 @@ public class BoardDAO {
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery("SELECT x,y FROM locatie WHERE NOT EXISTS (SELECT x,y FROM tegel where locatie.x = tegel.x AND  locatie.y = tegel.y) order by x");
-			for(int i=0; i<73;i++) {
-				rs.next();
+			while(rs.next()) {
 				int x =rs.getInt("x");
 				int y =rs.getInt("y");
 				Point point = new Point(x,y);

@@ -85,12 +85,10 @@ public class BoardController {
 		// this loop wil create the Streets
 			for(Corner corner: corners) {
 				ArrayList<Street> newStreets = createStreet(corners, streets, corner);
-				System.out.println("Enhanced for loop corner: "+corner.getPoint());/////////////////////////////////////////////////////////////////////////////////
 				if(newStreets!=null) {
 					streets.addAll(newStreets);
 				}
 			}
-			System.out.println();
 		board.setTiles(tiles);
 		board.setCorners(corners);
 	}
@@ -414,7 +412,6 @@ public class BoardController {
 	private ArrayList<Street> createStreet(ArrayList<Corner> corners,ArrayList<Street> streets, Corner corner) {
 		ArrayList<Street> newStreets = new ArrayList<Street>();
 		ArrayList<Point> cornerStreetPoints = new ArrayList<Point>();
-		System.out.println("CreateStreet corner: "+corner.getPoint());/////////////////////////////////////////////////////////////////////////////////
 		// this will add all linePoints of the corner
 		cornerStreetPoints.addAll(corner.getLinePoints());
 		// this will look at all corners in the board
@@ -428,14 +425,12 @@ public class BoardController {
 					for(Street street: streets) {
 						// if this compare is true it means that the combination of these two corners already exists in the street ArrayList
 						if(street.compareIfCornersIsInLine(corner, otherCorner)==true) {
-							System.out.println("CreateStreet corner: "+corner.getPoint());/////////////////////////////////////////////////////////////////////////////////
 							match = true;
 						}
 					}
 					if(match != true) {
 						Street newStreet = new Street();
 						newStreet.setCorner(corner);
-						System.out.println("CreateStreet corner: "+corner.getPoint());/////////////////////////////////////////////////////////////////////////////////
 						newStreet.setCorner(otherCorner);
 						newStreets.add(newStreet);
 					}

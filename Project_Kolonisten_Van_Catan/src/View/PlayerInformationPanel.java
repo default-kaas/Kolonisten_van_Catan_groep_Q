@@ -50,7 +50,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
 		this.setPreferredSize(new Dimension(width, height));
-		this.setBackground(Color.white);
+//		this.setBackground(Color.white);
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 
 	}

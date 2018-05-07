@@ -7,7 +7,7 @@ import java.util.Observer;
 import Model.Game;
 import View.BuildPanel;
 
-public class BuildPanelController extends Observable{
+public class BuildPanelController extends Observable {
 
 	private Game game;
 	private BuildPanel bouwPanel;

@@ -12,6 +12,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private JButton close;
 	private GridBagLayout gridBagLayout;
 	private GridBagConstraints c;
+	private GridBagConstraints x;
 	private ImageIcon stoneImage = new ImageIcon("images/Resources/stone1.png");
 	private ImageIcon woodImage = new ImageIcon("images/Resources/wood1.png");
 	private ImageIcon oreImage = new ImageIcon("images/Resources/ore1.png");
@@ -20,6 +21,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon knightImage = new ImageIcon("images/Other/chess.png");
 	private ImageIcon longestRoadImage = new ImageIcon("images/Other/road.png");
 	private ImageIcon knightAndRoad = new ImageIcon("images/Other/chessandroad.png");
+	private ImageIcon trophy = new ImageIcon("images/Other/trophy.png");
+
+	
+	
 
 	// Trade button
 	private JButton trade = new JButton("Handelspaneel");
@@ -33,8 +38,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	public PlayerInformationPanel(PlayerInfoController controller) {
 		this.controller = controller;
+		
 
 		c = new GridBagConstraints();
+		x = new GridBagConstraints();
 		gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 
@@ -140,11 +147,13 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		add(enemyTitle, c);
 
 		for (int i = 0; i < 4; i++) { // Prints all user info (Color, Name, Resource Amount and Points
-
+			
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Grondstoffen: " + controller.getPlayerResources(i) + " - Overwinningspunten: " + controller.getBuildingPoints(i) + " - bezig met beurt!");
-				
+						+ "Grondstoffen: " + controller.getPlayerResources(i)  + 
+						controller.getBuildingPoints(i) + " - bezig met beurt!");	
+				JLabel turn1 = new JLabel("" + controller.getBuildingPoints(i));
+				turn1.setIcon(trophy);
 				if (controller.getPlayerName(i).equals(controller.checkArmy())
 						&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					turn.setIcon(knightAndRoad);
@@ -155,15 +164,28 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				}
 				turn.setForeground(Color.BLACK);
 				turn.setFont(new Font("Arial", Font.BOLD, 15));
+				
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTH;
 				c.gridx = 1;
 				c.gridy = i + 1;
+				
+				turn.setForeground(Color.BLACK);
+				turn.setFont(new Font("Arial", Font.BOLD, 15));
+				
+				x.insets = new Insets(0, 0, 0, 0);
+				x.anchor = GridBagConstraints.WEST;
+				x.gridx = 2;
+				x.gridy = i + 1;
+				
+				
 				this.add(turn, c);
+				this.add(turn1, x);
 			} else {
 				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
-						+ "Grondstoffen: " + controller.getPlayerResources(i) + " - " + " Overwinningspunten: "
-						+ controller.getBuildingPoints(i));
+						+ "Grondstoffen: " + controller.getBuildingPoints(i));
+				JLabel notTurn1 = new JLabel("" + controller.getBuildingPoints(i));
+				notTurn1.setIcon(trophy);
 				if (controller.getPlayerName(i).equals(controller.checkArmy())
 						&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					notTurn.setIcon(knightAndRoad);
@@ -179,8 +201,20 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				c.anchor = GridBagConstraints.NORTH;
 				c.gridx = 1;
 				c.gridy = i + 1;
+				
+				notTurn1.setForeground(Color.BLACK);
+				notTurn1.setFont(new Font("Arial", Font.BOLD, 15));
+				
+				x.insets = new Insets(0, 0, 0, 0);
+				x.anchor = GridBagConstraints.WEST;
+				x.gridx = 2;
+				x.gridy = i + 1;
+				
 				this.add(notTurn, c);
+				this.add(notTurn1, x);
 			}
+			
+			
 		}
 
 	}

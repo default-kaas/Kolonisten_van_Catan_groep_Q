@@ -400,7 +400,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		}
 	}
 
-	public void enablePlayMonopoly() {
+	public void enablePlayButton() {
 		playMonopoly.setBackground(new Color(5, 162, 0));
 		playMonopoly.setForeground(Color.WHITE);
 		playMonopoly.setEnabled(true);

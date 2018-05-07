@@ -30,7 +30,6 @@ public class PlayerInfoController implements Observer {
 		spelerInformatiePanel.playerDevelopmentCards();
 		this.gameController = gameController;
 		disableTradeButton();
-
 	}
 
 	public String getPlayerName(int volgnr) {

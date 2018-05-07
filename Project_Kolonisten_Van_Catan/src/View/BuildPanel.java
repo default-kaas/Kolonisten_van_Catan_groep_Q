@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -59,6 +60,8 @@ public class BuildPanel extends JPanel implements ActionListener {
 		int height = (int) (screenSize.getHeight() * 0.4);
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBorder(title);
+		this.setBackground(new Color(147, 147, 229));
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
 //		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg");
 //		JLabel thumb = new JLabel(icon);
 //		thumb.setSize(width, height);

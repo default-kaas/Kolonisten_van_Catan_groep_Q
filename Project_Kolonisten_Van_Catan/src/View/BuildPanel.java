@@ -21,7 +21,6 @@ import javax.swing.border.TitledBorder;
 
 import Controller.BuildPanelController;
 
-@SuppressWarnings("serial")
 public class BuildPanel extends JPanel implements ActionListener {
 
 	private JButton buyRoad;

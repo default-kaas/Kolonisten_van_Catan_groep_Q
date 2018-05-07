@@ -22,7 +22,6 @@ import javax.swing.table.TableColumnModel;
 
 import Controller.LobbyController;
 
-@SuppressWarnings("serial")
 public class LobbyPanel extends JPanel implements ActionListener {
 
 	private JTable invitedList;

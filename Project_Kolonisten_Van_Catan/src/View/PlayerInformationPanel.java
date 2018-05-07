@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import Controller.PlayerInfoController;
 
-@SuppressWarnings("serial")
 public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	private JButton close;

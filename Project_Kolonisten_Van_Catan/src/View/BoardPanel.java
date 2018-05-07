@@ -7,8 +7,12 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Model.Board;
@@ -24,6 +28,8 @@ public class BoardPanel extends JPanel {
 	private final Color Ore = Color.LIGHT_GRAY;
 	private final Color Brick = new Color(0xAD, 0x33, 0x33);
 	private final Color Dessert = new Color(0xFF, 0xFF, 0xA9);
+	private File folderInput = new File("images/Other/knight.png");
+	private BufferedImage img;
 
 	public BoardPanel(Board board) {
 		this.board = board;
@@ -32,6 +38,13 @@ public class BoardPanel extends JPanel {
 
 		height = (int) (screenSize.getHeight());
 		this.setPreferredSize(new Dimension(height, height - 23));
+		
+		try {
+			img = ImageIO.read(folderInput);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -108,8 +121,7 @@ public class BoardPanel extends JPanel {
 			}
 
 			if (tile.isRobber()) {
-				g.setColor(Color.black);
-				g.fillOval(tile.getInGameCenterPoint().x - 20, tile.getInGameCenterPoint().y - 20, 40, 40);
+				g.drawImage(img,tile.getInGameCenterPoint().x - (img.getWidth()/2), tile.getInGameCenterPoint().y - (img.getHeight()/2), null);
 			}
 
 		}

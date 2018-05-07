@@ -108,6 +108,8 @@ public class PlayerDAO {
 		}
 
 	}
+	
+	
 
 	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
 		try {
@@ -128,6 +130,8 @@ public class PlayerDAO {
 		} catch (SQLException e) {
 		}
 	}
+	
+	
 	
 	boolean yes = false;
 	

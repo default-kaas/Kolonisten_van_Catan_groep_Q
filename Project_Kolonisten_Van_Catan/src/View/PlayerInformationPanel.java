@@ -22,6 +22,13 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon longestRoadImage = new ImageIcon("images/Other/road.png");
 	private ImageIcon knightAndRoad = new ImageIcon("images/Other/chessandroad.png");
 	private ImageIcon trophy = new ImageIcon("images/Other/trophy.png");
+	private ImageIcon cardMonopoly = new ImageIcon("images/DevCards/monopoly.png");
+	private ImageIcon cardKnight = new ImageIcon("images/DevCards/knight.png");
+	private ImageIcon cardUniversity = new ImageIcon("images/DevCards/university.png");
+	private ImageIcon cardTools = new ImageIcon("images/DevCards/tools.png");
+	private ImageIcon cardInvention = new ImageIcon("images/DevCards/invention.png");
+	private JLabel monopoly, knight, university, tools, invention;
+	
 
 	
 	
@@ -31,6 +38,9 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	// end round button
 	private JButton end = new JButton("Beurt beëindigen");
+	
+	//won game button
+	private JButton won = new JButton("Gewonnen!");
 
 	private PlayerInfoController controller;
 	
@@ -131,8 +141,70 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		wheat.setIcon(wheatImage);
 		wheat.setForeground(Color.BLACK);
 		wheat.setFont(new Font("Arial", Font.BOLD, 20));
-		this.add(wheat, c);
+		this.add(wheat, c);	
 
+	}
+	
+	public void playerDevelopmentCards() {
+		
+		//set monopoly card
+		monopoly = new JLabel(": 1");
+		c.insets = new Insets(0, 0, 15, 100);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 1;
+		c.gridy = 1;
+		monopoly.setIcon(cardMonopoly);
+		monopoly.setForeground(Color.BLACK);
+		monopoly.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(monopoly, c);
+		
+		//set knight card
+		knight = new JLabel(": 1");
+		c.insets = new Insets(0, 0, 15, 100);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 1;
+		c.gridy = 2;
+		knight.setIcon(cardKnight);
+		knight.setForeground(Color.BLACK);
+		knight.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(knight, c);
+		
+		//set university card
+		university = new JLabel(": 1");
+		c.insets = new Insets(0, 0, 15, 100);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 1;
+		c.gridy = 3;
+		university.setIcon(cardUniversity);
+		university.setForeground(Color.BLACK);
+		university.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(university, c);
+		
+		//set tools card
+		tools = new JLabel(": 1");
+		c.insets = new Insets(0, 0, 15, 100);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 1;
+		c.gridy = 4;
+		tools.setIcon(cardTools);
+		tools.setForeground(Color.BLACK);
+		tools.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(tools, c);
+		
+		//set invention card
+		invention = new JLabel(": 1");
+		c.insets = new Insets(0, 0, 15, 100);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 1;
+		c.gridy = 5;
+		invention.setIcon(cardInvention);
+		invention.setForeground(Color.BLACK);
+		invention.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(invention, c);
+		
+		
+		
+		
 	}
 
 	public void allInfo() {
@@ -142,7 +214,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 		c.insets = new Insets(0, 0, 50, 0);
 		c.anchor = GridBagConstraints.NORTH;
-		c.gridx = 1;
+		c.gridx = 2;
 		c.gridy = 0;
 		add(enemyTitle, c);
 
@@ -150,8 +222,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			
 			if (controller.myTurn(i)) {
 				JLabel turn = new JLabel(controller.getPlayerName(i) + " - "
-						+ "Grondstoffen: " + controller.getPlayerResources(i)  + 
-						controller.getBuildingPoints(i) + " - bezig met beurt!");	
+						+ "Grondstoffen: " + controller.getPlayerResources(i) 	+ " - bezig met beurt!");	
+				//Second JLabel is made to add a second image associated with player building points.
 				JLabel turn1 = new JLabel("" + controller.getBuildingPoints(i));
 				turn1.setIcon(trophy);
 			
@@ -169,7 +241,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTH;
-				c.gridx = 1;
+				c.gridx = 2;
 				c.gridy = i + 1;
 				
 				switch(i) {
@@ -185,7 +257,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				
 				x.insets = new Insets(0, 0, 0, 0);
 				x.anchor = GridBagConstraints.WEST;
-				x.gridx = 2;
+				x.gridx = 3;
 				x.gridy = i + 1;
 				
 				
@@ -193,7 +265,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				this.add(turn1, x);
 			} else {
 				JLabel notTurn = new JLabel(controller.getPlayerName(i) + " - "
-						+ "Grondstoffen: " + controller.getBuildingPoints(i));
+						+ "Grondstoffen: " + controller.getPlayerResources(i));
+				
 				JLabel notTurn1 = new JLabel("" + controller.getBuildingPoints(i));
 				notTurn1.setIcon(trophy);
 				
@@ -210,7 +283,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTH;
-				c.gridx = 1;
+				c.gridx = 2;
 				c.gridy = i + 1;
 				
 				
@@ -227,7 +300,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				}
 				x.insets = new Insets(0, 0, 0, 0);
 				x.anchor = GridBagConstraints.WEST;
-				x.gridx = 2;
+				x.gridx = 3;
 				x.gridy = i + 1;
 				
 				this.add(notTurn, c);
@@ -264,6 +337,35 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			}
 		}
 
+	}
+	
+	public void wonButton() {
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 2;
+		c.gridy = 7;
+		this.add(won, c);
+		won.addActionListener(this);
+		
+		for (int i = 0; i < 4; i++) {
+			if (controller.myTurn(i)) {
+				enableWonButton();
+			} else {
+				disableWonButton();
+			}
+		}
+	}
+	
+	public void enableWonButton() {
+		won.setBackground(new Color(5, 162, 0));
+		won.setForeground(Color.WHITE);
+		won.setEnabled(true);
+	}
+	
+	public void disableWonButton() {
+		won.setBackground(new Color(163, 0, 0));
+		won.setForeground(Color.BLACK);
+		won.setEnabled(false);
 	}
 
 	public void enableEndButton() {

@@ -52,7 +52,7 @@ public class BoardController {
 		ArrayList<Street> streets = new ArrayList<Street>();
 		// this loop will create all tiles with their tile points
 			for (int i = 0; i < arrayListTileCenter.size(); i++) {
-				// this to get the tile centerpoint for the calculation for the other points
+				// this to get the tile center point for the calculation of the other points
 				Point tileCenter = new Point();
 				tileCenter.setLocation(arrayListTileCenter.get(i));
 				Tile tile = new Tile();
@@ -83,7 +83,7 @@ public class BoardController {
 				corner.setDock(comparePointToDockPoints(docks,corner.getPoint()));
 				corners.add(corner);
 			}
-		// this loop wil create the Streets
+		// this loop will create the Streets
 			for(Corner corner: corners) {
 				ArrayList<Street> newStreets = createStreet(corners, streets, corner);
 				if(newStreets!=null) {

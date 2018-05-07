@@ -38,13 +38,9 @@ import Controller.TradeController;
 import Model.TradeInputLimit;
 import Model.TradeNoLetters;
 
-public class TradeView extends JFrame {
+public class TradePanel extends JPanel implements ActionListener {
 
 	private TradeController tc;
-
-	private JMenuBar menuBar;
-	private JMenu menu;
-	private JMenuItem exit;
 
 	private BufferedImage schaap, hooi, hout, steen, erts;
 	private JLabel panel, yourCards, theirCards;
@@ -60,9 +56,8 @@ public class TradeView extends JFrame {
 	private JComboBox<String> cb;
 
 	JPanel trade;
-	JFrame frame;
 
-	public TradeView(TradeController tradePanelController) {
+	public TradePanel(TradeController tradePanelController) {
 
 		tc = tradePanelController;
 
@@ -70,7 +65,9 @@ public class TradeView extends JFrame {
 
 	public void showFrame() {
 		
-		frame = new JFrame();
+		System.out.println("works");
+		System.out.println("kappa");
+		
 		trade = new JPanel();
 
 		trade.setLayout(new GridBagLayout());
@@ -85,10 +82,10 @@ public class TradeView extends JFrame {
 		// trade.setVisible(false);
 		trade.setPreferredSize(new Dimension(1000, 600));
 		trade.setBackground(new Color(245, 245, 220));
+		trade.setVisible(true);
 
 		createStuff();
 		importImages();
-		addMenuBar();
 
 		c.insets = new Insets(20, 0, 0, 0);
 		panel.setFont(new Font("Arial Black", 1, 25));
@@ -185,8 +182,6 @@ public class TradeView extends JFrame {
 		PlainDocument doc10 = (PlainDocument) their_oret.getDocument();
 		doc10.setDocumentFilter(tnl);
 
-		setupFrame();
-
 	}
 
 	boolean bank_has_card_available = false;
@@ -200,24 +195,12 @@ public class TradeView extends JFrame {
 		}
 	}
 
-	private void setupFrame() {
-
-		frame.setUndecorated(false);
-		frame.setAlwaysOnTop(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setContentPane(trade);
-		frame.setUndecorated(true);
-		frame.setVisible(true);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-
-	}
-
 	private void createStuff() {
 
 		panel = new JLabel("Handelspaneel");
 		yourCards = new JLabel("Aanbod:");
 		propose = new JButton("Stel handel voor");
+		propose.addActionListener(this);
 		your_wool = new JLabel("" + tc.getPlayerCards(1));
 		your_wheat = new JLabel("" + tc.getPlayerCards(2));
 		your_wood = new JLabel("" + tc.getPlayerCards(3));
@@ -238,20 +221,12 @@ public class TradeView extends JFrame {
 		their_oret = new JTextField(2);
 
 	}
-
-	private void addMenuBar() {
-		menuBar = new JMenuBar();
-		menu = new JMenu("X");
-		exit = new JMenuItem("Sluiten");
-		menuBar.add(menu);
-		menu.add(exit);
-		frame.setJMenuBar(menuBar);
+	
+	private void addActionListeners() {
+		propose.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(exit)) { 
-			dispose();
-		}
 		if (e.getSource().equals(propose)) {
 			Object item = cb.getSelectedItem();
 			if (item.toString().equals("Spelers")) {
@@ -262,12 +237,8 @@ public class TradeView extends JFrame {
 				boolean er_bestaan_nog_geen_havens_dus_is_het_voor_nu_alleen_nog_maar_4x1 = true;
 				if (er_bestaan_nog_geen_havens_dus_is_het_voor_nu_alleen_nog_maar_4x1 == true) {
 					// if statement hieronder: Kijken of er links een 4 en rechts een 1 is ingevuld.
-					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4")
-							|| your_stonet.getText().equals("4") || your_woodt.getText().equals("4")
-							|| your_oret.getText().equals("4"))
-							&& (their_woolt.getText().equals("1") || their_wheatt.getText().equals("1")
-									|| their_stonet.getText().equals("1") || their_woodt.getText().equals("1")
-									|| their_oret.getText().equals("1"))) {
+					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4")) && 
+						(their_woolt.getText().equals("1") || their_wheatt.getText().equals("1") || their_stonet.getText().equals("1") || their_woodt.getText().equals("1") || their_oret.getText().equals("1"))) {
 						// if statement hieronder: Hier wordt strikt gecontrolleerd of dat er aan BEIDE
 						// kanten precies één JTextField is ingevuld.
 						if ((!your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty()

@@ -10,6 +10,7 @@ import View.BuildPanel;
 import View.ChatPanel;
 import View.DicePanel;
 import View.PlayerInformationPanel;
+import View.TradeFrame;
 
 public class GameController extends Observable implements Runnable {
 	private Game Game;
@@ -17,7 +18,7 @@ public class GameController extends Observable implements Runnable {
 	private DiceController diceController;
 	private BuildPanelController bouwPanelController;
 	private ChatPanelController chatPanelController;
-	private TradeController tradePanelController;
+	private TradeFrame tradeFrame;
 	private BoardController boardController;
 
 	public GameController(int IdGame, String userName, Connection db_conn, boolean newGame) {
@@ -64,7 +65,7 @@ public class GameController extends Observable implements Runnable {
 		bouwPanelController = new BuildPanelController(Game, db_conn, this);
 		playerInfoController = new PlayerInfoController(Game, db_conn, this);
 		chatPanelController = new ChatPanelController(Game, db_conn);
-		tradePanelController = new TradeController(Game, db_conn);
+		tradeFrame = new TradeFrame(Game, db_conn);
 		boardController = new BoardController(Game, db_conn);
 		
 		bouwPanelController.addObserver(playerInfoController);
@@ -100,7 +101,7 @@ public class GameController extends Observable implements Runnable {
 	}
 
 	public void getTradeFrame() {
-		tradePanelController.getTradeFrame();
+		tradeFrame.getTradeFrame();
 	}
 
 	public DicePanel getDicePanel() {

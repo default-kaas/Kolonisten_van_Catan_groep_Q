@@ -5,7 +5,8 @@ import java.sql.Connection;
 import Model.Game;
 import Model.Player;
 import Model.Trade;
-import View.TradeView;
+import View.TradeFrame;
+import View.TradePanel;
 
 public class TradeController {
 	
@@ -13,17 +14,22 @@ public class TradeController {
 	
 	private Player player;
 	private Game game;
-
-	private TradeView tradeview;
+	
+	private TradePanel tradeView;
+	private TradeFrame tradeFrame;
 	private Trade trademodel;
 	
 	int card = 0;
 	
-	public TradeController(Game game, Connection db_conn) {
-		tradeview = new TradeView(this);
+	public TradeController(TradeFrame tf, Connection db_conn, Game game) {
+		tradeView = new TradePanel(this);
 		trademodel = new Trade(this);
+	    tradeFrame = tf;
 		this.game = game;
-		
+	}
+	
+	public void setPanel(TradePanel tp) {
+		this.tradeView = tp;
 	}
 	
 	public int getPlayerCards(int Card) {
@@ -51,8 +57,12 @@ public class TradeController {
 		else return Card;
 	}
 	
+	public TradePanel getTradePanel() {
+		return tradeView;
+	}
+	
 	public void getTradeFrame() {
-		tradeview.showFrame();
+		tradeView.showFrame();
 	}
 	
 	public void setPlayerCards(String Card, int Amount) {
@@ -66,10 +76,10 @@ public class TradeController {
 	
 	public void getBoolean() {
 		if (game.getPlayerDAO().getyes() == true) {
-			tradeview.setAvailability(true);
+			tradeView.setAvailability(true);
 		}
 		if (game.getPlayerDAO().getyes() == false) {
-			tradeview.setAvailability(false);			
+			tradeView.setAvailability(false);			
 		}
 	}
 	

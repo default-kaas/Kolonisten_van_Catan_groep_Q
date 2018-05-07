@@ -66,7 +66,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	}
 	public void UpdateResources() {
 		stone.setText(": " + controller.getWoodAmount());
-		wood.setText( ": " + controller.getWoolAmount());
+		wood.setText( ": " + controller.getWoodAmount());
 		wool.setText(": " + controller.getWoolAmount());
 		ore.setText(": " + controller.getOreAmount());
 		wheat.setText(": " + controller.getWheatAmount());
@@ -396,9 +396,9 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		trade.setForeground(Color.BLACK);
 		trade.setEnabled(false);
 
-		end.setBackground(new Color(163, 0, 0));
-		end.setForeground(Color.BLACK);
-		end.setEnabled(false);
+//		end.setBackground(new Color(163, 0, 0));
+//		end.setForeground(Color.BLACK);
+//		end.setEnabled(false);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

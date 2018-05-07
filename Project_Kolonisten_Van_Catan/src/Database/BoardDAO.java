@@ -21,8 +21,7 @@ public class BoardDAO {
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery("SELECT idtegel FROM tegel WHERE idspel ="+ game +" ORDER BY idtegel ");
-			for(int i=0; i<19;i++) {
-				rs.next();
+			while(rs.next()) {
 				int idTile =rs.getInt("idtegel");
 				arrayList.add(idTile);
 			}
@@ -39,8 +38,7 @@ public class BoardDAO {
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery("SELECT x,y,idgetalfiche FROM tegel WHERE idspel ="+ game +" ORDER BY idtegel ");
-			for(int i=0; i<19;i++) {
-				rs.next();
+			while(rs.next()) {
 				int x =rs.getInt("x");
 				int y =rs.getInt("y");
 				Point point = new Point(x,y);
@@ -59,8 +57,7 @@ public class BoardDAO {
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery("SELECT idgrondstofsoort FROM tegel WHERE idspel ="+ game +" ORDER BY idtegel ");
-			for(int i=0; i<19;i++) {
-				rs.next();
+			while(rs.next()) {
 				String idRS = rs.getString("idgrondstofsoort");
 				char idR = idRS.charAt(0);
 				arrayList.add(idR);
@@ -78,8 +75,7 @@ public class BoardDAO {
 			Statement stmt = connection.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery("SELECT idgetalfiche FROM tegel WHERE idspel ="+ game +" ORDER BY idtegel ");
-			for(int i=0; i<19;i++) {
-				rs.next();
+			while(rs.next()) {
 				int idGetalfiche =rs.getInt("idgetalfiche");
 				arrayList.add(switchForIdNumberChip(idGetalfiche));
 			}
@@ -106,7 +102,7 @@ public class BoardDAO {
 		}
 	}
 	
-	public ArrayList<Point> getLocationsFromDataBase(int game) {
+	public ArrayList<Point> getLocationsFromDataBase() {
 		try {
 			ArrayList<Point> arrayList = new ArrayList<Point>();
 			Statement stmt = connection.createStatement();

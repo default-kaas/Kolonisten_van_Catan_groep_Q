@@ -42,8 +42,8 @@ public class Board {
 		return boardDOA.getTilePointsFromDataBase(gameNumber);
 	}
 	
-	public ArrayList<Point> getBoardDAOCornerPointsFromDataBase(int gameNumber){
-		return boardDOA.getLocationsFromDataBase(gameNumber);
+	public ArrayList<Point> getBoardDAOCornerPointsFromDataBase(){
+		return boardDOA.getLocationsFromDataBase();
 	}
 	
 	public ArrayList<Character> getBoardDOAIdResoucreType(int gameNumber){

@@ -68,7 +68,7 @@ public class BoardController {
 			}
 		// this part is about creating the all the points also known as the corners of the board
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
-		arrayListLocation.addAll(board.getBoardDAOCornerPointsFromDataBase(gameNumber));
+		arrayListLocation.addAll(board.getBoardDAOCornerPointsFromDataBase());
 		// this loop will create all corners
 			for(int i =0; i<arrayListLocation.size();i++) {
 				Point cornPoint = new Point();

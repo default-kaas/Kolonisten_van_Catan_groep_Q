@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DiceDAO {
 
@@ -67,6 +68,26 @@ public class DiceDAO {
 		} catch (SQLException e) {
 			System.out.println(e);
 			return -1;
+		}
+	}
+	
+	
+	
+	public ArrayList<String> getResourceTypeFromDice(int gameID, int dice) {
+		try {
+			ArrayList<String> resourceList = new ArrayList<String>();
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select tegel.idgrondstofsoort from tegel join getalfiche on tegel.idgetalfiche = getalfiche.idgetalfiche where tegel.idspel = " + gameID +  "  and getalfiche.waarde = "+ dice);
+			while (rs.next()) {
+				String resource = rs.getString("idgrondstofsoort");
+				resourceList.add(resource);
+			}
+			return resourceList;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return null;
 		}
 	}
 }

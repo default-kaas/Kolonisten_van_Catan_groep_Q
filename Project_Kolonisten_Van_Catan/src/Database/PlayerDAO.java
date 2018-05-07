@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Model.Game;
 import Model.Player;
@@ -109,6 +110,18 @@ public class PlayerDAO {
 
 	}
 	
+	public ArrayList<Integer> getPlayerCards(int gameId, int idPlayer) {
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam)  AS amount from ontwikkelingskaart join spelerontwikkelingskaart ON ontwikkelingskaart.idontwikkelingskaart = spelerontwikkelingskaart.idontwikkelingskaart join spel ON spel.idspel = spelerontwikkelingskaart.idspel where idspeler = " + idPlayer + "  AND spel.idspel = " + gameId + "group by ontwikkelingskaart.naam");
+		} catch (SQLException e) {
+			
+		}
+		
+		return 0;
+	}
+	
 	
 
 	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
@@ -124,12 +137,14 @@ public class PlayerDAO {
 	public void addResources(int gameid, Player playerid, String card, int amount) {
 		try {
 			Statement statement = m_Conn.createStatement();
-			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid
+		final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid
 					+ " WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel IS "+ gameid +" LIMIT " + amount;
 			statement.executeUpdate(QUERY);
 		} catch (SQLException e) {
 		}
 	}
+	
+
 	
 	
 	

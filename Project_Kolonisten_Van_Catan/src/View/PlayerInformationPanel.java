@@ -149,11 +149,12 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		for (int i = 0; i < 4; i++) { // Prints all user info (Color, Name, Resource Amount and Points
 			
 			if (controller.myTurn(i)) {
-				JLabel turn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+				JLabel turn = new JLabel(controller.getPlayerName(i) + " - "
 						+ "Grondstoffen: " + controller.getPlayerResources(i)  + 
 						controller.getBuildingPoints(i) + " - bezig met beurt!");	
 				JLabel turn1 = new JLabel("" + controller.getBuildingPoints(i));
 				turn1.setIcon(trophy);
+			
 				if (controller.getPlayerName(i).equals(controller.checkArmy())
 						&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					turn.setIcon(knightAndRoad);
@@ -162,7 +163,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
 					turn.setIcon(knightImage);
 				}
-				turn.setForeground(Color.BLACK);
+				
+				
 				turn.setFont(new Font("Arial", Font.BOLD, 15));
 				
 				c.insets = new Insets(0, 0, 0, 0);
@@ -170,7 +172,15 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				c.gridx = 1;
 				c.gridy = i + 1;
 				
-				turn.setForeground(Color.BLACK);
+				switch(i) {
+				case 0 : turn.setForeground(Color.RED);
+				break;
+				case 1 : turn.setForeground(Color.WHITE);
+				break;
+				case 2: turn.setForeground(Color.BLUE);
+				break;
+				case 3: turn.setForeground(Color.ORANGE);
+				}
 				turn.setFont(new Font("Arial", Font.BOLD, 15));
 				
 				x.insets = new Insets(0, 0, 0, 0);
@@ -182,10 +192,11 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				this.add(turn, c);
 				this.add(turn1, x);
 			} else {
-				JLabel notTurn = new JLabel(controller.getPlayerColor(i) + ": " + controller.getPlayerName(i) + " - "
+				JLabel notTurn = new JLabel(controller.getPlayerName(i) + " - "
 						+ "Grondstoffen: " + controller.getBuildingPoints(i));
 				JLabel notTurn1 = new JLabel("" + controller.getBuildingPoints(i));
 				notTurn1.setIcon(trophy);
+				
 				if (controller.getPlayerName(i).equals(controller.checkArmy())
 						&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					notTurn.setIcon(knightAndRoad);
@@ -202,9 +213,18 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				c.gridx = 1;
 				c.gridy = i + 1;
 				
-				notTurn1.setForeground(Color.BLACK);
+				
 				notTurn1.setFont(new Font("Arial", Font.BOLD, 15));
 				
+				switch(i) {
+				case 0 : notTurn.setForeground(Color.RED);
+				break;
+				case 1 : notTurn.setForeground(Color.WHITE);
+				break;
+				case 2: notTurn.setForeground(Color.BLUE);
+				break;
+				case 3: notTurn.setForeground(Color.ORANGE);
+				}
 				x.insets = new Insets(0, 0, 0, 0);
 				x.anchor = GridBagConstraints.WEST;
 				x.gridx = 2;

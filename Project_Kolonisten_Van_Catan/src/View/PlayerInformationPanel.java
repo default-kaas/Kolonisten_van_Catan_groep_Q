@@ -34,7 +34,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	private PlayerInfoController controller;
 	
-	private JLabel stone, wood;
+	private JLabel stone, wood, wool, ore, wheat;
 
 	public PlayerInformationPanel(PlayerInfoController controller) {
 		this.controller = controller;
@@ -55,10 +55,11 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	}
 	public void UpdateResources() {
-		String stoneAmount = ": " + controller.getStoneAmount();
-		String woodAmount = ": " + controller.getWoodAmount();
-		stone.setText(stoneAmount);
-		wood.setText(woodAmount);
+		stone.setText(": " + controller.getWoodAmount());
+		wood.setText( ": " + controller.getWoolAmount());
+		wool.setText(": " + controller.getWoolAmount());
+		ore.setText(": " + controller.getOreAmount());
+		wheat.setText(": " + controller.getWheatAmount());
 		this.repaint();
 	}
 	
@@ -107,7 +108,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 3;
-		JLabel wool = new JLabel(woolAmount);
+		wool = new JLabel(woolAmount);
 		wool.setIcon(woolImage);
 		wool.setForeground(Color.BLACK);
 		wool.setFont(new Font("Arial", Font.BOLD, 20));
@@ -117,7 +118,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 4;
-		JLabel ore = new JLabel(oreAmount);
+		ore = new JLabel(oreAmount);
 		ore.setIcon(oreImage);
 		ore.setForeground(Color.BLACK);
 		ore.setFont(new Font("Arial", Font.BOLD, 20));
@@ -127,7 +128,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 5;
-		JLabel wheat = new JLabel(wheatAmount);
+		wheat = new JLabel(wheatAmount);
 		wheat.setIcon(wheatImage);
 		wheat.setForeground(Color.BLACK);
 		wheat.setFont(new Font("Arial", Font.BOLD, 20));

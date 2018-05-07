@@ -69,11 +69,10 @@ public class BoardPanel extends JPanel {
 			}
 
 			g.fillPolygon(hexagon);
-			
 
 			int TileNumber = tile.getIdNumberChip();
 			if (TileNumber != 0) {
-				//Draw fiches
+				// Draw fiches
 				g.setColor(Color.black);
 				g.fillOval(tile.getInGameCenterPoint().x - 20, tile.getInGameCenterPoint().y - 20, 40, 40);
 				g.setColor(Color.white);
@@ -100,10 +99,10 @@ public class BoardPanel extends JPanel {
 				}
 
 				g.setFont(new Font("Arial", Font.BOLD, 16));
-				//Draw number on fiches
-				if(TileNumber >=10) {
+				// Draw number on fiches
+				if (TileNumber >= 10) {
 					g.drawString(number, tile.getInGameCenterPoint().x - 8, tile.getInGameCenterPoint().y + 5);
-				}else {
+				} else {
 					g.drawString(number, tile.getInGameCenterPoint().x - 4, tile.getInGameCenterPoint().y + 5);
 				}
 			}

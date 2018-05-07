@@ -43,10 +43,8 @@ public class Corner {
 	public boolean isDock() {
 		return dock;
 	}
-	public void setDock(int tinyInt) {
-		if(tinyInt == 1) {
-			this.dock = true;
-		}
+	public void setDock(boolean dock) {
+		this.dock = dock;
 	}
 	//IDResourceType
 	public char getIdResourceType() {

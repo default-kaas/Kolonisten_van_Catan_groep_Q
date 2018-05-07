@@ -41,11 +41,13 @@ public class BoardController {
 		ArrayList<Point> arrayListTileCenter = new ArrayList<Point>();
 		arrayListTileCenter.addAll(board.getBoardDAOTilePointsFromDataBase(gameNumber));
 		ArrayList<Character> arrayListIdResoucreType = new ArrayList<Character>();
-		arrayListIdResoucreType.addAll(board.getBoardDOAIdResoucreType(gameNumber));
+		arrayListIdResoucreType.addAll(board.getBoardDAOIdResoucreType(gameNumber));
 		ArrayList<Integer> arrayListIdNumberChip = new ArrayList<Integer>();
-		arrayListIdNumberChip.addAll(board.getBoardDOAIdNumberChip(gameNumber));
-		int roberTileId = board.getBoardDOARobberTile(game.getGameID());
+		arrayListIdNumberChip.addAll(board.getBoardDAOIdNumberChip(gameNumber));
+		int roberTileId = board.getBoardDAORobberTile(game.getGameID());
 		int heightOfTile = 114;
+		ArrayList<Point> docks = new ArrayList<Point>();
+		docks.addAll(board.getBoardDAODocks());
 		// this is to create the values that are going to get returend to the board
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		ArrayList<Corner> corners = new ArrayList<Corner>();
@@ -80,6 +82,7 @@ public class BoardController {
 				corner.setInGamePoint(returnInGamePoint(corner.getPoint(),tiles));
 				corner.setInGameTilePoints(returnInGameTilePoints(corner.getPoint(),tiles));
 //				corner.setInGameLinePoints(returnInGameStreetPoints(corner.getInGamePoint(),tiles,heightOfTile));
+				corner.setDock(comparePointToDockPoints(docks,corner.getPoint()));
 				corners.add(corner);
 			}
 		// this loop wil create the Streets
@@ -442,5 +445,14 @@ public class BoardController {
 		}else {
 			return newStreets;
 		}
+	}
+	
+	private boolean comparePointToDockPoints(ArrayList<Point> docks,Point point) {
+		for(Point dockPoint: docks) {
+			if(dockPoint.getX()==point.getX()&&dockPoint.getY()==point.getY()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

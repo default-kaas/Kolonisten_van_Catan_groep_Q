@@ -46,17 +46,19 @@ public class Board {
 		return boardDOA.getLocationsFromDataBase();
 	}
 	
-	public ArrayList<Character> getBoardDOAIdResoucreType(int gameNumber){
+	public ArrayList<Character> getBoardDAOIdResoucreType(int gameNumber){
 		return boardDOA.getIdResoucreType(gameNumber);
 	}
 	
-	public ArrayList<Integer> getBoardDOAIdNumberChip(int gameNumber){
+	public ArrayList<Integer> getBoardDAOIdNumberChip(int gameNumber){
 		return boardDOA.getIdNumberChip(gameNumber);
 	}
 	
-	public int getBoardDOARobberTile(int gameNumber) {
+	public int getBoardDAORobberTile(int gameNumber) {
 		return boardDOA.getRobberTile(gameNumber);
 	}
 	
-	
+	public ArrayList<Point> getBoardDAODocks(){
+		return boardDOA.getDocksFromDataBase();
+	}
 }

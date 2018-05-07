@@ -1,10 +1,6 @@
 package Controller;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 public class MainClass {
-	private static Random random = new Random();
 
 	public static void main(String[] args) {
 

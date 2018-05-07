@@ -18,6 +18,13 @@ public class BoardPanel extends JPanel {
 	private Board board;
 	private int height;
 
+	private final Color Wheat = Color.YELLOW;
+	private final Color Wood = new Color(0x99, 0x66, 0x33);
+	private final Color Wool = Color.GREEN;
+	private final Color Ore = Color.LIGHT_GRAY;
+	private final Color Brick = new Color(0xAD, 0x33, 0x33);
+	private final Color Dessert = new Color(0xFF, 0xFF, 0xA9);
+
 	public BoardPanel(Board board) {
 		this.board = board;
 		// Dit is ff groen voor een test, mag je weghalen
@@ -35,13 +42,6 @@ public class BoardPanel extends JPanel {
 		for (Tile tile : Tiles) {
 			ArrayList<Point> CornerPoints = tile.getInGameCornerPoints();
 
-			Color Wheat = Color.YELLOW;
-			Color Wood = new Color(0x99, 0x66, 0x33);
-			Color Wool = Color.GREEN;
-			Color Ore = Color.LIGHT_GRAY;
-			Color Brick = new Color(0xAD, 0x33, 0x33);
-			Color Dessert = new Color(0xFF, 0xFF, 0xA9);
-			
 			switch (tile.getIdResourceType()) {
 			case 'B':
 				g.setColor(Brick);
@@ -62,43 +62,56 @@ public class BoardPanel extends JPanel {
 				g.setColor(Dessert);
 				break;
 			}
-			
+
 			Polygon hexagon = new Polygon();
 			for (Point Corner : CornerPoints) {
 				hexagon.addPoint(Corner.x, Corner.y);
 			}
 
 			g.fillPolygon(hexagon);
-
-			g.setColor(Color.black);
-			g.fillOval(tile.getInGameCenterPoint().x - 20, tile.getInGameCenterPoint().y - 20, 40, 40);
-			g.setColor(Color.white);
-			g.fillOval(tile.getInGameCenterPoint().x - 19, tile.getInGameCenterPoint().y - 19, 38, 38);
+			
 
 			int TileNumber = tile.getIdNumberChip();
+			if (TileNumber != 0) {
+				//Draw fiches
+				g.setColor(Color.black);
+				g.fillOval(tile.getInGameCenterPoint().x - 20, tile.getInGameCenterPoint().y - 20, 40, 40);
+				g.setColor(Color.white);
+				g.fillOval(tile.getInGameCenterPoint().x - 19, tile.getInGameCenterPoint().y - 19, 38, 38);
 
-			String number = null;
-			switch (TileNumber) {
-			case 6:
-				g.setColor(Color.red);
-				number = TileNumber + ".";
-				break;
-			case 8:
-				g.setColor(Color.red);
-				number = "" + TileNumber;
-				break;
-			case 9:
-				g.setColor(Color.black);
-				number = TileNumber + ".";
-				break;
-			default:
-				g.setColor(Color.black);
-				number = "" + TileNumber;
-				break;
+				String number = null;
+				switch (TileNumber) {
+				case 6:
+					g.setColor(Color.red);
+					number = TileNumber + ".";
+					break;
+				case 8:
+					g.setColor(Color.red);
+					number = "" + TileNumber;
+					break;
+				case 9:
+					g.setColor(Color.black);
+					number = TileNumber + ".";
+					break;
+				default:
+					g.setColor(Color.black);
+					number = "" + TileNumber;
+					break;
+				}
+
+				g.setFont(new Font("Arial", Font.BOLD, 16));
+				//Draw number on fiches
+				if(TileNumber >=10) {
+					g.drawString(number, tile.getInGameCenterPoint().x - 8, tile.getInGameCenterPoint().y + 5);
+				}else {
+					g.drawString(number, tile.getInGameCenterPoint().x - 4, tile.getInGameCenterPoint().y + 5);
+				}
 			}
 
-			g.setFont(new Font("Arial", Font.BOLD, 16));
-			g.drawString(number, tile.getInGameCenterPoint().x - 4, tile.getInGameCenterPoint().y + 5);
+			if (tile.isRobber()) {
+				g.setColor(Color.black);
+				g.fillOval(tile.getInGameCenterPoint().x - 20, tile.getInGameCenterPoint().y - 20, 40, 40);
+			}
 
 		}
 

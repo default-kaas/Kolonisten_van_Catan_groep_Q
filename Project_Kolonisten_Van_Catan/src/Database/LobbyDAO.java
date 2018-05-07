@@ -220,123 +220,141 @@ public class LobbyDAO {
 								+ newGameID + ", " + (i + 1) + ",6,6,'X', null);";
 						statement.executeUpdate(QUERY5);
 					} else {
-						while (!nextResource) {
-							if (randomInt == 0 && B < 3) {
-								B++;
-								ResourceType = 'B';
-								nextResource = true;
-							} else if (randomInt == 1 && E < 3) {
-								E++;
-								ResourceType = 'E';
-								nextResource = true;
-							} else if (randomInt == 2 && G < 4) {
-								G++;
-								ResourceType = 'G';
-								nextResource = true;
-							} else if (randomInt == 3 && H < 4) {
-								H++;
-								ResourceType = 'H';
-								nextResource = true;
-							} else if (randomInt == 4 && W < 4) {
-								W++;
-								ResourceType = 'W';
-								nextResource = true;
-							} else {
-								randomInt = random.nextInt(5);
-							}
-						}
+//						while (!nextResource) {
+//							if (randomInt == 0 && B < 3) {
+//								B++;
+//								ResourceType = 'B';
+//								nextResource = true;
+//							} else if (randomInt == 1 && E < 3) {
+//								E++;
+//								ResourceType = 'E';
+//								nextResource = true;
+//							} else if (randomInt == 2 && G < 4) {
+//								G++;
+//								ResourceType = 'G';
+//								nextResource = true;
+//							} else if (randomInt == 3 && H < 4) {
+//								H++;
+//								ResourceType = 'H';
+//								nextResource = true;
+//							} else if (randomInt == 4 && W < 4) {
+//								W++;
+//								ResourceType = 'W';
+//								nextResource = true;
+//							} else {
+//								randomInt = random.nextInt(5);
+//							}
+//						}
 						int[] Position = new int[2];
 						int numberChips = -1;
 						switch (i) {
 						case 0:
 							Position[0] = 2;
 							Position[1] = 4;
-							numberChips = 10;
+							numberChips = 12;
+							ResourceType = 'G';
 							break;
 						case 1:
 							Position[0] = 3;
 							Position[1] = 6;
-							numberChips = 2;
+							numberChips = 18;
+							ResourceType = 'G';
 							break;
 						case 2:
 							Position[0] = 4;
 							Position[1] = 8;
-							numberChips = 8;
+							numberChips = 14;
+							ResourceType = 'E';
 							break;
 						case 3:
 							Position[0] = 3;
 							Position[1] = 3;
-							numberChips = 14;
+							numberChips = 10;
+							ResourceType = 'H';
 							break;
 						case 4:
 							Position[0] = 4;
 							Position[1] = 5;
-							numberChips = 6;
+							numberChips = 16;
+							ResourceType = 'H';
 							break;
 						case 5:
 							Position[0] = 5;
 							Position[1] = 7;
-							numberChips = 4;
+							numberChips = 8;
+							ResourceType = 'B';
 							break;
 						case 6:
 							Position[0] = 6;
 							Position[1] = 9;
 							numberChips = 1;
+							ResourceType = 'W';
 							break;
 						case 7:
 							Position[0] = 4;
 							Position[1] = 2;
-							numberChips = 12;
+							numberChips = 6;
+							ResourceType = 'B';
 							break;
 						case 8:
 							Position[0] = 5;
 							Position[1] = 4;
-							numberChips = 9;
+							numberChips = 2;
+							ResourceType = 'E';
 							break;
 						case 10:
 							Position[0] = 7;
 							Position[1] = 8;
-							numberChips = 13;
+							numberChips = 4;
+							ResourceType = 'W';
 							break;
 						case 11:
 							Position[0] = 8;
 							Position[1] = 10;
-							numberChips = 7;
+							numberChips = 13;
+							ResourceType = 'H';
 							break;
 						case 12:
 							Position[0] = 6;
 							Position[1] = 3;
-							numberChips = 18;
+							numberChips = 9;
+							ResourceType = 'G';
 							break;
 						case 13:
 							Position[0] = 7;
 							Position[1] = 5;
-							numberChips = 3;
+							numberChips = 5;
+							ResourceType = 'G';
 							break;
 						case 14:
 							Position[0] = 8;
 							Position[1] = 7;
-							numberChips = 16;
+							numberChips = 3;
+							ResourceType = 'H';
 							break;
 						case 15:
 							Position[0] = 9;
 							Position[1] = 9;
 							numberChips = 15;
+							ResourceType = 'B';
 							break;
 						case 16:
 							Position[0] = 8;
 							Position[1] = 4;
 							numberChips = 17;
+							ResourceType = 'W';
 							break;
 						case 17:
 							Position[0] = 9;
 							Position[1] = 6;
-							numberChips = 5;
+							numberChips = 7;
+							ResourceType = 'W';
 							break;
 						case 18:
 							Position[0] = 10;
 							Position[1] = 8;
 							numberChips = 11;
+							ResourceType = 'E';
 							break;
 						}
 

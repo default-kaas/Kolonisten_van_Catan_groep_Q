@@ -25,9 +25,9 @@ public class PlayerInfoController implements Observer {
 		spelerInformatiePanel.TradeButton();
 		spelerInformatiePanel.wonButton();
 		spelerInformatiePanel.enablePlayButton();
+		spelerInformatiePanel.endButton();
 		/*spelerInformatiePanel.ShowResources();*/
 		spelerInformatiePanel.playerDevelopmentCards();
-		spelerInformatiePanel.endButton();
 		this.gameController = gameController;
 		disableTradeButton();
 
@@ -141,6 +141,7 @@ public class PlayerInfoController implements Observer {
 		
 		if(o.getClass().getName().equals("Controller.DiceController")) {
 			showTradeButton();
+			spelerInformatiePanel.enableEndButton();
 		}
 	}
 }

@@ -10,6 +10,7 @@ public class Board {
 	private ArrayList<Tile> tiles = new ArrayList<Tile>();
 	private ArrayList<Corner> corners = new ArrayList<Corner>();
 	private ArrayList<Street> lines = new ArrayList<Street>();
+	private ArrayList<Dock> docks = new ArrayList<Dock>();
 	
 	private BoardDAO boardDOA;
 	private Game game;
@@ -60,5 +61,13 @@ public class Board {
 	
 	public ArrayList<Point> getBoardDAODocks(){
 		return boardDOA.getDocksFromDataBase();
+	}
+
+	public ArrayList<Dock> getDocks() {
+		return docks;
+	}
+
+	public void setDocks(ArrayList<Dock> docks) {
+		this.docks = docks;
 	}
 }

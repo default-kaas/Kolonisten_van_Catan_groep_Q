@@ -1,19 +1,17 @@
 package Controller;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Polygon;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import Model.Board;
 import Model.Corner;
+import Model.Dock;
 import Model.Game;
-import Model.Tile;
 import Model.Street;
+import Model.Tile;
 import View.BoardPanel;
 
 public class BoardController {
@@ -454,5 +452,13 @@ public class BoardController {
 			}
 		}
 		return false;
+	}
+	
+	private ArrayList<Dock> returnDocks(ArrayList<Corner> corners){
+		for(Corner corner: corners) {
+			int x = (int)corner.getPoint().getX();
+			int y = (int)corner.getPoint().getY();
+		}
+		return null;
 	}
 }

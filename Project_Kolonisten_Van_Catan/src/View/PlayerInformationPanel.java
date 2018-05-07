@@ -28,27 +28,27 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon cardTools = new ImageIcon("images/DevCards/tools.png");
 	private ImageIcon cardInvention = new ImageIcon("images/DevCards/invention.png");
 	private JLabel monopoly, knight, university, tools, invention;
-	
-
-	
-	
+	private JButton playMonopoly = new JButton("Spelen");
+	private JButton playKnight = new JButton("Spelen");
+	private JButton playUniversity = new JButton("Spelen");
+	private JButton playTools = new JButton("Spelen");
+	private JButton playInvention = new JButton("spelen");
 
 	// Trade button
 	private JButton trade = new JButton("Handelspaneel");
 
 	// end round button
 	private JButton end = new JButton("Beurt beëindigen");
-	
-	//won game button
+
+	// won game button
 	private JButton won = new JButton("Gewonnen!");
 
 	private PlayerInfoController controller;
-	
+
 	private JLabel stone, wood, wool, ore, wheat;
 
 	public PlayerInformationPanel(PlayerInfoController controller) {
 		this.controller = controller;
-		
 
 		c = new GridBagConstraints();
 		x = new GridBagConstraints();
@@ -60,19 +60,19 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
 		this.setPreferredSize(new Dimension(width, height));
-		this.setBackground(new Color(147,147,229));
+		this.setBackground(new Color(147, 147, 229));
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 
 	}
+
 	public void UpdateResources() {
 		stone.setText(": " + controller.getWoodAmount());
-		wood.setText( ": " + controller.getWoolAmount());
+		wood.setText(": " + controller.getWoolAmount());
 		wool.setText(": " + controller.getWoolAmount());
 		ore.setText(": " + controller.getOreAmount());
 		wheat.setText(": " + controller.getWheatAmount());
 		this.repaint();
 	}
-	
 
 	public void playerInfo() {
 		JLabel playerTitle = new JLabel("Speler Info");
@@ -94,7 +94,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		String wheatAmount = ": " + controller.getWheatAmount();
 		String stoneAmount = ": " + controller.getStoneAmount();
 
-		c.insets = new Insets(0, 0, 15, 100);
+		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -104,7 +104,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		stone.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(stone, c);
 
-		c.insets = new Insets(0, 0, 15, 100);
+		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 2;
@@ -114,7 +114,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		wood.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(wood, c);
 
-		c.insets = new Insets(0, 0, 15, 100);
+		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 3;
@@ -124,7 +124,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		wool.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(wool, c);
 
-		c.insets = new Insets(0, 0, 15, 100);
+		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 4;
@@ -134,7 +134,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		ore.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(ore, c);
 
-		c.insets = new Insets(0, 0, 15, 100);
+		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 5;
@@ -142,15 +142,15 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		wheat.setIcon(wheatImage);
 		wheat.setForeground(Color.BLACK);
 		wheat.setFont(new Font("Arial", Font.BOLD, 20));
-		this.add(wheat, c);	
+		this.add(wheat, c);
 
 	}
-	
+
 	public void playerDevelopmentCards() {
-		
-		//set monopoly card
+
+		// set monopoly card
 		monopoly = new JLabel(": 1");
-		c.insets = new Insets(0, 0, 15, 100);
+		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
 		c.gridy = 1;
@@ -158,10 +158,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		monopoly.setForeground(Color.BLACK);
 		monopoly.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(monopoly, c);
-		
-		//set knight card
+
+		// set knight card
 		knight = new JLabel(": 1");
-		c.insets = new Insets(0, 0, 15, 100);
+		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
 		c.gridy = 2;
@@ -169,10 +169,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		knight.setForeground(Color.BLACK);
 		knight.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(knight, c);
-		
-		//set university card
+
+		// set university card
 		university = new JLabel(": 1");
-		c.insets = new Insets(0, 0, 15, 100);
+		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
 		c.gridy = 3;
@@ -180,10 +180,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		university.setForeground(Color.BLACK);
 		university.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(university, c);
-		
-		//set tools card
+
+		// set tools card
 		tools = new JLabel(": 1");
-		c.insets = new Insets(0, 0, 15, 100);
+		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
 		c.gridy = 4;
@@ -191,10 +191,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		tools.setForeground(Color.BLACK);
 		tools.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(tools, c);
-		
-		//set invention card
+
+		// set invention card
 		invention = new JLabel(": 1");
-		c.insets = new Insets(0, 0, 15, 100);
+		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
 		c.gridy = 5;
@@ -202,10 +202,48 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		invention.setForeground(Color.BLACK);
 		invention.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(invention, c);
-		
-		
-		
-		
+
+		// set play monopoly button
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 2;
+		c.gridy = 1;
+		this.add(playMonopoly, c);
+		playMonopoly.addActionListener(this);
+
+		// set knight play button
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 2;
+		c.gridy = 2;
+		this.add(playKnight, c);
+		playKnight.addActionListener(this);
+
+		// set university play button
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 2;
+		c.gridy = 3;
+		this.add(playUniversity, c);
+		playUniversity.addActionListener(this);
+
+		// set tools play button
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 2;
+		c.gridy = 4;
+		this.add(playTools, c);
+		playTools.addActionListener(this);
+
+		// set invention play buttons
+
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 2;
+		c.gridy = 5;
+		this.add(playInvention, c);
+		playInvention.addActionListener(this);
+
 	}
 
 	public void allInfo() {
@@ -215,19 +253,20 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 		c.insets = new Insets(0, 0, 50, 0);
 		c.anchor = GridBagConstraints.NORTH;
-		c.gridx = 2;
+		c.gridx = 3;
 		c.gridy = 0;
 		add(enemyTitle, c);
 
 		for (int i = 0; i < 4; i++) { // Prints all user info (Color, Name, Resource Amount and Points
-			
+
 			if (controller.myTurn(i)) {
-				JLabel turn = new JLabel(controller.getPlayerName(i) + " - "
-						+ "Grondstoffen: " + controller.getPlayerResources(i) 	+ " - bezig met beurt!");	
-				//Second JLabel is made to add a second image associated with player building points.
+				JLabel turn = new JLabel(controller.getPlayerName(i) + " - " + "Grondstoffen: "
+						+ controller.getPlayerResources(i) + " - bezig met beurt!");
+				// Second JLabel is made to add a second image associated with player building
+				// points.
 				JLabel turn1 = new JLabel("" + controller.getBuildingPoints(i));
 				turn1.setIcon(trophy);
-			
+
 				if (controller.getPlayerName(i).equals(controller.checkArmy())
 						&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					turn.setIcon(knightAndRoad);
@@ -236,41 +275,43 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
 					turn.setIcon(knightImage);
 				}
-				
-				
+
 				turn.setFont(new Font("Arial", Font.BOLD, 15));
-				
+
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTH;
-				c.gridx = 2;
+				c.gridx = 3;
 				c.gridy = i + 1;
-				
-				switch(i) {
-				case 0 : turn.setForeground(Color.RED);
-				break;
-				case 1 : turn.setForeground(Color.WHITE);
-				break;
-				case 2: turn.setForeground(Color.BLUE);
-				break;
-				case 3: turn.setForeground(Color.ORANGE);
+
+				switch (i) {
+				case 0:
+					turn.setForeground(Color.RED);
+					break;
+				case 1:
+					turn.setForeground(Color.WHITE);
+					break;
+				case 2:
+					turn.setForeground(Color.BLUE);
+					break;
+				case 3:
+					turn.setForeground(Color.ORANGE);
 				}
 				turn.setFont(new Font("Arial", Font.BOLD, 15));
-				
+
 				x.insets = new Insets(0, 0, 0, 0);
 				x.anchor = GridBagConstraints.WEST;
-				x.gridx = 3;
+				x.gridx = 4;
 				x.gridy = i + 1;
-				
-				
+
 				this.add(turn, c);
 				this.add(turn1, x);
 			} else {
-				JLabel notTurn = new JLabel(controller.getPlayerName(i) + " - "
-						+ "Grondstoffen: " + controller.getPlayerResources(i));
-				
+				JLabel notTurn = new JLabel(
+						controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
+
 				JLabel notTurn1 = new JLabel("" + controller.getBuildingPoints(i));
 				notTurn1.setIcon(trophy);
-				
+
 				if (controller.getPlayerName(i).equals(controller.checkArmy())
 						&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
 					notTurn.setIcon(knightAndRoad);
@@ -284,31 +325,33 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
 				c.insets = new Insets(0, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTH;
-				c.gridx = 2;
+				c.gridx = 3;
 				c.gridy = i + 1;
-				
-				
+
 				notTurn1.setFont(new Font("Arial", Font.BOLD, 15));
-				
-				switch(i) {
-				case 0 : notTurn.setForeground(Color.RED);
-				break;
-				case 1 : notTurn.setForeground(Color.WHITE);
-				break;
-				case 2: notTurn.setForeground(Color.BLUE);
-				break;
-				case 3: notTurn.setForeground(Color.ORANGE);
+
+				switch (i) {
+				case 0:
+					notTurn.setForeground(Color.RED);
+					break;
+				case 1:
+					notTurn.setForeground(Color.WHITE);
+					break;
+				case 2:
+					notTurn.setForeground(Color.BLUE);
+					break;
+				case 3:
+					notTurn.setForeground(Color.ORANGE);
 				}
 				x.insets = new Insets(0, 0, 0, 0);
 				x.anchor = GridBagConstraints.WEST;
-				x.gridx = 3;
+				x.gridx = 4;
 				x.gridy = i + 1;
-				
+
 				this.add(notTurn, c);
 				this.add(notTurn1, x);
 			}
-			
-			
+
 		}
 
 	}
@@ -339,15 +382,15 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		}
 
 	}
-	
+
 	public void wonButton() {
 		c.insets = new Insets(0, 0, 0, 0);
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 2;
+		c.gridx = 3;
 		c.gridy = 7;
 		this.add(won, c);
 		won.addActionListener(this);
-		
+
 		for (int i = 0; i < 4; i++) {
 			if (controller.myTurn(i)) {
 				enableWonButton();
@@ -356,13 +399,57 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			}
 		}
 	}
+
+	public void enablePlayButton() {
+		playMonopoly.setBackground(new Color(5, 162, 0));
+		playMonopoly.setForeground(Color.WHITE);
+		playMonopoly.setEnabled(true);
+
+		playKnight.setBackground(new Color(5, 162, 0));
+		playKnight.setForeground(Color.WHITE);
+		playKnight.setEnabled(true);
+
+		playTools.setBackground(new Color(5, 162, 0));
+		playTools.setForeground(Color.WHITE);
+		playTools.setEnabled(true);
+
+		playUniversity.setBackground(new Color(5, 162, 0));
+		playUniversity.setForeground(Color.WHITE);
+		playUniversity.setEnabled(true);
+
+		playInvention.setBackground(new Color(5, 162, 0));
+		playInvention.setForeground(Color.WHITE);
+		playInvention.setEnabled(true);
+	}
 	
+	public void disablePlayButton() {
+		playMonopoly.setBackground(new Color(163, 0, 0));
+		playMonopoly.setForeground(Color.BLACK);
+		playMonopoly.setEnabled(false);
+
+		playKnight.setBackground(new Color(163, 0, 0));
+		playKnight.setForeground(Color.BLACK);
+		playKnight.setEnabled(false);
+
+		playTools.setBackground(new Color(163, 0, 0));
+		playTools.setForeground(Color.BLACK);
+		playTools.setEnabled(false);
+		
+		playUniversity.setBackground(new Color(163, 0, 0));
+		playUniversity.setForeground(Color.BLACK);
+		playUniversity.setEnabled(false);
+
+		playInvention.setBackground(new Color(163, 0, 0));
+		playInvention.setForeground(Color.BLACK);
+		playInvention.setEnabled(false);
+	}
+
 	public void enableWonButton() {
 		won.setBackground(new Color(5, 162, 0));
 		won.setForeground(Color.WHITE);
 		won.setEnabled(true);
 	}
-	
+
 	public void disableWonButton() {
 		won.setBackground(new Color(163, 0, 0));
 		won.setForeground(Color.BLACK);
@@ -423,10 +510,11 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
 		int height = (int) (screenSize.getHeight() * 0.4);
 
-//		ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg"); // sets Panel Background.
-//		JLabel thumb = new JLabel(icon);
-//		thumb.setSize(width, height);
-//		this.add(thumb);
+		// ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg"); // sets
+		// Panel Background.
+		// JLabel thumb = new JLabel(icon);
+		// thumb.setSize(width, height);
+		// this.add(thumb);
 	}
 
 	public void ShowResources() {

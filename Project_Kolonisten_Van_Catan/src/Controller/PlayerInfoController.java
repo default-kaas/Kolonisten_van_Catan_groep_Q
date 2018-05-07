@@ -24,6 +24,7 @@ public class PlayerInfoController implements Observer {
 		spelerInformatiePanel.playerResources();
 		spelerInformatiePanel.TradeButton();
 		spelerInformatiePanel.wonButton();
+		spelerInformatiePanel.enablePlayButton();
 		/*spelerInformatiePanel.ShowResources();*/
 		spelerInformatiePanel.playerDevelopmentCards();
 		spelerInformatiePanel.endButton();

@@ -285,5 +285,16 @@ public class PlayerDAO {
 			return false;
 		}
 	}
+	public void setRefresh(int idspeler) {
+
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "UPDATE speler SET shouldrefresh = 0 WHERE idspeler = "+ idspeler;
+			statement.executeUpdate(QUERY);
+		} catch (SQLException e) {
+
+		}
+
+	}
 
 }

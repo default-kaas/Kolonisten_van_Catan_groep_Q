@@ -7,15 +7,18 @@ import java.util.Observer;
 import Database.PlayerDAO;
 import Model.Game;
 import View.PlayerInformationPanel;
+import View.TradeFrame;
 
 public class PlayerInfoController implements Observer {
 	private Game game;
 	private PlayerInformationPanel spelerInformatiePanel;
 	private GameController gameController;
 	private PlayerDAO playerDAO;
+	private Connection db_conn;
 
 	public PlayerInfoController(Game game, Connection db_conn, GameController gameController) {
 		spelerInformatiePanel = new PlayerInformationPanel(this);
+		this.db_conn = db_conn;
 		this.game = game;
 		playerDAO = new PlayerDAO(db_conn);
 		spelerInformatiePanel.playerInfo();
@@ -131,7 +134,10 @@ public class PlayerInfoController implements Observer {
 	}
 
 	public void getTradePanel() {
-		gameController.getTradeFrame();
+		//gameController.getTradeFrame();
+		
+		TradeFrame tradeFrame = new TradeFrame(game, db_conn, gameController);
+		tradeFrame.returnFrame();
 	}
 
 	public void endTurn() {

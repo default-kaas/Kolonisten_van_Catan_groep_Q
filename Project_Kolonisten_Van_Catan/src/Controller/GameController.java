@@ -65,8 +65,6 @@ public class GameController extends Observable implements Runnable {
 		bouwPanelController = new BuildPanelController(Game, db_conn, this);
 		playerInfoController = new PlayerInfoController(Game, db_conn, this);
 		chatPanelController = new ChatPanelController(Game, db_conn);
-		tradeFrame = new TradeFrame(Game, db_conn, this);
-		tradeFrame.returnFrame();
 		boardController = new BoardController(Game, db_conn);
 
 		bouwPanelController.addObserver(playerInfoController);

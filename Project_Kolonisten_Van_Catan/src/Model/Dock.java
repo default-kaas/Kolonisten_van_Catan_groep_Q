@@ -20,6 +20,10 @@ public class Dock {
 	public ArrayList<Corner> getCornerPoints() {
 		return cornerPoints;
 	}
+	public Corner getCorner(int index) {
+		return cornerPoints.get(index);
+	}
+	
 	public void setCornerPoints(ArrayList<Corner> cornerPoints) {
 		this.cornerPoints = cornerPoints;
 	}

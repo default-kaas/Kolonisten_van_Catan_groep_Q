@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Model.Board;
+import Model.Dock;
 import Model.Tile;
 
 public class BoardPanel extends JPanel {
@@ -119,13 +120,32 @@ public class BoardPanel extends JPanel {
 					g.drawString(number, tile.getInGameCenterPoint().x - 4, tile.getInGameCenterPoint().y + 5);
 				}
 			}
-
+			
+			
 			if (tile.isRobber()) {
 				g.drawImage(img,tile.getInGameCenterPoint().x - (img.getWidth()/2), tile.getInGameCenterPoint().y - (img.getHeight()/2), null);
 			}
-
 		}
-
+		ArrayList<Dock> docks = board.getDocks();
+		for(Dock dock:docks) {
+			if(dock.getDockPoint()!=null) {
+				g.setColor(Color.blue);
+				int[] xPoints = new int[3];
+				xPoints[0] = dock.getCorner(0).getInGamePoint().x;
+				xPoints[1] = dock.getCorner(1).getInGamePoint().x;
+				xPoints[2] = dock.getDockPoint().x;
+				System.out.println(xPoints[0]);
+				int[] yPoints = new int[3];
+				yPoints[0] = dock.getCorner(0).getInGamePoint().y;
+				yPoints[1] = dock.getCorner(1).getInGamePoint().y;
+				yPoints[2] = dock.getDockPoint().y;
+				System.out.println(yPoints[0]);
+				g.fillPolygon(xPoints, yPoints, 3);
+				g.setColor(Color.white);
+				g.fillOval(dock.getDockPoint().x-19, dock.getDockPoint().y-19, 38, 38);
+				System.out.println(dock.getDockPoint().getX()+ " " +dock.getDockPoint().getY());
+			}
+		}
 	}
 
 	Polygon getHexagon(int x, int y, int h) {

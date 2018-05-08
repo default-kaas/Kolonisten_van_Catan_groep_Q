@@ -32,6 +32,10 @@ public class TradeFrame extends JFrame implements ActionListener {
 	
 	}
 	
+	public void disposethis() {
+		this.dispose();
+	}
+	
 	public void returnFrame() {
 		gc.setTP(this);
 	}

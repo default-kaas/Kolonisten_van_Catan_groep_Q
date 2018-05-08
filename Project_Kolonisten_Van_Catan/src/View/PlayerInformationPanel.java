@@ -413,7 +413,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(end, c);
 		end.addActionListener(this);
 		disableEndButton();
-		}
+	}
 
 	public void wonButton() {
 		c.insets = new Insets(0, 0, 0, 0);

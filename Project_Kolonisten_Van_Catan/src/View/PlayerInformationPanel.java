@@ -170,7 +170,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	public void playerDevelopmentCards() {
 
 		// set monopoly card
-		monopoly = new JLabel(": 1");
+		monopoly = new JLabel(": " + controller.getPlayerMonopolyCard());
 		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
@@ -205,7 +205,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(victoryPoints, c);
 
 		// set tools card
-		tools = new JLabel(": 2");
+		tools = new JLabel(": " + controller.getPlayerToolsCard());
 		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;

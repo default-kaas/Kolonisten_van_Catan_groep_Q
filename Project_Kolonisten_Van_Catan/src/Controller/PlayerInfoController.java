@@ -78,7 +78,7 @@ public class PlayerInfoController implements Observer {
 		}
 		return null;
 	}
-
+	
 	public int getPlayerKnightCard() {
 		return playerDAO.getPlayerKnightCards(game.getGameID(), game.getMe().getPlayerID());
 	}
@@ -89,6 +89,14 @@ public class PlayerInfoController implements Observer {
 	
 	public int getPlayerVictoryPointCard() {
 		return playerDAO.getPlayerVictoryPointCards(game.getGameID(), game.getMe().getPlayerID());
+	}
+	
+	public int getPlayerToolsCard() {
+		return playerDAO.getPlayerToolsCards(game.getGameID(), game.getMe().getPlayerID());
+	}
+	
+	public int getPlayerMonopolyCard() {
+		return playerDAO.getPlayerMonopolyCards(game.getGameID(), game.getMe().getPlayerID());
 	}
 
 	public int getBuildingPoints(int playerId) {

@@ -24,8 +24,6 @@ public class LoginFrame extends JFrame implements ActionListener {
 		loginController = new LoginController(this,db_conn);
 		addMenuBar();
 		setContent();
-	
-
 	}
 	
 	public void Login(String userName) {

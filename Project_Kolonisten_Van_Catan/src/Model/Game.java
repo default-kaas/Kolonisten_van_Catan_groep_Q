@@ -113,6 +113,10 @@ public class Game {
 		return PlayersRound;
 	}
 
+	public void updateRound() {
+		PlayersRound = GameDB.getPlayersRound(GameId);
+	}
+
 	public void setRound() {
 		switch (getMe().getColor()) {
 		case "oranje":

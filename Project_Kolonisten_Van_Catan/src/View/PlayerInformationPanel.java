@@ -3,6 +3,8 @@ package View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import Controller.PlayerInfoController;
 
@@ -44,6 +46,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	private PlayerInfoController controller;
 
+	private ArrayList<JLabel> playerInformation;
+
 	private JLabel stone, wood, wool, ore, wheat;
 	private JLabel turn, turn1, notTurn, notTurn1;
 
@@ -75,23 +79,26 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	}
 
 	public void UpdatePlayerInfo() {
-		for (int i = 0; i < 4; i++) {
+		int i = 0;
+		for (int x = 0; x < 8; x += 2) {
 			if (controller.myTurn(i)) {
-				notTurn.setText(controller.getPlayerName(i) + " - " + "Grondstoffen: "
+				playerInformation.get(x).setText(controller.getPlayerName(i) + " - " + "Grondstoffen: "
 						+ controller.getPlayerResources(i) + " - bezig met beurt!");
 			} else {
-				turn.setText(controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
+				playerInformation.get(x).setText(
+						controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
 			}
+			playerInformation.get(x + 1).setText("" + controller.getBuildingPoints(i));
 
-			// if (controller.getPlayerName(i).equals(controller.checkArmy())
-			// && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-			// turn.setIcon(knightAndRoad);
-			// } else if (controller.getPlayerName(i).equals(controller.checkLongestRoad()))
-			// {
-			// turn.setIcon(longestRoadImage);
-			// } else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
-			// turn.setIcon(knightImage);
-			// }
+			if (controller.getPlayerName(i).equals(controller.checkArmy())
+					&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+				playerInformation.get(x).setIcon(knightAndRoad);
+			} else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+				playerInformation.get(x).setIcon(longestRoadImage);
+			} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
+				playerInformation.get(x).setIcon(knightImage);
+			}
+			i++;
 		}
 	}
 
@@ -181,9 +188,9 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(monopoly, c);
 
 		// set knight card
-		
+
 		knight = new JLabel(": " + controller.getPlayerKnightCard());
-		
+
 		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
@@ -280,100 +287,110 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.gridy = 0;
 		add(enemyTitle, c);
 
+		playerInformation = new ArrayList<JLabel>();
+
 		for (int i = 0; i < 4; i++) { // Prints all user info (Color, Name, Resource Amount and Points
+			JLabel info = new JLabel(
+					controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
 
 			if (controller.myTurn(i)) {
-				turn = new JLabel(controller.getPlayerName(i) + " - " + "Grondstoffen: "
-						+ controller.getPlayerResources(i) + " - bezig met beurt!");
-				// Second JLabel is made to add a second image associated with player building
-				// points.
-				turn1 = new JLabel("" + controller.getBuildingPoints(i));
-				turn1.setIcon(trophy);
+				info.setText(info.getText() + " - bezig met beurt!");
 
-				if (controller.getPlayerName(i).equals(controller.checkArmy())
-						&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-					turn.setIcon(knightAndRoad);
-				} else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-					turn.setIcon(longestRoadImage);
-				} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
-					turn.setIcon(knightImage);
-				}
-
-				turn.setFont(new Font("Arial", Font.BOLD, 15));
-
-				c.insets = new Insets(20, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTH;
-				c.gridx = 3;
-				c.gridy = i + 1;
-
-				switch (i) {
-				case 0:
-					turn.setForeground(Color.RED);
-					break;
-				case 1:
-					turn.setForeground(Color.WHITE);
-					break;
-				case 2:
-					turn.setForeground(Color.BLUE);
-					break;
-				case 3:
-					turn.setForeground(Color.ORANGE);
-				}
-				turn.setFont(new Font("Arial", Font.BOLD, 15));
-
-				x.insets = new Insets(0, 0, 0, 0);
-				x.anchor = GridBagConstraints.WEST;
-				x.gridx = 4;
-				x.gridy = i + 1;
-
-				this.add(turn, c);
-				this.add(turn1, x);
-			} else {
-				notTurn = new JLabel(
-						controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
-
-				notTurn1 = new JLabel("" + controller.getBuildingPoints(i));
-				notTurn1.setIcon(trophy);
-
-				if (controller.getPlayerName(i).equals(controller.checkArmy())
-						&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-					notTurn.setIcon(knightAndRoad);
-
-				} else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-					notTurn.setIcon(longestRoadImage);
-				} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
-					notTurn.setIcon(knightImage);
-				}
-				notTurn.setForeground(Color.BLACK);
-				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-				c.insets = new Insets(20, 0, 0, 0);
-				c.anchor = GridBagConstraints.NORTH;
-				c.gridx = 3;
-				c.gridy = i + 1;
-
-				notTurn1.setFont(new Font("Arial", Font.BOLD, 15));
-
-				switch (i) {
-				case 0:
-					notTurn.setForeground(Color.RED);
-					break;
-				case 1:
-					notTurn.setForeground(Color.WHITE);
-					break;
-				case 2:
-					notTurn.setForeground(Color.BLUE);
-					break;
-				case 3:
-					notTurn.setForeground(Color.ORANGE);
-				}
-				x.insets = new Insets(0, 0, 0, 0);
-				x.anchor = GridBagConstraints.WEST;
-				x.gridx = 4;
-				x.gridy = i + 1;
-
-				this.add(notTurn, c);
-				this.add(notTurn1, x);
 			}
+			// Second JLabel is made to add a second image associated with player building
+			// points.
+			JLabel victoryPoints = new JLabel("" + controller.getBuildingPoints(i));
+			victoryPoints.setIcon(trophy);
+
+			if (controller.getPlayerName(i).equals(controller.checkArmy())
+					&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+				info.setIcon(knightAndRoad);
+			} else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+				info.setIcon(longestRoadImage);
+			} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
+				info.setIcon(knightImage);
+			}
+
+			info.setFont(new Font("Arial", Font.BOLD, 15));
+
+			c.insets = new Insets(20, 0, 0, 0);
+			c.anchor = GridBagConstraints.NORTH;
+			c.gridx = 3;
+			c.gridy = i + 1;
+
+			switch (i) {
+			case 0:
+				info.setForeground(Color.RED);
+				break;
+			case 1:
+				info.setForeground(Color.WHITE);
+				break;
+			case 2:
+				info.setForeground(Color.BLUE);
+				break;
+			case 3:
+				info.setForeground(Color.ORANGE);
+			}
+			info.setFont(new Font("Arial", Font.BOLD, 15));
+
+			x.insets = new Insets(0, 0, 0, 0);
+			x.anchor = GridBagConstraints.WEST;
+			x.gridx = 4;
+			x.gridy = i + 1;
+
+			this.add(info, c);
+			playerInformation.add(info);
+			this.add(victoryPoints, x);
+			playerInformation.add(victoryPoints);
+
+			// } else {
+			// notTurn = new JLabel(
+			// controller.getPlayerName(i) + " - " + "Grondstoffen: " +
+			// controller.getPlayerResources(i));
+			//
+			// notTurn1 = new JLabel("" + controller.getBuildingPoints(i));
+			// notTurn1.setIcon(trophy);
+			//
+			// if (controller.getPlayerName(i).equals(controller.checkArmy())
+			// && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+			// notTurn.setIcon(knightAndRoad);
+			//
+			// } else if (controller.getPlayerName(i).equals(controller.checkLongestRoad()))
+			// {
+			// notTurn.setIcon(longestRoadImage);
+			// } else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
+			// notTurn.setIcon(knightImage);
+			// }
+			// notTurn.setForeground(Color.BLACK);
+			// notTurn.setFont(new Font("Arial", Font.BOLD, 15));
+			// c.insets = new Insets(20, 0, 0, 0);
+			// c.anchor = GridBagConstraints.NORTH;
+			// c.gridx = 3;
+			// c.gridy = i + 1;
+			//
+			// notTurn1.setFont(new Font("Arial", Font.BOLD, 15));
+			//
+			// switch (i) {
+			// case 0:
+			// notTurn.setForeground(Color.RED);
+			// break;
+			// case 1:
+			// notTurn.setForeground(Color.WHITE);
+			// break;
+			// case 2:
+			// notTurn.setForeground(Color.BLUE);
+			// break;
+			// case 3:
+			// notTurn.setForeground(Color.ORANGE);
+			// }
+			// x.insets = new Insets(0, 0, 0, 0);
+			// x.anchor = GridBagConstraints.WEST;
+			// x.gridx = 4;
+			// x.gridy = i + 1;
+			//
+			// this.add(notTurn, c);
+			// this.add(notTurn1, x);
+			// }
 
 		}
 
@@ -395,16 +412,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.gridy = 7;
 		this.add(end, c);
 		end.addActionListener(this);
-
-		// for (int i = 0; i < 4; i++) {
-		// if (controller.myTurn(i)) {
-		// enableEndButton();
-		// } else {
 		disableEndButton();
-		// }
-		// }
-
-	}
+		}
 
 	public void wonButton() {
 		c.insets = new Insets(0, 0, 0, 0);

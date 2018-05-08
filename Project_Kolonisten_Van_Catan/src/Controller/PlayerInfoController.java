@@ -157,8 +157,10 @@ public class PlayerInfoController implements Observer, Runnable {
 		game.setRound();
 		playerDAO.endTurn(game.getGameID(), game.getRound());
 		spelerInformatiePanel.UpdatePlayerInfo();
+		spelerInformatiePanel.UpdatePlayerInfo();
 		disableTradeButton();
 		spelerInformatiePanel.disableEndButton();
+		//TODO Disable kopen
 	}
 
 	@Override
@@ -193,6 +195,7 @@ public class PlayerInfoController implements Observer, Runnable {
 				}
 			}
 		}
+		playerDAO.setRefresh(game.getMe().getPlayerID());
 		gameController.updateAllPanels();
 	}
 

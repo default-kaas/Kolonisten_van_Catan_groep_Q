@@ -110,34 +110,36 @@ public class PlayerDAO {
 
 	}
 
-	
-	public int getPlayerKnightCards(int gameId, int playerId) { //Returns the amount of Knight Cards a player has in possession
-		
+	public int getPlayerKnightCards(int gameId, int playerId) { // Returns the amount of Knight Cards a player has in
+																// possession
+
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join "
 					+ "ontwikkelingskaart on spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart "
 					+ "join speler on spelerontwikkelingskaart.idspeler = speler.idspeler "
-					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" "
-							+ "AND ontwikkelingskaart.naam = 'ridder'");
+					+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId + " "
+					+ "AND ontwikkelingskaart.naam = 'ridder'");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
 		} catch (SQLException e) {
 			return 0;
 		}
-		
-		
+
 	}
-	
-	public int getPlayerInventionCards(int gameId, int playerId) { //returns the amount of Invention Cards a player has in possession
+
+	public int getPlayerInventionCards(int gameId, int playerId) { // returns the amount of Invention Cards a player has
+																	// in possession
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
-					+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
-					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND ontwikkelingskaart.naam = 'uitvinding'");
+			rs = stmt.executeQuery(
+					"select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
+							+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
+							+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId
+							+ " AND ontwikkelingskaart.naam = 'uitvinding'");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
@@ -145,14 +147,17 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
-	
-	public int getPlayerMonopolyCards(int gameId, int playerId) { //returns the amount of Monopoly Cards a player has in possession
+
+	public int getPlayerMonopolyCards(int gameId, int playerId) { // returns the amount of Monopoly Cards a player has
+																	// in possession
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
-					+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
-					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND ontwikkelingskaart.naam = 'monopolie'");
+			rs = stmt.executeQuery(
+					"select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
+							+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
+							+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId
+							+ " AND ontwikkelingskaart.naam = 'monopolie'");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
@@ -160,14 +165,17 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
-	
-	public int getPlayerToolsCards(int gameId, int playerId) { //returns the amount of Tools Cards a player has in possession
+
+	public int getPlayerToolsCards(int gameId, int playerId) { // returns the amount of Tools Cards a player has in
+																// possession
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
-					+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
-					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND ontwikkelingskaart.naam = 'stratenbouw'");
+			rs = stmt.executeQuery(
+					"select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
+							+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
+							+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId
+							+ " AND ontwikkelingskaart.naam = 'stratenbouw'");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
@@ -175,14 +183,16 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
-	
+
 	public int getPlayerVictoryPointCards(int gameId, int playerId) {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
-					+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
-					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND (ontwikkelingskaart.naam = 'universiteit' OR ontwikkelingskaart.naam = 'parlement' OR ontwikkelingskaart.naam = 'kathedraal' OR ontwikkelingskaart.naam  = 'bibliotheek' OR ontwikkelingskaart.naam = 'markt')");
+			rs = stmt.executeQuery(
+					"select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
+							+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
+							+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId
+							+ " AND (ontwikkelingskaart.naam = 'universiteit' OR ontwikkelingskaart.naam = 'parlement' OR ontwikkelingskaart.naam = 'kathedraal' OR ontwikkelingskaart.naam  = 'bibliotheek' OR ontwikkelingskaart.naam = 'markt')");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
@@ -190,8 +200,7 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
-	
-	
+
 	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
 		try {
 			Statement statement = m_Conn.createStatement();
@@ -219,7 +228,7 @@ public class PlayerDAO {
 			String QUERY = "UPDATE spel SET gedobbeld = 0, laatste_worp_steen1 = null, laatste_worp_steen2 = null, beurt_idspeler = "
 					+ playerid + " where idspel = " + gameid + ";";
 			statement.executeUpdate(QUERY);
-			
+
 			String QUERY2 = "UPDATE speler SET shouldrefresh = 1 where idspeler = " + playerid + ";";
 			statement.executeUpdate(QUERY2);
 		} catch (SQLException e) {
@@ -254,18 +263,29 @@ public class PlayerDAO {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery(
-					"select shouldrefresh from speler where idspel = "+gameID+" and idspeler = "+playerID);
+					"select shouldrefresh from speler where idspel = " + gameID + " and idspeler = " + playerID);
 			rs.next();
-			if(rs.getInt("shouldrefresh")== 1) {
+			if (rs.getInt("shouldrefresh") == 1) {
 				return true;
-			}else {
+			} else {
 				return false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			yes = false;
 			return false;
 		}
+	}
+
+	public void setRefresh(int idspeler) {
+
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "UPDATE speler SET shouldrefresh = 0 WHERE idspeler = "+ idspeler;
+			statement.executeUpdate(QUERY);
+		} catch (SQLException e) {
+
+		}
+
 	}
 
 }

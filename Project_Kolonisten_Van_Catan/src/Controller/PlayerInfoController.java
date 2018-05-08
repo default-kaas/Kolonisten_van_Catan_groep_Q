@@ -75,15 +75,32 @@ public class PlayerInfoController implements Observer, Runnable {
 		}
 		return null;
 	}
-
+	
 	public int getPlayerKnightCard() {
 		return playerDAO.getPlayerKnightCards(game.getGameID(), game.getMe().getPlayerID());
-
+	}
+	
+	public int getPlayerInventionCard() {
+		return playerDAO.getPlayerInventionCards(game.getGameID(), game.getMe().getPlayerID());
+	}
+	
+	public int getPlayerVictoryPointCard() {
+		return playerDAO.getPlayerVictoryPointCards(game.getGameID(), game.getMe().getPlayerID());
+	}
+	
+	public int getPlayerToolsCard() {
+		return playerDAO.getPlayerToolsCards(game.getGameID(), game.getMe().getPlayerID());
+	}
+	
+	public int getPlayerMonopolyCard() {
+		return playerDAO.getPlayerMonopolyCards(game.getGameID(), game.getMe().getPlayerID());
 	}
 
 	public int getBuildingPoints(int playerId) {
 		return playerDAO.playerPoints(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID());
 	}
+	
+	
 
 	public boolean myTurn(int volgnr) {
 		if (game.getRound() == game.GetPlayers().get(volgnr).getPlayerID()) {

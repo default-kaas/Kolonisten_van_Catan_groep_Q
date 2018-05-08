@@ -23,13 +23,17 @@ public class TradeController {
 	
 	public TradeController(TradeFrame tf, Connection db_conn, Game game) {
 		this.game = game;
+	    tradeFrame = tf;
 		tradeView = new TradePanel(this);
 		trademodel = new Trade(this);
-	    tradeFrame = tf;
 	}
 	
 	public void setPanel(TradePanel tp) {
 		this.tradeView = tp;
+	}
+	
+	public void disposeFrame() {
+		tradeFrame.disposethis();
 	}
 	
 	public int getPlayerCards(int Card) {
@@ -59,6 +63,10 @@ public class TradeController {
 	
 	public TradePanel getTradePanel() {
 		return tradeView;
+	}
+	
+	public void getFrame() {
+		tradeView.setFrame(tradeFrame);
 	}
 	
 	public void getTradeFrame() {

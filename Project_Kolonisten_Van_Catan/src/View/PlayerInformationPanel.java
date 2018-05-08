@@ -26,7 +26,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon cardUniversity = new ImageIcon("images/DevCards/university.png");
 	private ImageIcon cardTools = new ImageIcon("images/DevCards/tools.png");
 	private ImageIcon cardInvention = new ImageIcon("images/DevCards/invention.png");
-	private JLabel monopoly, knight, university, tools, invention;
+	private JLabel monopoly, knight, victoryPoints, tools, invention;
 	private JButton playMonopoly = new JButton("Spelen");
 	private JButton playKnight = new JButton("Spelen");
 	private JButton playUniversity = new JButton("Spelen");
@@ -193,19 +193,19 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		knight.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(knight, c);
 
-		// set university card
-		university = new JLabel(": 1");
+		// set Victory Point card
+		victoryPoints = new JLabel(": " + controller.getPlayerVictoryPointCard());
 		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
 		c.gridy = 3;
-		university.setIcon(cardUniversity);
-		university.setForeground(Color.BLACK);
-		university.setFont(new Font("Arial", Font.BOLD, 20));
-		this.add(university, c);
+		victoryPoints.setIcon(cardUniversity);
+		victoryPoints.setForeground(Color.BLACK);
+		victoryPoints.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(victoryPoints, c);
 
 		// set tools card
-		tools = new JLabel(": 1");
+		tools = new JLabel(": 2");
 		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
@@ -216,7 +216,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(tools, c);
 
 		// set invention card
-		invention = new JLabel(": 1");
+		invention = new JLabel(": " + controller.getPlayerInventionCard());
 		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;

@@ -76,6 +76,13 @@ public class PlayerInfoController implements Observer {
 		return null;
 	}
 
+	public int getPlayerKnightCard(int playerId) {
+		System.out.println(playerDAO.getPlayerKnightCards(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID()));
+		return playerDAO.getPlayerKnightCards(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID());
+		
+
+	}
+
 	public int getBuildingPoints(int playerId) {
 		return playerDAO.playerPoints(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID());
 	}
@@ -130,7 +137,7 @@ public class PlayerInfoController implements Observer {
 
 	public void endTurn() {
 		game.setRound();
-		playerDAO.endTurn(game.getGameID(),game.getRound());
+		playerDAO.endTurn(game.getGameID(), game.getRound());
 		spelerInformatiePanel.UpdatePlayerInfo();
 		disableTradeButton();
 		spelerInformatiePanel.disableEndButton();

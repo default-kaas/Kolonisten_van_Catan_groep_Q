@@ -181,7 +181,11 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(monopoly, c);
 
 		// set knight card
-		knight = new JLabel(": 1");
+		for (int i = 0; i < 4; i++) {
+		knight = new JLabel(": " + controller.getPlayerKnightCard(i));
+		System.out.println(controller.getPlayerKnightCard(i));
+		}
+		
 		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 1;
@@ -225,7 +229,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(invention, c);
 
 		// set play monopoly button
-		c.insets = new Insets(0, 0, 0, 0);
+		c.insets = new Insets(0, 0, 0, 50);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 2;
 		c.gridy = 1;
@@ -233,7 +237,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		playMonopoly.addActionListener(this);
 
 		// set knight play button
-		c.insets = new Insets(0, 0, 0, 0);
+		c.insets = new Insets(0, 0, 0, 50);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 2;
 		c.gridy = 2;
@@ -241,7 +245,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		playKnight.addActionListener(this);
 
 		// set university play button
-		c.insets = new Insets(0, 0, 0, 0);
+		c.insets = new Insets(0, 0, 0, 50);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 2;
 		c.gridy = 3;
@@ -249,7 +253,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		playUniversity.addActionListener(this);
 
 		// set tools play button
-		c.insets = new Insets(0, 0, 0, 0);
+		c.insets = new Insets(0, 0, 0, 50);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 2;
 		c.gridy = 4;
@@ -258,7 +262,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 		// set invention play buttons
 
-		c.insets = new Insets(0, 0, 0, 0);
+		c.insets = new Insets(0, 0, 0, 50);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 2;
 		c.gridy = 5;
@@ -299,7 +303,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 				turn.setFont(new Font("Arial", Font.BOLD, 15));
 
-				c.insets = new Insets(0, 0, 0, 0);
+				c.insets = new Insets(20, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTH;
 				c.gridx = 3;
 				c.gridy = i + 1;
@@ -344,7 +348,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				}
 				notTurn.setForeground(Color.BLACK);
 				notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-				c.insets = new Insets(0, 0, 0, 0);
+				c.insets = new Insets(20, 0, 0, 0);
 				c.anchor = GridBagConstraints.NORTH;
 				c.gridx = 3;
 				c.gridy = i + 1;

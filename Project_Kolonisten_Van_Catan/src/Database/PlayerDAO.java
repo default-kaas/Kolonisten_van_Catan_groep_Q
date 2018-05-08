@@ -110,25 +110,24 @@ public class PlayerDAO {
 
 	}
 
-	public ArrayList<Integer> getPlayerCards(int gameId, int idPlayer) {
-		ArrayList<Integer> getplayerCards = new ArrayList<Integer>();
+	public int getPlayerKnightCards(int gameId, int idPlayer) {
+		
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select ontwikkelingskaart.naam, count(idspeler) "
-					+ "AS amount from ontwikkelingskaart left join spelerontwikkelingskaart ON "
-					+ "ontwikkelingskaart.idontwikkelingskaart = spelerontwikkelingskaart.idontwikkelingskaart join spel"
-					+ " ON spel.idspel = spelerontwikkelingskaart.idspel group by ontwikkelingskaart.naam "
-					+ "	order by  ontwikkelingskaart.naam");
-			while (rs.next()) {
-				int m = rs.getInt("amount");
-				getplayerCards.add(m);
-			}
+			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart "
+					+ "join ontwikkelingskaart on spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart "
+					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND spelerontwikkelingskaart.idspeler = "+idPlayer + "AND ontwikkelingskaart.naam = 'ridder' ");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			
+			System.out.println(amount);
+			return amount;
 		} catch (SQLException e) {
-
+			return 0;
 		}
-
-		return getplayerCards;
+		
+		
 	}
 
 	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {

@@ -283,6 +283,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		for (int i = 0; i < 4; i++) { // Prints all user info (Color, Name, Resource Amount and Points
 
 			if (controller.myTurn(i)) {
+				
 				turn = new JLabel(controller.getPlayerName(i) + " - " + "Grondstoffen: "
 						+ controller.getPlayerResources(i) + " - bezig met beurt!");
 				// Second JLabel is made to add a second image associated with player building

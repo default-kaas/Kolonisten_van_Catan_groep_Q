@@ -95,12 +95,13 @@ public class Game {
 		return Players;
 	}
 
-	public int getPlayerResources() {
-		int stone = getMe().getStoneAmount();
-		int wood = getMe().getWoodAmount();
-		int wheat = getMe().getWheatAmount();
-		int whool = getMe().getWoolAmount();
-		int ore = getMe().getOreAmount();
+	public int getPlayerResources(int volgNr) {
+		
+		int stone = GetPlayers().get(volgNr).getStoneAmount();
+		int wood = GetPlayers().get(volgNr).getWoodAmount();
+		int wheat = GetPlayers().get(volgNr).getWheatAmount();
+		int whool = GetPlayers().get(volgNr).getWoolAmount();
+		int ore = GetPlayers().get(volgNr).getOreAmount();
 		int sum = stone + wood + wheat + whool + ore;
 		return sum;
 	}

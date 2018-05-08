@@ -43,7 +43,7 @@ public class PlayerInfoController implements Observer {
 	}
 
 	public int getPlayerResources(int volgnr) {
-		return game.getPlayerResources();
+		return game.getPlayerResources(volgnr);
 	}
 
 	public String getLargestArmy(int gameId) {

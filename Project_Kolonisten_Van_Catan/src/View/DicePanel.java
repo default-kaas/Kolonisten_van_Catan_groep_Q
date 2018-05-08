@@ -47,6 +47,7 @@ public class DicePanel extends JPanel implements MouseListener {
 			diceController.updateOtherPanels();
 		} else {
 			this.setBackground(Color.white);
+			System.out.println("test");
 			this.add(text);
 			this.addMouseListener(this);
 			repaint();

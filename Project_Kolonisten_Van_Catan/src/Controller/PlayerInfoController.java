@@ -9,7 +9,7 @@ import Model.Game;
 import View.PlayerInformationPanel;
 import View.TradeFrame;
 
-public class PlayerInfoController implements Observer {
+public class PlayerInfoController implements Observer, Runnable {
 	private Game game;
 	private PlayerInformationPanel spelerInformatiePanel;
 	private GameController gameController;
@@ -33,6 +33,10 @@ public class PlayerInfoController implements Observer {
 		this.gameController = gameController;
 		disableTradeButton();
 	}
+	
+	/*public boolean PlayerHasHouse(int gameId, int playerId) {
+		if (g)
+	}*/
 
 	public String getPlayerName(int volgnr) {
 		return game.GetPlayers().get(volgnr).getName();
@@ -43,7 +47,7 @@ public class PlayerInfoController implements Observer {
 	}
 
 	public int getPlayerResources(int volgnr) {
-		return game.getPlayerResources();
+		return game.getPlayerResources(volgnr);
 	}
 
 	public String getLargestArmy(int gameId) {
@@ -61,10 +65,8 @@ public class PlayerInfoController implements Observer {
 				x += game.GetPlayers().get(i).getName();
 				return x;
 			}
-
 		}
 		return null;
-
 	}
 
 	public String checkLongestRoad() {
@@ -74,20 +76,35 @@ public class PlayerInfoController implements Observer {
 				x += game.GetPlayers().get(i).getName();
 				return x;
 			}
-
 		}
 		return null;
 	}
-
+	
 	public int getPlayerKnightCard() {
 		return playerDAO.getPlayerKnightCards(game.getGameID(), game.getMe().getPlayerID());
-		
-
+	}
+	
+	public int getPlayerInventionCard() {
+		return playerDAO.getPlayerInventionCards(game.getGameID(), game.getMe().getPlayerID());
+	}
+	
+	public int getPlayerVictoryPointCard() {
+		return playerDAO.getPlayerVictoryPointCards(game.getGameID(), game.getMe().getPlayerID());
+	}
+	
+	public int getPlayerToolsCard() {
+		return playerDAO.getPlayerToolsCards(game.getGameID(), game.getMe().getPlayerID());
+	}
+	
+	public int getPlayerMonopolyCard() {
+		return playerDAO.getPlayerMonopolyCards(game.getGameID(), game.getMe().getPlayerID());
 	}
 
 	public int getBuildingPoints(int playerId) {
 		return playerDAO.playerPoints(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID());
 	}
+	
+	
 
 	public boolean myTurn(int volgnr) {
 		if (game.getRound() == game.GetPlayers().get(volgnr).getPlayerID()) {
@@ -130,12 +147,13 @@ public class PlayerInfoController implements Observer {
 	}
 
 	public void UpdateResourcePanel() {
-		spelerInformatiePanel.ShowResources();
+		spelerInformatiePanel.UpdateResources();
+		spelerInformatiePanel.UpdatePlayerInfo();
 	}
 
 	public void getTradePanel() {
-		//gameController.getTradeFrame();
-		
+		// gameController.getTradeFrame();
+
 		TradeFrame tradeFrame = new TradeFrame(game, db_conn, gameController);
 		tradeFrame.returnFrame();
 	}
@@ -144,13 +162,15 @@ public class PlayerInfoController implements Observer {
 		game.setRound();
 		playerDAO.endTurn(game.getGameID(), game.getRound());
 		spelerInformatiePanel.UpdatePlayerInfo();
+		spelerInformatiePanel.UpdatePlayerInfo();
 		disableTradeButton();
 		spelerInformatiePanel.disableEndButton();
+		//TODO Disable kopen
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		spelerInformatiePanel.UpdateResources();
+		UpdateResourcePanel();
 		if (o.getClass().getName().equals("Controller.BuildPanelController")) {
 			disableTradeButton();
 		}
@@ -159,6 +179,29 @@ public class PlayerInfoController implements Observer {
 			showTradeButton();
 			spelerInformatiePanel.enableEndButton();
 		}
+	}
+
+	public boolean shouldRefresh() {
+		return playerDAO.shouldRefresh(game.getGameID(), game.getMe().getPlayerID());
+	}
+
+	@Override
+	public void run() {
+		boolean run = true;
+		while (run) {
+			if (shouldRefresh()) {
+				run = false;
+			} else {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		playerDAO.setRefresh(game.getMe().getPlayerID());
+		gameController.updateAllPanels();
 	}
 
 }

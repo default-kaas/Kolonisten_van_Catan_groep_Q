@@ -1,10 +1,7 @@
 /*Bugs waar ik van op de hoogte ben (to-do listje):
-- De TradeInputLimit werkt niet.
 - Insets moet worden veranderd indien mogelijk. 
 - Ruilen met een speler kan nog niet, maar ik heb een idee hoe dit niet al te moeilijk kan worden gemaakt. 
-- Havens detecteren door de database
-- Verder zijn er nog wat kleine bugs die gefixt moeten worden m.b.t. traden met de bank. Testen we later. 
-- De actionperforms werken nog niet. */
+- Havens detecteren door de database */
 
 package View;
 
@@ -24,11 +21,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -54,8 +47,6 @@ public class TradePanel extends JPanel implements ActionListener {
 	
 	private JLabel playerdd;
 	private JComboBox<String> cb;
-	
-	private TradeFrame tf;
 
 	public TradePanel(TradeController tradePanelController) {
 
@@ -155,31 +146,9 @@ public class TradePanel extends JPanel implements ActionListener {
 		their_stonet.setDocument(new TradeInputLimit(2));
 		their_oret.setDocument(new TradeInputLimit(2));
 
-		TradeNoLetters tnl = new TradeNoLetters();
-		PlainDocument doc = (PlainDocument) your_woolt.getDocument();
-		doc.setDocumentFilter(tnl);
-		PlainDocument doc2 = (PlainDocument) your_wheatt.getDocument();
-		doc2.setDocumentFilter(tnl);
-		PlainDocument doc3 = (PlainDocument) your_woodt.getDocument();
-		doc3.setDocumentFilter(tnl);
-		PlainDocument doc4 = (PlainDocument) your_stonet.getDocument();
-		doc4.setDocumentFilter(tnl);
-		PlainDocument doc5 = (PlainDocument) your_oret.getDocument();
-		doc5.setDocumentFilter(tnl);
-		PlainDocument doc6 = (PlainDocument) their_woolt.getDocument();
-		doc6.setDocumentFilter(tnl);
-		PlainDocument doc7 = (PlainDocument) their_wheatt.getDocument();
-		doc7.setDocumentFilter(tnl);
-		PlainDocument doc8 = (PlainDocument) their_woodt.getDocument();
-		doc8.setDocumentFilter(tnl);
-		PlainDocument doc9 = (PlainDocument) their_stonet.getDocument();
-		doc9.setDocumentFilter(tnl);
-		PlainDocument doc10 = (PlainDocument) their_oret.getDocument();
-		doc10.setDocumentFilter(tnl);
-
 	}
 
-	boolean bank_has_card_available = false;
+	private boolean bank_has_card_available = false;
 
 	public void setAvailability(boolean availability) {
 		if (availability == true) {
@@ -214,11 +183,39 @@ public class TradePanel extends JPanel implements ActionListener {
 		their_woodt = new JTextField(2);
 		their_stonet = new JTextField(2);
 		their_oret = new JTextField(2);
+		
+		TradeNoLetters tnl = new TradeNoLetters();
+		PlainDocument doc = (PlainDocument) your_woolt.getDocument();
+		doc.setDocumentFilter(tnl);
+		PlainDocument doc2 = (PlainDocument) your_wheatt.getDocument();
+		doc2.setDocumentFilter(tnl);
+		PlainDocument doc3 = (PlainDocument) your_woodt.getDocument();
+		doc3.setDocumentFilter(tnl);
+		PlainDocument doc4 = (PlainDocument) your_stonet.getDocument();
+		doc4.setDocumentFilter(tnl);
+		PlainDocument doc5 = (PlainDocument) your_oret.getDocument();
+		doc5.setDocumentFilter(tnl);
+		PlainDocument doc6 = (PlainDocument) their_woolt.getDocument();
+		doc6.setDocumentFilter(tnl);
+		PlainDocument doc7 = (PlainDocument) their_wheatt.getDocument();
+		doc7.setDocumentFilter(tnl);
+		PlainDocument doc8 = (PlainDocument) their_woodt.getDocument();
+		doc8.setDocumentFilter(tnl);
+		PlainDocument doc9 = (PlainDocument) their_stonet.getDocument();
+		doc9.setDocumentFilter(tnl);
+		PlainDocument doc10 = (PlainDocument) their_oret.getDocument();
+		doc10.setDocumentFilter(tnl);
 
 	}
 	
-	private void addActionListeners() {
-		propose.addActionListener(this);
+	private boolean two = false;
+	private boolean three = false;
+	
+	public void set(String charr) {
+		if (charr.equals("no")) {
+			three = false;
+			two = false;
+		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -226,13 +223,15 @@ public class TradePanel extends JPanel implements ActionListener {
 			Object item = cb.getSelectedItem();
 			if (item.toString().equals("Spelers")) {
 				JOptionPane.showMessageDialog(this, "Wordt aan gewerkt!", "ERROR", JOptionPane.ERROR_MESSAGE);
+				tc.disposeFrame();
 			}
 			if (item.toString().equals("De Bank")) {
 				// het volgende spreekt voor zich.
-				boolean er_bestaan_nog_geen_havens_dus_is_het_voor_nu_alleen_nog_maar_4x1 = true;
-				if (er_bestaan_nog_geen_havens_dus_is_het_voor_nu_alleen_nog_maar_4x1 == true) {
-					// if statement hieronder: Kijken of er links een 4 en rechts een 1 is ingevuld.
-					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4")) && 
+				if (three == false ) {
+					// if statement hieronder: Kijken of er links een 4 (of evt. een 3 of een 2) en rechts een 1 is ingevuld.
+					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4") || 
+							your_woolt.getText().equals("3") || your_wheatt.getText().equals("3") || your_stonet.getText().equals("3") || your_woodt.getText().equals("3") || your_oret.getText().equals("3") || 
+							your_woolt.getText().equals("2") || your_wheatt.getText().equals("2") || your_stonet.getText().equals("2") || your_woodt.getText().equals("2") || your_oret.getText().equals("2")) && 
 						(their_woolt.getText().equals("1") || their_wheatt.getText().equals("1") || their_stonet.getText().equals("1") || their_woodt.getText().equals("1") || their_oret.getText().equals("1"))) {
 						// if statement hieronder: Hier wordt strikt gecontrolleerd of dat er aan BEIDE
 						// kanten precies één JTextField is ingevuld.
@@ -251,10 +250,11 @@ public class TradePanel extends JPanel implements ActionListener {
 								|| (your_woolt.getText().isEmpty() && your_wheatt.getText().isEmpty()
 										&& your_stonet.getText().isEmpty() && your_woodt.getText().isEmpty()
 										&& !your_oret.getText().isEmpty())
-										&& (!their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty()
-												&& their_stonet.getText().isEmpty()
-												&& their_woodt.getText().isEmpty()
-												&& their_oret.getText().isEmpty())
+										&& 
+									(!their_woolt.getText().isEmpty() && their_wheatt.getText().isEmpty()
+											&& their_stonet.getText().isEmpty()
+											&& their_woodt.getText().isEmpty()
+											&& their_oret.getText().isEmpty())
 								|| (their_woolt.getText().isEmpty() && !their_wheatt.getText().isEmpty()
 										&& their_stonet.getText().isEmpty() && their_woodt.getText().isEmpty()
 										&& their_oret.getText().isEmpty())
@@ -272,18 +272,23 @@ public class TradePanel extends JPanel implements ActionListener {
 							// b=baksteen, w=wol, h=hout, e=erts, g=graan
 							// 1=w, 2=g, 3=h, 4=b, 5=e
 							if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+								tc.getHavens("w");
 								tc.setPlayerCards("w", -4);
 							}
 							if (your_wheatt.getText().equals("4") && tc.getPlayerCards(2) > 4) {
+								tc.getHavens("g");
 								tc.setPlayerCards("g", -4);
 							}
 							if (your_stonet.getText().equals("4") && tc.getPlayerCards(4) > 4) {
+								tc.getHavens("h");
 								tc.setPlayerCards("h", -4);
 							}
 							if (your_woodt.getText().equals("4") && tc.getPlayerCards(3) > 4) {
+								tc.getHavens("b");
 								tc.setPlayerCards("b", -4);
 							}
 							if (your_oret.getText().equals("4") && tc.getPlayerCards(5) > 4) {
+								tc.getHavens("e");
 								tc.setPlayerCards("e", -4);
 							}
 							if (their_woolt.getText().equals("1")) {
@@ -292,14 +297,11 @@ public class TradePanel extends JPanel implements ActionListener {
 									tc.setPlayerCards("w", 1);
 									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
-									getFrame();
-									tf.dispose();
+									tc.disposeFrame();
 								} else {
 									JOptionPane.showMessageDialog(this,
 											"De bank heeft geen kaarten beschikbaar meer!",
 											"Error", JOptionPane.ERROR_MESSAGE);
-									getFrame();
-									tc.disposeFrame();
 								}
 							}
 							if (their_wheatt.getText().equals("1")) {
@@ -308,6 +310,7 @@ public class TradePanel extends JPanel implements ActionListener {
 									tc.setPlayerCards("g", 1);
 									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+									tc.disposeFrame();
 								} else {
 									JOptionPane.showMessageDialog(this,
 											"De bank heeft geen kaarten beschikbaar meer!",
@@ -320,6 +323,7 @@ public class TradePanel extends JPanel implements ActionListener {
 									tc.setPlayerCards("h", 1);
 									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+									tc.disposeFrame();
 								} else {
 									JOptionPane.showMessageDialog(this,
 											"De bank heeft geen kaarten beschikbaar meer!",
@@ -332,6 +336,7 @@ public class TradePanel extends JPanel implements ActionListener {
 									tc.setPlayerCards("b", 1);
 									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+									tc.disposeFrame();
 								} else {
 									JOptionPane.showMessageDialog(this,
 											"De bank heeft geen kaarten beschikbaar meer!",
@@ -344,6 +349,7 @@ public class TradePanel extends JPanel implements ActionListener {
 									tc.setPlayerCards("e", 1);
 									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+									tc.disposeFrame();
 								} else {
 									JOptionPane.showMessageDialog(this,
 											"De bank heeft geen kaarten beschikbaar meer!",
@@ -367,14 +373,6 @@ public class TradePanel extends JPanel implements ActionListener {
 				}
 			}
 		}	
-	}
-	
-	private void getFrame() {
-		tc.getFrame();
-	}
-	
-	public void setFrame(TradeFrame tradeFrame) {
-		tf = tradeFrame;
 	}
 
 	private void importImages() {

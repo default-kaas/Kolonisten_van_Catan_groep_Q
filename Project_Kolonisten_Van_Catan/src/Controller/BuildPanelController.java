@@ -3,7 +3,7 @@ package Controller;
 import java.sql.Connection;
 import java.util.Observable;
 import java.util.Observer;
-
+import Database.BuildDAO;
 import Model.Game;
 import View.BuildPanel;
 
@@ -12,10 +12,15 @@ public class BuildPanelController extends Observable implements Observer {
 	private Game game;
 	private BuildPanel bouwPanel;
 	private GameController gameController;
+	private BuildDAO buildDAO;
+	private Connection db_conn;
+
 
 	public BuildPanelController(Game game, Connection db_conn, GameController gameController) {
 		this.game = game;
 		this.gameController = gameController;
+		this.db_conn = db_conn;
+		buildDAO = new BuildDAO(db_conn);
 		bouwPanel = new BuildPanel(this);
 		disableButtons();
 	}
@@ -56,6 +61,14 @@ public class BuildPanelController extends Observable implements Observer {
 		if (wood >= 1 && stone >= 1) {
 			return true;
 		} else {
+			return false;
+		}
+	}
+	
+	public boolean PlayerHasHouse() {
+		if (buildDAO.checkIfPlayerHasHouse(game.getGameID(), game.getMe().getPlayerID()) >= 1) {
+			return true;
+		}else {
 			return false;
 		}
 	}

@@ -1,8 +1,6 @@
 package Controller;
 
 import java.sql.Connection;
-import java.util.Observable;
-import java.util.Observer;
 
 import Model.Game;
 import View.BoardPanel;
@@ -12,7 +10,7 @@ import View.DicePanel;
 import View.PlayerInformationPanel;
 import View.TradeFrame;
 
-public class GameController extends Observable implements Runnable {
+public class GameController {
 	private Game Game;
 	private PlayerInfoController playerInfoController;
 	private DiceController diceController;
@@ -20,6 +18,8 @@ public class GameController extends Observable implements Runnable {
 	private ChatPanelController chatPanelController;
 	private TradeFrame tradeFrame;
 	private BoardController boardController;
+
+	private Thread t1;
 
 	public GameController(int IdGame, String userName, Connection db_conn, boolean newGame) {
 
@@ -29,35 +29,38 @@ public class GameController extends Observable implements Runnable {
 
 		startChat();
 
-		runfirstRounds();
-
 		runRounds();
 
 	}
 
-	private void runRounds() {
-		// Als lobby af is moet ik dit stukje nog wat veranderen.
-		// bouwPanelController.disableButtons();
-
+	public void runRounds() {
 		if ((Game.getRound() == Game.getMe().getPlayerID())) {
+			t1.interrupt();
+			playerInfoController.UpdateResourcePanel();
 			showDice();
+		} else {
+			myTurn();
 		}
-		// bouwPanelController.showButtons();
-
 	}
 
-	private void runfirstRounds() {
-		// TODO Auto-generated method stub
-
+	public void myTurn() {
+		if (!t1.isAlive()) {
+			t1.start();
+		} else {
+//			t1.interrupt();
+//			t1.start();
+		}
 	}
+	
+	public void updateAllPanels() {
+		Game.updateRound();
+		runRounds();
+	}
+	
 
 	private void startChat() {
-		Thread t1 = new Thread(chatPanelController);
-		t1.start();
-		try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
-		}
+		Thread t2 = new Thread(chatPanelController);
+		t2.start();
 	}
 
 	private void makePanelControllers(Connection db_conn) {
@@ -70,21 +73,12 @@ public class GameController extends Observable implements Runnable {
 		bouwPanelController.addObserver(playerInfoController);
 		diceController.addObserver(bouwPanelController);
 		diceController.addObserver(playerInfoController);
+
+		t1 = new Thread(playerInfoController);
 	}
 
 	public void setTP(TradeFrame tf) {
 		tradeFrame = tf;
-	}
-
-	public void runGame() {
-		// while(true) {
-		// try {
-		// Thread.sleep(1000);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// }
 	}
 
 	public void showDice() {
@@ -119,11 +113,6 @@ public class GameController extends Observable implements Runnable {
 		return boardController.getBoardPanel();
 	}
 
-	@Override
-	public void run() {
-		runGame();
-	}
-
 	public void setBuildMessage(String x, String y) {
 		chatPanelController.setUserInput("heeft een " + x + " voor " + y + " gekocht!");
 	}
@@ -131,21 +120,4 @@ public class GameController extends Observable implements Runnable {
 	public void setDiceMessage(int value1, int value2) {
 		chatPanelController.setUserInput("heeft " + value1 + " en " + value2 + " gegooid!");
 	}
-
-	// @Override
-	// public void update(Observable o, Object arg) {
-	// try {
-	// Method update = getClass().getMethod(o.getClass(), Object.class);
-	// update.invoke(this, o, arg);
-	// } catch (Exception e) {
-	// // log exception
-	// }
-	//
-	// }
-	// public void update(A a, Object arg) {
-	// }
-	// public void update(B b, Object arg) {
-	// }
-	// public void update(C c, Object arg) {
-	// }
 }

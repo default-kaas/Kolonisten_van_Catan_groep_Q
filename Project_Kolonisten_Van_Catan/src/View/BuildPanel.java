@@ -157,6 +157,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridx = 0;
 		c.gridy = 3;
 		this.add(houseLabel, c);
+		System.out.println(buildPanelController.PlayerHasHouse());
 
 		JLabel houseStone = new JLabel(stone);
 		c.anchor = GridBagConstraints.CENTER;
@@ -376,7 +377,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 			buyHouse.setEnabled(false);
 		}
 		
-		if (buildPanelController.checkResourcesCity()) {
+		if (buildPanelController.checkResourcesCity() && buildPanelController.PlayerHasHouse()) {
 			buyCity.setBackground(new Color(5, 162, 0));
 			buyCity.setForeground(Color.WHITE);
 			buyCity.setEnabled(true);

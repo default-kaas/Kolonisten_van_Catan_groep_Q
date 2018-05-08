@@ -190,22 +190,7 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
-	
-	public int checkIfPlayerHasHouse(int gameId, int playerId) {
-		try {
-			Statement stmt = m_Conn.createStatement();
-			ResultSet rs;
-			rs = stmt.executeQuery("select count(spelerstuk.idspeler) AS aantal from spelerstuk "
-					+ "join speler ON speler.idspeler = spelerstuk.idspeler where speler.idspel = "+gameId+ 
-					"AND spelerstuk.idspeler = "+playerId+" AND spelerstuk.x_van IS NOT null"
-									+ " AND spelerstuk.y_van IS NOT null");
-			rs.next();
-			int amount = rs.getInt("aantal");
-			return amount;
-		} catch (SQLException e) {
-			return 0;
-		}
-	}
+
 	
 	
 	

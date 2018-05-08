@@ -22,10 +22,10 @@ public class TradeController {
 	int card = 0;
 	
 	public TradeController(TradeFrame tf, Connection db_conn, Game game) {
+		this.game = game;
 		tradeView = new TradePanel(this);
 		trademodel = new Trade(this);
 	    tradeFrame = tf;
-		this.game = game;
 	}
 	
 	public void setPanel(TradePanel tp) {

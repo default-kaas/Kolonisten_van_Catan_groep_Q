@@ -21,15 +21,12 @@ public class TradeFrame extends JFrame implements ActionListener {
 	private JMenu menu;
 	private JMenuItem exit;
 	private GameController gc;
-	
-	JFrame frame;
 
 	public TradeFrame(Game game, Connection db_conn, GameController gameController) {
 
 		this.game = game;
 		tc = new TradeController(this,db_conn,game);
 		gc = gameController;
-		frame = new JFrame();
 		setupFrame();
 		addMenuBar();
 	
@@ -45,14 +42,14 @@ public class TradeFrame extends JFrame implements ActionListener {
 	
 	private void setupFrame() {
 
-		frame.setUndecorated(false);
-		frame.setAlwaysOnTop(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setContentPane(tc.getTradePanel());
-		frame.setUndecorated(true);
-		frame.setVisible(true);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
+		this.setUndecorated(false);
+		this.setAlwaysOnTop(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setContentPane(tc.getTradePanel());
+		this.setUndecorated(true);
+		this.setVisible(true);
+		this.pack();
+		this.setLocationRelativeTo(null);
 
 	}
 	
@@ -62,7 +59,8 @@ public class TradeFrame extends JFrame implements ActionListener {
 		exit = new JMenuItem("Sluiten");
 		menuBar.add(menu);
 		menu.add(exit);
-		frame.setJMenuBar(menuBar);
+		this.setJMenuBar(menuBar);
+		exit.addActionListener(this);
 	}
 	
 	@Override

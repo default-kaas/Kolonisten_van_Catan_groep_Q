@@ -55,11 +55,16 @@ public class TradePanel extends JPanel implements ActionListener {
 	private JLabel playerdd;
 	private JComboBox<String> cb;
 
-	JPanel trade;
-
 	public TradePanel(TradeController tradePanelController) {
 
 		tc = tradePanelController;
+		
+		this.setBackground(Color.white);
+		// this.setVisible(false);
+		this.setPreferredSize(new Dimension(1000, 600));
+		this.setBackground(new Color(245, 245, 220));
+		this.setVisible(true);
+		showFrame();
 
 	}
 
@@ -67,10 +72,8 @@ public class TradePanel extends JPanel implements ActionListener {
 		
 		System.out.println("works");
 		System.out.println("kappa");
-		
-		trade = new JPanel();
 
-		trade.setLayout(new GridBagLayout());
+		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.NORTH;
 		c.weighty = 1.0;
@@ -78,66 +81,62 @@ public class TradePanel extends JPanel implements ActionListener {
 		c.gridx = 0;
 		c.gridy = 0;
 
-		trade.setBackground(Color.white);
-		// trade.setVisible(false);
-		trade.setPreferredSize(new Dimension(1000, 600));
-		trade.setBackground(new Color(245, 245, 220));
-		trade.setVisible(true);
+
 
 		createStuff();
 		importImages();
 
 		c.insets = new Insets(20, 0, 0, 0);
 		panel.setFont(new Font("Arial Black", 1, 25));
-		trade.add(panel, c);
+		this.add(panel, c);
 
 		c.insets = new Insets(100, 0, 0, 730);
 		yourCards.setFont(new Font("Monotype Corsiva", 1, 20));
-		trade.add(yourCards, c);
+		this.add(yourCards, c);
 
 		c.insets = new Insets(100, 770, 0, 0);
 		theirCards.setFont(new Font("Monotype Corsiva", 1, 20));
-		trade.add(theirCards, c);
+		this.add(theirCards, c);
 
 		c.insets = new Insets(550, 0, 0, 0);
-		trade.add(propose, c);
+		this.add(propose, c);
 
 		c.insets = new Insets(160, 0, 0, 620);
-		trade.add(your_wool, c);
+		this.add(your_wool, c);
 		c.insets = new Insets(230, 0, 0, 620);
-		trade.add(your_wheat, c);
+		this.add(your_wheat, c);
 		c.insets = new Insets(300, 0, 0, 620);
-		trade.add(your_wood, c);
+		this.add(your_wood, c);
 		c.insets = new Insets(370, 0, 0, 620);
-		trade.add(your_stone, c);
+		this.add(your_stone, c);
 		c.insets = new Insets(440, 0, 0, 620);
-		trade.add(your_ore, c);
+		this.add(your_ore, c);
 
 		c.insets = new Insets(140, 0, 0, 470);
-		trade.add(resource_input, c);
+		this.add(resource_input, c);
 		c.insets = new Insets(160, 0, 0, 470);
-		trade.add(your_woolt, c);
+		this.add(your_woolt, c);
 		c.insets = new Insets(230, 0, 0, 470);
-		trade.add(your_wheatt, c);
+		this.add(your_wheatt, c);
 		c.insets = new Insets(300, 0, 0, 470);
-		trade.add(your_woodt, c);
+		this.add(your_woodt, c);
 		c.insets = new Insets(370, 0, 0, 470);
-		trade.add(your_stonet, c);
+		this.add(your_stonet, c);
 		c.insets = new Insets(440, 0, 0, 470);
-		trade.add(your_oret, c);
+		this.add(your_oret, c);
 
 		c.insets = new Insets(140, 630, 0, 0);
-		trade.add(their_input, c);
+		this.add(their_input, c);
 		c.insets = new Insets(160, 630, 0, 0);
-		trade.add(their_woolt, c);
+		this.add(their_woolt, c);
 		c.insets = new Insets(230, 630, 0, 0);
-		trade.add(their_wheatt, c);
+		this.add(their_wheatt, c);
 		c.insets = new Insets(300, 630, 0, 0);
-		trade.add(their_woodt, c);
+		this.add(their_woodt, c);
 		c.insets = new Insets(370, 630, 0, 0);
-		trade.add(their_stonet, c);
+		this.add(their_stonet, c);
 		c.insets = new Insets(440, 630, 0, 0);
-		trade.add(their_oret, c);
+		this.add(their_oret, c);
 
 		playerdd = new JLabel("Hoe wil je ruilen?");
 		cb = new JComboBox<String>();
@@ -145,9 +144,9 @@ public class TradePanel extends JPanel implements ActionListener {
 		cb.addItem("De Bank");
 
 		c.insets = new Insets(250, 0, 0, 0);
-		trade.add(playerdd, c);
+		this.add(playerdd, c);
 		c.insets = new Insets(280, 0, 0, 0);
-		trade.add(cb, c);
+		this.add(cb, c);
 
 		your_woolt.setDocument(new TradeInputLimit(2));
 		your_wheatt.setDocument(new TradeInputLimit(2));
@@ -230,7 +229,7 @@ public class TradePanel extends JPanel implements ActionListener {
 		if (e.getSource().equals(propose)) {
 			Object item = cb.getSelectedItem();
 			if (item.toString().equals("Spelers")) {
-				JOptionPane.showMessageDialog(trade, "Wordt aan gewerkt!", "ERROR", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Wordt aan gewerkt!", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 			if (item.toString().equals("De Bank")) {
 				// het volgende spreekt voor zich.
@@ -321,20 +320,20 @@ public class TradePanel extends JPanel implements ActionListener {
 									tc.setPlayerCards("e", 1);
 								}
 							}
-							JOptionPane.showMessageDialog(trade, "Je hebt successvol gehandeld met de bank!",
+							JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 									"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
 						} else {
-							JOptionPane.showMessageDialog(trade,
+							JOptionPane.showMessageDialog(this,
 									"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
 									"Verkeerde input!", JOptionPane.ERROR_MESSAGE);
 						}
 					} else {
-						JOptionPane.showMessageDialog(trade,
+						JOptionPane.showMessageDialog(this,
 								"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
 								"Verkeerde input!", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(trade,
+					JOptionPane.showMessageDialog(this,
 							"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
 							"Verkeerde input!", JOptionPane.ERROR_MESSAGE);
 				}

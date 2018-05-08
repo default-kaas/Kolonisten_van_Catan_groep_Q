@@ -76,9 +76,9 @@ public class PlayerInfoController implements Observer {
 		return null;
 	}
 
-	public int getPlayerKnightCard(int playerId) {
-		System.out.println(playerDAO.getPlayerKnightCards(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID()));
-		return playerDAO.getPlayerKnightCards(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID());
+	public int getPlayerKnightCard() {
+		System.out.println(game.getMe().getPlayerID());
+		return playerDAO.getPlayerKnightCards(game.getGameID(), game.getMe().getPlayerID());
 		
 
 	}

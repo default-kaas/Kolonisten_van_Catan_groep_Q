@@ -110,12 +110,12 @@ public class PlayerDAO {
 
 	}
 
-	public int getPlayerKnightCards(int gameId, int idPlayer) {
+	public int getPlayerKnightCards(int gameId, int playerId) {
 		
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart where spelerontwikkelingskaart.idspel = "+gameId+" AND spelerontwikkelingskaart.idspeler = "+idPlayer+"AND ontwikkelingskaart.naam = 'ridder'");
+			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+"AND ontwikkelingskaart.naam = 'ridder'");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			

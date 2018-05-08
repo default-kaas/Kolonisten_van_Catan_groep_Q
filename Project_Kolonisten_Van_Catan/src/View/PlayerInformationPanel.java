@@ -181,10 +181,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(monopoly, c);
 
 		// set knight card
-		for (int i = 0; i < 4; i++) {
-		knight = new JLabel(": " + controller.getPlayerKnightCard(i));
-		System.out.println(controller.getPlayerKnightCard(i));
-		}
+		
+		knight = new JLabel(": " + controller.getPlayerKnightCard());
+		System.out.println(controller.getPlayerKnightCard());
+		
 		
 		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;

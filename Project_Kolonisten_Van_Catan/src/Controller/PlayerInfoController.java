@@ -148,6 +148,7 @@ public class PlayerInfoController implements Observer, Runnable {
 
 	public void UpdateResourcePanel() {
 		spelerInformatiePanel.UpdateResources();
+		spelerInformatiePanel.UpdatePlayerInfo();
 	}
 
 	public void getTradePanel() {

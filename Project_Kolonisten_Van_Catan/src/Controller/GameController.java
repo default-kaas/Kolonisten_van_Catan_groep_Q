@@ -36,6 +36,7 @@ public class GameController {
 	public void runRounds() {
 		if ((Game.getRound() == Game.getMe().getPlayerID())) {
 			t1.interrupt();
+			playerInfoController.UpdateResourcePanel();
 			showDice();
 		} else {
 			myTurn();
@@ -46,13 +47,12 @@ public class GameController {
 		if (!t1.isAlive()) {
 			t1.start();
 		} else {
-			t1.interrupt();
-			t1.start();
+//			t1.interrupt();
+//			t1.start();
 		}
 	}
 	
 	public void updateAllPanels() {
-		playerInfoController.UpdateResourcePanel();
 		Game.updateRound();
 		runRounds();
 	}

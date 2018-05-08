@@ -9,7 +9,7 @@ import Database.BoardDAO;
 public class Board {
 	private ArrayList<Tile> tiles = new ArrayList<Tile>();
 	private ArrayList<Corner> corners = new ArrayList<Corner>();
-	private ArrayList<Street> lines = new ArrayList<Street>();
+	private ArrayList<Street> streets = new ArrayList<Street>();
 	private ArrayList<Dock> docks = new ArrayList<Dock>();
 	
 	private BoardDAO boardDOA;
@@ -20,7 +20,6 @@ public class Board {
 		
 	}
 	//
-
 	public ArrayList<Tile> getTiles() {
 		return tiles;
 	}
@@ -62,6 +61,14 @@ public class Board {
 	public ArrayList<Point> getBoardDAODocks(){
 		return boardDOA.getDocksFromDataBase();
 	}
+	
+	public ArrayList<Street> getStreets() {
+		return streets;
+	}
+
+	public void setStreets(ArrayList<Street> streets) {
+		this.streets = streets;
+	}
 
 	public ArrayList<Dock> getDocks() {
 		return docks;
@@ -70,4 +77,5 @@ public class Board {
 	public void setDocks(ArrayList<Dock> docks) {
 		this.docks = docks;
 	}
+	
 }

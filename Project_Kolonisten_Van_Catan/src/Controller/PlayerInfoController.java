@@ -33,6 +33,10 @@ public class PlayerInfoController implements Observer, Runnable {
 		this.gameController = gameController;
 		disableTradeButton();
 	}
+	
+	/*public boolean PlayerHasHouse(int gameId, int playerId) {
+		if (g)
+	}*/
 
 	public String getPlayerName(int volgnr) {
 		return game.GetPlayers().get(volgnr).getName();

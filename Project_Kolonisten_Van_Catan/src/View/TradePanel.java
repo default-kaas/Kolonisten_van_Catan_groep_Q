@@ -54,13 +54,14 @@ public class TradePanel extends JPanel implements ActionListener {
 	
 	private JLabel playerdd;
 	private JComboBox<String> cb;
+	
+	private TradeFrame tf;
 
 	public TradePanel(TradeController tradePanelController) {
 
 		tc = tradePanelController;
 		
 		this.setBackground(Color.white);
-		// this.setVisible(false);
 		this.setPreferredSize(new Dimension(1000, 600));
 		this.setBackground(new Color(245, 245, 220));
 		this.setVisible(true);
@@ -69,9 +70,6 @@ public class TradePanel extends JPanel implements ActionListener {
 	}
 
 	public void showFrame() {
-		
-		System.out.println("works");
-		System.out.println("kappa");
 
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -80,8 +78,6 @@ public class TradePanel extends JPanel implements ActionListener {
 		c.weightx = 1.0;
 		c.gridx = 0;
 		c.gridy = 0;
-
-
 
 		createStuff();
 		importImages();
@@ -102,41 +98,41 @@ public class TradePanel extends JPanel implements ActionListener {
 		this.add(propose, c);
 
 		c.insets = new Insets(160, 0, 0, 620);
-		this.add(your_wool, c);
-		c.insets = new Insets(230, 0, 0, 620);
-		this.add(your_wheat, c);
-		c.insets = new Insets(300, 0, 0, 620);
-		this.add(your_wood, c);
-		c.insets = new Insets(370, 0, 0, 620);
 		this.add(your_stone, c);
-		c.insets = new Insets(440, 0, 0, 620);
+		c.insets = new Insets(230, 0, 0, 620);
+		this.add(your_wood, c);
+		c.insets = new Insets(300, 0, 0, 620);
+		this.add(your_wool, c);
+		c.insets = new Insets(370, 0, 0, 620);
 		this.add(your_ore, c);
+		c.insets = new Insets(440, 0, 0, 620);
+		this.add(your_wheat, c);
 
 		c.insets = new Insets(140, 0, 0, 470);
 		this.add(resource_input, c);
 		c.insets = new Insets(160, 0, 0, 470);
-		this.add(your_woolt, c);
-		c.insets = new Insets(230, 0, 0, 470);
-		this.add(your_wheatt, c);
-		c.insets = new Insets(300, 0, 0, 470);
-		this.add(your_woodt, c);
-		c.insets = new Insets(370, 0, 0, 470);
 		this.add(your_stonet, c);
-		c.insets = new Insets(440, 0, 0, 470);
+		c.insets = new Insets(230, 0, 0, 470);
+		this.add(your_woodt, c);
+		c.insets = new Insets(300, 0, 0, 470);
+		this.add(your_woolt, c);
+		c.insets = new Insets(370, 0, 0, 470);
 		this.add(your_oret, c);
+		c.insets = new Insets(440, 0, 0, 470);
+		this.add(your_wheatt, c);
 
 		c.insets = new Insets(140, 630, 0, 0);
 		this.add(their_input, c);
 		c.insets = new Insets(160, 630, 0, 0);
-		this.add(their_woolt, c);
-		c.insets = new Insets(230, 630, 0, 0);
-		this.add(their_wheatt, c);
-		c.insets = new Insets(300, 630, 0, 0);
-		this.add(their_woodt, c);
-		c.insets = new Insets(370, 630, 0, 0);
 		this.add(their_stonet, c);
-		c.insets = new Insets(440, 630, 0, 0);
+		c.insets = new Insets(230, 630, 0, 0);
+		this.add(their_woodt, c);
+		c.insets = new Insets(300, 630, 0, 0);
+		this.add(their_woolt, c);
+		c.insets = new Insets(370, 630, 0, 0);
 		this.add(their_oret, c);
+		c.insets = new Insets(440, 630, 0, 0);
+		this.add(their_wheatt, c);
 
 		playerdd = new JLabel("Hoe wil je ruilen?");
 		cb = new JComboBox<String>();
@@ -278,50 +274,82 @@ public class TradePanel extends JPanel implements ActionListener {
 							if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
 								tc.setPlayerCards("w", -4);
 							}
-							if (your_wheatt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+							if (your_wheatt.getText().equals("4") && tc.getPlayerCards(2) > 4) {
 								tc.setPlayerCards("g", -4);
 							}
-							if (your_stonet.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+							if (your_stonet.getText().equals("4") && tc.getPlayerCards(4) > 4) {
 								tc.setPlayerCards("h", -4);
 							}
-							if (your_woodt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+							if (your_woodt.getText().equals("4") && tc.getPlayerCards(3) > 4) {
 								tc.setPlayerCards("b", -4);
 							}
-							if (your_oret.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+							if (your_oret.getText().equals("4") && tc.getPlayerCards(5) > 4) {
 								tc.setPlayerCards("e", -4);
 							}
 							if (their_woolt.getText().equals("1")) {
 								tc.doesBankHave("w");
 								if (bank_has_card_available == true) {
 									tc.setPlayerCards("w", 1);
+									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
+											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+									getFrame();
+									tf.dispose();
+								} else {
+									JOptionPane.showMessageDialog(this,
+											"De bank heeft geen kaarten beschikbaar meer!",
+											"Error", JOptionPane.ERROR_MESSAGE);
+									getFrame();
+									tc.disposeFrame();
 								}
 							}
 							if (their_wheatt.getText().equals("1")) {
 								tc.doesBankHave("g");
 								if (bank_has_card_available == true) {
 									tc.setPlayerCards("g", 1);
+									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
+											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+								} else {
+									JOptionPane.showMessageDialog(this,
+											"De bank heeft geen kaarten beschikbaar meer!",
+											"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
 							if (their_stonet.getText().equals("1")) {
 								tc.doesBankHave("h");
 								if (bank_has_card_available == true) {
 									tc.setPlayerCards("h", 1);
+									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
+											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+								} else {
+									JOptionPane.showMessageDialog(this,
+											"De bank heeft geen kaarten beschikbaar meer!",
+											"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
 							if (their_woodt.getText().equals("1")) {
 								tc.doesBankHave("b");
 								if (bank_has_card_available == true) {
 									tc.setPlayerCards("b", 1);
+									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
+											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+								} else {
+									JOptionPane.showMessageDialog(this,
+											"De bank heeft geen kaarten beschikbaar meer!",
+											"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
 							if (their_oret.getText().equals("1")) {
 								tc.doesBankHave("e");
 								if (bank_has_card_available == true) {
 									tc.setPlayerCards("e", 1);
+									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
+											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+								} else {
+									JOptionPane.showMessageDialog(this,
+											"De bank heeft geen kaarten beschikbaar meer!",
+											"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
-							JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
-									"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							JOptionPane.showMessageDialog(this,
 									"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
@@ -340,6 +368,14 @@ public class TradePanel extends JPanel implements ActionListener {
 			}
 		}	
 	}
+	
+	private void getFrame() {
+		tc.getFrame();
+	}
+	
+	public void setFrame(TradeFrame tradeFrame) {
+		tf = tradeFrame;
+	}
 
 	private void importImages() {
 		try {
@@ -355,16 +391,16 @@ public class TradePanel extends JPanel implements ActionListener {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.drawImage(schaap, 25, 150, 70, 70, yourCards);
-		g.drawImage(hooi, 25, 221, 70, 70, yourCards);
-		g.drawImage(hout, 25, 292, 70, 70, yourCards);
-		g.drawImage(steen, 25, 363, 70, 70, yourCards);
-		g.drawImage(erts, 25, 434, 70, 70, yourCards);
-		g.drawImage(schaap, 905, 150, 70, 70, yourCards);
-		g.drawImage(hooi, 905, 221, 70, 70, yourCards);
-		g.drawImage(hout, 905, 292, 70, 70, yourCards);
-		g.drawImage(steen, 905, 363, 70, 70, yourCards);
-		g.drawImage(erts, 905, 434, 70, 70, yourCards);
+		g.drawImage(schaap, 25, 292, 70, 70, yourCards);
+		g.drawImage(hooi, 25, 434, 70, 70, yourCards);
+		g.drawImage(hout, 25, 221, 70, 70, yourCards);
+		g.drawImage(steen, 25, 150, 70, 70, yourCards);
+		g.drawImage(erts, 25, 363, 70, 70, yourCards);
+		g.drawImage(schaap, 905, 292, 70, 70, yourCards);
+		g.drawImage(hooi, 905, 434, 70, 70, yourCards);
+		g.drawImage(hout, 905, 221, 70, 70, yourCards);
+		g.drawImage(steen, 905, 150, 70, 70, yourCards);
+		g.drawImage(erts, 905, 363, 70, 70, yourCards);
 	}
 
 }

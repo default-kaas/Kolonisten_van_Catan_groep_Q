@@ -9,7 +9,7 @@ import Model.Game;
 import View.PlayerInformationPanel;
 import View.TradeFrame;
 
-public class PlayerInfoController implements Observer {
+public class PlayerInfoController implements Observer, Runnable {
 	private Game game;
 	private PlayerInformationPanel spelerInformatiePanel;
 	private GameController gameController;
@@ -61,10 +61,8 @@ public class PlayerInfoController implements Observer {
 				x += game.GetPlayers().get(i).getName();
 				return x;
 			}
-
 		}
 		return null;
-
 	}
 
 	public String checkLongestRoad() {
@@ -74,7 +72,6 @@ public class PlayerInfoController implements Observer {
 				x += game.GetPlayers().get(i).getName();
 				return x;
 			}
-
 		}
 		return null;
 	}
@@ -146,12 +143,12 @@ public class PlayerInfoController implements Observer {
 	}
 
 	public void UpdateResourcePanel() {
-		spelerInformatiePanel.ShowResources();
+		spelerInformatiePanel.UpdateResources();
 	}
 
 	public void getTradePanel() {
-		//gameController.getTradeFrame();
-		
+		// gameController.getTradeFrame();
+
 		TradeFrame tradeFrame = new TradeFrame(game, db_conn, gameController);
 		tradeFrame.returnFrame();
 	}
@@ -166,7 +163,7 @@ public class PlayerInfoController implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		spelerInformatiePanel.UpdateResources();
+		UpdateResourcePanel();
 		if (o.getClass().getName().equals("Controller.BuildPanelController")) {
 			disableTradeButton();
 		}
@@ -175,6 +172,28 @@ public class PlayerInfoController implements Observer {
 			showTradeButton();
 			spelerInformatiePanel.enableEndButton();
 		}
+	}
+
+	public boolean shouldRefresh() {
+		return playerDAO.shouldRefresh(game.getGameID(), game.getMe().getPlayerID());
+	}
+
+	@Override
+	public void run() {
+		boolean run = true;
+		while (run) {
+			if (shouldRefresh()) {
+				run = false;
+			} else {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		gameController.updateAllPanels();
 	}
 
 }

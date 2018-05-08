@@ -249,4 +249,23 @@ public class PlayerDAO {
 		}
 	}
 
+	public boolean shouldRefresh(int gameID, int playerID) {
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select shouldrefresh from speler where idspel = "+gameID+" and idspeler = "+playerID);
+			rs.next();
+			if(rs.getInt("shouldrefresh")== 1) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			yes = false;
+			return false;
+		}
+	}
+
 }

@@ -115,14 +115,11 @@ public class PlayerDAO {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+"AND ontwikkelingskaart.naam = 'ridder'");
+			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND ontwikkelingskaart.naam = 'ridder'");
 			rs.next();
 			int amount = rs.getInt("aantal");
-			
-			System.out.println(amount);
 			return amount;
 		} catch (SQLException e) {
-			System.out.println(e);
 			return 0;
 		}
 		

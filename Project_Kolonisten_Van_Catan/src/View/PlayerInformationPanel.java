@@ -183,8 +183,6 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		// set knight card
 		
 		knight = new JLabel(": " + controller.getPlayerKnightCard());
-		System.out.println(controller.getPlayerKnightCard());
-		
 		
 		c.insets = new Insets(0, 0, 15, 0);
 		c.anchor = GridBagConstraints.CENTER;

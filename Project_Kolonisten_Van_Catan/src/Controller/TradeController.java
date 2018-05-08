@@ -10,9 +10,6 @@ import View.TradePanel;
 
 public class TradeController {
 	
-	private TradeController tc;
-	
-	private Player player;
 	private Game game;
 	
 	private TradePanel tradeView;
@@ -65,8 +62,8 @@ public class TradeController {
 		return tradeView;
 	}
 	
-	public void getFrame() {
-		tradeView.setFrame(tradeFrame);
+	public void setModel(Trade tm) {
+		trademodel = tm;
 	}
 	
 	public void getTradeFrame() {
@@ -89,6 +86,14 @@ public class TradeController {
 		if (game.getPlayerDAO().getyes() == false) {
 			tradeView.setAvailability(false);			
 		}
+	}
+
+	public void getHavens(String resource) {
+		game.getPlayerDAO().checkHaven(this, game.getGameID(), game.getMe().getPlayerID(), resource);
+	}
+	
+	public void processHavens(String string) {
+		tradeView.set(string);
 	}
 	
 	

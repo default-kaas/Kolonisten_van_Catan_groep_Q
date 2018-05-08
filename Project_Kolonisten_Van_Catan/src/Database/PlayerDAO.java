@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import Controller.TradeController;
 import Model.Game;
 import Model.Player;
 
@@ -280,6 +281,19 @@ public class PlayerDAO {
 
 		}
 
+	}
+	
+	public void checkHaven(TradeController tc, int gameID, int player, String resource) {
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"SELECT ");
+			tc.processHavens("yes");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			tc.processHavens("no");
+		}
 	}
 
 }

@@ -10,6 +10,7 @@ public class Trade {
 	
 	public Trade(TradeController tradePanelController) {
 		tc = tradePanelController;
+		tc.setModel(this);
 	}
 
 	private void sendTradeInvitation() {

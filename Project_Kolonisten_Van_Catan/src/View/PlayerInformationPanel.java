@@ -45,6 +45,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private PlayerInfoController controller;
 
 	private JLabel stone, wood, wool, ore, wheat;
+	private JLabel turn, turn1, notTurn, notTurn1;
 
 	public PlayerInformationPanel(PlayerInfoController controller) {
 		this.controller = controller;
@@ -71,6 +72,27 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		ore.setText(": " + controller.getOreAmount());
 		wheat.setText(": " + controller.getWheatAmount());
 		this.repaint();
+	}
+
+	public void UpdatePlayerInfo() {
+		for (int i = 0; i < 4; i++) {
+			if (controller.myTurn(i)) {
+				notTurn.setText(controller.getPlayerName(i) + " - " + "Grondstoffen: "
+						+ controller.getPlayerResources(i) + " - bezig met beurt!");
+			} else {
+				turn.setText(controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
+			}
+
+			// if (controller.getPlayerName(i).equals(controller.checkArmy())
+			// && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
+			// turn.setIcon(knightAndRoad);
+			// } else if (controller.getPlayerName(i).equals(controller.checkLongestRoad()))
+			// {
+			// turn.setIcon(longestRoadImage);
+			// } else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
+			// turn.setIcon(knightImage);
+			// }
+		}
 	}
 
 	public void playerInfo() {
@@ -259,11 +281,11 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		for (int i = 0; i < 4; i++) { // Prints all user info (Color, Name, Resource Amount and Points
 
 			if (controller.myTurn(i)) {
-				JLabel turn = new JLabel(controller.getPlayerName(i) + " - " + "Grondstoffen: "
+				turn = new JLabel(controller.getPlayerName(i) + " - " + "Grondstoffen: "
 						+ controller.getPlayerResources(i) + " - bezig met beurt!");
 				// Second JLabel is made to add a second image associated with player building
 				// points.
-				JLabel turn1 = new JLabel("" + controller.getBuildingPoints(i));
+				turn1 = new JLabel("" + controller.getBuildingPoints(i));
 				turn1.setIcon(trophy);
 
 				if (controller.getPlayerName(i).equals(controller.checkArmy())
@@ -305,10 +327,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				this.add(turn, c);
 				this.add(turn1, x);
 			} else {
-				JLabel notTurn = new JLabel(
+				notTurn = new JLabel(
 						controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
 
-				JLabel notTurn1 = new JLabel("" + controller.getBuildingPoints(i));
+				notTurn1 = new JLabel("" + controller.getBuildingPoints(i));
 				notTurn1.setIcon(trophy);
 
 				if (controller.getPlayerName(i).equals(controller.checkArmy())
@@ -370,15 +392,15 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.gridx = 1;
 		c.gridy = 7;
 		this.add(end, c);
-		trade.addActionListener(this);
+		end.addActionListener(this);
 
-		for (int i = 0; i < 4; i++) {
-			if (controller.myTurn(i)) {
-				enableEndButton();
-			} else {
-				disableEndButton();
-			}
-		}
+		// for (int i = 0; i < 4; i++) {
+		// if (controller.myTurn(i)) {
+		// enableEndButton();
+		// } else {
+		disableEndButton();
+		// }
+		// }
 
 	}
 
@@ -420,7 +442,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		playInvention.setForeground(Color.WHITE);
 		playInvention.setEnabled(true);
 	}
-	
+
 	public void disablePlayButton() {
 		playMonopoly.setBackground(new Color(163, 0, 0));
 		playMonopoly.setForeground(Color.BLACK);
@@ -433,7 +455,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		playTools.setBackground(new Color(163, 0, 0));
 		playTools.setForeground(Color.BLACK);
 		playTools.setEnabled(false);
-		
+
 		playUniversity.setBackground(new Color(163, 0, 0));
 		playUniversity.setForeground(Color.BLACK);
 		playUniversity.setEnabled(false);
@@ -480,10 +502,12 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getSource() == trade) {
+		if (arg0.getSource().equals(trade)) {
 			getTradePanel();
-		} else if (arg0.getSource() == close) {
+		} else if (arg0.getSource().equals(close)) {
 			System.exit(0);
+		} else if (arg0.getSource().equals(end)) {
+			controller.endTurn();
 		}
 
 	}

@@ -1,6 +1,5 @@
 package Controller;
 
-import java.awt.dnd.DnDConstants;
 import java.sql.Connection;
 import java.util.Observable;
 import java.util.Observer;
@@ -26,7 +25,7 @@ public class PlayerInfoController implements Observer {
 		spelerInformatiePanel.wonButton();
 		spelerInformatiePanel.enablePlayButton();
 		spelerInformatiePanel.endButton();
-		/*spelerInformatiePanel.ShowResources();*/
+		/* spelerInformatiePanel.ShowResources(); */
 		spelerInformatiePanel.playerDevelopmentCards();
 		this.gameController = gameController;
 		disableTradeButton();
@@ -43,16 +42,15 @@ public class PlayerInfoController implements Observer {
 	public int getPlayerResources(int volgnr) {
 		return game.getPlayerResources();
 	}
-	
+
 	public String getLargestArmy(int gameId) {
 		return playerDAO.getLargestArmyID(gameId);
 	}
-	
-	
+
 	public String getLongestRoad(int gameId) {
 		return playerDAO.getLongestRoadID(gameId);
 	}
-	
+
 	public String checkArmy() {
 		String x = "";
 		for (int i = 0; i < game.GetPlayers().size(); i++) {
@@ -60,12 +58,12 @@ public class PlayerInfoController implements Observer {
 				x += game.GetPlayers().get(i).getName();
 				return x;
 			}
-			
+
 		}
 		return null;
-		
+
 	}
-	
+
 	public String checkLongestRoad() {
 		String x = "";
 		for (int i = 0; i < game.GetPlayers().size(); i++) {
@@ -73,15 +71,14 @@ public class PlayerInfoController implements Observer {
 				x += game.GetPlayers().get(i).getName();
 				return x;
 			}
-			
+
 		}
 		return null;
 	}
-	
+
 	public int getBuildingPoints(int playerId) {
 		return playerDAO.playerPoints(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID());
 	}
-	
 
 	public boolean myTurn(int volgnr) {
 		if (game.getRound() == game.GetPlayers().get(volgnr).getPlayerID()) {
@@ -131,16 +128,25 @@ public class PlayerInfoController implements Observer {
 		gameController.getTradeFrame();
 	}
 
+	public void endTurn() {
+		game.setRound();
+		playerDAO.endTurn(game.getGameID(),game.getRound());
+		spelerInformatiePanel.UpdatePlayerInfo();
+		disableTradeButton();
+		spelerInformatiePanel.disableEndButton();
+	}
+
 	@Override
 	public void update(Observable o, Object arg) {
 		spelerInformatiePanel.UpdateResources();
-		if(o.getClass().getName().equals("Controller.BuildPanelController")) {
+		if (o.getClass().getName().equals("Controller.BuildPanelController")) {
 			disableTradeButton();
 		}
-		
-		if(o.getClass().getName().equals("Controller.DiceController")) {
+
+		if (o.getClass().getName().equals("Controller.DiceController")) {
 			showTradeButton();
 			spelerInformatiePanel.enableEndButton();
 		}
 	}
+
 }

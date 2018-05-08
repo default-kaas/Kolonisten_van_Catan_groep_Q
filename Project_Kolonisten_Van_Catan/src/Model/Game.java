@@ -57,7 +57,8 @@ public class Game {
 				Color = "oranje";
 				break;
 			}
-			Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i, GameId), Color, PlayerDBInfo));
+			Players.add(new Player(PlayerDBInfo.getName(i, GameId), PlayerDBInfo.getPlayerID(i, GameId), Color,
+					PlayerDBInfo));
 			if (Players.get(i).getName().equals(userName)) {
 				Players.get(i).itsMe();
 			}
@@ -65,11 +66,11 @@ public class Game {
 		}
 	}
 
-	public void addResources() {		
-		for(int i = 0; i < 5; i++) {
+	public void addResources() {
+		for (int i = 0; i < 5; i++) {
 			Object[][] PlayerResources = GameDB.getResourceAmount(GameId, userName, i);
-			for(Object[] x : PlayerResources) {
-				this.getMe().addResource(new ResourceCards((char)x[1],(String)x[0]), (char)x[1]);
+			for (Object[] x : PlayerResources) {
+				this.getMe().addResource(new ResourceCards((char) x[1], (String) x[0]), (char) x[1]);
 			}
 		}
 	}
@@ -93,23 +94,33 @@ public class Game {
 	public ArrayList<Player> GetPlayers() {
 		return Players;
 	}
-	
+
 	public int getPlayerResources() {
-		 int stone = getMe().getStoneAmount();
-		 int wood = getMe().getWoodAmount();
-		 int wheat =  getMe().getWheatAmount();
-		 int whool =  getMe().getWoolAmount();
-		 int ore = getMe().getOreAmount();
-		 int sum = stone + wood + wheat + whool + ore;
-		 return sum;
+		int stone = getMe().getStoneAmount();
+		int wood = getMe().getWoodAmount();
+		int wheat = getMe().getWheatAmount();
+		int whool = getMe().getWoolAmount();
+		int ore = getMe().getOreAmount();
+		int sum = stone + wood + wheat + whool + ore;
+		return sum;
 	}
-	
+
 	public PlayerDAO getPlayerDAO() {
 		return PlayerDBInfo;
 	}
 
 	public int getRound() {
 		return PlayersRound;
+	}
+
+	public void setRound() {
+		switch (getMe().getColor()) {
+		case "oranje":
+			PlayersRound -= 3;
+			break;
+		default:
+			PlayersRound++;
+		}
 	}
 
 	public int getGameID() {

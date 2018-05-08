@@ -109,7 +109,7 @@ public class PlayerDAO {
 		}
 
 	}
-	
+
 	public ArrayList<Integer> getPlayerCards(int gameId, int idPlayer) {
 		ArrayList<Integer> getplayerCards = new ArrayList<Integer>();
 		try {
@@ -118,20 +118,18 @@ public class PlayerDAO {
 			rs = stmt.executeQuery("select ontwikkelingskaart.naam, count(idspeler) "
 					+ "AS amount from ontwikkelingskaart left join spelerontwikkelingskaart ON "
 					+ "ontwikkelingskaart.idontwikkelingskaart = spelerontwikkelingskaart.idontwikkelingskaart join spel"
-					+ " ON spel.idspel = spelerontwikkelingskaart.idspel group by ontwikkelingskaart.naam " 
+					+ " ON spel.idspel = spelerontwikkelingskaart.idspel group by ontwikkelingskaart.naam "
 					+ "	order by  ontwikkelingskaart.naam");
 			while (rs.next()) {
 				int m = rs.getInt("amount");
 				getplayerCards.add(m);
 			}
 		} catch (SQLException e) {
-			
+
 		}
-		
+
 		return getplayerCards;
 	}
-	
-	
 
 	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
 		try {
@@ -146,29 +144,40 @@ public class PlayerDAO {
 	public void addResources(int gameid, Player playerid, String card, int amount) {
 		try {
 			Statement statement = m_Conn.createStatement();
-		final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid
-					+ " WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel IS "+ gameid +" LIMIT " + amount;
+			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid
+					+ " WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel IS " + gameid
+					+ " LIMIT " + amount;
 			statement.executeUpdate(QUERY);
 		} catch (SQLException e) {
 		}
 	}
-	
 
-	
-	
-	
+	public void endTurn(int gameid, int playerid) {
+		try {
+			Statement statement = m_Conn.createStatement();
+			String QUERY = "UPDATE spel SET gedobbeld = 0, laatste_worp_steen1 = null, laatste_worp_steen2 = null, beurt_idspeler = "
+					+ playerid + " where idspel = " + gameid + ";";
+			statement.executeUpdate(QUERY);
+			
+			String QUERY2 = "UPDATE speler SET shouldrefresh = 1 where idspeler = " + playerid + ";";
+			statement.executeUpdate(QUERY2);
+		} catch (SQLException e) {
+		}
+	}
+
 	boolean yes = false;
-	
+
 	public boolean getyes() {
 		return yes;
 	}
-	
+
 	public boolean checkBank(int gameID, String card) {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery(
-					"SELECT idspeler FROM spelergrondstofkaart WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel IS "+gameID+" LIMIT 1");
+					"SELECT idspeler FROM spelergrondstofkaart WHERE idspeler IS NULL AND idgrondstofkaart LIKE '"
+							+ card + "%' AND idspel IS " + gameID + " LIMIT 1");
 			rs.next();
 			yes = true;
 			return true;

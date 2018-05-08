@@ -94,7 +94,6 @@ public class BoardController {
 		board.setCorners(corners);
 		board.setStreets(streets);
 		board.setDocks(returnDocks(corners));
-		System.out.println();
 	}
 	
 	

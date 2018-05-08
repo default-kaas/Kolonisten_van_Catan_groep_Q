@@ -110,7 +110,8 @@ public class PlayerDAO {
 
 	}
 
-	public int getPlayerKnightCards(int gameId, int playerId) {
+	
+	public int getPlayerKnightCards(int gameId, int playerId) { //Returns the amount of Knight Cards a player has in possession
 		
 		try {
 			Statement stmt = m_Conn.createStatement();
@@ -130,7 +131,7 @@ public class PlayerDAO {
 		
 	}
 	
-	public int getPlayerInventionCards(int gameId, int playerId) {
+	public int getPlayerInventionCards(int gameId, int playerId) { //returns the amount of Invention Cards a player has in possession
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
@@ -145,7 +146,7 @@ public class PlayerDAO {
 		}
 	}
 	
-	public int getPlayerMonopolyCards(int gameId, int playerId) {
+	public int getPlayerMonopolyCards(int gameId, int playerId) { //returns the amount of Monopoly Cards a player has in possession
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
@@ -160,7 +161,7 @@ public class PlayerDAO {
 		}
 	}
 	
-	public int getPlayerToolsCards(int gameId, int playerId) {
+	public int getPlayerToolsCards(int gameId, int playerId) { //returns the amount of Tools Cards a player has in possession
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;

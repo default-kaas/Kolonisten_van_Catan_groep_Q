@@ -9,27 +9,34 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import Controller.GameController;
 import Controller.TradeController;
 import Model.Game;
 
 public class TradeFrame extends JFrame implements ActionListener {
 	
-	private Game game;
 	private TradeController tc;
+	private Game game;
 	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem exit;
+	private GameController gc;
 	
 	JFrame frame;
 
-	public TradeFrame(Game game, Connection db_conn) {
+	public TradeFrame(Game game, Connection db_conn, GameController gameController) {
 
 		this.game = game;
 		tc = new TradeController(this,db_conn,game);
+		gc = gameController;
 		frame = new JFrame();
 		setupFrame();
 		addMenuBar();
 	
+	}
+	
+	public void returnFrame() {
+		gc.setTP(this);
 	}
 
 	public void getTradeFrame() {

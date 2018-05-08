@@ -37,12 +37,12 @@ public class GameController extends Observable implements Runnable {
 
 	private void runRounds() {
 		// Als lobby af is moet ik dit stukje nog wat veranderen.
-		bouwPanelController.disableButtons();
+		// bouwPanelController.disableButtons();
 
 		if ((Game.getRound() == Game.getMe().getPlayerID())) {
 			showDice();
 		}
-		bouwPanelController.showButtons();
+		// bouwPanelController.showButtons();
 
 	}
 
@@ -68,12 +68,12 @@ public class GameController extends Observable implements Runnable {
 		tradeFrame = new TradeFrame(Game, db_conn, this);
 		tradeFrame.returnFrame();
 		boardController = new BoardController(Game, db_conn);
-		
+
 		bouwPanelController.addObserver(playerInfoController);
+		diceController.addObserver(bouwPanelController);
 		diceController.addObserver(playerInfoController);
-		
 	}
-	
+
 	public void setTP(TradeFrame tf) {
 		tradeFrame = tf;
 	}
@@ -133,7 +133,6 @@ public class GameController extends Observable implements Runnable {
 	public void setDiceMessage(int value1, int value2) {
 		chatPanelController.setUserInput("heeft " + value1 + " en " + value2 + " gegooid!");
 	}
-	
 
 	// @Override
 	// public void update(Observable o, Object arg) {

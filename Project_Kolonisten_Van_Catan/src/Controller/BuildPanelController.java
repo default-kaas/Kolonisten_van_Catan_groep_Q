@@ -7,7 +7,7 @@ import java.util.Observer;
 import Model.Game;
 import View.BuildPanel;
 
-public class BuildPanelController extends Observable {
+public class BuildPanelController extends Observable implements Observer {
 
 	private Game game;
 	private BuildPanel bouwPanel;
@@ -17,6 +17,7 @@ public class BuildPanelController extends Observable {
 		this.game = game;
 		this.gameController = gameController;
 		bouwPanel = new BuildPanel(this);
+		disableButtons();
 	}
 
 	public String remainingWood() {
@@ -129,6 +130,12 @@ public class BuildPanelController extends Observable {
 
 	public void showButtons() {
 		bouwPanel.allCheck();
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		showButtons();
 	}	
 
 }

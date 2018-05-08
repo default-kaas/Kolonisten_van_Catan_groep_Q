@@ -342,56 +342,6 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			playerInformation.add(info);
 			this.add(victoryPoints, x);
 			playerInformation.add(victoryPoints);
-
-			// } else {
-			// notTurn = new JLabel(
-			// controller.getPlayerName(i) + " - " + "Grondstoffen: " +
-			// controller.getPlayerResources(i));
-			//
-			// notTurn1 = new JLabel("" + controller.getBuildingPoints(i));
-			// notTurn1.setIcon(trophy);
-			//
-			// if (controller.getPlayerName(i).equals(controller.checkArmy())
-			// && controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-			// notTurn.setIcon(knightAndRoad);
-			//
-			// } else if (controller.getPlayerName(i).equals(controller.checkLongestRoad()))
-			// {
-			// notTurn.setIcon(longestRoadImage);
-			// } else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
-			// notTurn.setIcon(knightImage);
-			// }
-			// notTurn.setForeground(Color.BLACK);
-			// notTurn.setFont(new Font("Arial", Font.BOLD, 15));
-			// c.insets = new Insets(20, 0, 0, 0);
-			// c.anchor = GridBagConstraints.NORTH;
-			// c.gridx = 3;
-			// c.gridy = i + 1;
-			//
-			// notTurn1.setFont(new Font("Arial", Font.BOLD, 15));
-			//
-			// switch (i) {
-			// case 0:
-			// notTurn.setForeground(Color.RED);
-			// break;
-			// case 1:
-			// notTurn.setForeground(Color.WHITE);
-			// break;
-			// case 2:
-			// notTurn.setForeground(Color.BLUE);
-			// break;
-			// case 3:
-			// notTurn.setForeground(Color.ORANGE);
-			// }
-			// x.insets = new Insets(0, 0, 0, 0);
-			// x.anchor = GridBagConstraints.WEST;
-			// x.gridx = 4;
-			// x.gridy = i + 1;
-			//
-			// this.add(notTurn, c);
-			// this.add(notTurn1, x);
-			// }
-
 		}
 
 	}

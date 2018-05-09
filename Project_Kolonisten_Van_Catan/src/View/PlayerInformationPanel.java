@@ -93,9 +93,11 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			if (controller.myTurn(i)) {
 				playerInformation.get(x).setText(controller.getPlayerName(i) + " - " + "Grondstoffen: "
 						+ controller.getPlayerResources(i));
+				playerInformation.get(x).setIcon(green);
 			} else {
 				playerInformation.get(x).setText(
 						controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
+				playerInformation.get(x).setIcon(red);
 			}
 			playerInformation.get(x + 1).setText("" + controller.getVictoryPoints(i));
 

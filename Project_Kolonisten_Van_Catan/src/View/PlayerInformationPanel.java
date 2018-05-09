@@ -75,6 +75,13 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		wool.setText(": " + controller.getWoolAmount());
 		ore.setText(": " + controller.getOreAmount());
 		wheat.setText(": " + controller.getWheatAmount());
+		
+		monopoly.setText(": " + controller.getPlayerMonopolyCard());
+		knight.setText(": " + controller.getPlayerKnightCard());
+		victoryPoints.setText(": " + controller.getPlayerVictoryPointCard());
+		tools.setText(": " + controller.getPlayerToolsCard());
+		invention.setText(": " + controller.getPlayerInventionCard());		
+		
 		this.repaint();
 	}
 

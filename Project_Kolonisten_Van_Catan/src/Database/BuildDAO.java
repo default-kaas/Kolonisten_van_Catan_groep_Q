@@ -28,4 +28,15 @@ public class BuildDAO {
 			return 0;
 		}
 	}
+
+	public void givePlayerRandomCard(int playerId) {
+		try {
+			Statement stmt = db_conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select idontwikkelingskaart from spelerontwikkelingskaart where idspeler IS null ORDER BY rand() limit 1;");
+			rs.next();
+			stmt.executeUpdate("update spelerontwikkelingskaart set idspeler = "+playerId+" where idontwikkelingskaart = '"+rs.getString("idontwikkelingskaart")+"';");
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
 }

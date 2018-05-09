@@ -67,6 +67,7 @@ public class Game {
 	}
 
 	public void addResources() {
+		getMe().resetResources();
 		for (int i = 0; i < 5; i++) {
 			Object[][] PlayerResources = GameDB.getResourceAmount(GameId, userName, i);
 			for (Object[] x : PlayerResources) {
@@ -96,7 +97,7 @@ public class Game {
 	}
 
 	public int getPlayerResources(int volgNr) {
-		
+
 		int stone = GetPlayers().get(volgNr).getStoneAmount();
 		int wood = GetPlayers().get(volgNr).getWoodAmount();
 		int wheat = GetPlayers().get(volgNr).getWheatAmount();

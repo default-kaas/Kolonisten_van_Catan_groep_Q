@@ -286,17 +286,18 @@ public class PlayerDAO {
 
 	}
 	
-	public String checkHaven(TradeController tc, int player) {
+	public String checkHaven(int player) {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery(
 					"SELECT x,y,idgrondstofsoort FROM locatie WHERE haven = 1 AND EXISTS (SELECT x,y FROM spelerstuk where locatie.x = spelerstuk.x_van AND  locatie.y = spelerstuk.y_van AND idspeler="+player+")");
+			rs.next();
 			String grondstof = rs.getString("idgrondstofsoort");
 			return grondstof;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			return null;
+			return "false";
 		}
 	}
 

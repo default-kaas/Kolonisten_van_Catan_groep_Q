@@ -96,7 +96,13 @@ public class Player {
 			this.WoolStack.add(Resources);
 			break;
 		}
-
+	}
+	public void resetResources() {
+		WoodStack.clear();
+		WheatStack.clear();
+		StoneStack.clear();
+		OreStack.clear();
+		WoolStack.clear();
 	}
 
 	public void removeRoadResources(int gameId) {
@@ -216,8 +222,7 @@ public class Player {
 	public int getWoolAmount() {
 		return WoolStack.size();
 	}
-	// public boolean isMyTurn() {
-	// return myTurn;
-	// }
+
+	
 
 }

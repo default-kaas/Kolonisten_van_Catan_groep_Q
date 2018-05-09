@@ -120,4 +120,9 @@ public class GameController {
 	public void setDiceMessage(int value1, int value2) {
 		chatPanelController.setUserInput("heeft " + value1 + " en " + value2 + " gegooid!");
 	}
+	
+	public void setTradeMessage(int value1, String Resource1, int value2, String Resource2, String Player) {
+		chatPanelController.setUserInput("heeft " +value1+ " keer " + Resource1 + " geruild met " + Player + " voor " + value2 + " keer " + Resource2 );
+	}
+	
 }

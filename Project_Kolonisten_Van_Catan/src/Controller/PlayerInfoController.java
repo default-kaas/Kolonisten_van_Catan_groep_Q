@@ -156,13 +156,13 @@ public class PlayerInfoController implements Observer, Runnable {
 	}
 
 	public void UpdateResourcePanel() {
+		game.addResources();
 		spelerInformatiePanel.UpdateResources();
 		spelerInformatiePanel.UpdatePlayerInfo();
 	}
 
 	public void getTradePanel() {
 		// gameController.getTradeFrame();
-
 		TradeFrame tradeFrame = new TradeFrame(game, db_conn, gameController);
 		tradeFrame.returnFrame();
 	}
@@ -170,7 +170,6 @@ public class PlayerInfoController implements Observer, Runnable {
 	public void endTurn() {
 		game.setRound();
 		playerDAO.endTurn(game.getGameID(), game.getRound());
-		spelerInformatiePanel.UpdatePlayerInfo();
 		spelerInformatiePanel.UpdatePlayerInfo();
 		disableTradeButton();
 		spelerInformatiePanel.disableEndButton();
@@ -180,9 +179,9 @@ public class PlayerInfoController implements Observer, Runnable {
 	@Override
 	public void update(Observable o, Object arg) {
 		UpdateResourcePanel();
-		if (o.getClass().getName().equals("Controller.BuildPanelController")) {
-			disableTradeButton();
-		}
+//		if (o.getClass().getName().equals("Controller.BuildPanelController")) {
+//			disableTradeButton();
+//		}
 
 		if (o.getClass().getName().equals("Controller.DiceController")) {
 			showTradeButton();

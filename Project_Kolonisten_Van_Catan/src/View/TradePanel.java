@@ -218,7 +218,7 @@ public class TradePanel extends JPanel implements ActionListener {
 	private boolean three = false;
 	
 	public void set(String charr) {
-		if (charr.equals(null)) {
+		if (charr.equals("driehaven")) {
 			three = true;
 		}
 		if (charr.equals("W")) {
@@ -294,61 +294,77 @@ public class TradePanel extends JPanel implements ActionListener {
 								if (three == true) {
 									if (W == true) {
 										tc.removePlayerCards("w", 2);
+										tc.trademsg1(2, "wol");
 									} else {
 										tc.removePlayerCards("w", 3);
+										tc.trademsg1(3, "wol");
 									}
 								} else {
 									tc.removePlayerCards("w", 4);
+									tc.trademsg1(4, "wol");
 								}
 							}
 							if (your_wheatt.getText().equals("4") && tc.getPlayerCards(2) > 4) {
 								if (three == true) {
 									if (G == true) {
 										tc.removePlayerCards("g", 2);
+										tc.trademsg1(2, "graan");
 									} else {
 										tc.removePlayerCards("g", 3);
+										tc.trademsg1(3, "graan");
 									}
 								} else {
 									tc.removePlayerCards("g", 4);
+									tc.trademsg1(4, "graan");
 								}
 							}
 							if (your_stonet.getText().equals("4") && tc.getPlayerCards(4) > 4) {
 								if (three == true) {
-									if (H == true) {
-										tc.removePlayerCards("h", 2);
+									if (B == true) {
+										tc.removePlayerCards("b", 2);
+										tc.trademsg1(2, "baksteen");
 									} else {
-										tc.removePlayerCards("h", 3);
+										tc.removePlayerCards("b", 3);
+										tc.trademsg1(3, "baksteen");
 									}
 								} else {
-									tc.removePlayerCards("h", 4);
+									tc.removePlayerCards("b", 4);
+									tc.trademsg1(4, "baksteen");
 								}
 							}
 							if (your_woodt.getText().equals("4") && tc.getPlayerCards(3) > 4) {
 								if (three == true) {
-									if (B == true) {
-										tc.removePlayerCards("b", 2);
+									if (H == true) {
+										tc.removePlayerCards("h", 2);
+										tc.trademsg1(2, "hout");
 									} else {
-										tc.removePlayerCards("b", 3);
+										tc.removePlayerCards("h", 3);
+										tc.trademsg1(3, "hout");
 									}
 								} else {
-									tc.removePlayerCards("b", 4);
+									tc.removePlayerCards("h", 4);
+									tc.trademsg1(4, "hout");
 								}
 							}
 							if (your_oret.getText().equals("4") && tc.getPlayerCards(5) > 4) {
 								if (three == true) {
-									if (B == true) {
-										tc.removePlayerCards("b", 2);
+									if (E == true) {
+										tc.removePlayerCards("e", 2);
+										tc.trademsg1(2, "erts");
 									} else {
-										tc.removePlayerCards("b", 3);
+										tc.removePlayerCards("e", 3);
+										tc.trademsg1(3, "erts");
 									}
 								} else {
-									tc.removePlayerCards("b", 4);
+									tc.removePlayerCards("e", 4);
+									tc.trademsg1(4, "erts");
 								}
 							}
 							if (their_woolt.getText().equals("1")) {
 								tc.doesBankHave("w");
 								if (bank_has_card_available == true) {
 									tc.setPlayerCards("w", 1);
+									tc.trademsg2(1, "wol");
 									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
 									tc.disposeFrame();
@@ -362,6 +378,7 @@ public class TradePanel extends JPanel implements ActionListener {
 								tc.doesBankHave("g");
 								if (bank_has_card_available == true) {
 									tc.setPlayerCards("g", 1);
+									tc.trademsg2(1, "graan");
 									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
 									tc.disposeFrame();
@@ -372,9 +389,10 @@ public class TradePanel extends JPanel implements ActionListener {
 								}
 							}
 							if (their_stonet.getText().equals("1")) {
-								tc.doesBankHave("h");
+								tc.doesBankHave("b");
 								if (bank_has_card_available == true) {
-									tc.setPlayerCards("h", 1);
+									tc.setPlayerCards("b", 1);
+									tc.trademsg2(1, "baksteen");
 									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
 									tc.disposeFrame();
@@ -385,9 +403,10 @@ public class TradePanel extends JPanel implements ActionListener {
 								}
 							}
 							if (their_woodt.getText().equals("1")) {
-								tc.doesBankHave("b");
+								tc.doesBankHave("h");
 								if (bank_has_card_available == true) {
-									tc.setPlayerCards("b", 1);
+									tc.setPlayerCards("h", 1);
+									tc.trademsg2(1, "hout");
 									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
 									tc.disposeFrame();
@@ -401,6 +420,7 @@ public class TradePanel extends JPanel implements ActionListener {
 								tc.doesBankHave("e");
 								if (bank_has_card_available == true) {
 									tc.setPlayerCards("e", 1);
+									tc.trademsg2(1, "erts");
 									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
 											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
 									tc.disposeFrame();

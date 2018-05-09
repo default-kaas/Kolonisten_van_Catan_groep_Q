@@ -445,6 +445,33 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			playInvention.setEnabled(false);
 		}
 	}
+	
+	public void disablePlayButton() { //This method is created to completely disable the play cards buttons if it's not the players' turn.
+		playMonopoly.setBackground(new Color(163, 0, 0));
+		playMonopoly.setForeground(Color.BLACK);
+		playMonopoly.setEnabled(false);
+		
+		playKnight.setBackground(new Color(163, 0, 0));
+		playKnight.setForeground(Color.BLACK);
+		playKnight.setEnabled(false);
+		
+		playTools.setBackground(new Color(163, 0, 0));
+		playTools.setForeground(Color.BLACK);
+		playTools.setEnabled(false);
+		
+		playVictory.setBackground(new Color(163, 0, 0));
+		playVictory.setForeground(Color.BLACK);
+		playVictory.setEnabled(false);
+		
+		playInvention.setBackground(new Color(5, 162, 0));
+		playInvention.setForeground(Color.WHITE);
+		playInvention.setEnabled(true);
+		
+		playInvention.setBackground(new Color(163, 0, 0));
+		playInvention.setForeground(Color.BLACK);
+		playInvention.setEnabled(false);
+		
+	}
 
 	public void enableWonButton() {
 		if (controller.playerHasWon()) {
@@ -495,21 +522,5 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	public void getTradePanel() {
 		controller.getTradePanel();
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
-		int height = (int) (screenSize.getHeight() * 0.4);
-	}
-
-	public void ShowResources() {
-		String woodAmount = ": " + controller.getWoodAmount();
-		String woolAmount = ": " + controller.getWoolAmount();
-		String oreAmount = ": " + controller.getOreAmount();
-		String wheatAmount = ": " + controller.getWheatAmount();
-		String stoneAmount = ": " + controller.getStoneAmount();
 	}
 }

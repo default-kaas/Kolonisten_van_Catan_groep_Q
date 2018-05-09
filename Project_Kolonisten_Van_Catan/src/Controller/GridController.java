@@ -32,61 +32,63 @@ public class GridController {
 	}
 
 	public void checkStreets() {
-		// forloop door lijst coördinaten get value met index i
-		// for(int i=0; i<arraysize; i++){
-		// x1 = x locatie eerste hoekpunt
-		// y1 = y locatie eerste hoekpunt
-		// x2 = x locatie tweede hoekpunt
-		// y2 = y locatie tweede hoekpunt
+		ArrayList<Corner> streets = myStreet.getCornerPoints();
+		ArrayList<Point> pointsStreet = new ArrayList<Point>();
+		
+		for(Corner street:streets) {
+			Point StreetCorner = street.getInGamePoint();
+			pointsStreet.add(StreetCorner);
+		}
+		
+		x1 = (int) pointsStreet.get(0).getX();
+		y1 = (int) pointsStreet.get(0).getY();
+		x2 = (int) pointsStreet.get(1).getX();
+		y2 = (int) pointsStreet.get(1).getY();	
 		int counter = 0;
-		int location;
+		Point location;
 
-		// if statement checken of x,y er tussen valt
 		if (x1 == x2) {
 			if (x > (x1 - 5) && x < (x2 + 5) && y > (y1 - 5) && y < y2 + 5) {
-				// location = i;
+				location = new Point(x,y);
 				counter++;
 			}
 		}
+		else {
+			double Dx;
+			double Dy;
+			int D;
+			int W = 10;
 
-		// Voor Schijne Zijde
-		double Dx;
-		double Dy;
-		int D;
-		// W is de breedte
-		int W = 10;
+			Dx = x2 - x1;
+			Dy = y2 - y1;
+			D = (int) Math.sqrt((Dx * Dx) + (Dy * Dy));
+			Dx = (((0.5 * W) * Dx) / D);
+			Dy = (((0.5 * W) * Dy) / D);
 
-		Dx = x2 - x1;
-		Dy = y2 - y1;
-		D = (int) Math.sqrt((Dx * Dx) + (Dy * Dy));
-		Dx = (((0.5 * W) * Dx) / D);
-		Dy = (((0.5 * W) * Dy) / D);
+			double aX = x1 - Dy;
+			double aY = y1 + Dx;
+			double bX = x1 + Dy;
+			double bY = x1 - Dy;
+			double cX = x2 - Dy;
+			double cY = y2 + Dx;
+			double dX = x2 + Dx;
+			double dY = y2 - Dx;
 
-		// dit zijn de hoekpunten
-		double aX = x1 - Dy;
-		double aY = y1 + Dx;
-		double bX = x1 + Dy;
-		double bY = x1 - Dy;
-		double cX = x2 - Dy;
-		double cY = y2 + Dx;
-		double dX = x2 + Dx;
-		double dY = y2 - Dx;
+			int L = (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+			int oppABP = (int) (0.5 * ((aX - x) * (bY - aY) - (aX - bX) * (y - aY)));
+			int oppBCP = (int) (0.5 * ((cX - x) * (bY - cY) - (cX - bX) * (y - cY)));
+			int oppCDP = (int) (0.5 * ((cX - x) * (dY - cY) - (cX - dX) * (y - cY)));
+			int oppADP = (int) (0.5 * ((aX - x) * (dY - aY) - (aX - dX) * (y - aY)));
 
-		// p = x,y; geklikt punt
-		// L = lengte straat
-		int L = (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-		int oppABP = (int) (0.5 * ((aX - x) * (bY - aY) - (aX - bX) * (y - aY)));
-		int oppBCP = (int) (0.5 * ((cX - x) * (bY - cY) - (cX - bX) * (y - cY)));
-		int oppCDP = (int) (0.5 * ((cX - x) * (dY - cY) - (cX - dX) * (y - cY)));
-		int oppADP = (int) (0.5 * ((aX - x) * (dY - aY) - (aX - dX) * (y - aY)));
-
-		if ((L * W) == (oppABP + oppBCP + oppCDP + oppADP) || oppABP == 0 || oppBCP == 0 || oppCDP == 0
-				|| oppADP == 0) {
-			// dan ligt hij binnen het gebied
+			if ((L * W) == (oppABP + oppBCP + oppCDP + oppADP) || oppABP == 0 || oppBCP == 0 || oppCDP == 0
+					|| oppADP == 0) {
+				location = new Point(x,y);
+				counter++;
+			}
 		}
-
+		
 		if (counter == 1) {
-			// dan heb je de straat
+			// build
 		}
 	}
 
@@ -102,7 +104,6 @@ public class GridController {
 			double Dx;
 			double Dy;
 			int D;
-			// W is de breedte
 			int W = 10;
 
 			Dx = x2 - x1;
@@ -111,7 +112,6 @@ public class GridController {
 			Dx = (((0.5 * W) * Dx) / D);
 			Dy = (((0.5 * W) * Dy) / D);
 
-			// dit zijn de hoekpunten
 			double aX = x1 - Dy;
 			double aY = y1 + Dx;
 			double bX = x1 + Dy;
@@ -157,13 +157,9 @@ public class GridController {
 			boolean hasNeighbor = false;
 			boolean connectedToYourStreet = false;
 
-			for (int i = 0; i < streets.size(); i++) {
-				ArrayList<Point> nextToStreet = corner.getLinePoints();
-				// how to solve same with neighbors
-				// if(nextToStreet.get(i)==corner) {
-				// connectedToYourStreet = true;
-				// }
-			}
+			for(Corner street:streets) {
+				connectedToYourStreet = myStreet.compareIfCornersIsInLine(corner, street);
+			}			
 
 			if (!hasTown || !hasCity) {
 				if (connectedToYourStreet) {

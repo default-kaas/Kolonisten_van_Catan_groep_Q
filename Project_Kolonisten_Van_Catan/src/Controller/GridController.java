@@ -94,12 +94,11 @@ public class GridController {
 		ArrayList<Corner> streets = myStreet.getCornerPoints();
 		boolean yourStreet = (myStreet.getPlayer() == player);
 		if (x1 == x2) {
-			// a	(x1-5),y1
-			// b	(x1+5),y1
-			// c	(x2-5),y2
-			// d	(x2+5),y2
-		}
-		else {
+			// a (x1-5),y1
+			// b (x1+5),y1
+			// c (x2-5),y2
+			// d (x2+5),y2
+		} else {
 			double Dx;
 			double Dy;
 			int D;
@@ -129,50 +128,47 @@ public class GridController {
 	}
 
 	public void checkTowns() {
-		// for(int i=0; i<arraysize; i++){
-		// x1 = x locatie eerste hoekpunt
-		// y1 = y locatie eerste hoekpunt
-		int r = 10;
-		int counter = 0;
-		int location;
+		ArrayList<Corner> allPoints = myBoard.getCorners();
+		for (Corner corner : allPoints) {
+			x1 = (int) corner.getInGamePoint().getX();
+			y1 = (int) corner.getInGamePoint().getY();
+			int r = 10;
+			int counter = 0;
+			Corner location;
 
-		// if statement checken of x,y er tussen valt
-		// if((x-x1)*(x-x1) + (y-y1)*(y-y1)<= r*r){
-		// location = i;
-		// counter++;
-		// }
-		// }
-		//
-		if (counter == 1) {
-			// dan heb je het hoekpunt dorp
+			if ((x - x1) * (x - x1) + (y - y1) * (y - y1) <= r * r) {
+				location = corner;
+				counter++;
+			}
+			if (counter == 1) {
+				// build
+			}
 		}
-		// }
 	}
 
 	public void showTowns(int player) {
-		Corner myCorner = new Corner();
 		ArrayList<Corner> allPoints = myBoard.getCorners();
 		ArrayList<Corner> streets = myStreet.getCornerPoints();
 		ArrayList<Corner> possibleTowns = new ArrayList<Corner>();
 
-		for (int i = 0; i < allPoints.size(); i++) {
-			boolean hasTown = myCorner.isTown();
-			boolean hasCity = myCorner.isCity();
-			boolean yourStreet = (myStreet.getPlayer() == player);
-			ArrayList<Point> neighbor = myCorner.getLinePoints();
+		for (Corner corner : allPoints) {
+			boolean hasTown = corner.isTown();
+			boolean hasCity = corner.isCity();
 			boolean hasNeighbor = false;
-				for(int c = 0; c < 3; c++) {
-					Point possibleNeighbor = neighbor.get(c);
-					if(myCorner.isTown() || myCorner.isCity()) {
-						hasNeighbor = true;
-					}
-				}
-			
-			Boolean connectedToYourStreet = (yourStreet); 
+			boolean connectedToYourStreet = false;
+
+			for (int i = 0; i < streets.size(); i++) {
+				ArrayList<Point> nextToStreet = corner.getLinePoints();
+				// how to solve same with neighbors
+				// if(nextToStreet.get(i)==corner) {
+				// connectedToYourStreet = true;
+				// }
+			}
+
 			if (!hasTown || !hasCity) {
 				if (connectedToYourStreet) {
 					if (!hasNeighbor) {
-						possibleTowns.add(allPoints.get(i));
+						possibleTowns.add(corner);
 					}
 
 				}
@@ -185,14 +181,16 @@ public class GridController {
 		// g.fill
 	}
 
-	public void showCities() {
+	public void showCities(int player) {
 		Corner myCorner = new Corner();
 		ArrayList<Corner> allPoints = myBoard.getCorners();
 		ArrayList<Corner> yourTowns = new ArrayList<Corner>();
-		for (int i = 0; i < allPoints.size(); i++) {
-			Boolean yourTown = myCorner.isTown();
+
+		for (Corner corner : allPoints) {
+			Boolean yourTown = corner.isTown();
 			if (yourTown) {
-				yourTowns.add(allPoints.get(i));
+				if (player == corner.getPlayerId())
+					yourTowns.add(corner);
 			}
 		}
 

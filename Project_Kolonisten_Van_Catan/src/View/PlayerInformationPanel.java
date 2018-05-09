@@ -88,7 +88,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				playerInformation.get(x).setText(
 						controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
 			}
-			playerInformation.get(x + 1).setText("" + controller.getBuildingPoints(i));
+			playerInformation.get(x + 1).setText("" + controller.getVictoryPoints(i));
 
 			if (controller.getPlayerName(i).equals(controller.checkArmy())
 					&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
@@ -299,7 +299,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			}
 			// Second JLabel is made to add a second image associated with player building
 			// points.
-			JLabel victoryPoints = new JLabel("" + controller.getBuildingPoints(i));
+			JLabel victoryPoints = new JLabel("" + controller.getVictoryPoints(i));
 			victoryPoints.setIcon(trophy);
 
 			if (controller.getPlayerName(i).equals(controller.checkArmy())

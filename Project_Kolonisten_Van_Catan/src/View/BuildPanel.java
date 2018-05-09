@@ -157,7 +157,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridx = 0;
 		c.gridy = 3;
 		this.add(houseLabel, c);
-		System.out.println(buildPanelController.PlayerHasHouse());
 
 		JLabel houseStone = new JLabel(stone);
 		c.anchor = GridBagConstraints.CENTER;

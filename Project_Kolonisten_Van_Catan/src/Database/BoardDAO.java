@@ -155,4 +155,59 @@ public class BoardDAO {
 			return null;
 		}
 	}
+	
+	public ArrayList<Point> getBoughtCityLocation(int gameID){
+		try {
+			ArrayList<Point> arrayList = new ArrayList<Point>();
+			Statement stmt = connection.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select DISTINCT(x_van),y_van from spelerstuk join speler on speler.idspeler = spelerstuk.idspeler join spel on spel.idspel = speler.idspel where x_van is not null and y_van is not null and spel.idspel = "+ gameID + " and spelerstuk.idstuk LIKE 'c%' ");
+			while(rs.next()) {
+				int x =rs.getInt("x_van");
+				int y =rs.getInt("y_van");
+				Point point = new Point(x,y);
+				arrayList.add(point);
+			}
+			return arrayList;
+		}catch(SQLException e) {
+			System.out.println(e);;
+			return null;
+		}
+	}
+
+	public ArrayList<Point> getBoughtTownLocation(int gameID){
+		try {
+			ArrayList<Point> arrayList = new ArrayList<Point>();
+			Statement stmt = connection.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select DISTINCT(x_van),y_van from spelerstuk join speler on speler.idspeler = spelerstuk.idspeler join spel on spel.idspel = speler.idspel where x_van is not null and y_van is not null and spel.idspel = "+ gameID + " and spelerstuk.idstuk LIKE 'd%' ");
+			while(rs.next()) {
+				int x =rs.getInt("x_van");
+				int y =rs.getInt("y_van");
+				Point point = new Point(x,y);
+				arrayList.add(point);
+			}
+			return arrayList;
+		}catch(SQLException e) {
+			System.out.println(e);;
+			return null;
+		}
+	}
+	
+	public ArrayList<Integer>getBoughtPlayerID(int gameID){
+		try {
+			ArrayList<Integer> arrayList = new ArrayList<Integer>();
+			Statement stmt = connection.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select spelerstuk.idspeler,spelerstuk.x_van,spelerstuk.y_van from spelerstuk join speler on speler.idspeler = spelerstuk.idspeler join spel on spel.idspel = speler.idspel where x_van is not null and y_van is not null and spel.idspel =" + gameID + " and spelerstuk.idstuk LIKE 'c%'");
+			while(rs.next()) {
+				int idTile =rs.getInt("idspeler");
+				arrayList.add(idTile);
+			}
+			return arrayList;
+		}catch(SQLException e) {
+			System.out.println(e);
+			return null;
+		}
+	}
 }

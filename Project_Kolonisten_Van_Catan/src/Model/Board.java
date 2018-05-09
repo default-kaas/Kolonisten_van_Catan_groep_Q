@@ -78,4 +78,18 @@ public class Board {
 		this.docks = docks;
 	}
 	
+	public ArrayList<Point> getBoughtCity(int gameID){
+		return boardDOA.getBoughtCityLocation(gameID);
+	}
+	
+	public ArrayList<Point> getBoughtTown(int gameID){
+		return boardDOA.getBoughtTownLocation(gameID);
+	}
+	
+	
+	public ArrayList<Integer> getBoughtPlayerID(int gameID){
+		return boardDOA.getBoughtPlayerID(gameID);
+	}
+	
+	
 }

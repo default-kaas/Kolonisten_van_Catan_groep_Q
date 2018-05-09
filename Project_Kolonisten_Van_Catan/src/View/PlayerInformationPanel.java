@@ -28,6 +28,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon cardUniversity = new ImageIcon("images/DevCards/university.png");
 	private ImageIcon cardTools = new ImageIcon("images/DevCards/tools.png");
 	private ImageIcon cardInvention = new ImageIcon("images/DevCards/invention.png");
+	private ImageIcon green = new ImageIcon("images/Other/green.png");
+	private ImageIcon red = new ImageIcon("images/Other/red.png");
 	private JLabel monopoly, knight, victoryPoints, tools, invention;
 	private JButton playMonopoly = new JButton("Spelen");
 	private JButton playKnight = new JButton("Spelen");
@@ -90,7 +92,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		for (int x = 0; x < 8; x += 2) {
 			if (controller.myTurn(i)) {
 				playerInformation.get(x).setText(controller.getPlayerName(i) + " - " + "Grondstoffen: "
-						+ controller.getPlayerResources(i) + " - bezig met beurt!");
+						+ controller.getPlayerResources(i));
 			} else {
 				playerInformation.get(x).setText(
 						controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
@@ -301,8 +303,11 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 					controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
 
 			if (controller.myTurn(i)) {
-				info.setText(info.getText() + " - bezig met beurt!");
+				info.setText(info.getText());
+				info.setIcon(green);
 
+			}else {
+				info.setIcon(red);
 			}
 			// Second JLabel is made to add a second image associated with player building
 			// points.

@@ -81,16 +81,19 @@ public class DiceController extends Observable {
 		dice.getOldValue2(game.getGameID());
 	}
 
+	//after the diceroll this method will check if the player has a town or a city build in order to deal resource cards
 	public void giveResourcesToPlayers(int gameID, int diceRoll) {
-
+		//Creating ArrayList to go through an enhanced for loop
 		ArrayList<Point> getCity = boardController.getBoughtCity(gameID);
 		ArrayList<Point> getTown = boardController.getBoughtTown(gameID);
 		ArrayList<Integer> getBoughtPlayerID = boardController.getBoughtPlayerID(gameID);
 		ArrayList<Tile> tiles = boardController.getTiles();
 		ArrayList<Point> matchCityCorner = new ArrayList<Point>();
 		ArrayList<Tile> matchTiles = new ArrayList<Tile>();
+		//to see which resource type needs to be added to a player
 		char resourcetype = 'G';
 		for (Tile t : tiles) {
+			//checks if diceroll is equal to numberchip and robber needs to be false in order to deal resource cards
 			if (t.getIdNumberChip() == diceRoll && t.isRobber() == false) {
 				ArrayList<Point> cornerPoint = t.getCornerPoints();
 				for (Point p : cornerPoint) {
@@ -102,6 +105,7 @@ public class DiceController extends Observable {
 						if (c.x == p.x && c.y == p.y) {
 							matchCityCorner.add(p);
 							matchTiles.add(t);
+							//sysout voor test maar gaat weg zsm!
 							System.out.println(p.x + " " + p.y + " " + t.getIdResourceType());
 						}
 
@@ -110,14 +114,8 @@ public class DiceController extends Observable {
 
 			}
 		}
-
-		/*
-		 * for (int i = 0; i < arrayListIdNumberChip.size(); i++) { if
-		 * (arrayListIdNumberChip.get(i) == diceRoll) {
-		 * System.out.println(arrayListIdResoucreType.get(i) + " "); }
-		 * 
-		 * }
-		 */
+		
+		//dice.giveResourceToPlayers(gameID, playerID, resourceType, amount);
 
 	}
 

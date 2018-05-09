@@ -83,17 +83,37 @@ public class TradeController {
 	}
 
 	public void getHavens() {
-		processHavens(game.getPlayerDAO().checkHaven(this, game.getMe().getPlayerID()));
+		processHavens(game.getPlayerDAO().checkHaven(game.getMe().getPlayerID()));
 	}
 	
 	public void processHavens(String string) {
 		if (string == null) {
-			//er is een 3x1 haven aanwezig
 			tradeView.set("driehaven");
 		}
 		else if (string.equals("B") ||string.equals("G") ||string.equals("W") ||string.equals("H") ||string.equals("E") ) {
 			tradeView.set(string);
 		}
+	}
+	
+	private int v1;
+	private String resource1;
+	private int v2;
+	private String resource2;
+	
+	public void trademsg1(int value1, String resource1) {
+		v1 = value1;
+		this.resource1 = resource1;
+	}
+	
+	public void trademsg2(int value2, String resource2) {
+		v2 = value2;
+		this.resource2 = resource2;
+		trademessage();
+	}
+	
+	public void trademessage() {
+		tradeFrame.getgc().setTradeMessage(v1, resource1, v2, resource2, "De Bank");
+		System.out.println(v1 + resource1 + v2 + resource2);
 	}
 	
 	

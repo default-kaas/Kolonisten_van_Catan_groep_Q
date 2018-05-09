@@ -376,9 +376,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		for (int i = 0; i < 4; i++) {
 			if (controller.myTurn(i)) {
 				enableWonButton();
-			} else {
-				disableWonButton();
-			}
+			} 
 		}
 	}
 
@@ -427,16 +425,22 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	}
 
 	public void enableWonButton() {
-		won.setBackground(new Color(5, 162, 0));
-		won.setForeground(Color.WHITE);
-		won.setEnabled(true);
+		if (controller.playerHasWon()) {
+			won.setBackground(new Color(5, 162, 0));
+			won.setForeground(Color.WHITE);
+			won.setEnabled(true);
+		} else {
+			won.setBackground(new Color(163, 0, 0));
+			won.setForeground(Color.BLACK);
+			won.setEnabled(false);
+		}
 	}
 
-	public void disableWonButton() {
-		won.setBackground(new Color(163, 0, 0));
-		won.setForeground(Color.BLACK);
-		won.setEnabled(false);
-	}
+//	public void disableWonButton() {
+//		won.setBackground(new Color(163, 0, 0));
+//		won.setForeground(Color.BLACK);
+//		won.setEnabled(false);
+//	}
 
 	public void enableEndButton() {
 		end.setBackground(new Color(5, 162, 0));

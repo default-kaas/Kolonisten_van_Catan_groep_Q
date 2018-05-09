@@ -64,12 +64,12 @@ public class GameController {
 	}
 
 	private void makePanelControllers(Connection db_conn) {
-		diceController = new DiceController(this, db_conn);
+		boardController = new BoardController(Game, db_conn);
+		diceController = new DiceController(this, db_conn,boardController);
 		bouwPanelController = new BuildPanelController(Game, db_conn, this);
 		playerInfoController = new PlayerInfoController(Game, db_conn, this);
 		chatPanelController = new ChatPanelController(Game, db_conn);
-		boardController = new BoardController(Game, db_conn);
-
+		
 		bouwPanelController.addObserver(playerInfoController);
 		diceController.addObserver(bouwPanelController);
 		diceController.addObserver(playerInfoController);

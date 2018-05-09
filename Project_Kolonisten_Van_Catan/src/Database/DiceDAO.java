@@ -71,23 +71,19 @@ public class DiceDAO {
 		}
 	}
 	
-	
-	
-	public ArrayList<String> getResourceTypeFromDice(int gameID, int dice) {
+	public boolean giveResourceToPlayers(int gameID,int playerID, char resourceType,int amount) {
+		
 		try {
-			ArrayList<String> resourceList = new ArrayList<String>();
+			for(int i = 0; i < amount; i++) {
 			Statement stmt = m_Conn.createStatement();
-			ResultSet rs;
-			rs = stmt.executeQuery(
-					"select tegel.idgrondstofsoort from tegel join getalfiche on tegel.idgetalfiche = getalfiche.idgetalfiche where tegel.idspel = " + gameID +  "  and getalfiche.waarde = "+ dice);
-			while (rs.next()) {
-				String resource = rs.getString("idgrondstofsoort");
-				resourceList.add(resource);
+			stmt.executeUpdate("UPDATE spelergrondstofkaart SET idspeler = + " + playerID +  " WHERE idspeler is null and idspel = " + gameID + " and idgrondstofkaart LIKE '" +resourceType +"%' ");
 			}
-			return resourceList;
+			return true;
 		} catch (SQLException e) {
-			System.out.println(e);
-			return null;
-		}
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}	
 	}
+	
 }

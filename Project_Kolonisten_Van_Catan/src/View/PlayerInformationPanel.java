@@ -72,7 +72,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	}
 
 	public void UpdateResources() {
-		stone.setText(": " + controller.getWoodAmount());
+		stone.setText(": " + controller.getStoneAmount());
 		wood.setText(": " + controller.getWoodAmount());
 		wool.setText(": " + controller.getWoolAmount());
 		ore.setText(": " + controller.getOreAmount());

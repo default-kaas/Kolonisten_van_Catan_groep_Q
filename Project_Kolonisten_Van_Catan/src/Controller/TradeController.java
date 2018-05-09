@@ -71,29 +71,29 @@ public class TradeController {
 	}
 	
 	public void setPlayerCards(String Card, int Amount) {
-		game.getPlayerDAO().addResources(game.getGameID(), game.getMe(), Card, Amount);
+		game.getPlayerDAO().addResources(game.getGameID(), game.getMe().getPlayerID(), Card, Amount);
+	}
+	
+	public void removePlayerCards(String Card, int Amount) {
+		game.getPlayerDAO().removeResources(game.getGameID(), game.getMe().getPlayerID(), Card, Amount);
 	}
 	
 	public void doesBankHave(String Card) {
-		game.getPlayerDAO().checkBank(game.getGameID(), Card);
-		getBoolean();
-	}
-	
-	public void getBoolean() {
-		if (game.getPlayerDAO().getyes() == true) {
-			tradeView.setAvailability(true);
-		}
-		if (game.getPlayerDAO().getyes() == false) {
-			tradeView.setAvailability(false);			
-		}
+		tradeView.setAvailability(game.getPlayerDAO().checkBank(game.getGameID(), Card));
 	}
 
-	public void getHavens(String resource) {
-		game.getPlayerDAO().checkHaven(this, game.getGameID(), game.getMe().getPlayerID(), resource);
+	public void getHavens() {
+		processHavens(game.getPlayerDAO().checkHaven(this, game.getMe().getPlayerID()));
 	}
 	
 	public void processHavens(String string) {
-		tradeView.set(string);
+		if (string == null) {
+			//er is een 3x1 haven aanwezig
+			tradeView.set("driehaven");
+		}
+		else if (string.equals("B") ||string.equals("G") ||string.equals("W") ||string.equals("H") ||string.equals("E") ) {
+			tradeView.set(string);
+		}
 	}
 	
 	

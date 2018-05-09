@@ -208,14 +208,35 @@ public class TradePanel extends JPanel implements ActionListener {
 
 	}
 	
-	private boolean two = false;
+	// b=baksteen, w=wol, h=hout, e=erts, g=graan
+	// 1=w, 2=g, 3=h, 4=b, 5=e
+	private boolean W = false;
+	private boolean G = false;
+	private boolean H = false;
+	private boolean B = false;
+	private boolean E = false;
 	private boolean three = false;
 	
 	public void set(String charr) {
-		if (charr.equals("no")) {
-			three = false;
-			two = false;
+		if (charr.equals(null)) {
+			three = true;
 		}
+		if (charr.equals("W")) {
+			W = true;
+		}
+		if (charr.equals("G")) {
+			G = true;
+		}
+		if (charr.equals("H")) {
+			H = true;
+		}
+		if (charr.equals("B")) {
+			B = true;
+		}
+		if (charr.equals("E")) {
+			E = true;
+		}
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -226,12 +247,10 @@ public class TradePanel extends JPanel implements ActionListener {
 				tc.disposeFrame();
 			}
 			if (item.toString().equals("De Bank")) {
-				// het volgende spreekt voor zich.
-				if (three == false ) {
+				tc.getHavens();
+					// het volgende spreekt voor zich.
 					// if statement hieronder: Kijken of er links een 4 (of evt. een 3 of een 2) en rechts een 1 is ingevuld.
-					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4") || 
-							your_woolt.getText().equals("3") || your_wheatt.getText().equals("3") || your_stonet.getText().equals("3") || your_woodt.getText().equals("3") || your_oret.getText().equals("3") || 
-							your_woolt.getText().equals("2") || your_wheatt.getText().equals("2") || your_stonet.getText().equals("2") || your_woodt.getText().equals("2") || your_oret.getText().equals("2")) && 
+					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4")) && 
 						(their_woolt.getText().equals("1") || their_wheatt.getText().equals("1") || their_stonet.getText().equals("1") || their_woodt.getText().equals("1") || their_oret.getText().equals("1"))) {
 						// if statement hieronder: Hier wordt strikt gecontrolleerd of dat er aan BEIDE
 						// kanten precies één JTextField is ingevuld.
@@ -272,24 +291,59 @@ public class TradePanel extends JPanel implements ActionListener {
 							// b=baksteen, w=wol, h=hout, e=erts, g=graan
 							// 1=w, 2=g, 3=h, 4=b, 5=e
 							if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
-								tc.getHavens("w");
-								tc.setPlayerCards("w", -4);
+								if (three == true) {
+									if (W == true) {
+										tc.removePlayerCards("w", 2);
+									} else {
+										tc.removePlayerCards("w", 3);
+									}
+								} else {
+									tc.removePlayerCards("w", 4);
+								}
 							}
 							if (your_wheatt.getText().equals("4") && tc.getPlayerCards(2) > 4) {
-								tc.getHavens("g");
-								tc.setPlayerCards("g", -4);
+								if (three == true) {
+									if (G == true) {
+										tc.removePlayerCards("g", 2);
+									} else {
+										tc.removePlayerCards("g", 3);
+									}
+								} else {
+									tc.removePlayerCards("g", 4);
+								}
 							}
 							if (your_stonet.getText().equals("4") && tc.getPlayerCards(4) > 4) {
-								tc.getHavens("h");
-								tc.setPlayerCards("h", -4);
+								if (three == true) {
+									if (H == true) {
+										tc.removePlayerCards("h", 2);
+									} else {
+										tc.removePlayerCards("h", 3);
+									}
+								} else {
+									tc.removePlayerCards("h", 4);
+								}
 							}
 							if (your_woodt.getText().equals("4") && tc.getPlayerCards(3) > 4) {
-								tc.getHavens("b");
-								tc.setPlayerCards("b", -4);
+								if (three == true) {
+									if (B == true) {
+										tc.removePlayerCards("b", 2);
+									} else {
+										tc.removePlayerCards("b", 3);
+									}
+								} else {
+									tc.removePlayerCards("b", 4);
+								}
 							}
 							if (your_oret.getText().equals("4") && tc.getPlayerCards(5) > 4) {
-								tc.getHavens("e");
-								tc.setPlayerCards("e", -4);
+								if (three == true) {
+									if (B == true) {
+										tc.removePlayerCards("b", 2);
+									} else {
+										tc.removePlayerCards("b", 3);
+									}
+								} else {
+									tc.removePlayerCards("b", 4);
+								}
 							}
 							if (their_woolt.getText().equals("1")) {
 								tc.doesBankHave("w");
@@ -366,11 +420,7 @@ public class TradePanel extends JPanel implements ActionListener {
 								"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
 								"Verkeerde input!", JOptionPane.ERROR_MESSAGE);
 					}
-				} else {
-					JOptionPane.showMessageDialog(this,
-							"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
-							"Verkeerde input!", JOptionPane.ERROR_MESSAGE);
-				}
+				
 			}
 		}	
 	}

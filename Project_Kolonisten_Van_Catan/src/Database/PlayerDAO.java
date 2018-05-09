@@ -206,14 +206,26 @@ public class PlayerDAO {
 		}
 	}
 
-	public void addResources(int gameid, Player playerid, String card, int amount) {
+	public void addResources(int gameid, int playerid, String card, int amount) {
 		try {
 			Statement statement = m_Conn.createStatement();
 			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid
-					+ " WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel IS " + gameid
+					+ " WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel = " + gameid
 					+ " LIMIT " + amount;
 			statement.executeUpdate(QUERY);
 		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
+	public void removeResources(int gameid, int playerid, String card, int amount) {
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idspeler = "+ playerid +" AND idgrondstofkaart LIKE '" + card + "%' AND idspel = " + gameid
+					+ " LIMIT " + amount;
+			statement.executeUpdate(QUERY);
+		} catch (SQLException e) {
+			System.out.println(e);
 		}
 	}
 
@@ -230,25 +242,17 @@ public class PlayerDAO {
 		}
 	}
 
-	boolean yes = false;
-
-	public boolean getyes() {
-		return yes;
-	}
-
 	public boolean checkBank(int gameID, String card) {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery(
 					"SELECT idspeler FROM spelergrondstofkaart WHERE idspeler IS NULL AND idgrondstofkaart LIKE '"
-							+ card + "%' AND idspel IS " + gameID + " LIMIT 1");
+							+ card + "%' AND idspel = " + gameID + " LIMIT 1");
 			rs.next();
-			yes = true;
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			yes = false;
 			return false;
 		}
 	}
@@ -267,7 +271,6 @@ public class PlayerDAO {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			yes = false;
 			return false;
 		}
 	}
@@ -283,16 +286,17 @@ public class PlayerDAO {
 
 	}
 	
-	public void checkHaven(TradeController tc, int gameID, int player, String resource) {
+	public String checkHaven(TradeController tc, int player) {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery(
-					"SELECT ");
-			tc.processHavens("yes");
+					"SELECT x,y,idgrondstofsoort FROM locatie WHERE haven = 1 AND EXISTS (SELECT x,y FROM spelerstuk where locatie.x = spelerstuk.x_van AND  locatie.y = spelerstuk.y_van AND idspeler="+player+")");
+			String grondstof = rs.getString("idgrondstofsoort");
+			return grondstof;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			tc.processHavens("no");
+			return null;
 		}
 	}
 

@@ -144,10 +144,13 @@ public class BoardPanel extends JPanel {
 				g.setColor(Color.white);
 				g.fillOval(dock.getDockPoint().x-19, dock.getDockPoint().y-19, 38, 38);
 				g.setColor(Color.black);
-				//String string = String.valueOf(dock.getType());
-				String string = "Test";
-				g.drawString(string , dock.getDockPoint().x-9, dock.getDockPoint().y);
-				
+				if(dock.getType().equals("3:1")) {
+					g.drawString(dock.getType() , dock.getDockPoint().x-11, dock.getDockPoint().y+5);
+				}else if(dock.getType().equals("W")) {
+					g.drawString(dock.getType() , dock.getDockPoint().x-7, dock.getDockPoint().y+5);
+				}else{
+					g.drawString(dock.getType() , dock.getDockPoint().x-6, dock.getDockPoint().y+5);
+				}
 			}
 		}
 	}

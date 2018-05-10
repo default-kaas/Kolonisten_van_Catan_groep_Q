@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import Model.Corner;
+
 public class BoardDAO {
 	private Connection connection;
 
@@ -239,5 +241,8 @@ public class BoardDAO {
 			return null;
 		}
 	}
-
+	
+	public ArrayList<Corner> getBoughtStreets(int gameID){
+		return null;
+	}
 }

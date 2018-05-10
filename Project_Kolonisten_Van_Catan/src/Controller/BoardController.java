@@ -591,9 +591,43 @@ public class BoardController {
 	}
 	
 	public ArrayList<Tile> getTiles(){
-		
 		return board.getTiles();
 	}
 	
-	
+	public void updateCitiesAndTowns() {
+		// @Ruben Look if this is like you would like it to be done?
+		int gameID = game.getGameID();
+		ArrayList<Corner> corners = board.getCorners();
+		ArrayList<Point> cities = board.getBoughtCity(gameID);
+		ArrayList<Point> towns = board.getBoughtTown(gameID);
+		for(Corner conrer: corners) {
+			for(Point pointTown: towns) {
+				if(conrer.getPoint().equals(pointTown)) {
+					conrer.setTown(true);
+				}
+			}
+			for(Point pointCity: cities) {
+				if(conrer.getPoint().equals(pointCity)) {
+					conrer.setTown(false);
+					conrer.setCity(true);
+				}
+			}
+		}
+	}
+	public void updateRobber() {
+		ArrayList<Tile> tiles = board.getTiles();
+		int roberTileId = board.getBoardDAORobberTile(game.getGameID());
+		for(Tile tile: tiles) {
+			tile.setRobber(hasRobber(tile.getTileID(),roberTileId));
+		}
+	}
+	public void updateStreets() {
+		ArrayList<Street> streets = board.getStreets();
+		for(Street street: streets) {
+			ArrayList<Corner> cornersOfStreet = board.getCorners();
+			for(Corner corner: cornersOfStreet) {
+				
+			}
+		}
+	}
 }

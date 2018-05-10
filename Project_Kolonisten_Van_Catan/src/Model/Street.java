@@ -5,8 +5,14 @@ import java.util.ArrayList;
 
 public class Street {
 	private int player;
+	private String colour;
 	private ArrayList<Corner> cornerPoints = new ArrayList<Corner>();
-	
+	public String getColour() {
+		return colour;
+	}
+	public void setColour(String colour) {
+		this.colour = colour;
+	}
 	public int getPlayer() {
 		return player;
 	}

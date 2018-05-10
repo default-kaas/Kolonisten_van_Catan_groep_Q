@@ -106,7 +106,7 @@ public class DiceController extends Observable {
 							matchCityCorner.add(p);
 							matchTiles.add(t);
 							//sysout voor test maar gaat weg zsm!
-							System.out.println(p.x + " " + p.y + " " + t.getIdResourceType());
+							//System.out.println(p.x + " " + p.y + " " + t.getIdResourceType());
 						}
 
 					}

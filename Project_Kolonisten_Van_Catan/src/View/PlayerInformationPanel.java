@@ -15,6 +15,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private GridBagConstraints c;
 	private GridBagConstraints x;
 	private GridBagConstraints f;
+	private GridBagConstraints j;
 	private ImageIcon stoneImage = new ImageIcon("images/Resources/stone1.png");
 	private ImageIcon woodImage = new ImageIcon("images/Resources/wood1.png");
 	private ImageIcon oreImage = new ImageIcon("images/Resources/ore1.png");
@@ -60,6 +61,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c = new GridBagConstraints();
 		x = new GridBagConstraints();
 		f = new GridBagConstraints();
+		j = new GridBagConstraints();
 		gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 
@@ -317,14 +319,16 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			// points.
 			JLabel victoryPoints = new JLabel("" + controller.getVictoryPoints(i));
 			victoryPoints.setIcon(trophy);
+			
+			JLabel longestAndKnight = new JLabel("");
 
 			if (controller.getPlayerName(i).equals(controller.checkArmy())
 					&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-				info.setIcon(knightAndRoad);
+				longestAndKnight.setIcon(knightAndRoad);
 			} else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-				info.setIcon(longestRoadImage);
+				longestAndKnight.setIcon(longestRoadImage);
 			} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
-				info.setIcon(knightImage);
+				longestAndKnight.setIcon(knightImage);
 			}
 			
 			JLabel knightUsed = new JLabel("" + controller.getPlayerKnightUsed(i));
@@ -353,20 +357,27 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			}
 			info.setFont(new Font("Arial", Font.BOLD, 15));
 			
+			j.insets = new Insets(0, 0, 0, 0);
+			j.anchor = GridBagConstraints.WEST;
+			j.gridx = 4;
+			j.gridy = i + 1;
+			
 			f.insets = new Insets(0, 0, 0, 0);
 			f.anchor = GridBagConstraints.WEST;
-			f.gridx = 4;
+			f.gridx = 5;
 			f.gridy = i + 1;
 
 			x.insets = new Insets(0, 0, 0, 0);
 			x.anchor = GridBagConstraints.WEST;
-			x.gridx = 5;
+			x.gridx = 6;
 			x.gridy = i + 1;
 			
 		
-
+			
 			this.add(info, c);
 			playerInformation.add(info);
+			this.add(longestAndKnight, j);
+			playerInformation.add(longestAndKnight);
 			this.add(knightUsed, f);
 			playerInformation.add(knightUsed);
 			this.add(victoryPoints, x);

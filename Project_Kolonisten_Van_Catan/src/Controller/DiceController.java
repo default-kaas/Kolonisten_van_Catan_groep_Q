@@ -1,10 +1,16 @@
 package Controller;
 
+import java.awt.Point;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Observable;
 
+import com.mysql.fabric.xmlrpc.base.Array;
+
+import Model.Corner;
 import Model.Dice;
 import Model.Game;
+import Model.Tile;
 import View.DicePanel;
 
 public class DiceController extends Observable {
@@ -12,12 +18,15 @@ public class DiceController extends Observable {
 	private Game game;
 	private DicePanel dicePanel;
 	private GameController gameController;
+	private BoardController boardController;
 
-	public DiceController(GameController gameController, Connection db_conn) {
+	public DiceController(GameController gameController, Connection db_conn, BoardController boardController) {
 		this.gameController = gameController;
 		this.game = gameController.getGame();
 		dice = new Dice(db_conn);
 		dicePanel = new DicePanel(this);
+		this.boardController = boardController;
+		giveResourcesToPlayers(770, 5);
 	}
 
 	public DicePanel getDicePanel() {
@@ -71,4 +80,43 @@ public class DiceController extends Observable {
 		dice.getOldValue1(game.getGameID());
 		dice.getOldValue2(game.getGameID());
 	}
+
+	//after the diceroll this method will check if the player has a town or a city build in order to deal resource cards
+	public void giveResourcesToPlayers(int gameID, int diceRoll) {
+		//Creating ArrayList to go through an enhanced for loop
+		ArrayList<Point> getCity = boardController.getBoughtCity(gameID);
+		ArrayList<Point> getTown = boardController.getBoughtTown(gameID);
+		ArrayList<Integer> getBoughtPlayerID = boardController.getBoughtPlayerID(gameID);
+		ArrayList<Tile> tiles = boardController.getTiles();
+		ArrayList<Point> matchCityCorner = new ArrayList<Point>();
+		ArrayList<Tile> matchTiles = new ArrayList<Tile>();
+		//to see which resource type needs to be added to a player
+		char resourcetype = 'G';
+		for (Tile t : tiles) {
+			//checks if diceroll is equal to numberchip and robber needs to be false in order to deal resource cards
+			if (t.getIdNumberChip() == diceRoll && t.isRobber() == false) {
+				ArrayList<Point> cornerPoint = t.getCornerPoints();
+				for (Point p : cornerPoint) {
+					for (Point to : getTown) {
+						if (to.x == p.x && to.y == p.y) {
+						}
+					}
+					for (Point c : getCity) {
+						if (c.x == p.x && c.y == p.y) {
+							matchCityCorner.add(p);
+							matchTiles.add(t);
+							//sysout voor test maar gaat weg zsm!
+							System.out.println(p.x + " " + p.y + " " + t.getIdResourceType());
+						}
+
+					}
+				}
+
+			}
+		}
+		
+		//dice.giveResourceToPlayers(gameID, playerID, resourceType, amount);
+
+	}
+
 }

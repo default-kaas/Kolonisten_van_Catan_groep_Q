@@ -74,6 +74,8 @@ public class TradeFrame extends JFrame implements ActionListener {
 		}
 	}
 	
-	
+	public GameController getgc() {
+		return gc;
+	}
 
 }

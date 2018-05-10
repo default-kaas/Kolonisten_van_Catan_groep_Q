@@ -157,7 +157,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.gridx = 0;
 		c.gridy = 3;
 		this.add(houseLabel, c);
-		System.out.println(buildPanelController.PlayerHasHouse());
 
 		JLabel houseStone = new JLabel(stone);
 		c.anchor = GridBagConstraints.CENTER;
@@ -472,6 +471,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 						"Stad Kopen?",JOptionPane.YES_OPTION);
 				if (YesOrNo == JOptionPane.YES_OPTION) { //if user confirms..
 					buildPanelController.removeDevRes(); // Buys the Development Card and removes the necessary resources from the player resources Array
+					buildPanelController.givePlayerRandomCard();
 					buildPanelController.buyPrint("Ontwikkelingskaart", "1 erts, 1 graan en 1 wol"); //notifies all users of the purchase
 					allCheck(); //Checks recourses after buying, disables all buttons which the player doesn't have enough recourses for.
 					

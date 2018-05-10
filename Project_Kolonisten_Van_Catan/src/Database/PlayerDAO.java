@@ -111,79 +111,36 @@ public class PlayerDAO {
 
 	}
 
-	
-	public int getPlayerKnightCards(int gameId, int playerId) { //Returns the amount of Knight Cards a player has in possession
-		
+	public int getPlayerKnightCards(int gameId, int playerId) { // Returns the amount of Knight Cards a player has in
+																// possession
+
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join "
 					+ "ontwikkelingskaart on spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart "
 					+ "join speler on spelerontwikkelingskaart.idspeler = speler.idspeler "
-					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" "
-							+ "AND ontwikkelingskaart.naam = 'ridder'");
+					+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId + " "
+					+ "AND ontwikkelingskaart.naam = 'ridder'");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
 		} catch (SQLException e) {
 			return 0;
 		}
-		
-		
+
 	}
-	
-	public int getPlayerInventionCards(int gameId, int playerId) { //returns the amount of Invention Cards a player has in possession
+
+	public int getPlayerInventionCards(int gameId, int playerId) { // returns the amount of Invention Cards a player has
+																	// in possession
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
-			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
-					+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
-					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND ontwikkelingskaart.naam = 'uitvinding'");
-			rs.next();
-			int amount = rs.getInt("aantal");
-			return amount;
-		} catch (SQLException e) {
-			return 0;
-		}
-	}
-	
-	public int getPlayerMonopolyCards(int gameId, int playerId) { //returns the amount of Monopoly Cards a player has in possession
-		try {
-			Statement stmt = m_Conn.createStatement();
-			ResultSet rs;
-			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
-					+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
-					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND ontwikkelingskaart.naam = 'monopolie'");
-			rs.next();
-			int amount = rs.getInt("aantal");
-			return amount;
-		} catch (SQLException e) {
-			return 0;
-		}
-	}
-	
-	public int getPlayerToolsCards(int gameId, int playerId) { //returns the amount of Tools Cards a player has in possession
-		try {
-			Statement stmt = m_Conn.createStatement();
-			ResultSet rs;
-			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
-					+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
-					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND ontwikkelingskaart.naam = 'stratenbouw'");
-			rs.next();
-			int amount = rs.getInt("aantal");
-			return amount;
-		} catch (SQLException e) {
-			return 0;
-		}
-	}
-	
-	public int getPlayerVictoryPointCards(int gameId, int playerId) {
-		try {
-			Statement stmt = m_Conn.createStatement();
-			ResultSet rs;
-			rs = stmt.executeQuery("select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
-					+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
-					+ "where spelerontwikkelingskaart.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND (ontwikkelingskaart.naam = 'universiteit' OR ontwikkelingskaart.naam = 'parlement' OR ontwikkelingskaart.naam = 'kathedraal' OR ontwikkelingskaart.naam  = 'bibliotheek' OR ontwikkelingskaart.naam = 'markt')");
+			rs = stmt.executeQuery(
+					"select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
+							+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
+							+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId
+							+ " AND ontwikkelingskaart.naam = 'uitvinding'");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
@@ -192,10 +149,59 @@ public class PlayerDAO {
 		}
 	}
 
-	
-	
-	
-	
+	public int getPlayerMonopolyCards(int gameId, int playerId) { // returns the amount of Monopoly Cards a player has
+																	// in possession
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
+							+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
+							+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId
+							+ " AND ontwikkelingskaart.naam = 'monopolie'");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
+
+	public int getPlayerToolsCards(int gameId, int playerId) { // returns the amount of Tools Cards a player has in
+																// possession
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
+							+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
+							+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId
+							+ " AND ontwikkelingskaart.naam = 'stratenbouw'");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
+
+	public int getPlayerVictoryPointCards(int gameId, int playerId) {
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select count(ontwikkelingskaart.naam) AS aantal from spelerontwikkelingskaart join ontwikkelingskaart on"
+							+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
+							+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId
+							+ " AND (ontwikkelingskaart.naam = 'universiteit' OR ontwikkelingskaart.naam = 'parlement' OR ontwikkelingskaart.naam = 'kathedraal' OR ontwikkelingskaart.naam  = 'bibliotheek' OR ontwikkelingskaart.naam = 'markt')");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
+
 	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
 		try {
 			Statement statement = m_Conn.createStatement();
@@ -206,14 +212,26 @@ public class PlayerDAO {
 		}
 	}
 
-	public void addResources(int gameid, Player playerid, String card, int amount) {
+	public void addResources(int gameid, int playerid, String card, int amount) {
 		try {
 			Statement statement = m_Conn.createStatement();
 			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = " + playerid
-					+ " WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel IS " + gameid
+					+ " WHERE idspeler IS NULL AND idgrondstofkaart LIKE '" + card + "%' AND idspel = " + gameid
 					+ " LIMIT " + amount;
 			statement.executeUpdate(QUERY);
 		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+
+	public void removeResources(int gameid, int playerid, String card, int amount) {
+		try {
+			Statement statement = m_Conn.createStatement();
+			final String QUERY = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idspeler = " + playerid
+					+ " AND idgrondstofkaart LIKE '" + card + "%' AND idspel = " + gameid + " LIMIT " + amount;
+			statement.executeUpdate(QUERY);
+		} catch (SQLException e) {
+			System.out.println(e);
 		}
 	}
 
@@ -223,17 +241,11 @@ public class PlayerDAO {
 			String QUERY = "UPDATE spel SET gedobbeld = 0, laatste_worp_steen1 = null, laatste_worp_steen2 = null, beurt_idspeler = "
 					+ playerid + " where idspel = " + gameid + ";";
 			statement.executeUpdate(QUERY);
-			
+
 			String QUERY2 = "UPDATE speler SET shouldrefresh = 1 where idspeler = " + playerid + ";";
 			statement.executeUpdate(QUERY2);
 		} catch (SQLException e) {
 		}
-	}
-
-	boolean yes = false;
-
-	public boolean getyes() {
-		return yes;
 	}
 
 	public boolean checkBank(int gameID, String card) {
@@ -242,13 +254,15 @@ public class PlayerDAO {
 			ResultSet rs;
 			rs = stmt.executeQuery(
 					"SELECT idspeler FROM spelergrondstofkaart WHERE idspeler IS NULL AND idgrondstofkaart LIKE '"
-							+ card + "%' AND idspel IS " + gameID + " LIMIT 1");
-			rs.next();
-			yes = true;
-			return true;
+							+ card + "%' AND idspel = " + gameID + " LIMIT 1");
+			if (rs.next()) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			yes = false;
 			return false;
 		}
 	}
@@ -258,41 +272,50 @@ public class PlayerDAO {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery(
-					"select shouldrefresh from speler where idspel = "+gameID+" and idspeler = "+playerID);
+					"select shouldrefresh from speler where idspel = " + gameID + " and idspeler = " + playerID);
 			rs.next();
-			if(rs.getInt("shouldrefresh")== 1) {
+			if (rs.getInt("shouldrefresh") == 1) {
 				return true;
-			}else {
+			} else {
 				return false;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			yes = false;
 			return false;
 		}
 	}
+
 	public void setRefresh(int idspeler) {
 
 		try {
 			Statement statement = m_Conn.createStatement();
-			final String QUERY = "UPDATE speler SET shouldrefresh = 0 WHERE idspeler = "+ idspeler;
+			final String QUERY = "UPDATE speler SET shouldrefresh = 0 WHERE idspeler = " + idspeler;
 			statement.executeUpdate(QUERY);
 		} catch (SQLException e) {
 
 		}
 
 	}
-	
-	public void checkHaven(TradeController tc, int gameID, int player, String resource) {
+
+	public String checkHaven(int player, String resource) {
 		try {
 			Statement stmt = m_Conn.createStatement();
-			ResultSet rs;
-			rs = stmt.executeQuery(
-					"SELECT ");
-			tc.processHavens("yes");
+			ResultSet rs = stmt.executeQuery(
+					"SELECT x,y,idgrondstofsoort FROM locatie WHERE haven = 1 AND idgrondstofsoort = '"+ resource +"' AND EXISTS (SELECT x,y FROM spelerstuk where locatie.x = spelerstuk.x_van AND  locatie.y = spelerstuk.y_van AND idspeler="+player+")");
+			Statement stmt2 = m_Conn.createStatement();
+			ResultSet rs2 = stmt2.executeQuery("SELECT x,y,idgrondstofsoort FROM locatie WHERE haven = 1 AND idgrondstofsoort IS NULL AND EXISTS (SELECT x,y FROM spelerstuk where locatie.x = spelerstuk.x_van AND  locatie.y = spelerstuk.y_van AND idspeler="+player+")");
+			if (rs.next()) {
+				String grondstof = rs.getString("idgrondstofsoort");
+				return grondstof;
+			} else if (rs2.next()) {
+				return null;
+			} else {
+				return "false";
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			tc.processHavens("no");
+			System.out.println(e);
+			return "false";
 		}
 	}
 

@@ -51,5 +51,9 @@ public class Dice {
 	public void getOldValue2(int GameID) {
 		value2 = diceDAO.getOldValue2(GameID);
 	}
+	
+	public boolean giveResourceToPlayers(int gameID,int playerID,char resourceType,int amount) {
+		return diceDAO.giveResourceToPlayers(gameID, playerID, resourceType, amount);
+	}
 
 }

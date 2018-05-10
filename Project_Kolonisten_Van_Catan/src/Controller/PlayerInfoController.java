@@ -33,10 +33,10 @@ public class PlayerInfoController implements Observer, Runnable {
 		this.gameController = gameController;
 		disableTradeButton();
 	}
-	
-	/*public boolean PlayerHasHouse(int gameId, int playerId) {
-		if (g)
-	}*/
+
+	/*
+	 * public boolean PlayerHasHouse(int gameId, int playerId) { if (g) }
+	 */
 
 	public String getPlayerName(int volgnr) {
 		return game.GetPlayers().get(volgnr).getName();
@@ -79,32 +79,41 @@ public class PlayerInfoController implements Observer, Runnable {
 		}
 		return null;
 	}
-	
+
 	public int getPlayerKnightCard() {
 		return playerDAO.getPlayerKnightCards(game.getGameID(), game.getMe().getPlayerID());
 	}
-	
+
 	public int getPlayerInventionCard() {
 		return playerDAO.getPlayerInventionCards(game.getGameID(), game.getMe().getPlayerID());
 	}
-	
+
 	public int getPlayerVictoryPointCard() {
 		return playerDAO.getPlayerVictoryPointCards(game.getGameID(), game.getMe().getPlayerID());
 	}
-	
+
 	public int getPlayerToolsCard() {
 		return playerDAO.getPlayerToolsCards(game.getGameID(), game.getMe().getPlayerID());
 	}
-	
+
 	public int getPlayerMonopolyCard() {
 		return playerDAO.getPlayerMonopolyCards(game.getGameID(), game.getMe().getPlayerID());
 	}
 
-	public int getBuildingPoints(int playerId) {
+	public int getVictoryPoints(int playerId) {
 		return playerDAO.playerPoints(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID());
 	}
-	
-	
+
+	public boolean playerHasWon() { // checks if player has more or equal to 10 points.
+		int x = playerDAO.getPlayerVictoryPointCards(game.getGameID(), game.getMe().getPlayerID()); // Get Card Points
+		int s = playerDAO.playerPoints(game.getGameID(), game.getMe().getPlayerID()); // get player points
+		int amount = s + x;
+		if (amount >= 10) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public boolean myTurn(int volgnr) {
 		if (game.getRound() == game.GetPlayers().get(volgnr).getPlayerID()) {
@@ -147,13 +156,13 @@ public class PlayerInfoController implements Observer, Runnable {
 	}
 
 	public void UpdateResourcePanel() {
+		game.addResources();
 		spelerInformatiePanel.UpdateResources();
 		spelerInformatiePanel.UpdatePlayerInfo();
 	}
 
 	public void getTradePanel() {
 		// gameController.getTradeFrame();
-
 		TradeFrame tradeFrame = new TradeFrame(game, db_conn, gameController);
 		tradeFrame.returnFrame();
 	}
@@ -162,18 +171,17 @@ public class PlayerInfoController implements Observer, Runnable {
 		game.setRound();
 		playerDAO.endTurn(game.getGameID(), game.getRound());
 		spelerInformatiePanel.UpdatePlayerInfo();
-		spelerInformatiePanel.UpdatePlayerInfo();
 		disableTradeButton();
 		spelerInformatiePanel.disableEndButton();
-		//TODO Disable kopen
+		// TODO Disable kopen
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		UpdateResourcePanel();
-		if (o.getClass().getName().equals("Controller.BuildPanelController")) {
-			disableTradeButton();
-		}
+//		if (o.getClass().getName().equals("Controller.BuildPanelController")) {
+//			disableTradeButton();
+//		}
 
 		if (o.getClass().getName().equals("Controller.DiceController")) {
 			showTradeButton();

@@ -1,7 +1,8 @@
 /*Bugs waar ik van op de hoogte ben (to-do listje):
 - Insets moet worden veranderd indien mogelijk. 
 - Ruilen met een speler kan nog niet, maar ik heb een idee hoe dit niet al te moeilijk kan worden gemaakt. 
-- Havens detecteren door de database */
+- 2x1 werkt niet, nog naar kijken.
+- Als je geen kaarten meer heeft, kun je nog wel handelen. = gratis kaarten. */
 
 package View;
 
@@ -208,30 +209,49 @@ public class TradePanel extends JPanel implements ActionListener {
 
 	}
 	
-	private boolean two = false;
+	// b=baksteen, w=wol, h=hout, e=erts, g=graan
+	// 1=w, 2=g, 3=h, 4=b, 5=e
+	private boolean W = false;
+	private boolean G = false;
+	private boolean H = false;
+	private boolean B = false;
+	private boolean E = false;
 	private boolean three = false;
 	
 	public void set(String charr) {
-		if (charr.equals("no")) {
-			three = false;
-			two = false;
+		if (charr.equals("driehaven")) {
+			three = true;
 		}
+		if (charr.equals("W")) {
+			W = true;
+		}
+		if (charr.equals("G")) {
+			G = true;
+		}
+		if (charr.equals("H")) {
+			H = true;
+		}
+		if (charr.equals("B")) {
+			B = true;
+		}
+		if (charr.equals("E")) {
+			E = true;
+		}
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(propose)) {
 			Object item = cb.getSelectedItem();
 			if (item.toString().equals("Spelers")) {
+				tc.showScreen(your_wool.getText(), your_woodt.getText(), your_ore.getText(), your_wheatt.getText(), your_stonet.getText(), their_woolt.getText(), their_woodt.getText(), their_oret.getText(), their_wheatt.getText(), their_stonet.getText());
 				JOptionPane.showMessageDialog(this, "Wordt aan gewerkt!", "ERROR", JOptionPane.ERROR_MESSAGE);
 				tc.disposeFrame();
 			}
 			if (item.toString().equals("De Bank")) {
-				// het volgende spreekt voor zich.
-				if (three == false ) {
+					// het volgende spreekt voor zich.
 					// if statement hieronder: Kijken of er links een 4 (of evt. een 3 of een 2) en rechts een 1 is ingevuld.
-					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4") || 
-							your_woolt.getText().equals("3") || your_wheatt.getText().equals("3") || your_stonet.getText().equals("3") || your_woodt.getText().equals("3") || your_oret.getText().equals("3") || 
-							your_woolt.getText().equals("2") || your_wheatt.getText().equals("2") || your_stonet.getText().equals("2") || your_woodt.getText().equals("2") || your_oret.getText().equals("2")) && 
+					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4")) && 
 						(their_woolt.getText().equals("1") || their_wheatt.getText().equals("1") || their_stonet.getText().equals("1") || their_woodt.getText().equals("1") || their_oret.getText().equals("1"))) {
 						// if statement hieronder: Hier wordt strikt gecontrolleerd of dat er aan BEIDE
 						// kanten precies één JTextField is ingevuld.
@@ -271,89 +291,190 @@ public class TradePanel extends JPanel implements ActionListener {
 							// bank (4x1) afgerond.
 							// b=baksteen, w=wol, h=hout, e=erts, g=graan
 							// 1=w, 2=g, 3=h, 4=b, 5=e
+							boolean availablee = false;
 							if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+								availablee = true;
 								tc.getHavens("w");
-								tc.setPlayerCards("w", -4);
+								if (three == true) {
+									if (W == true) {
+										tc.removePlayerCards("w", 2);
+										tc.trademsg1(2, "wol");
+									} else {
+										tc.removePlayerCards("w", 3);
+										tc.trademsg1(3, "wol");
+									}
+								} else {
+									tc.removePlayerCards("w", 4);
+									tc.trademsg1(4, "wol");
+								}
 							}
 							if (your_wheatt.getText().equals("4") && tc.getPlayerCards(2) > 4) {
+								availablee = true;
 								tc.getHavens("g");
-								tc.setPlayerCards("g", -4);
+								if (three == true) {
+									if (G == true) {
+										tc.removePlayerCards("g", 2);
+										tc.trademsg1(2, "graan");
+									} else {
+										tc.removePlayerCards("g", 3);
+										tc.trademsg1(3, "graan");
+									}
+								} else {
+									tc.removePlayerCards("g", 4);
+									tc.trademsg1(4, "graan");
+								}
 							}
 							if (your_stonet.getText().equals("4") && tc.getPlayerCards(4) > 4) {
-								tc.getHavens("h");
-								tc.setPlayerCards("h", -4);
+								availablee = true;
+								tc.getHavens("b");
+								if (three == true) {
+									if (B == true) {
+										tc.removePlayerCards("b", 2);
+										tc.trademsg1(2, "baksteen");
+									} else {
+										tc.removePlayerCards("b", 3);
+										tc.trademsg1(3, "baksteen");
+									}
+								} else {
+									tc.removePlayerCards("b", 4);
+									tc.trademsg1(4, "baksteen");
+								}
 							}
 							if (your_woodt.getText().equals("4") && tc.getPlayerCards(3) > 4) {
-								tc.getHavens("b");
-								tc.setPlayerCards("b", -4);
+								availablee = true;
+								tc.getHavens("h");
+								if (three == true) {
+									if (H == true) {
+										tc.removePlayerCards("h", 2);
+										tc.trademsg1(2, "hout");
+									} else {
+										tc.removePlayerCards("h", 3);
+										tc.trademsg1(3, "hout");
+									}
+								} else {
+									tc.removePlayerCards("h", 4);
+									tc.trademsg1(4, "hout");
+								}
 							}
 							if (your_oret.getText().equals("4") && tc.getPlayerCards(5) > 4) {
+								availablee = true;
 								tc.getHavens("e");
-								tc.setPlayerCards("e", -4);
+								if (three == true) {
+									if (E == true) {
+										tc.removePlayerCards("e", 2);
+										tc.trademsg1(2, "erts");
+									} else {
+										tc.removePlayerCards("e", 3);
+										tc.trademsg1(3, "erts");
+									}
+								} else {
+									tc.removePlayerCards("e", 4);
+									tc.trademsg1(4, "erts");
+								}
 							}
 							if (their_woolt.getText().equals("1")) {
 								tc.doesBankHave("w");
-								if (bank_has_card_available == true) {
-									tc.setPlayerCards("w", 1);
-									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
-											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
-									tc.disposeFrame();
-								} else {
+								if (availablee = true) {
+									if (bank_has_card_available == true) {
+										tc.setPlayerCards("w", 1);
+										tc.trademsg2(1, "wol");
+										JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
+												"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+										tc.disposeFrame();
+									} else {
+										JOptionPane.showMessageDialog(this,
+												"De bank heeft geen kaarten beschikbaar meer!",
+												"Error", JOptionPane.ERROR_MESSAGE);
+									}
+								}
+								else {
 									JOptionPane.showMessageDialog(this,
-											"De bank heeft geen kaarten beschikbaar meer!",
-											"Error", JOptionPane.ERROR_MESSAGE);
+									"Je hebt niet de benodigde kaarten!",
+									"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
 							if (their_wheatt.getText().equals("1")) {
 								tc.doesBankHave("g");
-								if (bank_has_card_available == true) {
-									tc.setPlayerCards("g", 1);
-									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
-											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
-									tc.disposeFrame();
-								} else {
+								if (availablee = true) {
+									if (bank_has_card_available == true) {
+										tc.setPlayerCards("g", 1);
+										tc.trademsg2(1, "graan");
+										JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
+												"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+										tc.disposeFrame();
+									} else {
+										JOptionPane.showMessageDialog(this,
+												"De bank heeft geen kaarten beschikbaar meer!",
+												"Error", JOptionPane.ERROR_MESSAGE);
+									}
+								}
+								else {
 									JOptionPane.showMessageDialog(this,
-											"De bank heeft geen kaarten beschikbaar meer!",
-											"Error", JOptionPane.ERROR_MESSAGE);
+									"Je hebt niet de benodigde kaarten!",
+									"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
 							if (their_stonet.getText().equals("1")) {
-								tc.doesBankHave("h");
-								if (bank_has_card_available == true) {
-									tc.setPlayerCards("h", 1);
-									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
-											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
-									tc.disposeFrame();
-								} else {
+								tc.doesBankHave("b");
+								if (availablee = true) {
+									if (bank_has_card_available == true) {
+										tc.setPlayerCards("b", 1);
+										tc.trademsg2(1, "baksteen");
+										JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
+												"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+										tc.disposeFrame();
+									} else {
+										JOptionPane.showMessageDialog(this,
+												"De bank heeft geen kaarten beschikbaar meer!",
+												"Error", JOptionPane.ERROR_MESSAGE);
+									}
+								}
+								else {
 									JOptionPane.showMessageDialog(this,
-											"De bank heeft geen kaarten beschikbaar meer!",
-											"Error", JOptionPane.ERROR_MESSAGE);
+									"Je hebt niet de benodigde kaarten!",
+									"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
 							if (their_woodt.getText().equals("1")) {
-								tc.doesBankHave("b");
-								if (bank_has_card_available == true) {
-									tc.setPlayerCards("b", 1);
-									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
-											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
-									tc.disposeFrame();
-								} else {
+								tc.doesBankHave("h");
+								if (availablee = true) {
+									if (bank_has_card_available == true) {
+										tc.setPlayerCards("h", 1);
+										tc.trademsg2(1, "hout");
+										JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
+												"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+										tc.disposeFrame();
+									} else {
+										JOptionPane.showMessageDialog(this,
+												"De bank heeft geen kaarten beschikbaar meer!",
+												"Error", JOptionPane.ERROR_MESSAGE);
+									}
+								}
+								else {
 									JOptionPane.showMessageDialog(this,
-											"De bank heeft geen kaarten beschikbaar meer!",
-											"Error", JOptionPane.ERROR_MESSAGE);
+									"Je hebt niet de benodigde kaarten!",
+									"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
 							if (their_oret.getText().equals("1")) {
 								tc.doesBankHave("e");
-								if (bank_has_card_available == true) {
-									tc.setPlayerCards("e", 1);
-									JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
-											"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
-									tc.disposeFrame();
-								} else {
+								if (availablee = true) {
+									if (bank_has_card_available == true) {
+										tc.setPlayerCards("e", 1);
+										tc.trademsg2(1, "erts");
+										JOptionPane.showMessageDialog(this, "Je hebt successvol gehandeld met de bank!",
+												"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+										tc.disposeFrame();
+									} else {
+										JOptionPane.showMessageDialog(this,
+												"De bank heeft geen kaarten beschikbaar meer!",
+												"Error", JOptionPane.ERROR_MESSAGE);
+									}
+								}
+								else {
 									JOptionPane.showMessageDialog(this,
-											"De bank heeft geen kaarten beschikbaar meer!",
-											"Error", JOptionPane.ERROR_MESSAGE);
+									"Je hebt niet de benodigde kaarten!",
+									"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
 						} else {
@@ -366,11 +487,7 @@ public class TradePanel extends JPanel implements ActionListener {
 								"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
 								"Verkeerde input!", JOptionPane.ERROR_MESSAGE);
 					}
-				} else {
-					JOptionPane.showMessageDialog(this,
-							"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",
-							"Verkeerde input!", JOptionPane.ERROR_MESSAGE);
-				}
+				
 			}
 		}	
 	}

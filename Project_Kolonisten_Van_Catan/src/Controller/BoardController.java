@@ -99,6 +99,8 @@ public class BoardController {
 	}
 	
 	
+	
+	
 	// this to create the tile cornPoints
 	private ArrayList<Point> returnTileCornPoints(Point tilePoint){
 		ArrayList<Point> arrayList = new ArrayList<Point>();
@@ -567,4 +569,23 @@ public class BoardController {
 			return docks;
 		}
 	}
+	
+	public ArrayList<Point> getBoughtCity(int gameID){
+		return board.getBoughtCity(gameID);
+	}
+	
+	public ArrayList<Point> getBoughtTown(int gameID){
+		return board.getBoughtTown(gameID);
+	}
+	
+	public ArrayList<Integer> getBoughtPlayerID(int gameID){
+		return board.getBoughtPlayerID(gameID);
+	}
+	
+	public ArrayList<Tile> getTiles(){
+		
+		return board.getTiles();
+	}
+	
+	
 }

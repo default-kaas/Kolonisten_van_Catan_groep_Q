@@ -28,10 +28,12 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon cardUniversity = new ImageIcon("images/DevCards/university.png");
 	private ImageIcon cardTools = new ImageIcon("images/DevCards/tools.png");
 	private ImageIcon cardInvention = new ImageIcon("images/DevCards/invention.png");
+	private ImageIcon green = new ImageIcon("images/Other/green.png");
+	private ImageIcon red = new ImageIcon("images/Other/red.png");
 	private JLabel monopoly, knight, victoryPoints, tools, invention;
 	private JButton playMonopoly = new JButton("Spelen");
 	private JButton playKnight = new JButton("Spelen");
-	private JButton playUniversity = new JButton("Spelen");
+	private JButton playVictory = new JButton("Spelen");
 	private JButton playTools = new JButton("Spelen");
 	private JButton playInvention = new JButton("spelen");
 
@@ -70,11 +72,18 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	}
 
 	public void UpdateResources() {
-		stone.setText(": " + controller.getWoodAmount());
+		stone.setText(": " + controller.getStoneAmount());
 		wood.setText(": " + controller.getWoodAmount());
 		wool.setText(": " + controller.getWoolAmount());
 		ore.setText(": " + controller.getOreAmount());
 		wheat.setText(": " + controller.getWheatAmount());
+
+		monopoly.setText(": " + controller.getPlayerMonopolyCard());
+		knight.setText(": " + controller.getPlayerKnightCard());
+		victoryPoints.setText(": " + controller.getPlayerVictoryPointCard());
+		tools.setText(": " + controller.getPlayerToolsCard());
+		invention.setText(": " + controller.getPlayerInventionCard());
+
 		this.repaint();
 	}
 
@@ -82,13 +91,16 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		int i = 0;
 		for (int x = 0; x < 8; x += 2) {
 			if (controller.myTurn(i)) {
-				playerInformation.get(x).setText(controller.getPlayerName(i) + " - " + "Grondstoffen: "
-						+ controller.getPlayerResources(i) + " - bezig met beurt!");
+				playerInformation.get(x).setText(
+						controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
+				playerInformation.get(x).setIcon(green);
+				enablePlayButton();
 			} else {
 				playerInformation.get(x).setText(
 						controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
+				playerInformation.get(x).setIcon(red);
 			}
-			playerInformation.get(x + 1).setText("" + controller.getBuildingPoints(i));
+			playerInformation.get(x + 1).setText("" + controller.getVictoryPoints(i));
 
 			if (controller.getPlayerName(i).equals(controller.checkArmy())
 					&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
@@ -254,8 +266,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 2;
 		c.gridy = 3;
-		this.add(playUniversity, c);
-		playUniversity.addActionListener(this);
+		this.add(playVictory, c);
+		playVictory.addActionListener(this);
 
 		// set tools play button
 		c.insets = new Insets(0, 0, 0, 50);
@@ -294,12 +306,14 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 					controller.getPlayerName(i) + " - " + "Grondstoffen: " + controller.getPlayerResources(i));
 
 			if (controller.myTurn(i)) {
-				info.setText(info.getText() + " - bezig met beurt!");
-
+				info.setText(info.getText());
+				info.setIcon(green);
+			} else {
+				info.setIcon(red);
 			}
 			// Second JLabel is made to add a second image associated with player building
 			// points.
-			JLabel victoryPoints = new JLabel("" + controller.getBuildingPoints(i));
+			JLabel victoryPoints = new JLabel("" + controller.getVictoryPoints(i));
 			victoryPoints.setIcon(trophy);
 
 			if (controller.getPlayerName(i).equals(controller.checkArmy())
@@ -376,66 +390,99 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		for (int i = 0; i < 4; i++) {
 			if (controller.myTurn(i)) {
 				enableWonButton();
-			} else {
-				disableWonButton();
 			}
 		}
 	}
 
-	public void enablePlayButton() {
-		playMonopoly.setBackground(new Color(5, 162, 0));
-		playMonopoly.setForeground(Color.WHITE);
-		playMonopoly.setEnabled(true);
+	public void enablePlayButton() { //this method enables the various Dev. Cards if and only if the player has atleast one of such cards.
+		if (controller.getPlayerMonopolyCard() >= 1) {
+			playMonopoly.setBackground(new Color(5, 162, 0));
+			playMonopoly.setForeground(Color.WHITE);
+			playMonopoly.setEnabled(true);
+		} else {
+			playMonopoly.setBackground(new Color(163, 0, 0));
+			playMonopoly.setForeground(Color.BLACK);
+			playMonopoly.setEnabled(false);
+		}
 
-		playKnight.setBackground(new Color(5, 162, 0));
-		playKnight.setForeground(Color.WHITE);
-		playKnight.setEnabled(true);
+		if (controller.getPlayerKnightCard() >= 1) {
+			playKnight.setBackground(new Color(5, 162, 0));
+			playKnight.setForeground(Color.WHITE);
+			playKnight.setEnabled(true);
+		} else {
+			playKnight.setBackground(new Color(163, 0, 0));
+			playKnight.setForeground(Color.BLACK);
+			playKnight.setEnabled(false);
+		}
 
-		playTools.setBackground(new Color(5, 162, 0));
-		playTools.setForeground(Color.WHITE);
-		playTools.setEnabled(true);
+		if (controller.getPlayerToolsCard() >= 1) {
+			playTools.setBackground(new Color(5, 162, 0));
+			playTools.setForeground(Color.WHITE);
+			playTools.setEnabled(true);
+		} else {
+			playTools.setBackground(new Color(163, 0, 0));
+			playTools.setForeground(Color.BLACK);
+			playTools.setEnabled(false);
+		}
 
-		playUniversity.setBackground(new Color(5, 162, 0));
-		playUniversity.setForeground(Color.WHITE);
-		playUniversity.setEnabled(true);
+		if (controller.getPlayerVictoryPointCard() >= 1) {
+			playVictory.setBackground(new Color(5, 162, 0));
+			playVictory.setForeground(Color.WHITE);
+			playVictory.setEnabled(true);
+		} else {
+			playVictory.setBackground(new Color(163, 0, 0));
+			playVictory.setForeground(Color.BLACK);
+			playVictory.setEnabled(false);
+		}
 
-		playInvention.setBackground(new Color(5, 162, 0));
-		playInvention.setForeground(Color.WHITE);
-		playInvention.setEnabled(true);
+		if (controller.getPlayerInventionCard() >= 1) {
+			playInvention.setBackground(new Color(5, 162, 0));
+			playInvention.setForeground(Color.WHITE);
+			playInvention.setEnabled(true);
+		} else {
+			playInvention.setBackground(new Color(163, 0, 0));
+			playInvention.setForeground(Color.BLACK);
+			playInvention.setEnabled(false);
+		}
 	}
-
-	public void disablePlayButton() {
+	
+	public void disablePlayButton() { //This method is created to completely disable the play cards buttons if it's not the players' turn.
 		playMonopoly.setBackground(new Color(163, 0, 0));
 		playMonopoly.setForeground(Color.BLACK);
 		playMonopoly.setEnabled(false);
-
+		
 		playKnight.setBackground(new Color(163, 0, 0));
 		playKnight.setForeground(Color.BLACK);
 		playKnight.setEnabled(false);
-
+		
 		playTools.setBackground(new Color(163, 0, 0));
 		playTools.setForeground(Color.BLACK);
 		playTools.setEnabled(false);
-
-		playUniversity.setBackground(new Color(163, 0, 0));
-		playUniversity.setForeground(Color.BLACK);
-		playUniversity.setEnabled(false);
-
+		
+		playVictory.setBackground(new Color(163, 0, 0));
+		playVictory.setForeground(Color.BLACK);
+		playVictory.setEnabled(false);
+		
+		playInvention.setBackground(new Color(5, 162, 0));
+		playInvention.setForeground(Color.WHITE);
+		playInvention.setEnabled(true);
+		
 		playInvention.setBackground(new Color(163, 0, 0));
 		playInvention.setForeground(Color.BLACK);
 		playInvention.setEnabled(false);
+		
 	}
 
 	public void enableWonButton() {
-		won.setBackground(new Color(5, 162, 0));
-		won.setForeground(Color.WHITE);
-		won.setEnabled(true);
-	}
-
-	public void disableWonButton() {
-		won.setBackground(new Color(163, 0, 0));
-		won.setForeground(Color.BLACK);
-		won.setEnabled(false);
+		if (controller.playerHasWon()) {
+			won.setBackground(new Color(5, 162, 0));
+			won.setForeground(Color.WHITE);
+			won.setEnabled(true);
+		} else {
+			won.setBackground(new Color(163, 0, 0));
+			won.setForeground(Color.BLACK);
+			won.setEnabled(false);
+		}
 	}
 
 	public void enableEndButton() {
@@ -475,29 +522,5 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 	public void getTradePanel() {
 		controller.getTradePanel();
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-
-		super.paintComponent(g);
-
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) (screenSize.getWidth() - screenSize.getHeight());
-		int height = (int) (screenSize.getHeight() * 0.4);
-
-		// ImageIcon icon = new ImageIcon("images/Background/playerBg1.jpg"); // sets
-		// Panel Background.
-		// JLabel thumb = new JLabel(icon);
-		// thumb.setSize(width, height);
-		// this.add(thumb);
-	}
-
-	public void ShowResources() {
-		String woodAmount = ": " + controller.getWoodAmount();
-		String woolAmount = ": " + controller.getWoolAmount();
-		String oreAmount = ": " + controller.getOreAmount();
-		String wheatAmount = ": " + controller.getWheatAmount();
-		String stoneAmount = ": " + controller.getStoneAmount();
 	}
 }

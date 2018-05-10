@@ -126,7 +126,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		playerTitle.setFont(new Font("Arial", Font.BOLD, 30));
 		playerTitle.setForeground(Color.BLACK);
 
-		c.insets = new Insets(0, 0, 0, 30);
+		c.insets = new Insets(0, 0, 0, 0);
 		c.anchor = GridBagConstraints.NORTH;
 		c.gridx = 0;
 		c.gridy = 0;
@@ -299,7 +299,6 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		JLabel enemyTitle = new JLabel("Tegenstanders Info");
 		enemyTitle.setFont(new Font("Arial", Font.BOLD, 30));
 		enemyTitle.setForeground(Color.BLACK);
-
 		c.insets = new Insets(0, 0, 50, 0);
 		c.anchor = GridBagConstraints.NORTH;
 		c.gridx = 3;

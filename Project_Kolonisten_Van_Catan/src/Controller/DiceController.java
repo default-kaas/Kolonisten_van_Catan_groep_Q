@@ -81,41 +81,64 @@ public class DiceController extends Observable {
 		dice.getOldValue2(game.getGameID());
 	}
 
-	//after the diceroll this method will check if the player has a town or a city build in order to deal resource cards
+	// after the diceroll this method will check if the player has a town or a city
+	// build in order to deal resource cards
 	public void giveResourcesToPlayers(int gameID, int diceRoll) {
-		//Creating ArrayList to go through an enhanced for loop
+		// Creating ArrayList to go through an enhanced for loop
 		ArrayList<Point> getCity = boardController.getBoughtCity(gameID);
 		ArrayList<Point> getTown = boardController.getBoughtTown(gameID);
 		ArrayList<Integer> getBoughtPlayerID = boardController.getBoughtPlayerID(gameID);
+		ArrayList<Integer> playerCities = dice.getPlayerCities(gameID);
+		ArrayList<Integer> playerTown = dice.getPlayerTowns(gameID);
 		ArrayList<Tile> tiles = boardController.getTiles();
 		ArrayList<Point> matchCityCorner = new ArrayList<Point>();
 		ArrayList<Tile> matchTiles = new ArrayList<Tile>();
-		//to see which resource type needs to be added to a player
+		int counter = 0;
 		char resourcetype = 'G';
+		int playerid = 0;
+		// to see which resource type needs to be added to a player
+
 		for (Tile t : tiles) {
-			//checks if diceroll is equal to numberchip and robber needs to be false in order to deal resource cards
+			// checks if diceroll is equal to numberchip and robber needs to be false in
+			// order to deal resource cards
 			if (t.getIdNumberChip() == diceRoll && t.isRobber() == false) {
 				ArrayList<Point> cornerPoint = t.getCornerPoints();
 				for (Point p : cornerPoint) {
+					for (Integer playerT : playerTown) {
 					for (Point to : getTown) {
 						if (to.x == p.x && to.y == p.y) {
+							System.out.println(p.x + " " + p.y + " " + t.getIdResourceType() + " playerid: " + playerT);
 						}
 					}
-					for (Point c : getCity) {
-						if (c.x == p.x && c.y == p.y) {
-							matchCityCorner.add(p);
-							matchTiles.add(t);
-							//sysout voor test maar gaat weg zsm!
-							//System.out.println(p.x + " " + p.y + " " + t.getIdResourceType());
-						}
+					}
+					for (Integer player : playerCities) {
+						for (Point c : getCity) {
 
+							if (c.x == p.x && c.y == p.y) {
+								matchCityCorner.add(p);
+								matchTiles.add(t);
+								// sysout voor test maar gaat weg zsm!
+								//System.out.println(p.x + " " + p.y + " " + t.getIdResourceType() + " playerid: " + player);
+								counter = 2;
+								playerid = player;
+								resourcetype = t.getIdResourceType();
+							}
+
+						}
 					}
 				}
 
 			}
+
 		}
-		
-		//dice.giveResourceToPlayers(gameID, playerID, resourceType, amount);
+		// switch (counter) {
+		// case 1:
+		// dice.giveResourceToPlayers(gameID, playerid, resourcetype, counter);
+		// break;
+		// default:
+		// System.out.println("Failed");
+		// break;
+		// }
 
 	}
 

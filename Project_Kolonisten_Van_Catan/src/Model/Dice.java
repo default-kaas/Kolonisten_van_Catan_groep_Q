@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Random;
 
 import Database.DiceDAO;
@@ -54,6 +55,14 @@ public class Dice {
 	
 	public boolean giveResourceToPlayers(int gameID,int playerID,char resourceType,int amount) {
 		return diceDAO.giveResourceToPlayers(gameID, playerID, resourceType, amount);
+	}
+	
+	public ArrayList<Integer> getPlayerCities(int gameID){
+		return diceDAO.getPlayerCities(gameID);
+	}
+	
+	public ArrayList<Integer> getPlayerTowns(int gameID){
+		return diceDAO.getPlayerTowns(gameID);
 	}
 
 }

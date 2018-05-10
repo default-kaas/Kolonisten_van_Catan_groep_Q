@@ -13,6 +13,7 @@ public class Corner {
 	private boolean town = false;
 	private boolean city = false;
 	private int playerId;
+	private ArrayList<Integer> playerIDArray;
 	///In game information///
 	private Point inGamePoint = new Point();
 	private ArrayList<Point> inGameTilePoints = new ArrayList<Point>();
@@ -95,6 +96,12 @@ public class Corner {
 	}
 	public void setInGameLinePoints(ArrayList<Point> inGameLinePoints) {
 		this.inGameLinePoints = inGameLinePoints;
+	}
+	public ArrayList<Integer> getPlayerIDArray() {
+		return playerIDArray;
+	}
+	public void setPlayerIDArray(ArrayList<Integer> playerIDArray) {
+		this.playerIDArray = playerIDArray;
 	}
 	
 	

@@ -67,6 +67,7 @@ public class BoardController {
 				tile.setInGameCornerPoints(returnInGameCornerPointsOfTile(tile.getInGameCenterPoint(),heightOfTile));
 				tiles.add(tile);
 			}
+			board.setTiles(tiles);
 		// this part is about creating the all the points also known as the corners of the board
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
 		arrayListLocation.addAll(board.getBoardDAOCornerPointsFromDataBase());
@@ -84,6 +85,9 @@ public class BoardController {
 				corner.setDock(comparePointToDockPoints(docks,corner.getPoint()));
 				corners.add(corner);
 			}
+			board.setCorners(corners);
+		//This will add Cities and Towns to the Corners	
+			updateCitiesAndTowns();
 		// this loop will create the Streets
 			for(Corner corner: corners) {
 				ArrayList<Street> newStreets = createStreet(corners, streets, corner);
@@ -91,15 +95,10 @@ public class BoardController {
 					streets.addAll(newStreets);
 				}
 			}
-		board.setTiles(tiles);
-		board.setCorners(corners);
 		board.setStreets(streets);
 		board.setDocks(returnDocks(corners));
 		System.out.println();
 	}
-	
-	
-	
 	
 	// this to create the tile cornPoints
 	private ArrayList<Point> returnTileCornPoints(Point tilePoint){
@@ -598,18 +597,21 @@ public class BoardController {
 		// @Ruben Look if this is like you would like it to be done?
 		int gameID = game.getGameID();
 		ArrayList<Corner> corners = board.getCorners();
-		ArrayList<Point> cities = board.getBoughtCity(gameID);
-		ArrayList<Point> towns = board.getBoughtTown(gameID);
+		ArrayList<Corner> cities = board.getBoadDAOGetCities(gameID);
+		ArrayList<Corner> towns = board.getBoadDAOGetTowns(gameID);
+		
 		for(Corner conrer: corners) {
-			for(Point pointTown: towns) {
-				if(conrer.getPoint().equals(pointTown)) {
+			for(Corner cornerTown: towns) {
+				if(conrer.getPoint().equals(cornerTown.getPoint())) {
 					conrer.setTown(true);
+					conrer.setPlayerId(cornerTown.getPlayerId());
 				}
 			}
-			for(Point pointCity: cities) {
-				if(conrer.getPoint().equals(pointCity)) {
+			for(Corner cornerCity: cities) {
+				if(conrer.getPoint().equals(cornerCity.getPoint())) {
 					conrer.setTown(false);
 					conrer.setCity(true);
+					conrer.setPlayerId(cornerCity.getPlayerId());
 				}
 			}
 		}

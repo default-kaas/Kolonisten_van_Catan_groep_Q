@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Model.Corner;
+import Model.Street;
 
 public class BoardDAO {
 	private Connection connection;
@@ -242,7 +243,85 @@ public class BoardDAO {
 		}
 	}
 	
-	public ArrayList<Corner> getBoughtStreets(int gameID){
-		return null;
+	public ArrayList<Corner> getTowns(int gameID){
+		try {
+			ArrayList<Corner> townCorners = new ArrayList<Corner>();
+			Statement stmt = connection.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select DISTINCT(x_van),y_van,speler.idspeler from spelerstuk join speler on speler.idspeler = spelerstuk.idspeler join spel on spel.idspel = speler.idspel where x_van is not null and y_van is not null and spel.idspel = "
+							+ gameID + " and spelerstuk.idstuk LIKE 'd%' ");
+			while (rs.next()) {
+				Corner corner = new Corner();
+				int x = rs.getInt("x_van");
+				int y = rs.getInt("y_van");
+				Point point = new Point(x, y);
+				corner.setPoint(point);
+				corner.setPlayerId(rs.getInt("speler.idspeler"));
+				townCorners.add(corner);
+			}
+			return townCorners;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	
+	public ArrayList<Corner> getCities(int gameID){
+		try {
+			ArrayList<Corner> cityCorners = new ArrayList<Corner>();
+			Statement stmt = connection.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select DISTINCT(x_van),y_van,speler.idspeler from spelerstuk join speler on speler.idspeler = spelerstuk.idspeler join spel on spel.idspel = speler.idspel where x_van is not null and y_van is not null and spel.idspel = "
+							+ gameID + " and spelerstuk.idstuk LIKE 'c%' ");
+			while (rs.next()) {
+				Corner corner = new Corner();
+				int x = rs.getInt("x_van");
+				int y = rs.getInt("y_van");
+				Point point = new Point(x, y);
+				corner.setPoint(point);
+				corner.setPlayerId(rs.getInt("speler.idspeler"));
+				cityCorners.add(corner);
+			}
+			return cityCorners;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	
+	public ArrayList<Street> getStreets(int gameID){
+		try {
+			ArrayList<Street> streets = new ArrayList<Street>();
+			Statement stmt = connection.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select DISTINCT(x_van),y_van,x_naar,y_naar,speler.idspeler from spelerstuk join speler on speler.idspeler = spelerstuk.idspeler join spel on spel.idspel = speler.idspel where x_van is not null and y_van is not null and spel.idspel = "
+							+ gameID + " and spelerstuk.idstuk LIKE 'r%' ");
+			while (rs.next()) {
+				ArrayList<Corner> cornerOfStreet = new ArrayList<Corner>();
+				Street street = new Street();
+				Corner corner1 = new Corner();
+				int x1 = rs.getInt("x_van");
+				int y1 = rs.getInt("y_van");
+				Point point1 = new Point(x1, y1);
+				corner1.setPoint(point1);
+				cornerOfStreet.add(corner1);
+				Corner corner2 = new Corner();
+				int x2 = rs.getInt("x_naar");
+				int y2 = rs.getInt("y_naar");
+				Point point2 = new Point(x2, y2);
+				corner2.setPoint(point2);
+				cornerOfStreet.add(corner2);
+				street.setPlayer(rs.getInt("speler.idspeler"));
+				street.setCorners(cornerOfStreet);
+				streets.add(street);
+			}
+			return streets;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return null;
+		}
 	}
 }

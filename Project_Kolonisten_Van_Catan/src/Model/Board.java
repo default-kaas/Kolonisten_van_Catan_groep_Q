@@ -91,7 +91,15 @@ public class Board {
 		return boardDOA.getBoughtPlayerID(gameID);
 	}
 	
+	public ArrayList<Corner> getBoadDAOGetTowns(int gameID){
+		return boardDOA.getTowns(gameID);
+	}
 	
+	public ArrayList<Corner> getBoadDAOGetCities(int gameID){
+		return boardDOA.getCities(gameID);
+	}
 	
-	
+	public ArrayList<Street> getBoardDAOGetStreets(int gameID){
+		return boardDOA.getStreets(gameID);
+	}
 }

@@ -14,6 +14,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private GridBagLayout gridBagLayout;
 	private GridBagConstraints c;
 	private GridBagConstraints x;
+	private GridBagConstraints f;
 	private ImageIcon stoneImage = new ImageIcon("images/Resources/stone1.png");
 	private ImageIcon woodImage = new ImageIcon("images/Resources/wood1.png");
 	private ImageIcon oreImage = new ImageIcon("images/Resources/ore1.png");
@@ -58,6 +59,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 		c = new GridBagConstraints();
 		x = new GridBagConstraints();
+		f = new GridBagConstraints();
 		gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 
@@ -324,6 +326,10 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
 				info.setIcon(knightImage);
 			}
+			
+			JLabel knightUsed = new JLabel("" + controller.getPlayerKnightUsed(i));
+			
+			knightUsed.setIcon(cardKnight);
 
 			info.setFont(new Font("Arial", Font.BOLD, 15));
 
@@ -346,16 +352,26 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				info.setForeground(Color.ORANGE);
 			}
 			info.setFont(new Font("Arial", Font.BOLD, 15));
+			
+			f.insets = new Insets(0, 0, 0, 0);
+			f.anchor = GridBagConstraints.WEST;
+			f.gridx = 4;
+			f.gridy = i + 1;
 
 			x.insets = new Insets(0, 0, 0, 0);
 			x.anchor = GridBagConstraints.WEST;
-			x.gridx = 4;
+			x.gridx = 5;
 			x.gridy = i + 1;
+			
+		
 
 			this.add(info, c);
 			playerInformation.add(info);
+			this.add(knightUsed, f);
+			playerInformation.add(knightUsed);
 			this.add(victoryPoints, x);
 			playerInformation.add(victoryPoints);
+			
 		}
 
 	}

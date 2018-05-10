@@ -121,7 +121,7 @@ public class PlayerDAO {
 					+ "ontwikkelingskaart on spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart "
 					+ "join speler on spelerontwikkelingskaart.idspeler = speler.idspeler "
 					+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId + " "
-					+ "AND ontwikkelingskaart.naam = 'ridder'");
+					+ "AND ontwikkelingskaart.naam = 'ridder' AND spelerontwikkelingskaart.gespeeld = 0");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
@@ -201,6 +201,20 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
+	
+	public int getPlayerKnightPlayed(int gameId, int playerId) { //Query returns the amount of Knights a player has activated/played. 
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select count(gespeeld) as aantal from spelerontwikkelingskaart where idontwikkelingskaart LIKE '%r' AND spelerontwikkelingskaart.idspel = "+gameId+" AND idspeler = "+playerId+"  AND gespeeld = 1");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
 
 	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
 		try {
@@ -211,6 +225,7 @@ public class PlayerDAO {
 		} catch (SQLException e) {
 		}
 	}
+	
 
 	public void addResources(int gameid, int playerid, String card, int amount) {
 		try {

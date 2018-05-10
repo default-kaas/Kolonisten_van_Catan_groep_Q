@@ -16,6 +16,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private GridBagConstraints x;
 	private GridBagConstraints f;
 	private GridBagConstraints j;
+	private GridBagConstraints q;
 	private ImageIcon stoneImage = new ImageIcon("images/Resources/stone1.png");
 	private ImageIcon woodImage = new ImageIcon("images/Resources/wood1.png");
 	private ImageIcon oreImage = new ImageIcon("images/Resources/ore1.png");
@@ -32,6 +33,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon cardInvention = new ImageIcon("images/DevCards/invention.png");
 	private ImageIcon green = new ImageIcon("images/Other/green.png");
 	private ImageIcon red = new ImageIcon("images/Other/red.png");
+	private ImageIcon devAmount = new ImageIcon("images/Other/dev.png");
 	private JLabel monopoly, knight, victoryPoints, tools, invention;
 	private JButton playMonopoly = new JButton("Spelen");
 	private JButton playKnight = new JButton("Spelen");
@@ -62,6 +64,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		x = new GridBagConstraints();
 		f = new GridBagConstraints();
 		j = new GridBagConstraints();
+		q = new GridBagConstraints();
 		gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 
@@ -123,11 +126,11 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		playerTitle.setFont(new Font("Arial", Font.BOLD, 30));
 		playerTitle.setForeground(Color.BLACK);
 
-		c.insets = new Insets(0, 0, 0, 100);
+		c.insets = new Insets(0, 0, 0, 30);
 		c.anchor = GridBagConstraints.NORTH;
 		c.gridx = 0;
 		c.gridy = 0;
-		add(playerTitle, c);
+	   add(playerTitle, c);
 	}
 
 	public void playerResources() {
@@ -332,15 +335,14 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			}
 			
 			JLabel knightUsed = new JLabel("" + controller.getPlayerKnightUsed(i));
-			
+				
 			knightUsed.setIcon(cardKnight);
+			
+			JLabel cardsAmount = new JLabel("" + controller.getPlayerCardAmount(i));
+			
+			cardsAmount.setIcon(devAmount);
 
 			info.setFont(new Font("Arial", Font.BOLD, 15));
-
-			c.insets = new Insets(20, 0, 0, 0);
-			c.anchor = GridBagConstraints.NORTH;
-			c.gridx = 3;
-			c.gridy = i + 1;
 
 			switch (i) {
 			case 0:
@@ -357,19 +359,30 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			}
 			info.setFont(new Font("Arial", Font.BOLD, 15));
 			
-			j.insets = new Insets(0, 0, 0, 0);
+			
+			c.insets = new Insets(20, 0, 0, 0); //info
+			c.anchor = GridBagConstraints.NORTH;
+			c.gridx = 3;
+			c.gridy = i + 1;
+			
+			j.insets = new Insets(0, 0, 0, 0); //LongestAndKnight
 			j.anchor = GridBagConstraints.WEST;
 			j.gridx = 4;
 			j.gridy = i + 1;
 			
-			f.insets = new Insets(0, 0, 0, 0);
+			q.insets = new Insets(0, 0, 0, 0); //Amount of player Cards
+			q.anchor = GridBagConstraints.WEST;
+			q.gridx = 5;
+			q.gridy = i + 1;
+			
+			f.insets = new Insets(0, 0, 0, 0); //Amount of knight used
 			f.anchor = GridBagConstraints.WEST;
-			f.gridx = 5;
+			f.gridx = 6;
 			f.gridy = i + 1;
 
-			x.insets = new Insets(0, 0, 0, 0);
+			x.insets = new Insets(0, 0, 0, 0); //VictoryPoints
 			x.anchor = GridBagConstraints.WEST;
-			x.gridx = 6;
+			x.gridx = 7;
 			x.gridy = i + 1;
 			
 		
@@ -378,6 +391,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			playerInformation.add(info);
 			this.add(longestAndKnight, j);
 			playerInformation.add(longestAndKnight);
+			this.add(cardsAmount, q);
+			playerInformation.add(cardsAmount);
 			this.add(knightUsed, f);
 			playerInformation.add(knightUsed);
 			this.add(victoryPoints, x);
@@ -388,7 +403,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	}
 
 	public void TradeButton() {
-		c.insets = new Insets(0, 0, 0, 100);
+		c.insets = new Insets(0, 0, 0, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 7;

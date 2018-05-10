@@ -108,6 +108,10 @@ public class PlayerInfoController implements Observer, Runnable {
 		 return playerDAO.getPlayerKnightPlayed(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID());
 		
 	}
+	
+	public int getPlayerCardAmount(int playerId) {
+		return playerDAO.getCardsAmount(game.getGameID(), game.GetPlayers().get(playerId).getPlayerID());
+	}
 
 	public boolean playerHasWon() { // checks if player has more or equal to 10 points.
 		int x = playerDAO.getPlayerVictoryPointCards(game.getGameID(), game.getMe().getPlayerID()); // Get Card Points

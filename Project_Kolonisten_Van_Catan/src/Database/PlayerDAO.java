@@ -215,6 +215,23 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
+	
+	public int getCardsAmount(int gameId, int playerId) { //Query returns the amount of cards a player has.
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select count(idontwikkelingskaart) AS aantal from spelerontwikkelingskaart where idspel = "+gameId+" AND idspeler =" +playerId+ "");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			System.out.println(amount);
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
+	
+	
 
 	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
 		try {

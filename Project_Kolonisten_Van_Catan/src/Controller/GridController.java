@@ -187,7 +187,7 @@ public class GridController {
 		ArrayList<Corner> yourTowns = new ArrayList<Corner>();
 
 		for (Corner corner : allPoints) {
-			Boolean yourTown = corner.isTown();
+			boolean yourTown = corner.isTown();
 			if (yourTown) {
 				if (player == corner.getPlayerId())
 					yourTowns.add(corner);

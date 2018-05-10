@@ -7,6 +7,7 @@ import Model.Player;
 import Model.Trade;
 import View.TradeFrame;
 import View.TradePanel;
+import View.TradePopup;
 
 public class TradeController {
 	
@@ -15,6 +16,7 @@ public class TradeController {
 	private TradePanel tradeView;
 	private TradeFrame tradeFrame;
 	private Trade trademodel;
+	private TradePopup tpup;
 	
 	int card = 0;
 	
@@ -82,8 +84,8 @@ public class TradeController {
 		tradeView.setAvailability(game.getPlayerDAO().checkBank(game.getGameID(), Card));
 	}
 
-	public void getHavens() {
-		processHavens(game.getPlayerDAO().checkHaven(game.getMe().getPlayerID()));
+	public void getHavens(String grondstof) {
+		processHavens(game.getPlayerDAO().checkHaven(game.getMe().getPlayerID(), grondstof));
 	}
 	
 	public void processHavens(String string) {
@@ -114,6 +116,24 @@ public class TradeController {
 	public void trademessage() {
 		tradeFrame.getgc().setTradeMessage(v1, resource1, v2, resource2, "De Bank");
 		System.out.println(v1 + resource1 + v2 + resource2);
+	}
+	
+	public TradeFrame getTradeFrameFromController() {
+		return tradeFrame;
+	}
+	
+	public void showScreen() {
+		for (int i = 0; i < 4; i++) {
+			if (tradeFrame.getgc().getGame().GetPlayers().get(i).getName() != tradeFrame.getgc().getGame().getMe().getName()) {
+				showForPlayers(tradeFrame.getgc().getGame().GetPlayers().get(i).getName());
+			}
+		}
+	}
+	
+	public void showForPlayers(String string) {
+		if (string == tradeFrame.getgc().getGame().getMe().getName()) {
+			tpup = new TradePopup();
+		}
 	}
 	
 	

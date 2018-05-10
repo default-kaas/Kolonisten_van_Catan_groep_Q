@@ -28,6 +28,20 @@ public class BuildDAO {
 			return 0;
 		}
 	}
+	
+	public int checkIfCardsLeft(int gameId) {
+		try {
+			Statement stmt = db_conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select count(idontwikkelingskaart) AS aantal from spelerontwikkelingskaart where idspel = " +gameId+ " AND idspeler IS null ");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			System.out.println("Cards left: " + amount);
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
 
 	public void givePlayerRandomCard(int playerId) {
 		try {

@@ -34,7 +34,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon green = new ImageIcon("images/Other/green.png");
 	private ImageIcon red = new ImageIcon("images/Other/red.png");
 	private ImageIcon devAmount = new ImageIcon("images/Other/dev.png");
-	private JLabel monopoly, knight, victoryPoints, tools, invention;
+	private ImageIcon ownPlayerPoints = new ImageIcon("images/Other/points.png");
+	private JLabel monopoly, knight, victoryPoints, tools, invention, ownPoints;
 	private JButton playMonopoly = new JButton("Spelen");
 	private JButton playKnight = new JButton("Spelen");
 	private JButton playVictory = new JButton("Spelen");
@@ -190,6 +191,19 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		wheat.setForeground(Color.BLACK);
 		wheat.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(wheat, c);
+		
+		c.insets = new Insets(0, 0, 15, 0);
+		c.anchor = GridBagConstraints.WEST;
+		c.gridx = 0;
+		c.gridy = 6;
+		ownPoints = new JLabel(": " + controller.getAllOwnPoints());
+		ownPoints.setIcon(ownPlayerPoints);
+		ownPoints.setForeground(Color.BLACK);
+		ownPoints.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(ownPoints, c);
+		
+		
+		
 
 	}
 

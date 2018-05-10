@@ -73,6 +73,14 @@ public class BuildPanelController extends Observable implements Observer {
 		}
 	}
 	
+	public boolean checkCardsLeft() { //checks if there are cards left to buy. If not, returns false.
+		if (buildDAO.checkIfCardsLeft(game.getGameID()) >= 1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	public void removeStreetRes() {
 		game.removeStreet();
 	}

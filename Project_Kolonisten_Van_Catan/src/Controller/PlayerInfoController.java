@@ -24,14 +24,14 @@ public class PlayerInfoController implements Observer, Runnable {
 		spelerInformatiePanel.playerInfo();
 		spelerInformatiePanel.enemyInfo();
 		spelerInformatiePanel.playerResources();
+		spelerInformatiePanel.playerDevelopmentCards();
 		spelerInformatiePanel.allInfo();
-//		spelerInformatiePanel.TradeButton();
+		spelerInformatiePanel.TradeButton();
 //		spelerInformatiePanel.wonButton();
 //
 		spelerInformatiePanel.endButton();
 		spelerInformatiePanel.enablePlayButton();
 		/* spelerInformatiePanel.ShowResources(); */
-		spelerInformatiePanel.playerDevelopmentCards();
 		this.gameController = gameController;
 		disableTradeButton();
 	}

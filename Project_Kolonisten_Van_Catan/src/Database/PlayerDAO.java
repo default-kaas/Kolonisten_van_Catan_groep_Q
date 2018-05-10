@@ -74,7 +74,7 @@ public class PlayerDAO {
 
 		}
 	}
-	
+
 	public int allPoints(int gameId, int playerId) {
 		try {
 
@@ -95,7 +95,7 @@ public class PlayerDAO {
 							+ " AND stuk.stuksoort = 'stad' AND spelerstuk.x_van IS NOT null AND spelerstuk.y_van IS NOT null ");
 			bs.next();
 			int amountStad = bs.getInt("amountCity");
-			
+
 			rs = stmt.executeQuery(
 					"select count(ontwikkelingskaart.naam) AS amountVictoryCards from spelerontwikkelingskaart join ontwikkelingskaart on"
 							+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
@@ -240,13 +240,15 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
-	
-	public int getPlayerKnightPlayed(int gameId, int playerId) { //Query returns the amount of Knights a player has activated/played. 
+
+	public int getPlayerKnightPlayed(int gameId, int playerId) { // Query returns the amount of Knights a player has
+																	// activated/played.
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery(
-					"select count(gespeeld) as aantal from spelerontwikkelingskaart where idontwikkelingskaart LIKE '%r' AND spelerontwikkelingskaart.idspel = "+gameId+" AND idspeler = "+playerId+"  AND gespeeld = 1");
+					"select count(gespeeld) as aantal from spelerontwikkelingskaart where idontwikkelingskaart LIKE '%r' AND spelerontwikkelingskaart.idspel = "
+							+ gameId + " AND idspeler = " + playerId + "  AND gespeeld = 1");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
@@ -254,13 +256,14 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
-	
-	public int getCardsAmount(int gameId, int playerId) { //Query returns the amount of cards a player has.
+
+	public int getCardsAmount(int gameId, int playerId) { // Query returns the amount of cards a player has.
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery(
-					"select count(idontwikkelingskaart) AS aantal from spelerontwikkelingskaart where idspel = "+gameId+" AND idspeler =" +playerId+ " AND gespeeld = 0");
+					"select count(idontwikkelingskaart) AS aantal from spelerontwikkelingskaart where idspel = "
+							+ gameId + " AND idspeler =" + playerId + " AND gespeeld = 0");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
@@ -268,8 +271,6 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
-	
-	
 
 	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
 		try {
@@ -280,7 +281,6 @@ public class PlayerDAO {
 		} catch (SQLException e) {
 		}
 	}
-	
 
 	public void addResources(int gameid, int playerid, String card, int amount) {
 		try {
@@ -327,8 +327,7 @@ public class PlayerDAO {
 							+ card + "%' AND idspel = " + gameID + " LIMIT 1");
 			if (rs.next()) {
 				return true;
-			}
-			else {
+			} else {
 				return false;
 			}
 		} catch (SQLException e) {
@@ -371,9 +370,13 @@ public class PlayerDAO {
 		try {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs = stmt.executeQuery(
-					"SELECT x,y,idgrondstofsoort FROM locatie WHERE haven = 1 AND idgrondstofsoort = '"+ resource +"' AND EXISTS (SELECT x,y FROM spelerstuk where locatie.x = spelerstuk.x_van AND  locatie.y = spelerstuk.y_van AND idspeler="+player+")");
+					"SELECT x,y,idgrondstofsoort FROM locatie WHERE haven = 1 AND idgrondstofsoort = '" + resource
+							+ "' AND EXISTS (SELECT x,y FROM spelerstuk where locatie.x = spelerstuk.x_van AND  locatie.y = spelerstuk.y_van AND idspeler="
+							+ player + ")");
 			Statement stmt2 = m_Conn.createStatement();
-			ResultSet rs2 = stmt2.executeQuery("SELECT x,y,idgrondstofsoort FROM locatie WHERE haven = 1 AND idgrondstofsoort IS NULL AND EXISTS (SELECT x,y FROM spelerstuk where locatie.x = spelerstuk.x_van AND  locatie.y = spelerstuk.y_van AND idspeler="+player+")");
+			ResultSet rs2 = stmt2.executeQuery(
+					"SELECT x,y,idgrondstofsoort FROM locatie WHERE haven = 1 AND idgrondstofsoort IS NULL AND EXISTS (SELECT x,y FROM spelerstuk where locatie.x = spelerstuk.x_van AND  locatie.y = spelerstuk.y_van AND idspeler="
+							+ player + ")");
 			if (rs.next()) {
 				String grondstof = rs.getString("idgrondstofsoort");
 				return grondstof;

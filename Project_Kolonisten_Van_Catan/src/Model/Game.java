@@ -97,7 +97,7 @@ public class Game {
 	}
 
 	public int getPlayerResources(int volgNr) {
-
+		//TODO add all player resources
 		int stone = GetPlayers().get(volgNr).getStoneAmount();
 		int wood = GetPlayers().get(volgNr).getWoodAmount();
 		int wheat = GetPlayers().get(volgNr).getWheatAmount();

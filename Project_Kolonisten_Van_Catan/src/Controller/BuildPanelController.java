@@ -81,6 +81,31 @@ public class BuildPanelController extends Observable implements Observer {
 		}
 	}
 	
+	public boolean checkStreetLeft() { //checks if there are street left to buy. If not, returns false.
+		if (buildDAO.checkIfStreetLeft(game.getGameID(), game.getMe().getPlayerID()) >= 1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	
+	public boolean checkHouseLeft() { //checks if there are houses left to buy. If not, returns false.
+		if (buildDAO.checkIfHouseLeft(game.getGameID(), game.getMe().getPlayerID()) >= 1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public boolean checkCityLeft() { //checks if there are cities left to buy. If not, returns false.
+		if (buildDAO.checkIfCityLeft(game.getGameID(), game.getMe().getPlayerID())  >= 1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	public void removeStreetRes() {
 		game.removeStreet();
 	}

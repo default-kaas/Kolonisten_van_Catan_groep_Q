@@ -325,29 +325,29 @@ public class BuildPanel extends JPanel implements ActionListener {
 	}
 	
 	public void allCheck() {
-		if (buildPanelController.checkRecoursesRoad()) {
+		if (buildPanelController.checkRecoursesRoad() && buildPanelController.checkStreetLeft()) {
 			buyRoad.setBackground(new Color(5, 162, 0));
 			buyRoad.setEnabled(true);
-		} else if (!buildPanelController.checkRecoursesRoad()) {
+		} else if (!buildPanelController.checkRecoursesRoad() || buildPanelController.checkStreetLeft()) {
 			buyRoad.setBackground(new Color(163, 0, 0));
 			buyRoad.setEnabled(false);
 		}
 		
-		if (buildPanelController.checkResourcesHouse()) {
+		if (buildPanelController.checkResourcesHouse() && buildPanelController.checkHouseLeft()) {
 			buyHouse.setBackground(new Color(5, 162, 0));
 			buyHouse.setForeground(Color.WHITE);
 			buyHouse.setEnabled(true);
-		} else if (!buildPanelController.checkResourcesHouse()) {
+		} else if (!buildPanelController.checkResourcesHouse() || !buildPanelController.checkHouseLeft()) {
 			buyHouse.setBackground(new Color(163, 0, 0));
 			buyHouse.setForeground(Color.BLACK);
 			buyHouse.setEnabled(false);
 		}
 		
-		if (buildPanelController.checkResourcesCity() && buildPanelController.PlayerHasHouse()) {
+		if (buildPanelController.checkResourcesCity() && buildPanelController.PlayerHasHouse() && buildPanelController.checkCityLeft()) {
 			buyCity.setBackground(new Color(5, 162, 0));
 			buyCity.setForeground(Color.WHITE);
 			buyCity.setEnabled(true);
-		} else if (!buildPanelController.checkResourcesCity()) {
+		} else if (!buildPanelController.checkResourcesCity() || !buildPanelController.checkCityLeft() || !buildPanelController.PlayerHasHouse()) {
 			buyCity.setBackground(new Color(163, 0, 0));
 			buyCity.setForeground(Color.BLACK);
 			buyCity.setEnabled(false);

@@ -66,8 +66,7 @@ public class BoardController {
 				tile.setInGameCenterPoint(returnInGameCenterPointTileInGame(tile.getTileID()));
 				tile.setInGameCornerPoints(returnInGameCornerPointsOfTile(tile.getInGameCenterPoint(),heightOfTile));
 				tiles.add(tile);
-			}
-			board.setTiles(tiles);
+			} 
 		// this part is about creating the all the points also known as the corners of the board
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
 		arrayListLocation.addAll(board.getBoardDAOCornerPointsFromDataBase());
@@ -96,6 +95,7 @@ public class BoardController {
 				}
 			}
 		board.setStreets(streets);
+		updateStreets();
 		board.setDocks(returnDocks(corners));
 		System.out.println();
 	}
@@ -624,11 +624,17 @@ public class BoardController {
 		}
 	}
 	public void updateStreets() {
+		// @Ruben Look if this is like you would like it to be done?
+		int gameID = game.getGameID();
 		ArrayList<Street> streets = board.getStreets();
+		ArrayList<Street> newStreets = board.getBoardDAOGetStreets(gameID);
 		for(Street street: streets) {
-			ArrayList<Corner> cornersOfStreet = board.getCorners();
-			for(Corner corner: cornersOfStreet) {
-				
+			for(Street newStreet: newStreets) {
+				if((street.getCorner(0).getPoint().equals(newStreet.getCorner(0).getPoint())) && (street.getCorner(1).getPoint().equals(newStreet.getCorner(1).getPoint()))
+						||
+				(street.getCorner(0).getPoint().equals(newStreet.getCorner(1).getPoint())) && (street.getCorner(1).getPoint().equals(newStreet.getCorner(0).getPoint()))) {
+					street.setPlayer(newStreet.getPlayer());
+				}
 			}
 		}
 	}

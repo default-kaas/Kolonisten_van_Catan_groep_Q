@@ -244,7 +244,7 @@ public class TradePanel extends JPanel implements ActionListener {
 		if (e.getSource().equals(propose)) {
 			Object item = cb.getSelectedItem();
 			if (item.toString().equals("Spelers")) {
-				tc.showScreen();
+				tc.showScreen(your_wool.getText(), your_woodt.getText(), your_ore.getText(), your_wheatt.getText(), your_stonet.getText(), their_woolt.getText(), their_woodt.getText(), their_oret.getText(), their_wheatt.getText(), their_stonet.getText());
 				JOptionPane.showMessageDialog(this, "Wordt aan gewerkt!", "ERROR", JOptionPane.ERROR_MESSAGE);
 				tc.disposeFrame();
 			}

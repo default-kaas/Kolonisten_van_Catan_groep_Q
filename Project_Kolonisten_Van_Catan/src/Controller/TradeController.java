@@ -122,17 +122,17 @@ public class TradeController {
 		return tradeFrame;
 	}
 	
-	public void showScreen() {
+	public void showScreen(String string, String string2, String string3, String string4, String string5, String string6, String string7, String string8, String string9, String string10) {
 		for (int i = 0; i < 4; i++) {
 			if (tradeFrame.getgc().getGame().GetPlayers().get(i).getName() != tradeFrame.getgc().getGame().getMe().getName()) {
-				showForPlayers(tradeFrame.getgc().getGame().GetPlayers().get(i).getName());
+				showForPlayers(tradeFrame.getgc().getGame().GetPlayers().get(i).getName(), string, string2, string3, string4, string5, string6, string7, string8, string9, string10);
 			}
 		}
 	}
 	
-	public void showForPlayers(String string) {
+	public void showForPlayers(String string, String string2, String string22, String string3, String string4, String string5, String string6, String string7, String string8, String string9, String string10) {
 		if (string == tradeFrame.getgc().getGame().getMe().getName()) {
-			tpup = new TradePopup();
+			tpup = new TradePopup(this, tradeFrame.getgc().getGame().getMe().getName(), string, string2, string3, string4, string5, string6, string7, string8, string9, string10);
 		}
 	}
 	

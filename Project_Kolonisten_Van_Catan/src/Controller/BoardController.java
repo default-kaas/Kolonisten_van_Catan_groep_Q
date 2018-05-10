@@ -67,6 +67,7 @@ public class BoardController {
 				tile.setInGameCornerPoints(returnInGameCornerPointsOfTile(tile.getInGameCenterPoint(),heightOfTile));
 				tiles.add(tile);
 			} 
+		board.setTiles(tiles);
 		// this part is about creating the all the points also known as the corners of the board
 		ArrayList<Point> arrayListLocation = new ArrayList<Point>();
 		arrayListLocation.addAll(board.getBoardDAOCornerPointsFromDataBase());

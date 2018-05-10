@@ -19,7 +19,9 @@ public class Street {
 	public void setPlayer(int player) {
 		this.player = player;
 	}
-	
+	public Corner getCorner(int i) {
+		return cornerPoints.get(i);
+	}
 	public ArrayList<Corner> getCornerPoints() {
 		return cornerPoints;
 	}

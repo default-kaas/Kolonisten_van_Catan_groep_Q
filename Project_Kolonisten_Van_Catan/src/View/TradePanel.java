@@ -1,7 +1,6 @@
 /*Bugs waar ik van op de hoogte ben (to-do listje):
 - Insets moet worden veranderd indien mogelijk. 
 - Ruilen met een speler kan nog niet, maar ik heb een idee hoe dit niet al te moeilijk kan worden gemaakt. 
-- 2x1 werkt niet, nog naar kijken.
 - Als je geen kaarten meer heeft, kun je nog wel handelen. = gratis kaarten. */
 
 package View;
@@ -224,18 +223,23 @@ public class TradePanel extends JPanel implements ActionListener {
 		}
 		if (charr.equals("W")) {
 			W = true;
+			three = true;
 		}
 		if (charr.equals("G")) {
 			G = true;
+			three = true;
 		}
 		if (charr.equals("H")) {
 			H = true;
+			three = true;
 		}
 		if (charr.equals("B")) {
 			B = true;
+			three = true;
 		}
 		if (charr.equals("E")) {
 			E = true;
+			three = true;
 		}
 		
 	}
@@ -247,16 +251,16 @@ public class TradePanel extends JPanel implements ActionListener {
 		if (e.getSource().equals(propose)) {
 			Object item = cb.getSelectedItem();
 			if (item.toString().equals("Spelers")) {
-				if (Integer.parseInt(your_woolt.getText()) >= tc.getPlayerCards(1) && Integer.parseInt(your_woodt.getText()) >= tc.getPlayerCards(1) && 
-				Integer.parseInt(your_oret.getText()) >= tc.getPlayerCards(1) && Integer.parseInt(your_wheatt.getText()) >= tc.getPlayerCards(1) && 
-				Integer.parseInt(your_stonet.getText()) >= tc.getPlayerCards(1)) {
-					tc.showScreen(your_wool.getText(), your_woodt.getText(), your_ore.getText(), your_wheatt.getText(), your_stonet.getText(), their_woolt.getText(), their_woodt.getText(), their_oret.getText(), their_wheatt.getText(), their_stonet.getText());
+//				if (Integer.parseInt(your_woolt.getText()) >= tc.getPlayerCards(1) && Integer.parseInt(your_woodt.getText()) >= tc.getPlayerCards(1) && 
+//				Integer.parseInt(your_oret.getText()) >= tc.getPlayerCards(1) && Integer.parseInt(your_wheatt.getText()) >= tc.getPlayerCards(1) && 
+//				Integer.parseInt(your_stonet.getText()) >= tc.getPlayerCards(1)) {
+					tc.showScreen(your_woolt.getText(), your_woodt.getText(), your_oret.getText(), your_wheatt.getText(), your_stonet.getText(), their_woolt.getText(), their_woodt.getText(), their_oret.getText(), their_wheatt.getText(), their_stonet.getText());
 					JOptionPane.showMessageDialog(this, "Uw handel is voorgesteld aan de rest!",
 							"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
 					tc.disposeFrame();
-				} else {
-					JOptionPane.showMessageDialog(this, "De aangeboden kaarten zijn niet in uw bezit!", "ERROR", JOptionPane.ERROR_MESSAGE);
-				}
+//				} else {
+//					JOptionPane.showMessageDialog(this, "De aangeboden kaarten zijn niet in uw bezit!", "ERROR", JOptionPane.ERROR_MESSAGE);
+//				}
 			}
 			if (item.toString().equals("De Bank")) {
 					// het volgende spreekt voor zich.
@@ -313,6 +317,10 @@ public class TradePanel extends JPanel implements ActionListener {
 										tc.removePlayerCards("w", 3);
 										tc.trademsg1(3, "wol");
 									}
+								} else 
+								if (W == true){
+									tc.removePlayerCards("w", 2);
+									tc.trademsg1(2, "wol");
 								} else {
 									tc.removePlayerCards("w", 4);
 									tc.trademsg1(4, "wol");
@@ -329,7 +337,11 @@ public class TradePanel extends JPanel implements ActionListener {
 										tc.removePlayerCards("g", 3);
 										tc.trademsg1(3, "graan");
 									}
-								} else {
+								} else 
+									if (G == true){
+										tc.removePlayerCards("g", 2);
+										tc.trademsg1(2, "graan");
+									}else {
 									tc.removePlayerCards("g", 4);
 									tc.trademsg1(4, "graan");
 								}
@@ -345,7 +357,11 @@ public class TradePanel extends JPanel implements ActionListener {
 										tc.removePlayerCards("b", 3);
 										tc.trademsg1(3, "baksteen");
 									}
-								} else {
+								} else 
+									if (B == true){
+										tc.removePlayerCards("b", 2);
+										tc.trademsg1(2, "baksteen");
+									}else {
 									tc.removePlayerCards("b", 4);
 									tc.trademsg1(4, "baksteen");
 								}
@@ -361,7 +377,11 @@ public class TradePanel extends JPanel implements ActionListener {
 										tc.removePlayerCards("h", 3);
 										tc.trademsg1(3, "hout");
 									}
-								} else {
+								} else 
+									if (H == true){
+										tc.removePlayerCards("h", 2);
+										tc.trademsg1(2, "hout");
+									}else {
 									tc.removePlayerCards("h", 4);
 									tc.trademsg1(4, "hout");
 								}
@@ -377,7 +397,11 @@ public class TradePanel extends JPanel implements ActionListener {
 										tc.removePlayerCards("e", 3);
 										tc.trademsg1(3, "erts");
 									}
-								} else {
+								} else 
+									if (E == true){
+										tc.removePlayerCards("e", 2);
+										tc.trademsg1(2, "erts");
+									}else {
 									tc.removePlayerCards("e", 4);
 									tc.trademsg1(4, "erts");
 								}

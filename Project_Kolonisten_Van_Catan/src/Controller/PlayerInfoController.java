@@ -22,12 +22,14 @@ public class PlayerInfoController implements Observer, Runnable {
 		this.game = game;
 		playerDAO = new PlayerDAO(db_conn);
 		spelerInformatiePanel.playerInfo();
-		spelerInformatiePanel.allInfo();
+		spelerInformatiePanel.enemyInfo();
 		spelerInformatiePanel.playerResources();
-		spelerInformatiePanel.TradeButton();
-		spelerInformatiePanel.wonButton();
-		spelerInformatiePanel.enablePlayButton();
+		spelerInformatiePanel.allInfo();
+//		spelerInformatiePanel.TradeButton();
+//		spelerInformatiePanel.wonButton();
+//
 		spelerInformatiePanel.endButton();
+		spelerInformatiePanel.enablePlayButton();
 		/* spelerInformatiePanel.ShowResources(); */
 		spelerInformatiePanel.playerDevelopmentCards();
 		this.gameController = gameController;

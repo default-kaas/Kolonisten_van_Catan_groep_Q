@@ -137,7 +137,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		String stoneAmount = ": " + controller.getStoneAmount();
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 1;
 		stone = new JLabel(stoneAmount);
@@ -147,7 +147,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(stone, c);
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 2;
 		wood = new JLabel(woodAmount);
@@ -157,7 +157,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(wood, c);
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 3;
 		wool = new JLabel(woolAmount);
@@ -167,7 +167,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(wool, c);
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 4;
 		ore = new JLabel(oreAmount);
@@ -177,7 +177,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(ore, c);
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 5;
 		wheat = new JLabel(wheatAmount);

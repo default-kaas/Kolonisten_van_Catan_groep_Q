@@ -28,6 +28,58 @@ public class BuildDAO {
 			return 0;
 		}
 	}
+	
+	public int checkIfCardsLeft(int gameId) {
+		try {
+			Statement stmt = db_conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select count(idontwikkelingskaart) AS aantal from spelerontwikkelingskaart where idspel = " +gameId+ " AND idspeler IS null ");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
+	
+	public int checkIfStreetLeft(int gameId, int playerId) {
+		try {
+			Statement stmt = db_conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select COUNT(spelerstuk.idstuk) AS aantal from spelerstuk join speler on spelerstuk.idspeler = speler.idspeler where speler.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND spelerstuk.x_van IS null AND spelerstuk.y_van IS null AND spelerstuk.x_naar IS null AND spelerstuk.y_naar IS null AND spelerstuk.idstuk LIKE 'r%'");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	} 
+	
+	public int checkIfHouseLeft(int gameId, int playerId) {
+		try {
+			Statement stmt = db_conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select COUNT(spelerstuk.idstuk) AS aantal from spelerstuk join speler on spelerstuk.idspeler = speler.idspeler where speler.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND spelerstuk.x_van IS null AND spelerstuk.y_van IS null AND spelerstuk.idstuk LIKE 'd%'");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
+	
+	public int checkIfCityLeft(int gameId, int playerId) {
+		try {
+			Statement stmt = db_conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery("select COUNT(spelerstuk.idstuk) AS aantal from spelerstuk join speler on spelerstuk.idspeler = speler.idspeler where speler.idspel = "+gameId+" AND speler.idspeler = "+playerId+" AND spelerstuk.x_van IS null AND spelerstuk.y_van IS null AND spelerstuk.idstuk LIKE 'c%'");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
 
 	public void givePlayerRandomCard(int playerId) {
 		try {

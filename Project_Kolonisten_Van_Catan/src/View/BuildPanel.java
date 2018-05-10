@@ -47,6 +47,7 @@ public class BuildPanel extends JPanel implements ActionListener {
 		setHouse();
 		setCity();
 		setDevelopmentCard();
+		/*allCheck();*/
 		buyRoad.addActionListener(this);
 		buyHouse.addActionListener(this);
 		buyCity.addActionListener(this);
@@ -137,13 +138,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
 		c.gridy = 2;
-
-		if (buildPanelController.checkRecoursesRoad()) {
-			buyRoad.setBackground(new Color(5, 162, 0));
-		} else if (!buildPanelController.checkRecoursesRoad()) {
-			buyRoad.setBackground(new Color(163, 0, 0));
-			buyRoad.setEnabled(false);
-		}
 		this.add(buyRoad, c);
 	}
 
@@ -193,15 +187,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(0, 50, 30, 0);
 		c.gridx = 7;
 		c.gridy = 3;
-
-		if (buildPanelController.checkResourcesHouse()) {
-			buyHouse.setBackground(new Color(5, 162, 0));
-			buyHouse.setForeground(Color.WHITE);
-		} else if (!buildPanelController.checkResourcesHouse()) {
-			buyHouse.setBackground(new Color(163, 0, 0));
-			buyHouse.setForeground(Color.BLACK);
-			buyHouse.setEnabled(false);
-		}
 		this.add(buyHouse, c);
 	}
 
@@ -258,15 +243,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 7;
 		c.gridy = 4;
-
-		if (buildPanelController.checkResourcesCity()) {
-			buyCity.setBackground(new Color(5, 162, 0));
-			buyCity.setForeground(Color.WHITE);
-		} else if (!buildPanelController.checkResourcesCity()) {
-			buyCity.setBackground(new Color(163, 0, 0));
-			buyCity.setForeground(Color.BLACK);
-			buyCity.setEnabled(false);
-		}
 		this.add(buyCity, c);
 
 	}
@@ -312,15 +288,6 @@ public class BuildPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(0, 50, 10, 0);
 		c.gridx = 7;
 		c.gridy = 5;
-
-		if (buildPanelController.checkResourcesDevCard()) {
-			buyDevelopmentCard.setBackground(new Color(5, 162, 0));
-			buyDevelopmentCard.setForeground(Color.WHITE);
-		} else if (!buildPanelController.checkResourcesDevCard()) {
-			buyDevelopmentCard.setBackground(new Color(163, 0, 0));
-			buyDevelopmentCard.setForeground(Color.BLACK);
-			buyDevelopmentCard.setEnabled(false);
-		}
 		this.add(buyDevelopmentCard, c);
 
 	}
@@ -358,39 +325,39 @@ public class BuildPanel extends JPanel implements ActionListener {
 	}
 	
 	public void allCheck() {
-		if (buildPanelController.checkRecoursesRoad()) {
+		if (buildPanelController.checkRecoursesRoad() && buildPanelController.checkStreetLeft()) {
 			buyRoad.setBackground(new Color(5, 162, 0));
 			buyRoad.setEnabled(true);
-		} else if (!buildPanelController.checkRecoursesRoad()) {
+		} else if (!buildPanelController.checkRecoursesRoad() || buildPanelController.checkStreetLeft()) {
 			buyRoad.setBackground(new Color(163, 0, 0));
 			buyRoad.setEnabled(false);
 		}
 		
-		if (buildPanelController.checkResourcesHouse()) {
+		if (buildPanelController.checkResourcesHouse() && buildPanelController.checkHouseLeft()) {
 			buyHouse.setBackground(new Color(5, 162, 0));
 			buyHouse.setForeground(Color.WHITE);
 			buyHouse.setEnabled(true);
-		} else if (!buildPanelController.checkResourcesHouse()) {
+		} else if (!buildPanelController.checkResourcesHouse() || !buildPanelController.checkHouseLeft()) {
 			buyHouse.setBackground(new Color(163, 0, 0));
 			buyHouse.setForeground(Color.BLACK);
 			buyHouse.setEnabled(false);
 		}
 		
-		if (buildPanelController.checkResourcesCity() && buildPanelController.PlayerHasHouse()) {
+		if (buildPanelController.checkResourcesCity() && buildPanelController.PlayerHasHouse() && buildPanelController.checkCityLeft()) {
 			buyCity.setBackground(new Color(5, 162, 0));
 			buyCity.setForeground(Color.WHITE);
 			buyCity.setEnabled(true);
-		} else if (!buildPanelController.checkResourcesCity()) {
+		} else if (!buildPanelController.checkResourcesCity() || !buildPanelController.checkCityLeft() || !buildPanelController.PlayerHasHouse()) {
 			buyCity.setBackground(new Color(163, 0, 0));
 			buyCity.setForeground(Color.BLACK);
 			buyCity.setEnabled(false);
 		}
 		
-		if (buildPanelController.checkResourcesDevCard()) {
+		if (buildPanelController.checkResourcesDevCard() && buildPanelController.checkCardsLeft()) {
 			buyDevelopmentCard.setBackground(new Color(5, 162, 0));
 			buyDevelopmentCard.setForeground(Color.WHITE);
 			buyDevelopmentCard.setEnabled(true);
-		} else if (!buildPanelController.checkResourcesDevCard()) {
+		} else if (!buildPanelController.checkResourcesDevCard() || !buildPanelController.checkCardsLeft()) {
 			buyDevelopmentCard.setBackground(new Color(163, 0, 0));
 			buyDevelopmentCard.setForeground(Color.BLACK);
 			buyDevelopmentCard.setEnabled(false);

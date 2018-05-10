@@ -74,6 +74,45 @@ public class PlayerDAO {
 
 		}
 	}
+	
+	public int allPoints(int gameId, int playerId) {
+		try {
+
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+
+			rs = stmt.executeQuery(
+					"select count(stuksoort) AS amountHouse	 from stuk join spelerstuk on spelerstuk.idstuk = stuk.idstuk join speler on speler.idspeler = spelerstuk.idspeler where speler.idspel = "
+							+ gameId + " AND   spelerstuk.idspeler = " + playerId
+							+ " AND stuk.stuksoort = 'dorp' AND spelerstuk.x_van IS NOT null AND spelerstuk.y_van IS NOT null");
+			rs.next();
+			int amountHouse = rs.getInt("amountHouse");
+
+			ResultSet bs;
+			bs = stmt.executeQuery(
+					"select count(stuksoort) AS amountCity from stuk join spelerstuk on spelerstuk.idstuk = stuk.idstuk join speler on speler.idspeler = spelerstuk.idspeler where speler.idspel = "
+							+ gameId + " AND   spelerstuk.idspeler = " + playerId
+							+ " AND stuk.stuksoort = 'stad' AND spelerstuk.x_van IS NOT null AND spelerstuk.y_van IS NOT null ");
+			bs.next();
+			int amountStad = bs.getInt("amountCity");
+			
+			rs = stmt.executeQuery(
+					"select count(ontwikkelingskaart.naam) AS amountVictoryCards from spelerontwikkelingskaart join ontwikkelingskaart on"
+							+ " spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart join speler on spelerontwikkelingskaart.idspeler = speler.idspeler	"
+							+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId
+							+ " AND (ontwikkelingskaart.naam = 'universiteit' OR ontwikkelingskaart.naam = 'parlement' OR ontwikkelingskaart.naam = 'kathedraal' OR ontwikkelingskaart.naam  = 'bibliotheek' OR ontwikkelingskaart.naam = 'markt')");
+			rs.next();
+			int amountVictoryCards = rs.getInt("amountVictoryCards");
+
+			int amount = amountHouse + amountVictoryCards + (amountStad * 2);
+			System.out.println(amount);
+			return amount;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return 0;
+
+		}
+	}
 
 	public String getLargestArmyID(int gameId) {
 
@@ -121,7 +160,7 @@ public class PlayerDAO {
 					+ "ontwikkelingskaart on spelerontwikkelingskaart.idontwikkelingskaart = ontwikkelingskaart.idontwikkelingskaart "
 					+ "join speler on spelerontwikkelingskaart.idspeler = speler.idspeler "
 					+ "where spelerontwikkelingskaart.idspel = " + gameId + " AND speler.idspeler = " + playerId + " "
-					+ "AND ontwikkelingskaart.naam = 'ridder'");
+					+ "AND ontwikkelingskaart.naam = 'ridder' AND spelerontwikkelingskaart.gespeeld = 0");
 			rs.next();
 			int amount = rs.getInt("aantal");
 			return amount;
@@ -201,6 +240,36 @@ public class PlayerDAO {
 			return 0;
 		}
 	}
+	
+	public int getPlayerKnightPlayed(int gameId, int playerId) { //Query returns the amount of Knights a player has activated/played. 
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select count(gespeeld) as aantal from spelerontwikkelingskaart where idontwikkelingskaart LIKE '%r' AND spelerontwikkelingskaart.idspel = "+gameId+" AND idspeler = "+playerId+"  AND gespeeld = 1");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
+	
+	public int getCardsAmount(int gameId, int playerId) { //Query returns the amount of cards a player has.
+		try {
+			Statement stmt = m_Conn.createStatement();
+			ResultSet rs;
+			rs = stmt.executeQuery(
+					"select count(idontwikkelingskaart) AS aantal from spelerontwikkelingskaart where idspel = "+gameId+" AND idspeler =" +playerId+ " AND gespeeld = 0");
+			rs.next();
+			int amount = rs.getInt("aantal");
+			return amount;
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
+	
+	
 
 	public void setPlayerResources(int gameId, int idPlayer, String resourceID) {
 		try {
@@ -211,6 +280,7 @@ public class PlayerDAO {
 		} catch (SQLException e) {
 		}
 	}
+	
 
 	public void addResources(int gameid, int playerid, String card, int amount) {
 		try {

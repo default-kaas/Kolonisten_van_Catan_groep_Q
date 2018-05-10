@@ -14,6 +14,9 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private GridBagLayout gridBagLayout;
 	private GridBagConstraints c;
 	private GridBagConstraints x;
+	private GridBagConstraints f;
+	private GridBagConstraints j;
+	private GridBagConstraints q;
 	private ImageIcon stoneImage = new ImageIcon("images/Resources/stone1.png");
 	private ImageIcon woodImage = new ImageIcon("images/Resources/wood1.png");
 	private ImageIcon oreImage = new ImageIcon("images/Resources/ore1.png");
@@ -30,7 +33,9 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 	private ImageIcon cardInvention = new ImageIcon("images/DevCards/invention.png");
 	private ImageIcon green = new ImageIcon("images/Other/green.png");
 	private ImageIcon red = new ImageIcon("images/Other/red.png");
-	private JLabel monopoly, knight, victoryPoints, tools, invention;
+	private ImageIcon devAmount = new ImageIcon("images/Other/dev.png");
+	private ImageIcon ownPlayerPoints = new ImageIcon("images/Other/points.png");
+	private JLabel monopoly, knight, victoryPoints, tools, invention, ownPoints;
 	private JButton playMonopoly = new JButton("Spelen");
 	private JButton playKnight = new JButton("Spelen");
 	private JButton playVictory = new JButton("Spelen");
@@ -58,6 +63,9 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 		c = new GridBagConstraints();
 		x = new GridBagConstraints();
+		f = new GridBagConstraints();
+		j = new GridBagConstraints();
+		q = new GridBagConstraints();
 		gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 
@@ -119,11 +127,11 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		playerTitle.setFont(new Font("Arial", Font.BOLD, 30));
 		playerTitle.setForeground(Color.BLACK);
 
-		c.insets = new Insets(0, 0, 0, 100);
+		c.insets = new Insets(0, 0, 0, 0);
 		c.anchor = GridBagConstraints.NORTH;
 		c.gridx = 0;
 		c.gridy = 0;
-		add(playerTitle, c);
+	   add(playerTitle, c);
 	}
 
 	public void playerResources() {
@@ -135,7 +143,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		String stoneAmount = ": " + controller.getStoneAmount();
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 1;
 		stone = new JLabel(stoneAmount);
@@ -145,7 +153,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(stone, c);
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 2;
 		wood = new JLabel(woodAmount);
@@ -155,7 +163,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(wood, c);
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 3;
 		wool = new JLabel(woolAmount);
@@ -165,7 +173,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(wool, c);
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 4;
 		ore = new JLabel(oreAmount);
@@ -175,7 +183,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(ore, c);
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 0;
 		c.gridy = 5;
 		wheat = new JLabel(wheatAmount);
@@ -183,6 +191,19 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		wheat.setForeground(Color.BLACK);
 		wheat.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(wheat, c);
+		
+		c.insets = new Insets(0, 0, 15, 0);
+		c.anchor = GridBagConstraints.WEST;
+		c.gridx = 0;
+		c.gridy = 6;
+		ownPoints = new JLabel(": " + controller.getAllOwnPoints());
+		ownPoints.setIcon(ownPlayerPoints);
+		ownPoints.setForeground(Color.BLACK);
+		ownPoints.setFont(new Font("Arial", Font.BOLD, 20));
+		this.add(ownPoints, c);
+		
+		
+		
 
 	}
 
@@ -191,7 +212,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		// set monopoly card
 		monopoly = new JLabel(": " + controller.getPlayerMonopolyCard());
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 1;
 		c.gridy = 1;
 		monopoly.setIcon(cardMonopoly);
@@ -204,7 +225,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		knight = new JLabel(": " + controller.getPlayerKnightCard());
 
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 1;
 		c.gridy = 2;
 		knight.setIcon(cardKnight);
@@ -215,7 +236,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		// set Victory Point card
 		victoryPoints = new JLabel(": " + controller.getPlayerVictoryPointCard());
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 1;
 		c.gridy = 3;
 		victoryPoints.setIcon(cardUniversity);
@@ -226,7 +247,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		// set tools card
 		tools = new JLabel(": " + controller.getPlayerToolsCard());
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 1;
 		c.gridy = 4;
 		tools.setIcon(cardTools);
@@ -237,7 +258,7 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		// set invention card
 		invention = new JLabel(": " + controller.getPlayerInventionCard());
 		c.insets = new Insets(0, 0, 15, 0);
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 1;
 		c.gridy = 5;
 		invention.setIcon(cardInvention);
@@ -246,32 +267,32 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		this.add(invention, c);
 
 		// set play monopoly button
-		c.insets = new Insets(0, 0, 0, 50);
-		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 2;
 		c.gridy = 1;
 		this.add(playMonopoly, c);
 		playMonopoly.addActionListener(this);
 
 		// set knight play button
-		c.insets = new Insets(0, 0, 0, 50);
-		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 2;
 		c.gridy = 2;
 		this.add(playKnight, c);
 		playKnight.addActionListener(this);
 
 		// set university play button
-		c.insets = new Insets(0, 0, 0, 50);
-		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 2;
 		c.gridy = 3;
 		this.add(playVictory, c);
 		playVictory.addActionListener(this);
 
 		// set tools play button
-		c.insets = new Insets(0, 0, 0, 50);
-		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 2;
 		c.gridy = 4;
 		this.add(playTools, c);
@@ -279,8 +300,8 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 
 		// set invention play buttons
 
-		c.insets = new Insets(0, 0, 0, 50);
-		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(0, 0, 0, 0);
+		c.anchor = GridBagConstraints.WEST;
 		c.gridx = 2;
 		c.gridy = 5;
 		this.add(playInvention, c);
@@ -292,7 +313,6 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 		JLabel enemyTitle = new JLabel("Tegenstanders Info");
 		enemyTitle.setFont(new Font("Arial", Font.BOLD, 30));
 		enemyTitle.setForeground(Color.BLACK);
-
 		c.insets = new Insets(0, 0, 50, 0);
 		c.anchor = GridBagConstraints.NORTH;
 		c.gridx = 3;
@@ -315,22 +335,27 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 			// points.
 			JLabel victoryPoints = new JLabel("" + controller.getVictoryPoints(i));
 			victoryPoints.setIcon(trophy);
+			
+			JLabel longestAndKnight = new JLabel("");
 
 			if (controller.getPlayerName(i).equals(controller.checkArmy())
 					&& controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-				info.setIcon(knightAndRoad);
+				longestAndKnight.setIcon(knightAndRoad);
 			} else if (controller.getPlayerName(i).equals(controller.checkLongestRoad())) {
-				info.setIcon(longestRoadImage);
+				longestAndKnight.setIcon(longestRoadImage);
 			} else if (controller.getPlayerName(i).equals(controller.checkArmy())) {
-				info.setIcon(knightImage);
+				longestAndKnight.setIcon(knightImage);
 			}
+			
+			JLabel knightUsed = new JLabel("" + controller.getPlayerKnightUsed(i));
+				
+			knightUsed.setIcon(cardKnight);
+			
+			JLabel cardsAmount = new JLabel("" + controller.getPlayerCardAmount(i));
+			
+			cardsAmount.setIcon(devAmount);
 
 			info.setFont(new Font("Arial", Font.BOLD, 15));
-
-			c.insets = new Insets(20, 0, 0, 0);
-			c.anchor = GridBagConstraints.NORTH;
-			c.gridx = 3;
-			c.gridy = i + 1;
 
 			switch (i) {
 			case 0:
@@ -346,22 +371,52 @@ public class PlayerInformationPanel extends JPanel implements ActionListener {
 				info.setForeground(Color.ORANGE);
 			}
 			info.setFont(new Font("Arial", Font.BOLD, 15));
+			
+			
+			c.insets = new Insets(20, 0, 0, 0); //info
+			c.anchor = GridBagConstraints.NORTH;
+			c.gridx = 3;
+			c.gridy = i + 1;
+			
+			j.insets = new Insets(0, 0, 0, 0); //LongestAndKnight
+			j.anchor = GridBagConstraints.WEST;
+			j.gridx = 4;
+			j.gridy = i + 1;
+			
+			q.insets = new Insets(0, 0, 0, 0); //Amount of player Cards
+			q.anchor = GridBagConstraints.WEST;
+			q.gridx = 5;
+			q.gridy = i + 1;
+			
+			f.insets = new Insets(0, 0, 0, 0); //Amount of knight used
+			f.anchor = GridBagConstraints.WEST;
+			f.gridx = 6;
+			f.gridy = i + 1;
 
-			x.insets = new Insets(0, 0, 0, 0);
+			x.insets = new Insets(0, 0, 0, 0); //VictoryPoints
 			x.anchor = GridBagConstraints.WEST;
-			x.gridx = 4;
+			x.gridx = 7;
 			x.gridy = i + 1;
-
+			
+		
+			
 			this.add(info, c);
 			playerInformation.add(info);
+			this.add(longestAndKnight, j);
+			playerInformation.add(longestAndKnight);
+			this.add(cardsAmount, q);
+			playerInformation.add(cardsAmount);
+			this.add(knightUsed, f);
+			playerInformation.add(knightUsed);
 			this.add(victoryPoints, x);
 			playerInformation.add(victoryPoints);
+			
 		}
 
 	}
 
 	public void TradeButton() {
-		c.insets = new Insets(0, 0, 0, 100);
+		c.insets = new Insets(0, 0, 0, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 7;

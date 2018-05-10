@@ -1,7 +1,7 @@
-/*Bugs waar ik van op de hoogte ben (to-do listje):
-- Insets moet worden veranderd indien mogelijk. 
-- Ruilen met een speler kan nog niet, maar ik heb een idee hoe dit niet al te moeilijk kan worden gemaakt. 
-- Als je geen kaarten meer heeft, kun je nog wel handelen. = gratis kaarten. */
+/* Bugs waar ik van op de hoogte ben (to-do listje):
+- Als je geen kaarten meer hebt, kun je nog wel handelen. = gratis kaarten.
+- Meerdere aan een kant ruilen met één aan de andere kant is toegestaan in de bank 
+- Er zit ergens nog een bug met 2:1 */
 
 package View;
 
@@ -265,7 +265,9 @@ public class TradePanel extends JPanel implements ActionListener {
 			if (item.toString().equals("De Bank")) {
 					// het volgende spreekt voor zich.
 					// if statement hieronder: Kijken of er links een 4 (of evt. een 3 of een 2) en rechts een 1 is ingevuld.
-					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4")) && 
+					if ((your_woolt.getText().equals("4") || your_wheatt.getText().equals("4") || your_stonet.getText().equals("4") || your_woodt.getText().equals("4") || your_oret.getText().equals("4") ||
+						your_woolt.getText().equals("3") || your_wheatt.getText().equals("3") || your_stonet.getText().equals("3") || your_woodt.getText().equals("3") || your_oret.getText().equals("3") ||
+						your_woolt.getText().equals("2") || your_wheatt.getText().equals("2") || your_stonet.getText().equals("2") || your_woodt.getText().equals("2") || your_oret.getText().equals("2")) && 
 						(their_woolt.getText().equals("1") || their_wheatt.getText().equals("1") || their_stonet.getText().equals("1") || their_woodt.getText().equals("1") || their_oret.getText().equals("1"))) {
 						// if statement hieronder: Hier wordt strikt gecontrolleerd of dat er aan BEIDE
 						// kanten precies één JTextField is ingevuld.
@@ -306,7 +308,24 @@ public class TradePanel extends JPanel implements ActionListener {
 							// b=baksteen, w=wol, h=hout, e=erts, g=graan
 							// 1=w, 2=g, 3=h, 4=b, 5=e
 							boolean availablee = false;
-							if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) > 4) {
+							if (your_woolt.getText().equals("4") && tc.getPlayerCards(1) >= 4) {
+								availablee = true;
+								tc.removePlayerCards("w", 4);
+								tc.trademsg1(4, "wol");
+							}
+							if (your_woolt.getText().equals("3") && tc.getPlayerCards(1) >= 3) {
+								tc.getHavens("w");
+									if (three == true) {
+									availablee = true;
+									tc.removePlayerCards("w", 3);
+									tc.trademsg1(3, "wol");
+								}else {
+									JOptionPane.showMessageDialog(this,
+											"U heeft geen haven van deze lengte voor deze grondstof.",
+											"Error", JOptionPane.ERROR_MESSAGE);
+								}
+							}							
+							if (your_woolt.getText().equals("2") && tc.getPlayerCards(1) >= 2) {
 								availablee = true;
 								tc.getHavens("w");
 								if (three == true) {
@@ -314,19 +333,38 @@ public class TradePanel extends JPanel implements ActionListener {
 										tc.removePlayerCards("w", 2);
 										tc.trademsg1(2, "wol");
 									} else {
-										tc.removePlayerCards("w", 3);
-										tc.trademsg1(3, "wol");
+										JOptionPane.showMessageDialog(this,
+												"U heeft geen haven van deze lengte voor deze grondstof.",
+												"Error", JOptionPane.ERROR_MESSAGE);
 									}
 								} else 
 								if (W == true){
 									tc.removePlayerCards("w", 2);
 									tc.trademsg1(2, "wol");
 								} else {
-									tc.removePlayerCards("w", 4);
-									tc.trademsg1(4, "wol");
+									JOptionPane.showMessageDialog(this,
+											"U heeft geen haven van deze lengte voor deze grondstof.",
+											"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
-							if (your_wheatt.getText().equals("4") && tc.getPlayerCards(2) > 4) {
+							if (your_wheatt.getText().equals("4") && tc.getPlayerCards(2) >= 4) {
+								availablee = true;
+								tc.removePlayerCards("g", 4);
+								tc.trademsg1(4, "graan");
+							}
+							if (your_wheatt.getText().equals("3") && tc.getPlayerCards(2) >= 3) {
+								tc.getHavens("g");
+									if (three == true) {
+									availablee = true;
+									tc.removePlayerCards("g", 3);
+									tc.trademsg1(3, "graan");
+								}else {
+									JOptionPane.showMessageDialog(this,
+											"U heeft geen haven van deze lengte voor deze grondstof.",
+											"Error", JOptionPane.ERROR_MESSAGE);
+								}
+							}
+							if (your_wheatt.getText().equals("2") && tc.getPlayerCards(2) >= 2) {
 								availablee = true;
 								tc.getHavens("g");
 								if (three == true) {
@@ -334,19 +372,38 @@ public class TradePanel extends JPanel implements ActionListener {
 										tc.removePlayerCards("g", 2);
 										tc.trademsg1(2, "graan");
 									} else {
-										tc.removePlayerCards("g", 3);
-										tc.trademsg1(3, "graan");
+										JOptionPane.showMessageDialog(this,
+												"U heeft geen haven van deze lengte voor deze grondstof.",
+												"Error", JOptionPane.ERROR_MESSAGE);
 									}
 								} else 
 									if (G == true){
 										tc.removePlayerCards("g", 2);
 										tc.trademsg1(2, "graan");
 									}else {
-									tc.removePlayerCards("g", 4);
-									tc.trademsg1(4, "graan");
+										JOptionPane.showMessageDialog(this,
+												"U heeft geen haven van deze lengte voor deze grondstof.",
+												"Error", JOptionPane.ERROR_MESSAGE);
+									}
+							}
+							if (your_stonet.getText().equals("4") && tc.getPlayerCards(4) >= 4) {
+								availablee = true;
+								tc.removePlayerCards("b", 4);
+								tc.trademsg1(4, "baksteen");
+							}
+							if (your_stonet.getText().equals("3") && tc.getPlayerCards(4) >= 3) {
+								tc.getHavens("b");
+									if (three == true) {
+									availablee = true;
+									tc.removePlayerCards("b", 3);
+									tc.trademsg1(3, "baksteen");
+								}else {
+									JOptionPane.showMessageDialog(this,
+											"U heeft geen haven van deze lengte voor deze grondstof.",
+											"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
-							if (your_stonet.getText().equals("4") && tc.getPlayerCards(4) > 4) {
+							if (your_stonet.getText().equals("2") && tc.getPlayerCards(4) >= 2) {
 								availablee = true;
 								tc.getHavens("b");
 								if (three == true) {
@@ -354,19 +411,38 @@ public class TradePanel extends JPanel implements ActionListener {
 										tc.removePlayerCards("b", 2);
 										tc.trademsg1(2, "baksteen");
 									} else {
-										tc.removePlayerCards("b", 3);
-										tc.trademsg1(3, "baksteen");
+										JOptionPane.showMessageDialog(this,
+												"U heeft geen haven van deze lengte voor deze grondstof.",
+												"Error", JOptionPane.ERROR_MESSAGE);
 									}
 								} else 
 									if (B == true){
 										tc.removePlayerCards("b", 2);
 										tc.trademsg1(2, "baksteen");
 									}else {
-									tc.removePlayerCards("b", 4);
-									tc.trademsg1(4, "baksteen");
+										JOptionPane.showMessageDialog(this,
+												"U heeft geen haven van deze lengte voor deze grondstof.",
+												"Error", JOptionPane.ERROR_MESSAGE);
+									}
+							}
+							if (your_woodt.getText().equals("4") && tc.getPlayerCards(3) >= 4) {
+								availablee = true;
+								tc.removePlayerCards("h", 4);
+								tc.trademsg1(4, "hout");
+							}
+							if (your_woodt.getText().equals("3") && tc.getPlayerCards(3) >= 3) {
+								tc.getHavens("h");
+									if (three == true) {
+									availablee = true;
+									tc.removePlayerCards("h", 3);
+									tc.trademsg1(3, "hout");
+								}else {
+									JOptionPane.showMessageDialog(this,
+											"U heeft geen haven van deze lengte voor deze grondstof.",
+											"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
-							if (your_woodt.getText().equals("4") && tc.getPlayerCards(3) > 4) {
+							if (your_woodt.getText().equals("2") && tc.getPlayerCards(3) >= 2) {
 								availablee = true;
 								tc.getHavens("h");
 								if (three == true) {
@@ -374,19 +450,38 @@ public class TradePanel extends JPanel implements ActionListener {
 										tc.removePlayerCards("h", 2);
 										tc.trademsg1(2, "hout");
 									} else {
-										tc.removePlayerCards("h", 3);
-										tc.trademsg1(3, "hout");
+										JOptionPane.showMessageDialog(this,
+												"U heeft geen haven van deze lengte voor deze grondstof.",
+												"Error", JOptionPane.ERROR_MESSAGE);
 									}
 								} else 
 									if (H == true){
 										tc.removePlayerCards("h", 2);
 										tc.trademsg1(2, "hout");
 									}else {
-									tc.removePlayerCards("h", 4);
-									tc.trademsg1(4, "hout");
+										JOptionPane.showMessageDialog(this,
+												"U heeft geen haven van deze lengte voor deze grondstof.",
+												"Error", JOptionPane.ERROR_MESSAGE);
+									}
+							}
+							if (your_oret.getText().equals("4") && tc.getPlayerCards(5) >= 4) {
+								availablee = true;
+								tc.removePlayerCards("e", 4);
+								tc.trademsg1(4, "erts");
+							}
+							if (your_oret.getText().equals("3") && tc.getPlayerCards(5) >= 3) {
+								tc.getHavens("e");
+									if (three == true) {
+									availablee = true;
+									tc.removePlayerCards("e", 3);
+									tc.trademsg1(3, "erts");
+								}else {
+									JOptionPane.showMessageDialog(this,
+											"U heeft geen haven van deze lengte voor deze grondstof.",
+											"Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
-							if (your_oret.getText().equals("4") && tc.getPlayerCards(5) > 4) {
+							if (your_oret.getText().equals("4") && tc.getPlayerCards(5) >= 4) {
 								availablee = true;
 								tc.getHavens("e");
 								if (three == true) {
@@ -394,17 +489,19 @@ public class TradePanel extends JPanel implements ActionListener {
 										tc.removePlayerCards("e", 2);
 										tc.trademsg1(2, "erts");
 									} else {
-										tc.removePlayerCards("e", 3);
-										tc.trademsg1(3, "erts");
+										JOptionPane.showMessageDialog(this,
+												"U heeft geen haven van deze lengte voor deze grondstof.",
+												"Error", JOptionPane.ERROR_MESSAGE);
 									}
 								} else 
 									if (E == true){
 										tc.removePlayerCards("e", 2);
 										tc.trademsg1(2, "erts");
 									}else {
-									tc.removePlayerCards("e", 4);
-									tc.trademsg1(4, "erts");
-								}
+										JOptionPane.showMessageDialog(this,
+												"U heeft geen haven van deze lengte voor deze grondstof.",
+												"Error", JOptionPane.ERROR_MESSAGE);
+									}
 							}
 							if (their_woolt.getText().equals("1")) {
 								tc.doesBankHave("w");
@@ -510,7 +607,7 @@ public class TradePanel extends JPanel implements ActionListener {
 									"Je hebt niet de benodigde kaarten!",
 									"Error", JOptionPane.ERROR_MESSAGE);
 								}
-							}
+							} 
 						} else {
 							JOptionPane.showMessageDialog(this,
 									"Je hebt het schema verkeerd ingevuld. Alstublieft opnieuw proberen.",

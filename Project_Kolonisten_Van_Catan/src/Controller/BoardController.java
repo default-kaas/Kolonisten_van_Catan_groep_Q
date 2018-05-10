@@ -478,6 +478,7 @@ public class BoardController {
 					Point pointSecondCorner = secondCorner.getInGamePoint();
 					point.setLocation(pointCorner.getX()/2, (pointCorner.getY()+pointSecondCorner.getY())/2);
 					dock.setDockPoint(point);
+					dock.setType("B");
 					docks.add(dock);
 				}else if(x==2&&y==5&&sx==2&&sy==6) {
 					Dock dock = new Dock();
@@ -488,6 +489,7 @@ public class BoardController {
 					Point pointSecondCorner = secondCorner.getInGamePoint();
 					point.setLocation(pointCorner.getX()/2, (pointCorner.getY()+pointSecondCorner.getY())/2);
 					dock.setDockPoint(point);
+					dock.setType("H");
 					docks.add(dock);
 				}else if(x==3&&y==8&&sx==4&&sy==9) {
 					Dock dock = new Dock();
@@ -498,6 +500,7 @@ public class BoardController {
 					Point pointSecondCorner = secondCorner.getInGamePoint();
 					point.setLocation(pointCorner.getX()*1.12, (pointCorner.getY()+pointSecondCorner.getY())*0.25);
 					dock.setDockPoint(point);
+					dock.setType("3:1");
 					docks.add(dock);
 				}else if(x==6&&y==10&&sx==7&&sy==10) {
 					Dock dock = new Dock();
@@ -508,6 +511,7 @@ public class BoardController {
 					Point pointSecondCorner = secondCorner.getInGamePoint();
 					point.setLocation(pointCorner.getX()*1.15, (pointCorner.getY()+pointSecondCorner.getY())*0.25);
 					dock.setDockPoint(point);
+					dock.setType("G");
 					docks.add(dock);
 				}else if(x==9&&y==10&&sx==10&&sy==10) {
 					Dock dock = new Dock();
@@ -518,6 +522,7 @@ public class BoardController {
 					Point pointSecondCorner = secondCorner.getInGamePoint();
 					point.setLocation(pointCorner.getX()*1.09, (pointCorner.getY()+pointSecondCorner.getY())*0.42);
 					dock.setDockPoint(point);
+					dock.setType("E");
 					docks.add(dock);
 				}else if(x==11&&y==9&&sx==11&&sy==8) {
 					Dock dock = new Dock();
@@ -528,6 +533,7 @@ public class BoardController {
 					Point pointSecondCorner = secondCorner.getInGamePoint();
 					point.setLocation(pointCorner.getX()*1.02, (pointCorner.getY()+pointSecondCorner.getY())/2);
 					dock.setDockPoint(point);
+					dock.setType("3:1");
 					docks.add(dock);
 				}else if(x==10&&y==6&&sx==9&&sy==5) {
 					Dock dock = new Dock();
@@ -538,6 +544,7 @@ public class BoardController {
 					Point pointSecondCorner = secondCorner.getInGamePoint();
 					point.setLocation(pointCorner.getX()*0.97, (pointCorner.getY()+pointSecondCorner.getY())*0.52);
 					dock.setDockPoint(point);
+					dock.setType("W");
 					docks.add(dock);
 				}else if(x==7&&y==3&&sx==6&&sy==2) {
 					Dock dock = new Dock();
@@ -548,17 +555,18 @@ public class BoardController {
 					Point pointSecondCorner = secondCorner.getInGamePoint();
 					point.setLocation(pointCorner.getX()*0.97, (pointCorner.getY()+pointSecondCorner.getY())*0.52);
 					dock.setDockPoint(point);
+					dock.setType("3:1");
 					docks.add(dock);
 				}else if(x==4&&y==1&&sx==3&&sy==1) {
 					Dock dock = new Dock();
 					dock.setCornerPoint(corner);
 					dock.setCornerPoint(secondCorner);
-					//////////////////////////////////////////////////////////////////////////////////////////////////////
 					Point point = new Point();
 					Point pointCorner = corner.getInGamePoint();
 					Point pointSecondCorner = secondCorner.getInGamePoint();
 					point.setLocation(pointCorner.getX()*0.8, (pointCorner.getY()+pointSecondCorner.getY())*0.52);
 					dock.setDockPoint(point);
+					dock.setType("3:1");
 					docks.add(dock);
 				}
 			}

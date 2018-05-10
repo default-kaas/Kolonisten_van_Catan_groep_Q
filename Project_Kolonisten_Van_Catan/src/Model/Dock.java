@@ -4,16 +4,16 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class Dock {
-	private char type;
+	private String type;
 	private ArrayList<Corner> cornerPoints = new ArrayList<Corner>();
 	// in game point for type of dock display
 	private Point dockPoint;
 	
 	// with this you can set what type of dock it is
-	public char getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(char type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	// with this you can set which corners belong to the dock

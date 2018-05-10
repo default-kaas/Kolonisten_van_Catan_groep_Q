@@ -221,10 +221,9 @@ public class PlayerDAO {
 			Statement stmt = m_Conn.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery(
-					"select count(idontwikkelingskaart) AS aantal from spelerontwikkelingskaart where idspel = "+gameId+" AND idspeler =" +playerId+ "");
+					"select count(idontwikkelingskaart) AS aantal from spelerontwikkelingskaart where idspel = "+gameId+" AND idspeler =" +playerId+ " AND gespeeld = 0");
 			rs.next();
 			int amount = rs.getInt("aantal");
-			System.out.println(amount);
 			return amount;
 		} catch (SQLException e) {
 			return 0;

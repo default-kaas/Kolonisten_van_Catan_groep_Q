@@ -2,6 +2,8 @@ package Controller;
 
 import java.sql.Connection;
 
+import javax.swing.JButton;
+
 import Model.Game;
 import Model.Player;
 import Model.Trade;
@@ -118,21 +120,19 @@ public class TradeController {
 		System.out.println(v1 + resource1 + v2 + resource2);
 	}
 	
+	public void tradeplayers(String proposer, String acceptedornot) {
+		tradeFrame.getgc().acceptordeny(proposer, acceptedornot);
+	}
+	
 	public TradeFrame getTradeFrameFromController() {
 		return tradeFrame;
 	}
 	
-	public void showScreen(String string, String string2, String string3, String string4, String string5, String string6, String string7, String string8, String string9, String string10) {
+	public void showScreen(String grondstof1, String grondstof2, String grondstof3, String grondstof4, String grondstof5, String grondstof6, String grondstof7, String grondstof8, String grondstof9, String grondstof10) {
 		for (int i = 0; i < 4; i++) {
 			if (tradeFrame.getgc().getGame().GetPlayers().get(i).getName() != tradeFrame.getgc().getGame().getMe().getName()) {
-				showForPlayers(tradeFrame.getgc().getGame().GetPlayers().get(i).getName(), string, string2, string3, string4, string5, string6, string7, string8, string9, string10);
+				tpup = new TradePopup(this, tradeFrame.getgc().getGame().getMe().getName(), grondstof1, grondstof2, grondstof3, grondstof4, grondstof5, grondstof6, grondstof7, grondstof8, grondstof9, grondstof10);
 			}
-		}
-	}
-	
-	public void showForPlayers(String string, String string2, String string22, String string3, String string4, String string5, String string6, String string7, String string8, String string9, String string10) {
-		if (string == tradeFrame.getgc().getGame().getMe().getName()) {
-			tpup = new TradePopup(this, tradeFrame.getgc().getGame().getMe().getName(), string, string2, string3, string4, string5, string6, string7, string8, string9, string10);
 		}
 	}
 	

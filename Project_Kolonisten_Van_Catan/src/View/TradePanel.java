@@ -240,13 +240,23 @@ public class TradePanel extends JPanel implements ActionListener {
 		
 	}
 	
+	// b=baksteen, w=wol, h=hout, e=erts, g=graan
+	// 1=w, 2=g, 3=h, 4=b, 5=e
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(propose)) {
 			Object item = cb.getSelectedItem();
 			if (item.toString().equals("Spelers")) {
-				tc.showScreen(your_wool.getText(), your_woodt.getText(), your_ore.getText(), your_wheatt.getText(), your_stonet.getText(), their_woolt.getText(), their_woodt.getText(), their_oret.getText(), their_wheatt.getText(), their_stonet.getText());
-				JOptionPane.showMessageDialog(this, "Wordt aan gewerkt!", "ERROR", JOptionPane.ERROR_MESSAGE);
-				tc.disposeFrame();
+				if (Integer.parseInt(your_woolt.getText()) >= tc.getPlayerCards(1) && Integer.parseInt(your_woodt.getText()) >= tc.getPlayerCards(1) && 
+				Integer.parseInt(your_oret.getText()) >= tc.getPlayerCards(1) && Integer.parseInt(your_wheatt.getText()) >= tc.getPlayerCards(1) && 
+				Integer.parseInt(your_stonet.getText()) >= tc.getPlayerCards(1)) {
+					tc.showScreen(your_wool.getText(), your_woodt.getText(), your_ore.getText(), your_wheatt.getText(), your_stonet.getText(), their_woolt.getText(), their_woodt.getText(), their_oret.getText(), their_wheatt.getText(), their_stonet.getText());
+					JOptionPane.showMessageDialog(this, "Uw handel is voorgesteld aan de rest!",
+							"Handelsbericht.", JOptionPane.INFORMATION_MESSAGE);
+					tc.disposeFrame();
+				} else {
+					JOptionPane.showMessageDialog(this, "De aangeboden kaarten zijn niet in uw bezit!", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 			if (item.toString().equals("De Bank")) {
 					// het volgende spreekt voor zich.

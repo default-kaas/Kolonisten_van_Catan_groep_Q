@@ -43,6 +43,8 @@ public class TradePopup extends JFrame implements ActionListener {
 	private JLabel tg;
 	private JLabel tb;
 	
+	private String proposer;
+	
 	TradeController tc;
 	
 	
@@ -50,6 +52,7 @@ public class TradePopup extends JFrame implements ActionListener {
 		
 		tc = tradeController;
 		panel = new JPanel();
+		proposer = string;
 		
 		His = new JLabel(string + "s:");
 		Your = new JLabel("Yours:");
@@ -127,9 +130,11 @@ public class TradePopup extends JFrame implements ActionListener {
 		}
 		if (e.getSource().equals(accept)) { 
 			dispose();
+			tc.tradeplayers(proposer, "accept");
 		}
 		if (e.getSource().equals(deny)) { 
 			dispose();
+			tc.tradeplayers(proposer, "deny");
 		}
 	}
 

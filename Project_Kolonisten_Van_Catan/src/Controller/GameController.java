@@ -125,4 +125,13 @@ public class GameController {
 		chatPanelController.setUserInput("heeft " +value1+ " keer " + Resource1 + " geruild met " + Player + " voor " + value2 + " keer " + Resource2 );
 	}
 	
+	public void acceptordeny(String proposer, String acceptedornot) {
+		if (acceptedornot.equals("accept")) {
+			chatPanelController.setUserInput("heeft " +proposer+ "s bod geaccepteerd. Wachten op reactie offeraar." );
+		}
+		if (acceptedornot.equals("deny")) {
+			chatPanelController.setUserInput("heeft " +proposer+ "s bod afgewezen." );
+		}
+	}
+	
 }

@@ -21,7 +21,7 @@ import Model.Board;
 import Model.Dock;
 import Model.Tile;
 
-public class BoardPanel extends JPanel implements MouseListener {
+public class BoardPanel extends JPanel /*implements MouseListener*/ {
 	private Board board;
 	private int height;
 
@@ -39,7 +39,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 
 	public BoardPanel(Board board) {
 		this.board = board;
-		this.addMouseListener(this);
+		
 		// Dit is ff groen voor een test, mag je weghalen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -52,6 +52,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//this.addMouseListener(this);
 	}
 
 	@Override
@@ -160,8 +161,8 @@ public class BoardPanel extends JPanel implements MouseListener {
 			}
 		}
 	}
-
-	public void paintStreet(Graphics g, int player) {
+	
+	public void paintStreet(Graphics g, int player, int x, int y, int width, int height) {
 		Color c = Color.BLACK;
 		g.setColor(c);
 		g.drawRect(x, y, width, height);
@@ -186,10 +187,10 @@ public class BoardPanel extends JPanel implements MouseListener {
 		g.fillRect(x, y, width, height);
 	}
 
-	public void paintTown(Graphics g, int player) {
+	public void paintTown(Graphics g, int player, int x, int y, int r) {
 		Color c = Color.BLACK;
 		g.setColor(c);
-		g.drawOval(x, y, width, height);
+		g.drawOval(x, y, r, r);
 		switch (player) {
 		case 1:
 			c = new Color(1f, 0f, 0f, .5f);
@@ -208,7 +209,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 			break;
 		}
 		g.setColor(c);
-		g.fillOval(x, y, width, height);
+		g.fillOval(x, y, r, r);
 	}
 
 	Polygon getHexagon(int x, int y, int h) {
@@ -221,7 +222,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 		}
 		return hexagon;
 	}
-
+/*
 	@Override
 	public void mousePressed(MouseEvent me) {
 		// TODO Auto-generated method stub
@@ -261,5 +262,5 @@ public class BoardPanel extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 }

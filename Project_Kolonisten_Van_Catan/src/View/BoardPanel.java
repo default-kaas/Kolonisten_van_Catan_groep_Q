@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +21,7 @@ import Model.Board;
 import Model.Dock;
 import Model.Tile;
 
-public class BoardPanel extends JPanel {
+public class BoardPanel extends JPanel implements MouseListener {
 	private Board board;
 	private int height;
 
@@ -32,14 +34,18 @@ public class BoardPanel extends JPanel {
 	private File folderInput = new File("images/Other/knight.png");
 	private BufferedImage img;
 
+	private int xMouse;
+	private int yMouse;
+
 	public BoardPanel(Board board) {
 		this.board = board;
+		this.addMouseListener(this);
 		// Dit is ff groen voor een test, mag je weghalen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 		height = (int) (screenSize.getHeight());
 		this.setPreferredSize(new Dimension(height, height - 23));
-		
+
 		try {
 			img = ImageIO.read(folderInput);
 		} catch (IOException e) {
@@ -120,15 +126,15 @@ public class BoardPanel extends JPanel {
 					g.drawString(number, tile.getInGameCenterPoint().x - 4, tile.getInGameCenterPoint().y + 5);
 				}
 			}
-			
-			
+
 			if (tile.isRobber()) {
-				g.drawImage(img,tile.getInGameCenterPoint().x - (img.getWidth()/2), tile.getInGameCenterPoint().y - (img.getHeight()/2), null);
+				g.drawImage(img, tile.getInGameCenterPoint().x - (img.getWidth() / 2),
+						tile.getInGameCenterPoint().y - (img.getHeight() / 2), null);
 			}
 		}
 		ArrayList<Dock> docks = board.getDocks();
-		for(Dock dock:docks) {
-			if(dock.getDockPoint()!=null) {
+		for (Dock dock : docks) {
+			if (dock.getDockPoint() != null) {
 				g.setColor(Color.blue);
 				int[] xPoints = new int[3];
 				xPoints[0] = dock.getCorner(0).getInGamePoint().x;
@@ -142,17 +148,67 @@ public class BoardPanel extends JPanel {
 				System.out.println(yPoints[0]);
 				g.fillPolygon(xPoints, yPoints, 3);
 				g.setColor(Color.white);
-				g.fillOval(dock.getDockPoint().x-19, dock.getDockPoint().y-19, 38, 38);
+				g.fillOval(dock.getDockPoint().x - 19, dock.getDockPoint().y - 19, 38, 38);
 				g.setColor(Color.black);
-				if(dock.getType().equals("3:1")) {
-					g.drawString(dock.getType() , dock.getDockPoint().x-11, dock.getDockPoint().y+5);
-				}else if(dock.getType().equals("W")) {
-					g.drawString(dock.getType() , dock.getDockPoint().x-7, dock.getDockPoint().y+5);
-				}else{
-					g.drawString(dock.getType() , dock.getDockPoint().x-6, dock.getDockPoint().y+5);
+				if (dock.getType().equals("3:1")) {
+					g.drawString(dock.getType(), dock.getDockPoint().x - 11, dock.getDockPoint().y + 5);
+				} else if (dock.getType().equals("W")) {
+					g.drawString(dock.getType(), dock.getDockPoint().x - 7, dock.getDockPoint().y + 5);
+				} else {
+					g.drawString(dock.getType(), dock.getDockPoint().x - 6, dock.getDockPoint().y + 5);
 				}
 			}
 		}
+	}
+
+	public void paintStreet(Graphics g, int player) {
+		Color c = Color.BLACK;
+		g.setColor(c);
+		g.drawRect(x, y, width, height);
+		switch (player) {
+		case 1:
+			c = new Color(1f, 0f, 0f, .5f);
+			break;
+		case 2:
+			c = new Color(1f, 1f, 1f, .5f);
+			break;
+		case 3:
+			c = new Color(0f, 0f, 1f, .5f);
+			break;
+		case 4:
+			c = new Color(1f, 0.5f, 0f, .5f);
+			break;
+		default:
+			c = Color.BLACK;
+			break;
+		}
+		g.setColor(c);
+		g.fillRect(x, y, width, height);
+	}
+
+	public void paintTown(Graphics g, int player) {
+		Color c = Color.BLACK;
+		g.setColor(c);
+		g.drawOval(x, y, width, height);
+		switch (player) {
+		case 1:
+			c = new Color(1f, 0f, 0f, .5f);
+			break;
+		case 2:
+			c = new Color(1f, 1f, 1f, .5f);
+			break;
+		case 3:
+			c = new Color(0f, 0f, 1f, .5f);
+			break;
+		case 4:
+			c = new Color(1f, 0.5f, 0f, .5f);
+			break;
+		default:
+			c = Color.BLACK;
+			break;
+		}
+		g.setColor(c);
+		g.fillOval(x, y, width, height);
 	}
 
 	Polygon getHexagon(int x, int y, int h) {
@@ -166,4 +222,44 @@ public class BoardPanel extends JPanel {
 		return hexagon;
 	}
 
+	@Override
+	public void mousePressed(MouseEvent me) {
+		// TODO Auto-generated method stub
+		xMouse = me.getX();
+		yMouse = me.getY();
+
+		repaint();
+	}
+
+	public int getX() {
+		return xMouse;
+	}
+
+	public int getY() {
+		return yMouse;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
 }

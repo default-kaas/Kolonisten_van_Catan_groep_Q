@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class Street {
-	private int player;
+	private int player = 0;
 	private String colour;
 	private ArrayList<Corner> cornerPoints = new ArrayList<Corner>();
 	public String getColour() {
